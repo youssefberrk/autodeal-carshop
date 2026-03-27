@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useRef } from "react";
 import { Brand, BrandItemProps } from "@/types/brandItem";
 import Image from "next/image";
 import React from "react";
@@ -32,7 +35,7 @@ const brands: Brand[] = [
 ];
 
 const BrandItem = ({ brand }: BrandItemProps) => (
-	<div className="flex flex-col items-center gap-3 group cursor-pointer  px-8">
+	<div className="flex flex-col items-center gap-4 group cursor-pointer px-4 sm:px-6 md:px-8">
 		<Image
 			src={brand.logo}
 			alt={brand.name}
@@ -47,32 +50,33 @@ const BrandItem = ({ brand }: BrandItemProps) => (
 );
 
 const BrandsSection: React.FC = () => {
+	const trackRef = useRef<HTMLDivElement>(null);
+	useEffect(() => {
+		const updateWidth = () => {
+			if (trackRef.current) {
+				const width = trackRef.current.scrollWidth / 2;
+				trackRef.current.style.setProperty("--scroll-width", `-${width}px`);
+			}
+		};
+
+		updateWidth();
+		window.addEventListener("resize", updateWidth);
+
+		return () => window.removeEventListener("resize", updateWidth);
+	}, []);
 	return (
 		<section className="bg-[#0a0a0a] border-y border-[#1a1a1a] py-10 overflow-hidden">
-			{/* Header */}
 			<div className="text-center mb-8">
-				<p className="text-gray-500 text-sm uppercase tracking-widest">
+				<p className="text-gray-50 text-xl font-bold uppercase tracking-widest">
 					Trusted Brands We Carry
 				</p>
 			</div>
 
-			{/* Wrapper */}
-
-			<div className="marquee-wrapper  ">
-				{/* Track 1 */}
-				<div className="marquee-track">
-					{brands.map((brand, index) => (
+			<div className="marquee-wrapper marquee-mask">
+				<div ref={trackRef} className="marquee-track">
+					{[...brands, ...brands].map((brand, index) => (
 						<div key={index} className="item">
-							<BrandItem key={`a-${index}`} brand={brand} />
-						</div>
-					))}
-				</div>
-
-				{/* Track 2 (duplicate) */}
-				<div className="marquee-track">
-					{brands.map((brand, index) => (
-						<div key={index} className="item">
-							<BrandItem key={`a-${index}`} brand={brand} />
+							<BrandItem brand={brand} />
 						</div>
 					))}
 				</div>

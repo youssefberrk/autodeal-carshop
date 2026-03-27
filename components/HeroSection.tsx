@@ -8,13 +8,13 @@ const HeroSection: React.FC = () => {
 		<section className="relative bg-[#010000c0] text-white">
 			<div className="container mx-auto px-6 py-24 flex flex-col lg:flex-row items-center ">
 				{/* left side - Car Image */}
-				<div className="lg:w-1/2 flex justify-center relative hero-image border-none">
+				<div className="lg:w-2/3 flex justify-center relative hero-image border-none">
 					<Image
 						src={edited1}
 						alt="Car"
 						className="border-none shadow-2xl max-w-full h-auto "
-						width={760}
-						height={760}
+						width={860}
+						height={860}
 					/>
 				</div>
 				{/* right side - Text */}

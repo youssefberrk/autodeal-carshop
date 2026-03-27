@@ -218,10 +218,11 @@
 
 @layer base {
 	* {
-		@apply border-border outline-ring/50;
+		@apply outline-ring/50;
+		border: none;
 	}
 	body {
-		background: #060d10;
+		background: #020608; /* Fallback to darkest color */
 		background: radial-gradient(
 			ellipse at 50% 0%,
 			#1a3a2e 0%,
@@ -229,6 +230,7 @@
 			#060d10 65%,
 			#020608 100%
 		);
+		background-attachment: fixed; /* Keeps gradient fixed to viewport */
 		min-height: 100vh;
 	}
 	html {
@@ -237,10 +239,10 @@
 }
 /* app/globals.css */
 
-@keyframes slideInLeft {
+@keyframes slideInRight {
 	from {
 		opacity: 0;
-		transform: translateX(-80px);
+		transform: translateX(100px);
 	}
 	to {
 		opacity: 1;
@@ -248,10 +250,10 @@
 	}
 }
 
-@keyframes slideInRight {
+@keyframes slideInLeft {
 	from {
 		opacity: 0;
-		transform: translateX(80px);
+		transform: translateX(-100px);
 	}
 	to {
 		opacity: 1;
@@ -262,7 +264,7 @@
 @keyframes fadeInUp {
 	from {
 		opacity: 0;
-		transform: translateY(30px);
+		transform: translateY(40px);
 	}
 	to {
 		opacity: 1;
@@ -301,19 +303,30 @@
 .hero-accent {
 	animation: glowPulse 2s ease-in-out 2s infinite;
 }
+.story-image {
+	animation: slideInRight 2s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+}
+
+.story-title {
+	animation: slideInLeft 2s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.story-para {
+	animation: fadeInUp 2s cubic-bezier(0.22, 1, 0.36, 1) 0.45s both;
+}
 @keyframes scroll {
 	from {
-		translate: 0;
+		transform: translateX(0);
 	}
 	to {
-		translate: -100%;
+		transform: translateX(var(--scroll-width));
 	}
 }
 
 .marquee-wrapper {
 	display: flex;
-	width: 90%;
-	overflow-x: auto;
+	overflow: hidden; /* 🔥 important */
+	width: 100%;
 }
 .marquee-wrapper::-webkit-scrollbar {
 	display: none;
@@ -321,15 +334,18 @@
 .marquee-track {
 	display: flex;
 	align-items: center;
-	justify-content: center;
-	animation: scroll 25s infinite linear;
-	gap: 1em;
+	gap: 2rem;
+	animation: scroll 25s linear infinite;
+	width: max-content;
+	will-change: transform;
 }
 .item {
-	flex: 0 0 5em;
-	padding: 1em;
+	flex: 0 0 auto;
+
 	text-align: center;
 	align-content: center;
+
+	/* gap: 3em; */
 }
 
 /* Pause on hover */
