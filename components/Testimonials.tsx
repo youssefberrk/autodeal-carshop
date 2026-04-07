@@ -144,9 +144,9 @@ const Testimonials = () => {
 						{/* Quote */}
 						<p className="mb-6 text-lg leading-relaxed text-gray-300">
 							<span className="text-3xl text-green-400/60 md:text-5xl">❞</span>{" "}
-							AutoDeal doesn&apos;t just deliver a vehicle; they deliver a symphony
-							of mechanical perfection. Their attention to detail is
-							unparalleled in the industry.
+							The acquisition process was as smooth as the V12 they sourced for
+							me. They&apos;ve redefined what a high-end automotive experience
+							should be.
 						</p>
 
 						{/* Divider */}

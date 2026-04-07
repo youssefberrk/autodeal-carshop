@@ -9,7 +9,9 @@
 
 	--font-sans: var(--font-sans);
 
-	--color-sidebar-ring: var(--sidebar-ring);
+	--font-news: "Newsreader";
+
+	--font-manrope: var(--font-manrope) --color-sidebar-ring: var(--sidebar-ring);
 
 	--color-sidebar-border: var(--sidebar-border);
 
@@ -237,6 +239,7 @@
 		@apply font-sans;
 	}
 }
+
 /* app/globals.css */
 
 @keyframes slideInRight {
@@ -313,6 +316,18 @@
 
 .story-para {
 	animation: fadeInUp 2s cubic-bezier(0.22, 1, 0.36, 1) 0.45s both;
+}
+.newsreader {
+	font-family: var(--font-news);
+	font-style: italic;
+}
+.manrope {
+	font-family: var(--font-manrope);
+	font-style: italic;
+	max-width: 300px;
+	letter-spacing: 1px;
+	line-height: 1.6;
+	
 }
 @keyframes scroll {
 	from {

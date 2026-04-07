@@ -1,4 +1,5 @@
 import BrandsSection from "@/components/BrandsSection";
+import DiscoverSwrooms from "@/components/DiscoverSwrooms";
 import HeroSection from "@/components/HeroSection";
 import Story from "@/components/Story";
 import Testimonials from "@/components/Testimonials";
@@ -10,6 +11,7 @@ export default function Home() {
 			<BrandsSection />
 			<Story />
 			<Testimonials />
+			<DiscoverSwrooms />
 		</div>
 	);
 }

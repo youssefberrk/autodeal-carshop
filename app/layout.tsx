@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Newsreader, Manrope } from "next/font/google";
 import "./globals.css";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
@@ -12,6 +12,19 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
 	variable: "--font-geist-mono",
 	subsets: ["latin"],
+});
+
+const newsreader = Newsreader({
+	weight: ["400", "700"],
+	display: "swap",
+	subsets: ["latin"],
+	variable: "--font-newsreader",
+	style: ["normal", "italic"],
+});
+
+const manrope = Manrope({
+	subsets: ["latin"],
+	variable: "--font-manrope", // Define the variable name
 });
 
 export const metadata: Metadata = {
@@ -27,7 +40,7 @@ export default function RootLayout({
 	return (
 		<html
 			lang="en"
-			className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
+			className={`${geistSans.variable} ${geistMono.variable} ${newsreader.className} ${manrope.variable} h-full antialiased`}>
 			<body className="min-h-full flex flex-col">
 				<NavBar />
 				{children}

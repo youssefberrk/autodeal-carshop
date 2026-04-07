@@ -66,13 +66,13 @@ const BrandsSection: React.FC = () => {
 	}, []);
 	return (
 		<section className="bg-[#0a0a0a] border-y border-[#1a1a1a] py-10 overflow-hidden">
-			<div className="text-center mb-8">
-				<p className="text-gray-50 text-xl font-bold uppercase tracking-widest">
+			<div className="text-center mt-2 mb-5">
+				<p className="text-gray-50 text-2xl font-bold uppercase tracking-widest">
 					Trusted Brands We Carry
 				</p>
 			</div>
 
-			<div className="marquee-wrapper marquee-mask">
+			<div className="marquee-wrapper marquee-mask mb-5 mt-10">
 				<div ref={trackRef} className="marquee-track">
 					{[...brands, ...brands].map((brand, index) => (
 						<div key={index} className="item">
