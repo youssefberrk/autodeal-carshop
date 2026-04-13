@@ -6,9 +6,9 @@ import edited1 from "@/public/edited1.png";
 const HeroSection: React.FC = () => {
 	return (
 		<section className="relative bg-[#010000c0] text-white">
-			<div className="container mx-auto px-6 py-24 flex flex-col lg:flex-row items-center ">
+			<div className="container mx-auto px-6 py-24 flex flex-col lg:flex-row items-center overflow-hidden">
 				{/* left side - Car Image */}
-				<div className="lg:w-2/3 flex justify-center relative hero-image border-none">
+				<div className="w-full lg:w-2/3 flex justify-center relative hero-image border-none">
 					<Image
 						src={edited1}
 						alt="Car"
@@ -18,7 +18,7 @@ const HeroSection: React.FC = () => {
 					/>
 				</div>
 				{/* right side - Text */}
-				<div className="lg:w-1/2 flex flex-col gap-6 ">
+				<div className="w-full lg:w-1/2 flex flex-col gap-6 ">
 					<h1 className="hero-title  text-5xl lg:text-6xl font-extrabold leading-tight">
 						Drive Your{" "}
 						<span className="text-[#00C853] hero-accent">Dream Machine</span>

@@ -54,8 +54,11 @@ const BrandsSection: React.FC = () => {
 	useEffect(() => {
 		const updateWidth = () => {
 			if (trackRef.current) {
-				const width = trackRef.current.scrollWidth / 2;
-				trackRef.current.style.setProperty("--scroll-width", `-${width}px`);
+				const singleSetWidth = trackRef.current.scrollWidth / 3;
+				trackRef.current.style.setProperty(
+					"--scroll-width",
+					`-${singleSetWidth}px`,
+				);
 			}
 		};
 
@@ -65,7 +68,7 @@ const BrandsSection: React.FC = () => {
 		return () => window.removeEventListener("resize", updateWidth);
 	}, []);
 	return (
-		<section className="bg-[#0a0a0a] border-y border-[#1a1a1a] py-10 overflow-hidden">
+		<section className="flex flex-col bg-[#0a0a0a] border-y border-[#1a1a1a] py-10  overflow-hidden">
 			<div className="text-center mt-2 mb-5">
 				<p className="text-gray-50 text-2xl font-bold uppercase tracking-widest">
 					Trusted Brands We Carry
@@ -74,7 +77,7 @@ const BrandsSection: React.FC = () => {
 
 			<div className="marquee-wrapper marquee-mask mb-5 mt-10">
 				<div ref={trackRef} className="marquee-track">
-					{[...brands, ...brands].map((brand, index) => (
+					{[...brands, ...brands, ...brands].map((brand, index) => (
 						<div key={index} className="item">
 							<BrandItem brand={brand} />
 						</div>

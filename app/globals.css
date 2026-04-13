@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&family=Orbitron:wght@400;500;600;700;800;900&display=swap");
+
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
@@ -327,7 +329,6 @@
 	max-width: 300px;
 	letter-spacing: 1px;
 	line-height: 1.6;
-	
 }
 @keyframes scroll {
 	from {
@@ -384,4 +385,13 @@
 		black 90%,
 		transparent
 	);
+}
+.heading {
+	font-family: "Playfair Display", serif;
+}
+.body {
+	font-family: "Inter", sans-serif;
+}
+.logo {
+	font-family: "Orbitron", sans-serif;
 }

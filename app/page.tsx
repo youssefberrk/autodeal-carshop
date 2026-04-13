@@ -6,7 +6,7 @@ import Testimonials from "@/components/Testimonials";
 
 export default function Home() {
 	return (
-		<div className="border-0">
+		<div className="border-0 overflow-x-hidden">
 			<HeroSection />
 			<BrandsSection />
 			<Story />
