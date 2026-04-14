@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { FaSearch, FaShoppingCart, FaBars, FaTimes } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
@@ -9,23 +9,54 @@ import Logo from "./ui/Logo";
 const NavBar = () => {
 	const [menuOpen, setMenuOpen] = useState(false);
 	const [profileOpen, setProfileOpen] = useState(false);
+	const [scrollProgress, setScrollProgress] = useState(0);
+
+	useEffect(() => {
+		const handleScroll = () => {
+			requestAnimationFrame(() => {
+				const scrollTop = window.scrollY;
+				const docHeight =
+					document.documentElement.scrollHeight - window.innerHeight;
+
+				const progress = scrollTop / docHeight;
+				setScrollProgress(progress);
+			});
+		};
+
+		window.addEventListener("scroll", handleScroll);
+
+		return () => window.removeEventListener("scroll", handleScroll);
+	}, []);
 
 	const cartCount = 3;
+	const isScrolled = scrollProgress > 0.02;
 
 	return (
 		<nav
-			className="sticky top-0 z-50 backdrop-blur-md"
+			className={`sticky z-50 transition 
+		${
+			isScrolled
+				? "mt-22 top-2 w-full max-w-6xl  md:w-6xl mx-auto rounded-xl shadow-lg backdrop-blur-xl "
+				: "w-full top-0 "
+		}
+`}
 			style={{
 				background: "rgba(6, 13, 16, 0.75)",
 				borderBottom: "1px solid rgba(34, 197, 94, 0.18)",
 			}}>
-			<div className="flex flex-1 items-center justify-between  px-6 py-4">
-				{/* Logo */} 
+			<div
+				className="absolute bottom-0 left-0 h-[2px] bg-green-400"
+				style={{
+					width: `${scrollProgress * 100}%`,
+					transition: "width 0.1s ease-out",
+				}}
+			/>
+			<div className="flex items-center justify-between px-6 py-4 max-w-7xl mx-auto">
+				{/* Logo */}
 				<div className=" ">
-
-				<Link href="/" className="text-xl font-bold">
-					<Logo />
-				</Link>
+					<Link href="/" className="text-xl font-bold">
+						<Logo />
+					</Link>
 				</div>
 
 				{/* Desktop Links */}
@@ -50,7 +81,7 @@ const NavBar = () => {
 				<div className="flex  items-center justify-end gap-6 text-lg relative  text-slate-300">
 					{/* Search */}
 					<button aria-label="Search">
-						<FaSearch className="hover:text-green-400 hover:scale-110 transition" />
+						<FaSearch className="hover:text-green-400 hover:scale-110 transition cursor-pointer" />
 					</button>
 
 					{/* Cart with badge */}
@@ -68,7 +99,7 @@ const NavBar = () => {
 						<button
 							onClick={() => setProfileOpen(!profileOpen)}
 							aria-label="Profile">
-							<CgProfile className="hover:text-green-400 hover:scale-110 transition text-xl" />
+							<CgProfile className="hover:text-green-400 hover:scale-110 transition text-xl cursor-pointer" />
 						</button>
 
 						{/* Dropdown */}
