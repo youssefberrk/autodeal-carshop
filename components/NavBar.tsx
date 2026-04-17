@@ -37,7 +37,7 @@ const NavBar = () => {
 		${
 			isScrolled
 				? "mt-22 top-2 w-full max-w-6xl  md:w-6xl mx-auto rounded-xl shadow-lg backdrop-blur-xl "
-				: "w-full top-0 "
+				: "w-full lg:mx-0 top-0 "
 		}
 `}
 			style={{
@@ -51,7 +51,7 @@ const NavBar = () => {
 					transition: "width 0.1s ease-out",
 				}}
 			/>
-			<div className="flex items-center justify-between px-6 py-4 max-w-7xl mx-auto">
+			<div className="flex items-center justify-between px-6 py-2 max-w-7xl mx-auto">
 				{/* Logo */}
 				<div className=" ">
 					<Link href="/" className="text-xl font-bold">
@@ -60,7 +60,7 @@ const NavBar = () => {
 				</div>
 
 				{/* Desktop Links */}
-				<div className="hidden md:flex items-center justify-between w-1/3 font-medium text-slate-300 text-l tracking-wide  ">
+				<div className="hidden md:flex items-center justify-center gap-[10em] w-2/3 logo fon uppercase text-slate-300 text-[10px] tracking-[0.2em]  ">
 					{[
 						{ href: "/", label: "Home" },
 						{ href: "/shop", label: "Shop" },
@@ -72,7 +72,7 @@ const NavBar = () => {
 							href={href}
 							className="relative group hover:text-green-400 transition-colors duration-300">
 							{label}
-							<span className="absolute -bottom-1 left-0 h-[1.5px] w-0 bg-green-400 rounded-full transition-all duration-300 ease-out group-hover:w-full" />
+							<span className="absolute -bottom-1 left-1/2 -translate-x-1/2 h-[1.5px] w-0 bg-green-400 rounded-full transition-all duration-300 ease-out group-hover:w-full" />
 						</Link>
 					))}
 				</div>
@@ -153,7 +153,7 @@ const NavBar = () => {
 							href={href}
 							className="relative group hover:text-green-400 transition-colors duration-300 pt-3 first:pt-3 w-fit">
 							{label}
-							<span className="absolute -bottom-0.5 left-0 h-[1.5px] w-0 bg-green-400 rounded-full transition-all duration-300 ease-out group-hover:w-full" />
+							<span className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 h-[1.5px] w-0 bg-green-400 rounded-full transition-all duration-300 ease-out group-hover:w-full" />
 						</Link>
 					))}
 				</div>

@@ -341,7 +341,7 @@
 
 .marquee-wrapper {
 	display: flex;
-	overflow: hidden; /* 🔥 important */
+	overflow: hidden;
 	width: 100%;
 }
 .marquee-wrapper::-webkit-scrollbar {
@@ -351,9 +351,13 @@
 	display: flex;
 	align-items: center;
 	gap: 2rem;
-	animation: scroll 25s linear infinite;
 	width: max-content;
 	will-change: transform;
+	animation: scroll 30s linear infinite;
+}
+
+.marquee-wrapper:hover .marquee-track {
+	animation-play-state: paused;
 }
 .item {
 	flex: 0 0 auto;
@@ -362,11 +366,6 @@
 	align-content: center;
 
 	/* gap: 3em; */
-}
-
-/* Pause on hover */
-.marquee-wrapper:hover .marquee-track {
-	animation-play-state: paused;
 }
 
 /* Fade edges */

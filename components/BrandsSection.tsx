@@ -3,7 +3,6 @@
 import { useEffect, useRef } from "react";
 import { Brand, BrandItemProps } from "@/types/brandItem";
 import Image from "next/image";
-import React from "react";
 
 const brands: Brand[] = [
 	{ name: "Audi", logo: "https://cdn.worldvectorlogo.com/logos/audi-2.svg" },
@@ -51,6 +50,7 @@ const BrandItem = ({ brand }: BrandItemProps) => (
 
 const BrandsSection: React.FC = () => {
 	const trackRef = useRef<HTMLDivElement>(null);
+
 	useEffect(() => {
 		const updateWidth = () => {
 			if (trackRef.current) {
@@ -65,10 +65,12 @@ const BrandsSection: React.FC = () => {
 		updateWidth();
 		window.addEventListener("resize", updateWidth);
 
-		return () => window.removeEventListener("resize", updateWidth);
+		return () => {
+			window.removeEventListener("resize", updateWidth);
+		};
 	}, []);
 	return (
-		<section className="flex flex-col bg-[#0a0a0a] border-y border-[#1a1a1a] py-10  overflow-hidden">
+		<section className="flex flex-col bg-[#0a0a0a] border-y border-[#1a1a1a] py-10 overflow-hidden">
 			<div className="text-center mt-2 mb-5">
 				<p className="text-gray-50 text-2xl font-bold uppercase tracking-widest">
 					Trusted Brands We Carry
