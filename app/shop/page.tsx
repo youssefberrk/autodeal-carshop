@@ -4,39 +4,86 @@ import Image from "next/image";
 import Gclass from "@/public/cars/shop-featured/g1.jpg";
 import { featCars } from "@/public/cars/CarsData";
 import { featuredCars } from "@/types/CarsTypes";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const page = () => {
 	const ImageSlider = ({ album }: { album: string[] }) => {
-		const [index, setIndex] = useState(0);
+		const [index, setIndex] = useState(1); // Start at first REAL image
+		const [isTransitioning, setIsTransitioning] = useState(true);
 
 		const nextImg = () => {
-			setIndex((prev) => (prev + 1) % album.length);
+			setIsTransitioning(true);
+			if (index < album.length) {
+				// Changed from album.length - 1
+				setIndex((prev) => prev + 1);
+			} else {
+				setIndex(album.length + 1); // Changed from album.length
+			}
 		};
 
 		const prevImg = () => {
-			setIndex((prev) => (prev - 1 + album.length) % album.length);
+			setIsTransitioning(true);
+			if (index > 1) {
+				// Changed from > 0
+				setIndex((prev) => prev - 1);
+			} else {
+				setIndex(0); // Changed from -1
+			}
 		};
 
-		return (
-			<div className="relative">
-				<Image
-					src={album[index]}
-					alt="car"
-					width={600}
-					height={400}
-					className="h-[300px] object-cover"
-				/>
+		useEffect(() => {
+			if (index === album.length + 1) {
+				// Changed from album.length
+				const timer = setTimeout(() => {
+					setIsTransitioning(false);
+					setIndex(1); // Changed from 0 (reset to first real image)
+				}, 500);
+				return () => clearTimeout(timer);
+			}
+			if (index === 0) {
+				// Changed from -1
+				const timer = setTimeout(() => {
+					setIsTransitioning(false);
+					setIndex(album.length); // Changed from album.length - 1 (reset to last real image)
+				}, 500);
+				return () => clearTimeout(timer);
+			}
+		}, [index, album.length]);
 
+		return (
+			<div className="relative overflow-hidden w-full h-[300px]">
+				{/* SLIDER TRACK */}
+				<div
+					className={`flex h-[300px] ${
+						isTransitioning
+							? "transition-transform duration-500 ease-in-out"
+							: ""
+					}`}
+					style={{
+						transform: `translateX(-${index * 100}%)`,
+					}}>
+					{[album[album.length - 1], ...album, album[0]].map((photo, i) => (
+						<Image
+							key={i}
+							src={photo}
+							alt="car"
+							width={600}
+							height={400}
+							className="w-full h-[300px] object-cover flex-shrink-0"
+						/>
+					))}
+				</div>
+
+				{/* BUTTONS */}
 				<button
 					onClick={prevImg}
-					className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 text-white px-2">
+					className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 text-white px-3 py-1">
 					&lt;
 				</button>
 
 				<button
 					onClick={nextImg}
-					className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 text-white px-2">
+					className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 text-white px-3 py-1">
 					&gt;
 				</button>
 			</div>
