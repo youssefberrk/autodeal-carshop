@@ -5,6 +5,7 @@ import Gclass from "@/public/cars/shop-featured/g1.jpg";
 import { featCars } from "@/public/cars/CarsData";
 import { featuredCars } from "@/types/CarsTypes";
 import { useState, useEffect } from "react";
+import { ChevronLeft, ChevronRight, CircleDot, Circle } from "lucide-react";
 
 const page = () => {
 	const ImageSlider = ({ album }: { album: string[] }) => {
@@ -51,7 +52,7 @@ const page = () => {
 		}, [index, album.length]);
 
 		return (
-			<div className="relative overflow-hidden w-full h-[300px]">
+			<div className="relative overflow-hidden w-full h-[300px] group">
 				{/* SLIDER TRACK */}
 				<div
 					className={`flex h-[300px] ${
@@ -74,17 +75,37 @@ const page = () => {
 					))}
 				</div>
 
+				<div className="absolute bottom-1 left-1/2 -translate-x-1/2  hidden group-hover:flex  gap-2">
+					{album.map((_, i) => (
+						<button onClick={() => setIndex(i + 1)} key={i}>
+							{i === index - 1 ? (
+								<CircleDot
+									strokeWidth={3}
+									size={17}
+									className="text-black cursor-pointer"
+								/>
+							) : (
+								<Circle
+									strokeWidth={3}
+									size={8}
+									className="text-gray-500 opacity-60 cursor-pointer"
+								/>
+							)}
+						</button>
+					))}
+				</div>
+
 				{/* BUTTONS */}
 				<button
 					onClick={prevImg}
-					className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 text-white px-3 py-1">
-					&lt;
+					className="absolute h-full hidden group-hover:block left-0 top-1/2 -translate-y-1/2 bg-black/20 text-white cursor-pointer p-0">
+					<ChevronLeft size={48} />
 				</button>
 
 				<button
 					onClick={nextImg}
-					className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 text-white px-3 py-1">
-					&gt;
+					className="absolute h-full hidden group-hover:block right-0 top-1/2 -translate-y-1/2 bg-black/20 text-white cursor-pointer p-0 ">
+					<ChevronRight size={48} />
 				</button>
 			</div>
 		);
