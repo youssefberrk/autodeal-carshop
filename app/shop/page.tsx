@@ -6,8 +6,14 @@ import { featCars, carsData } from "@/public/cars/CarsData";
 import { featuredCars } from "@/types/CarsTypes";
 import { ImageSlider } from "@/components/ui/ImageSlider";
 import CarsCard from "@/components/CarsCard";
+import ManufacturerDropdown from "@/components/ui/ManufacturerDropdown";
+import { Cars } from "@/types/Cars";
 
-const page = () => {
+interface Params {
+	carParam: featuredCars & Cars;
+}
+
+const page = ({ carParam }: Params) => {
 	const FeaturedCard = ({ album, model, info, price }: featuredCars) => {
 		return (
 			<div className="w-full max-w-xl">
@@ -22,7 +28,8 @@ const page = () => {
 			</div>
 		);
 	};
-
+	
+	const carBrands = [ ...new Set(carsData.map((car) => car.brand))]
 	return (
 		<div>
 			<div className="relative flex items-center justify-center w-full ">
@@ -64,14 +71,27 @@ const page = () => {
 				<div>
 					<h1 className="text-3xl text-center md:text-7xl ">Your Shop</h1>
 				</div>
-				<div className="relative  flex items-center ml-22 ">
-					<div className="absolute top-18 w-[1fr]">
-						<h1 className="text-7xl">Filters</h1>
+				<div className="relative w-full  flex items-center  ">
+					<div className="absolute top-18 ">
+						<h1 className="text-7xl ml-8">Filters</h1>
+						<div>
+							<p>Manufacturers</p>
+							<ManufacturerDropdown brands={carBrands} />
+						</div>
+						<ul>
+							<p>Body Silhouette</p>
+							<li>Coupe</li>
+							<li>Electric</li>
+							<li>Performance</li>
+							<li>SUV</li>
+						</ul>
+						<div>Price Ceiling</div>
 					</div>
-					<div className="pt-44 mx-auto grid grid-cols-1 md:grid-cols-2  bg-red-600 w-[2fr] gap-[8em]">
+					<div className="pt-44 mx-auto grid grid-cols-1 md:grid-cols-2  bg-red-600 w-[70%] mr-12">
 						{carsData.map((car, index) => (
 							<CarsCard
 								key={index}
+								id={car.id}
 								brand={car.brand}
 								bodySilhouette={car.bodySilhouette}
 								price={car.price}

@@ -1,11 +1,18 @@
-"use client";
-
 import { Cars } from "@/types/Cars";
-import { ImageSlider } from "./ui/ImageSlider";
-import { useRouter } from "next/navigation";
+import { carsData } from "@/public/cars/CarsData";
+import { ImageSlider } from "@/components/ui/ImageSlider";
 
-const CarsCard = ({ id, brand, bodySilhouette, price, carAlbum }: Cars) => {
-	const router = useRouter();
+interface Props {
+	params: Promise<{ id: string }>;
+}
+
+const page = async ({ params }: Props) => {
+	const { id } = await params;
+	const car = carsData.find((c) => c.id === Number(id));
+
+	if (!car) return <div>Car not Found</div>;
+	const { brand, bodySilhouette, price, carAlbum } = car;
+
 	return (
 		<div className="relative flex flex-col items-center bg-blue-400 w-auto">
 			<div className="w-[65%]">
@@ -17,15 +24,11 @@ const CarsCard = ({ id, brand, bodySilhouette, price, carAlbum }: Cars) => {
 				<h1 className="absolute left-22">{brand}</h1>
 				<p>{bodySilhouette}</p>
 				<p>{price}$</p>
-				<button
-					onClick={() => router.push(`/details/${id}`)}
-					className="cursor-pointer">
-					View Details
-				</button>
+				<button>View Details</button>
 				<button>Like</button>
 			</div>
 		</div>
 	);
 };
 
-export default CarsCard;
+export default page;
