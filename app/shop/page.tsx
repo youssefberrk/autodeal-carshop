@@ -3,33 +3,32 @@
 import Image from "next/image";
 import Gclass from "@/public/cars/shop-featured/g1.jpg";
 import { featCars, carsData } from "@/public/cars/CarsData";
-import { featuredCars } from "@/types/CarsTypes";
-import { ImageSlider } from "@/components/ui/ImageSlider";
+import { useState, useMemo } from "react";
+import FeaturedCard from "@/components/FeaturedCard";
 import CarsCard from "@/components/CarsCard";
-import ManufacturerDropdown from "@/components/ui/ManufacturerDropdown";
-import { Cars } from "@/types/Cars";
+import ManufacturerDropdown from "@/components/filters/ManufacturerDropdown";
 
-interface Params {
-	carParam: featuredCars & Cars;
-}
+import BodySilhoette from "@/components/filters/BodySilhoette";
 
-const page = ({ carParam }: Params) => {
-	const FeaturedCard = ({ album, model, info, price }: featuredCars) => {
-		return (
-			<div className="w-full max-w-xl">
-				<div>
-					<ImageSlider album={[album.photo1, album.photo2, album.photo3]} />
-				</div>
-				<div className="text-white">
-					<h1>{model}</h1>
-					<p>{info}</p>
-					<p>{price}</p>
-				</div>
-			</div>
-		);
-	};
-	
-	const carBrands = [ ...new Set(carsData.map((car) => car.brand))]
+const page = () => {
+	const carBrands = [
+		...new Set(carsData.map((car) => car.brand)),
+		"ALL BRANDS",
+	];
+	const [selectedBrand, setSelectedBrand] = useState<string>("ALL BRANDS");
+	const [bodySilhouette, setBodySilhouette] = useState<string>("");
+
+	const filteredCars = useMemo(() => {
+		return carsData.filter((car) => {
+			const brandMatch =
+				selectedBrand === "ALL BRANDS" || car.brand === selectedBrand;
+			const bodyMatch =
+				bodySilhouette === "All" ||
+				bodySilhouette === "" ||
+				car.bodySilhouette === bodySilhouette;
+			return brandMatch && bodyMatch;
+		});
+	}, [selectedBrand, bodySilhouette]);
 	return (
 		<div>
 			<div className="relative flex items-center justify-center w-full ">
@@ -76,19 +75,22 @@ const page = ({ carParam }: Params) => {
 						<h1 className="text-7xl ml-8">Filters</h1>
 						<div>
 							<p>Manufacturers</p>
-							<ManufacturerDropdown brands={carBrands} />
+							<ManufacturerDropdown
+								brands={carBrands}
+								selectedBrand={selectedBrand}
+								onBrandChange={setSelectedBrand}
+							/>
 						</div>
-						<ul>
-							<p>Body Silhouette</p>
-							<li>Coupe</li>
-							<li>Electric</li>
-							<li>Performance</li>
-							<li>SUV</li>
-						</ul>
+						<div>
+							<BodySilhoette
+								bodySilhouette={bodySilhouette}
+								onBsChange={setBodySilhouette}
+							/>
+						</div>
 						<div>Price Ceiling</div>
 					</div>
 					<div className="pt-44 mx-auto grid grid-cols-1 md:grid-cols-2  bg-red-600 w-[70%] mr-12">
-						{carsData.map((car, index) => (
+						{filteredCars.map((car, index) => (
 							<CarsCard
 								key={index}
 								id={car.id}
