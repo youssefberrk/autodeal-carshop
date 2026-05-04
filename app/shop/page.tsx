@@ -9,6 +9,7 @@ import CarsCard from "@/components/CarsCard";
 import ManufacturerDropdown from "@/components/filters/ManufacturerDropdown";
 
 import BodySilhoette from "@/components/filters/BodySilhoette";
+import PriceCeiling from "@/components/filters/PriceCeiling";
 
 const page = () => {
 	const carBrands = [
@@ -18,6 +19,10 @@ const page = () => {
 	const [selectedBrand, setSelectedBrand] = useState<string>("ALL BRANDS");
 	const [bodySilhouette, setBodySilhouette] = useState<string>("");
 
+	const minPrice = Math.min(...carsData.map((c) => c.price));
+	const maxPrice = Math.max(...carsData.map((c) => c.price));
+	const [priceRange, setPriceRange] = useState<number>(minPrice);
+
 	const filteredCars = useMemo(() => {
 		return carsData.filter((car) => {
 			const brandMatch =
@@ -26,9 +31,13 @@ const page = () => {
 				bodySilhouette === "All" ||
 				bodySilhouette === "" ||
 				car.bodySilhouette === bodySilhouette;
-			return brandMatch && bodyMatch;
+			const priceFilter = car.price >= priceRange;
+
+			return brandMatch && bodyMatch && priceFilter;
 		});
-	}, [selectedBrand, bodySilhouette]);
+	}, [selectedBrand, bodySilhouette, priceRange]);
+
+	console.log(carsData.filter((car) => car.price >= priceRange));
 	return (
 		<div>
 			<div className="relative flex items-center justify-center w-full ">
@@ -87,7 +96,14 @@ const page = () => {
 								onBsChange={setBodySilhouette}
 							/>
 						</div>
-						<div>Price Ceiling</div>
+						<div>Price Floor</div>
+						<PriceCeiling
+							onPriceChange={setPriceRange}
+							min={minPrice}
+							max={maxPrice}
+							initialValue={minPrice}
+							step={1000}
+						/>
 					</div>
 					<div className="pt-44 mx-auto grid grid-cols-1 md:grid-cols-2  bg-red-600 w-[70%] mr-12">
 						{filteredCars.map((car, index) => (
