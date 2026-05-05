@@ -1,28 +1,76 @@
 "use client";
 
 import { Cars } from "@/types/Cars";
-import { ImageSlider } from "./ui/ImageSlider";
-import { useRouter } from "next/navigation";
+import { Heart } from "lucide-react";
+import Image from "next/image";
+import BodySilhouette from "./filters/BodySilhoette";
 
-const CarsCard = ({ id, brand, bodySilhouette, price, carAlbum }: Cars) => {
-	const router = useRouter();
+const CarsCard = ({
+	image,
+	badge,
+	brand,
+	model,
+	bodySilhouette,
+	specs,
+	price,
+	isFavorite = false,
+}: Cars) => {
 	return (
-		<div className="relative flex flex-col items-center bg-blue-400 w-auto">
-			<div className="w-[65%]">
-				<ImageSlider
-					album={[carAlbum.photo1, carAlbum.photo2, carAlbum.photo3]}
+		<div className="group relative bg-[#141e16] border border-[#dae6d8]/5 overflow-hidden transition-all duration-500 hover:border-[#00ff87]/30 hover:shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
+			{/* Badge */}
+			{badge && (
+				<div className="absolute top-4 left-4 z-10">
+					<span className="bg-[#00ff87] text-[#0c160e] text-[9px] font-black uppercase tracking-widest px-2 py-1">
+						{badge}
+					</span>
+				</div>
+			)}
+
+			{/* Image Container */}
+			<div className="relative aspect-[16/10] overflow-hidden bg-black">
+				<Image
+					src={image}
+					width={100}
+					height={100}
+					alt={`${brand} ${model}`}
+					className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110 opacity-80 group-hover:opacity-100"
 				/>
+				<div className="absolute inset-0 bg-gradient-to-t from-[#0c160e] via-transparent to-transparent opacity-60" />
 			</div>
-			<div className="flex flex-col items-start text-white">
-				<h1 className="absolute left-22">{brand}</h1>
-				<p>{bodySilhouette}</p>
-				<p>{price}$</p>
-				<button
-					onClick={() => router.push(`/details/${id}`)}
-					className="cursor-pointer">
-					View Details
-				</button>
-				<button>Like</button>
+
+			{/* Content */}
+			<div className="p-6 space-y-4">
+				<div className="flex justify-between items-start">
+					<div>
+						<p className="text-[#dae6d8] text-xl uppercase tracking-[0.2em] font-bold mb-1">
+							{brand}
+						</p>
+						<h3 className="text-[#dae6d8] text-2xl font-['Newsreader'] italic font-medium tracking-tight group-hover:text-[#00ff87] transition-colors duration-300">
+							{model}
+						</h3>
+						<h4 className="text-[#dae6d8] text-xl font-['Newsreader']  font-medium tracking-tight group-hover:text-[#00ff87] transition-colors duration-300">
+							{bodySilhouette}
+						</h4>
+					</div>
+					<p className="text-[#00ff87] text-xl font-['Newsreader'] italic font-bold">
+						{price}$
+					</p>
+				</div>
+
+				<p className="text-[#dae6d8]/40 text-xs leading-relaxed font-['Manrope'] max-w-[80%] uppercase tracking-wider">
+					{specs}
+				</p>
+
+				<div className="pt-4 flex items-center gap-3">
+					<button className="flex-1 bg-[#00ff87] text-[#0c160e] py-4 text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-300 hover:bg-white hover:shadow-[0_0_20px_rgba(0,255,135,0.4)]">
+						View Details
+					</button>
+					<button className="p-4 border border-[#dae6d8]/10 text-[#dae6d8]/40 hover:text-[#00ff87] hover:border-[#00ff87]/30 transition-all duration-300">
+						<Heart
+							className={`w-4 h-4 ${isFavorite ? "fill-[#00ff87] text-[#00ff87]" : ""}`}
+						/>
+					</button>
+				</div>
 			</div>
 		</div>
 	);

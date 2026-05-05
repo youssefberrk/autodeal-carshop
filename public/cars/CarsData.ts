@@ -41,8 +41,12 @@ export const carsData: Cars[] = [
 	{
 		id: 1,
 		brand: "Porsche",
+		badge: "Popular",
+		model: "911 Turbo S",
+		specs: "3.8L Twin-Turbo Flat-6, 640 HP",
 		bodySilhouette: "Coupe",
 		price: 120000,
+		image: "/cars/shop-featured/911/p1.jpg",
 		carAlbum: {
 			photo1: "/cars/shop-featured/911/p1.jpg",
 			photo2: "/cars/shop-featured/911/p2.jpg",
@@ -52,6 +56,9 @@ export const carsData: Cars[] = [
 	{
 		id: 2,
 		brand: "Ferrari",
+		badge: "Top Speed",
+		model: "F8 Tributo",
+		specs: "3.9L V8 Twin-Turbo, 710 HP",
 		bodySilhouette: "Coupe",
 		price: 280000,
 		carAlbum: {
@@ -63,6 +70,9 @@ export const carsData: Cars[] = [
 	{
 		id: 3,
 		brand: "Mercedes",
+		badge: "Eco-Friendly",
+		model: "EQS 580",
+		specs: "Dual Electric Motors, 516 HP",
 		bodySilhouette: "Electric",
 		price: 95000,
 		carAlbum: {
@@ -74,6 +84,9 @@ export const carsData: Cars[] = [
 	{
 		id: 4,
 		brand: "Audi",
+		badge: "Spacious",
+		model: "Q8",
+		specs: "3.0L V6 Turbo, 335 HP",
 		bodySilhouette: "SUV",
 		price: 80000,
 		carAlbum: {
@@ -85,6 +98,9 @@ export const carsData: Cars[] = [
 	{
 		id: 5,
 		brand: "BMW",
+		badge: "New Arrival",
+		model: "i4 M50",
+		specs: "Dual Electric Motors, 536 HP",
 		bodySilhouette: "Electric",
 		price: 70000,
 		carAlbum: {
@@ -96,6 +112,9 @@ export const carsData: Cars[] = [
 	{
 		id: 6,
 		brand: "Bentley",
+		badge: "Luxury",
+		model: "Flying Spur Hybrid",
+		specs: "2.9L V6 + Electric Motor, 536 HP",
 		bodySilhouette: "Electric",
 		price: 220000,
 		carAlbum: {
@@ -107,6 +126,9 @@ export const carsData: Cars[] = [
 	{
 		id: 7,
 		brand: "Aston Martin",
+		badge: "Elegant",
+		model: "DB11",
+		specs: "4.0L V8 Twin-Turbo, 503 HP",
 		bodySilhouette: "Coupe",
 		price: 180000,
 		carAlbum: {
@@ -118,6 +140,9 @@ export const carsData: Cars[] = [
 	{
 		id: 8,
 		brand: "Lamborghini",
+		badge: "Iconic",
+		model: "Huracan Evo",
+		specs: "5.2L V10, 631 HP",
 		bodySilhouette: "Coupe",
 		price: 300000,
 		carAlbum: {
@@ -129,6 +154,9 @@ export const carsData: Cars[] = [
 	{
 		id: 9,
 		brand: "Porsche",
+		badge: "Family Sport",
+		model: "Cayenne Turbo",
+		specs: "4.0L V8 Twin-Turbo, 541 HP",
 		bodySilhouette: "SUV",
 		price: 90000,
 		carAlbum: {
@@ -140,6 +168,9 @@ export const carsData: Cars[] = [
 	{
 		id: 10,
 		brand: "Ferrari",
+		badge: "Classic",
+		model: "Roma",
+		specs: "3.9L V8 Twin-Turbo, 612 HP",
 		bodySilhouette: "Performance",
 		price: 350000,
 		carAlbum: {
@@ -151,6 +182,9 @@ export const carsData: Cars[] = [
 	{
 		id: 11,
 		brand: "Mercedes",
+		badge: "Track Ready",
+		model: "AMG GT",
+		specs: "4.0L V8 Twin-Turbo, 523 HP",
 		bodySilhouette: "Coupe",
 		price: 140000,
 		carAlbum: {
@@ -162,6 +196,9 @@ export const carsData: Cars[] = [
 	{
 		id: 12,
 		brand: "Audi",
+		badge: "Next Gen",
+		model: "e-tron GT",
+		specs: "Dual Electric Motors, 469 HP",
 		bodySilhouette: "Electric",
 		price: 85000,
 		carAlbum: {
@@ -173,6 +210,9 @@ export const carsData: Cars[] = [
 	{
 		id: 13,
 		brand: "BMW",
+		badge: "Agile",
+		model: "M4 Competition",
+		specs: "3.0L Inline-6 Twin-Turbo, 503 HP",
 		bodySilhouette: "Coupe",
 		price: 110000,
 		carAlbum: {
@@ -184,6 +224,9 @@ export const carsData: Cars[] = [
 	{
 		id: 14,
 		brand: "Bentley",
+		badge: "Refined",
+		model: "Continental GT",
+		specs: "6.0L W12 Twin-Turbo, 626 HP",
 		bodySilhouette: "Coupe",
 		price: 250000,
 		carAlbum: {
@@ -195,6 +238,9 @@ export const carsData: Cars[] = [
 	{
 		id: 15,
 		brand: "Aston Martin",
+		badge: "Powerful SUV",
+		model: "DBX707",
+		specs: "4.0L V8 Twin-Turbo, 697 HP",
 		bodySilhouette: "SUV",
 		price: 160000,
 		carAlbum: {
@@ -206,6 +252,9 @@ export const carsData: Cars[] = [
 	{
 		id: 16,
 		brand: "Lamborghini",
+		badge: "Super SUV",
+		model: "Urus Performante",
+		specs: "4.0L V8 Twin-Turbo, 657 HP",
 		bodySilhouette: "SUV",
 		price: 230000,
 		carAlbum: {
@@ -217,6 +266,9 @@ export const carsData: Cars[] = [
 	{
 		id: 17,
 		brand: "Porsche",
+		badge: "Electric Beast",
+		model: "Taycan Turbo S",
+		specs: "Dual Electric Motors, 750 HP",
 		bodySilhouette: "Electric",
 		price: 100000,
 		carAlbum: {
@@ -228,6 +280,9 @@ export const carsData: Cars[] = [
 	{
 		id: 18,
 		brand: "Ferrari",
+		badge: "Hybrid King",
+		model: "SF90 Stradale",
+		specs: "4.0L V8 + 3 Electric Motors, 986 HP",
 		bodySilhouette: "Coupe",
 		price: 320000,
 		carAlbum: {
@@ -239,6 +294,9 @@ export const carsData: Cars[] = [
 	{
 		id: 19,
 		brand: "Mercedes",
+		badge: "Premium",
+		model: "GLE 53 AMG",
+		specs: "3.0L Inline-6 Turbo, 429 HP",
 		bodySilhouette: "SUV",
 		price: 125000,
 		carAlbum: {
@@ -250,6 +308,9 @@ export const carsData: Cars[] = [
 	{
 		id: 20,
 		brand: "Audi",
+		badge: "Last of V10",
+		model: "R8 V10 Performance",
+		specs: "5.2L V10, 602 HP",
 		bodySilhouette: "Coupe",
 		price: 150000,
 		carAlbum: {

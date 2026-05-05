@@ -106,7 +106,7 @@ const ShopPage = () => {
 							step={1000}
 						/>
 					</div>
-					<div className="pt-44 mx-auto grid grid-cols-1 md:grid-cols-2 bg-red-600 w-[70%] mr-12">
+					<div className="pt-44 mx-auto grid grid-cols-1 md:grid-cols-2  w-[70%] mr-12">
 						{filteredCars.slice(0, visibleCarsCount).map((car, index) => (
 							<CarsCard
 								key={index}
@@ -114,7 +114,10 @@ const ShopPage = () => {
 								brand={car.brand}
 								bodySilhouette={car.bodySilhouette}
 								price={car.price}
-								carAlbum={car.carAlbum}
+								specs={car.specs}
+								badge={car.badge}
+								image={car.image}
+								model={car.model}
 							/>
 						))}
 					</div>
