@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 
 interface PriceCeilingSliderProps {
-	min?: number;
-	max?: number;
+	min: number;
+	max: number;
 	step?: number;
 	initialValue?: number;
 
@@ -13,8 +13,8 @@ interface PriceCeilingSliderProps {
 }
 
 const PriceCeilingSlider: React.FC<PriceCeilingSliderProps> = ({
-	min = 60000,
-	max = 350000,
+	min,
+	max,
 	step = 1000,
 	initialValue,
 
@@ -41,11 +41,11 @@ const PriceCeilingSlider: React.FC<PriceCeilingSliderProps> = ({
 
 			<div className="relative h-6 flex items-center">
 				{/* Track Background */}
-				<div className="absolute w-full h-[2px] bg-[#dae6d8]/10 rounded-full" />
+				<div className="absolute w-full h-0.5 bg-[#dae6d8]/10 rounded-full" />
 
 				{/* Active Track Highlight */}
 				<div
-					className="absolute h-[2px] bg-[#00ff87] rounded-full shadow-[0_0_8px_rgba(0,255,135,0.4)]"
+					className="absolute h-0.5 bg-[#00ff87] rounded-full shadow-[0_0_8px_rgba(0,255,135,0.4)]"
 					style={{ width: `${percentage}%` }}
 				/>
 

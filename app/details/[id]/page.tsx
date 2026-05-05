@@ -1,4 +1,4 @@
-import { Cars } from "@/types/Cars";
+
 import { carsData } from "@/public/cars/CarsData";
 import { ImageSlider } from "@/components/ui/ImageSlider";
 

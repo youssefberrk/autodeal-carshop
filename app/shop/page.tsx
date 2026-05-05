@@ -11,16 +11,17 @@ import ManufacturerDropdown from "@/components/filters/ManufacturerDropdown";
 import BodySilhoette from "@/components/filters/BodySilhoette";
 import PriceCeiling from "@/components/filters/PriceCeiling";
 
-const page = () => {
+const ShopPage = () => {
 	const carBrands = [
 		...new Set(carsData.map((car) => car.brand)),
 		"ALL BRANDS",
 	];
 	const [selectedBrand, setSelectedBrand] = useState<string>("ALL BRANDS");
 	const [bodySilhouette, setBodySilhouette] = useState<string>("");
+	const [visibleCarsCount, setVisibleCarsCount] = useState<number>(6); 
 
-	const minPrice = Math.min(...carsData.map((c) => c.price));
-	const maxPrice = Math.max(...carsData.map((c) => c.price));
+	const minPrice = Math.min(...carsData.map((c) => Number(c.price)));
+	const maxPrice = Math.max(...carsData.map((c) => Number(c.price)));
 	const [priceRange, setPriceRange] = useState<number>(minPrice);
 
 	const filteredCars = useMemo(() => {
@@ -31,13 +32,13 @@ const page = () => {
 				bodySilhouette === "All" ||
 				bodySilhouette === "" ||
 				car.bodySilhouette === bodySilhouette;
-			const priceFilter = car.price >= priceRange;
+			const priceFilter = Number(car.price) >= priceRange;
 
 			return brandMatch && bodyMatch && priceFilter;
 		});
 	}, [selectedBrand, bodySilhouette, priceRange]);
 
-	console.log(carsData.filter((car) => car.price >= priceRange));
+	console.log(carsData.filter((car) => Number(car.price) >= priceRange));
 	return (
 		<div>
 			<div className="relative flex items-center justify-center w-full ">
@@ -105,8 +106,8 @@ const page = () => {
 							step={1000}
 						/>
 					</div>
-					<div className="pt-44 mx-auto grid grid-cols-1 md:grid-cols-2  bg-red-600 w-[70%] mr-12">
-						{filteredCars.map((car, index) => (
+					<div className="pt-44 mx-auto grid grid-cols-1 md:grid-cols-2 bg-red-600 w-[70%] mr-12">
+						{filteredCars.slice(0, visibleCarsCount).map((car, index) => (
 							<CarsCard
 								key={index}
 								id={car.id}
@@ -119,8 +120,32 @@ const page = () => {
 					</div>
 				</div>
 			</div>
+			{visibleCarsCount < filteredCars.length && (
+				<div className="flex justify-center gap-4 mt-8">
+					<button
+						onClick={() => setVisibleCarsCount(prev => 
+							Math.min(prev + 6, filteredCars.length)
+						)}
+						className="px-6 py-3 bg-[#00ff87] text-black font-bold rounded-lg 
+							 hover:bg-[#00ff87]/80 transition-colors duration-200 
+							 shadow-[0_0_12px_rgba(0,255,135,0.4)]"
+					>
+						Show More ({Math.min(6, filteredCars.length - visibleCarsCount)} cars)
+					</button>
+					{filteredCars.length - visibleCarsCount > 6 && (
+						<button
+							onClick={() => setVisibleCarsCount(filteredCars.length)}
+							className="px-6 py-3 border-2 border-[#00ff87] text-[#00ff87] 
+								 font-bold rounded-lg hover:bg-[#00ff87]/10 
+								 transition-colors duration-200"
+						>
+							Show All ({filteredCars.length - visibleCarsCount} cars)
+						</button>
+					)}
+				</div>
+			)}
 		</div>
 	);
 };
 
-export default page;
+export default ShopPage;
