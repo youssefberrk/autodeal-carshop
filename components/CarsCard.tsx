@@ -3,9 +3,10 @@
 import { Cars } from "@/types/Cars";
 import { Heart } from "lucide-react";
 import Image from "next/image";
-import BodySilhouette from "./filters/BodySilhoette";
+import { useRouter } from "next/navigation";
 
 const CarsCard = ({
+	id,
 	image,
 	badge,
 	brand,
@@ -15,6 +16,8 @@ const CarsCard = ({
 	price,
 	isFavorite = false,
 }: Cars) => {
+	const router = useRouter();
+
 	return (
 		<div className="group relative bg-[#141e16] border border-[#dae6d8]/5 overflow-hidden transition-all duration-500 hover:border-[#00ff87]/30 hover:shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
 			{/* Badge */}
@@ -48,7 +51,7 @@ const CarsCard = ({
 						<h3 className="text-[#dae6d8] text-2xl font-['Newsreader'] italic font-medium tracking-tight group-hover:text-[#00ff87] transition-colors duration-300">
 							{model}
 						</h3>
-						<h4 className="text-[#dae6d8] text-xl font-['Newsreader']  font-medium tracking-tight group-hover:text-[#00ff87] transition-colors duration-300">
+						<h4 className="text-[#dae6d8] text-s font-['Newsreader']  font-medium tracking-tight group-hover:text-[#00ff87] transition-colors duration-300">
 							{bodySilhouette}
 						</h4>
 					</div>
@@ -62,7 +65,9 @@ const CarsCard = ({
 				</p>
 
 				<div className="pt-4 flex items-center gap-3">
-					<button className="flex-1 bg-[#00ff87] text-[#0c160e] py-4 text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-300 hover:bg-white hover:shadow-[0_0_20px_rgba(0,255,135,0.4)]">
+					<button
+						className="flex-1 bg-[#00ff87] text-[#0c160e] py-4 text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-300 hover:bg-white hover:shadow-[0_0_20px_rgba(0,255,135,0.4)]"
+						onClick={() => router.push(`/details/${id}`)}>
 						View Details
 					</button>
 					<button className="p-4 border border-[#dae6d8]/10 text-[#dae6d8]/40 hover:text-[#00ff87] hover:border-[#00ff87]/30 transition-all duration-300">

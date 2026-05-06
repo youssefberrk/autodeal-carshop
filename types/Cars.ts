@@ -1,3 +1,15 @@
+
+type feature = {
+		icon: string;
+		title: string;
+		description: string;
+	}
+
+type color = {
+		 id: string;
+		 hex: string;
+	}
+
 export type Cars = {
 	id?: number;
 	brand: string;
@@ -13,4 +25,6 @@ export type Cars = {
 		photo2: string;
 		photo3: string;
 	};
+	features?: feature[];
+	colors?: color[];
 };
