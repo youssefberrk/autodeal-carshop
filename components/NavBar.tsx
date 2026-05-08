@@ -10,6 +10,7 @@ const NavBar = () => {
 	const [menuOpen, setMenuOpen] = useState(false);
 	const [profileOpen, setProfileOpen] = useState(false);
 	const [scrollProgress, setScrollProgress] = useState(0);
+	const [isLogin, setIsLogin] = useState(false);
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -72,7 +73,7 @@ const NavBar = () => {
 							href={href}
 							className="relative group hover:text-green-400 transition-colors duration-300">
 							{label}
-							<span className="absolute -bottom-1 left-1/2 -translate-x-1/2 h-[1.5px] w-0 bg-green-400 rounded-full transition-all duration-300 ease-out group-hover:w-full" />
+							<span className="absolute -bottom-2 left-1/2 -translate-x-1/2 h-[1.5px] w-0 bg-green-400 rounded-full transition-all duration-300 ease-out group-hover:w-full" />
 						</Link>
 					))}
 				</div>
@@ -99,32 +100,51 @@ const NavBar = () => {
 						<button
 							onClick={() => setProfileOpen(!profileOpen)}
 							aria-label="Profile">
-							<CgProfile className="hover:text-green-400 hover:scale-110 transition text-xl cursor-pointer" />
+							<CgProfile className="hover:text-green-400 hover:scale-110  transition text-xl cursor-pointer" />
 						</button>
 
 						{/* Dropdown */}
-						{profileOpen && (
-							<div
-								className="absolute right-0 mt-3 w-40 rounded-lg p-2 backdrop-blur-md"
-								style={{
-									background: "rgba(6, 13, 16, 0.90)",
-									border: "1px solid rgba(34, 197, 94, 0.18)",
-								}}>
-								<Link
-									href="/profile"
-									className="block px-3 py-2 text-slate-300 hover:text-green-400 hover:bg-white/5 rounded transition-colors text-sm">
-									Profile
-								</Link>
-								<Link
-									href="/orders"
-									className="block px-3 py-2 text-slate-300 hover:text-green-400 hover:bg-white/5 rounded transition-colors text-sm">
-									Orders
-								</Link>
-								<button className="w-full text-left px-3 py-2 text-slate-300 hover:text-green-400 hover:bg-white/5 rounded transition-colors text-sm">
-									Logout
-								</button>
-							</div>
-						)}
+						{profileOpen &&
+							(isLogin ? (
+								<div
+									className="absolute right-0 mt-3  w-40 rounded-lg p-2 backdrop-blur-md"
+									style={{
+										background: "rgba(6, 13, 16, 0.90)",
+										border: "1px solid rgba(34, 197, 94, 0.18)",
+									}}>
+									<Link
+										href="/profile"
+										className="block px-3 py-2 text-slate-300 hover:text-green-400 hover:bg-white/5 rounded transition-colors text-sm">
+										Profile
+									</Link>
+									<Link
+										href="/orders"
+										className="block px-3 py-2 text-slate-300 hover:text-green-400 hover:bg-white/5 rounded transition-colors text-sm">
+										Orders
+									</Link>
+									<button className="w-full text-left px-3 py-2 text-slate-300 hover:text-green-400 hover:bg-white/5 rounded transition-colors text-sm">
+										Logout
+									</button>
+								</div>
+							) : (
+								<div
+									className="absolute right-0 mt-3  w-40 rounded-lg p-2 backdrop-blur-md"
+									style={{
+										background: "rgba(6, 13, 16, 0.90)",
+										border: "1px solid rgba(34, 197, 94, 0.18)",
+									}}>
+									<Link
+										href="/login"
+										className="block px-3 py-2 text-slate-300 hover:text-green-400 hover:bg-white/5 rounded transition-colors text-sm">
+										Login
+									</Link>
+									<Link
+										href="/login"
+										className="block px-3 py-2 text-slate-300 hover:text-green-400 hover:bg-white/5 rounded transition-colors text-sm">
+										Sign in
+									</Link>
+								</div>
+							))}
 					</div>
 
 					{/* Mobile Menu Button */}

@@ -91,9 +91,9 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
 	];
 
 	return (
-		<div className="min-h-screen bg-[#0c160e] text-[#dae6d8] font-['Manrope'] pb-20">
+		<div className="min-h-screen bg-[#0c160e] text-[#dae6d8] font-['Manrope'] pb-12 pl-12 ">
 			{/* Navigation Breadcrumb */}
-			<nav className="px-8 py-6 flex items-center gap-2 text-[10px] uppercase tracking-widest text-[#dae6d8]/40">
+			<nav className="px-8 mt-6 mb-10 flex items-center gap-2 text-[10px] uppercase tracking-widest text-[#dae6d8]/40">
 				<Link href="/" className="hover:text-[#00ff87] transition-colors">
 					Home
 				</Link>
@@ -109,7 +109,7 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
 
 			{/* Main Hero Section */}
 			<section className="px-8 mb-24">
-				<h1 className="text-6xl md:text-8xl font-['Newsreader'] italic font-bold mb-16 tracking-tighter">
+				<h1 className="text-6xl md:text-8xl font-['Newsreader'] italic font-bold mb-4 tracking-tighter">
 					{car.brand} <span className="block md:inline">{car.model}</span>
 				</h1>
 
