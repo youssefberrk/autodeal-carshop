@@ -4,7 +4,8 @@
       "WebFetch(domain:raw.githubusercontent.com)",
       "WebFetch(domain:github.com)",
       "WebFetch(domain:emilkowal.ski)",
-      "Bash(npx skills *)"
+      "Bash(npx skills *)",
+      "Bash(npm list *)"
     ]
   }
 }

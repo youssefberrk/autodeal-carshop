@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { AtSign, Key, Fingerprint, Smartphone } from "lucide-react";
 import { motion } from "framer-motion";
+import { signIn } from "next-auth/react";
 
 interface LoginFormProps {
 	email: string;
@@ -135,7 +136,8 @@ export const LoginForm = ({
 					style={{
 						border: "1px solid rgba(218,230,216,0.1)",
 						color: "rgba(218,230,216,0.6)",
-					}}>
+					}}
+					onClick={() => signIn("google", { redirectTo: "/" })}>
 					<svg className="w-3.5 h-3.5" viewBox="0 0 24 24">
 						<path
 							fill="currentColor"
