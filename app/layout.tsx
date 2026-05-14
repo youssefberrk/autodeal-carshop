@@ -3,29 +3,7 @@ import { Geist, Geist_Mono, Newsreader, Manrope } from "next/font/google";
 import "./globals.css";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
-
-const geistSans = Geist({
-	variable: "--font-geist-sans",
-	subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-	variable: "--font-geist-mono",
-	subsets: ["latin"],
-});
-
-const newsreader = Newsreader({
-	weight: ["400", "700"],
-	display: "swap",
-	subsets: ["latin"],
-	variable: "--font-newsreader",
-	style: ["normal", "italic"],
-});
-
-const manrope = Manrope({
-	subsets: ["latin"],
-	variable: "--font-manrope", // Define the variable name
-});
+import { ClientSessionProvider } from "@/components/ClientSessionProvider";
 
 export const metadata: Metadata = {
 	title: "Create Next App",
@@ -39,12 +17,13 @@ export default function RootLayout({
 }>) {
 	return (
 		<html
-			lang="en"
-			className={`${geistSans.variable} ${geistMono.variable} ${newsreader.className} ${manrope.variable} h-full antialiased`}>
-			<body className="min-h-full flex flex-col">
-				<NavBar />
-				{children}
-				<Footer />
+			lang="en">
+			<body>
+				<ClientSessionProvider>
+					<NavBar />
+					{children}
+					<Footer />
+				</ClientSessionProvider>
 			</body>
 		</html>
 	);

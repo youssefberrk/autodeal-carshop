@@ -137,7 +137,7 @@ export const LoginForm = ({
 						border: "1px solid rgba(218,230,216,0.1)",
 						color: "rgba(218,230,216,0.6)",
 					}}
-					onClick={() => signIn("google", { redirectTo: "/" })}>
+					onClick={() => signIn("google", { callbackUrl: "/profile" })}>
 					<svg className="w-3.5 h-3.5" viewBox="0 0 24 24">
 						<path
 							fill="currentColor"

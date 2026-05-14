@@ -5,12 +5,13 @@ import Link from "next/link";
 import { FaSearch, FaShoppingCart, FaBars, FaTimes } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
 import Logo from "./ui/Logo";
+import { useSession, signOut } from "next-auth/react";
 
 const NavBar = () => {
 	const [menuOpen, setMenuOpen] = useState(false);
 	const [profileOpen, setProfileOpen] = useState(false);
 	const [scrollProgress, setScrollProgress] = useState(0);
-	const [isLogin, setIsLogin] = useState(false);
+	const { data: session, status } = useSession();
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -105,7 +106,7 @@ const NavBar = () => {
 
 						{/* Dropdown */}
 						{profileOpen &&
-							(isLogin ? (
+							(session ? (
 								<div
 									className="absolute right-0 mt-3  w-40 rounded-lg p-2 backdrop-blur-md"
 									style={{
@@ -122,7 +123,9 @@ const NavBar = () => {
 										className="block px-3 py-2 text-slate-300 hover:text-green-400 hover:bg-white/5 rounded transition-colors text-sm">
 										Orders
 									</Link>
-									<button className="w-full text-left px-3 py-2 text-slate-300 hover:text-green-400 hover:bg-white/5 rounded transition-colors text-sm">
+									<button 
+										className="w-full text-left px-3 py-2 text-slate-300 hover:text-green-400 hover:bg-white/5 rounded transition-colors text-sm"
+										onClick={() => signOut()}>
 										Logout
 									</button>
 								</div>
