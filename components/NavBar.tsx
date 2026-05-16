@@ -2,7 +2,10 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { FaSearch, FaShoppingCart, FaBars, FaTimes } from "react-icons/fa";
+import { useCarStore } from "@/store/useCarStore";
+import CarDropDown from "./CarDropDown";
+import { FaSearch, FaBars, FaTimes } from "react-icons/fa";
+import { IoCarSport } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
 import Logo from "./ui/Logo";
 import { useSession, signOut } from "next-auth/react";
@@ -11,6 +14,7 @@ const NavBar = () => {
 	const [menuOpen, setMenuOpen] = useState(false);
 	const [profileOpen, setProfileOpen] = useState(false);
 	const [scrollProgress, setScrollProgress] = useState(0);
+	const [carDropdownOpen, setCarDropdownOpen] = useState(false);
 	const { data: session, status } = useSession();
 
 	useEffect(() => {
@@ -30,9 +34,11 @@ const NavBar = () => {
 		return () => window.removeEventListener("scroll", handleScroll);
 	}, []);
 
-	const cartCount = 3;
-	const isScrolled = scrollProgress > 0.02;
+	const { allocatedCars } = useCarStore();
+	const carCount = allocatedCars.length;
 
+	const isScrolled = scrollProgress > 0.02;
+	// console.log(session);
 	return (
 		<nav
 			className={`sticky z-50 transition 
@@ -86,17 +92,26 @@ const NavBar = () => {
 						<FaSearch className="hover:text-green-400 hover:scale-110 transition cursor-pointer" />
 					</button>
 
-					{/* Cart with badge */}
-					<div className="relative cursor-pointer">
-						<FaShoppingCart className="hover:text-green-400 hover:scale-110 transition" />
-						{cartCount > 0 && (
-							<span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs px-1.5 rounded-full">
-								{cartCount}
-							</span>
+					{/* Car cart with badge */}
+					<div className="relative">
+						<button
+							onClick={() => setCarDropdownOpen(!carDropdownOpen)}
+							aria-label="My Cars"
+							className="relative">
+							<IoCarSport className="hover:text-green-400 hover:scale-110 transition text-xl cursor-pointer" />
+							{carCount > 0 && (
+								<span className="absolute -top-2 -right-2 bg-emerald-500 text-white text-xs px-1.5 rounded-full">
+									{carCount}
+								</span>
+							)}
+						</button>
+						{carDropdownOpen && (
+							<CarDropDown onClose={() => setCarDropdownOpen(false)} />
 						)}
 					</div>
 
 					{/* Profile */}
+
 					<div className="relative">
 						<button
 							onClick={() => setProfileOpen(!profileOpen)}
@@ -123,7 +138,7 @@ const NavBar = () => {
 										className="block px-3 py-2 text-slate-300 hover:text-green-400 hover:bg-white/5 rounded transition-colors text-sm">
 										Orders
 									</Link>
-									<button 
+									<button
 										className="w-full text-left px-3 py-2 text-slate-300 hover:text-green-400 hover:bg-white/5 rounded transition-colors text-sm"
 										onClick={() => signOut()}>
 										Logout
@@ -159,7 +174,6 @@ const NavBar = () => {
 				</div>
 			</div>
 
-			{/* Mobile Menu */}
 			{/* Mobile Menu */}
 			{menuOpen && (
 				<div

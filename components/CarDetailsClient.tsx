@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useCarStore } from "@/store/useCarStore";
 import {
 	ChevronRight,
 	Minus,
@@ -16,18 +17,14 @@ import {
 	Wind,
 	Maximize,
 	ShieldCheck,
-	LucideIcon,
 	CircleOff,
+	Divide,
 } from "lucide-react";
 import { Cars } from "@/types/Cars";
 import Image from "next/image";
 import Link from "next/link";
 
-interface CarDetailsClientProps {
-	car: Cars;
-}
-
-const iconMap: Record<string, LucideIcon> = {
+const iconMap: Record<string, any> = {
 	ArrowDown,
 	Settings2,
 	BarChart3,
@@ -41,6 +38,10 @@ const iconMap: Record<string, LucideIcon> = {
 	Gauge,
 };
 
+export interface CarDetailsClientProps {
+	car: Cars;
+}
+
 const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
 	const [quantity, setQuantity] = useState(1);
 	const [selectedColor, setSelectedColor] = useState(
@@ -48,20 +49,20 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
 	);
 	const [activeImage, setActiveImage] = useState(0);
 
-	const colors = car.colors || [
-		{ id: "blue", hex: "#3b82f6" },
-		{ id: "white", hex: "#ffffff" },
-		{ id: "charcoal", hex: "#262626" },
-		{ id: "red", hex: "#ef4444" },
-	];
+	const { addToAllocation, removeFromAllocation, allocatedCars } =
+		useCarStore();
 
+	// Check if this car is already allocated
+	const isAllocated = allocatedCars.some((c) => c.id === car.id);
+
+	// Get thumbnails from car album
 	const thumbnails = car.carAlbum
 		? [car.carAlbum.photo1, car.carAlbum.photo2, car.carAlbum.photo3].filter(
 				Boolean,
 			)
 		: [car.image].filter(Boolean);
 
-	// Basic parsing of specs if it's a string, otherwise fallback to defaults
+	// Specs data
 	const specs = [
 		{ icon: Zap, label: "Performance", value: car.specs || "High Performance" },
 		{ icon: Gauge, label: "Type", value: car.bodySilhouette },
@@ -69,29 +70,53 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
 		{ icon: User, label: "Model", value: car.model || "GT Edition" },
 	];
 
+	// Features data
 	const features = car.features || [
 		{
-			icon: ArrowDown,
+			icon: "ArrowDown",
 			title: "Active Aerodynamics",
 			description:
-				"Engineered for maximum downforce and stability at high speeds, utilizing advanced airflow management.",
+				"Engineered for maximum downforce and stability at high speeds.",
 		},
 		{
-			icon: Settings2,
+			icon: "Settings2",
 			title: "Precision Engineering",
 			description:
-				"Every component is tuned for the ultimate driving experience, from the suspension to the drivetrain.",
+				"Every component is tuned for the ultimate driving experience.",
 		},
 		{
-			icon: BarChart3,
+			icon: "BarChart3",
 			title: "Performance Tracking",
 			description:
-				"Integrated telemetry systems to monitor and improve your lap times and vehicle health in real-time.",
+				"Integrated telemetry systems to monitor your vehicle's health.",
 		},
 	];
 
+	// Colors from car data
+	const colors = car.colors || [];
+
+	// Handle allocation click - toggle between add/remove
+	const handleAllocation = () => {
+		if (isAllocated) {
+			// Remove from garage
+			removeFromAllocation(car.id);
+		} else {
+			// Add to garage
+			addToAllocation({
+				id: car.id,
+				brand: car.brand,
+				model: car.model || "",
+				price: typeof car.price === "number" ? car.price : 0,
+				image: car.image || "",
+				badge: car.badge,
+				bodySilhouette: car.bodySilhouette,
+				specs: car.specs,
+			});
+		}
+	};
+
 	return (
-		<div className="min-h-screen bg-[#0c160e] text-[#dae6d8] font-['Manrope'] pb-12 pl-12 ">
+		<div className="min-h-screen bg-[#0c160e] text-[#dae6d8] font-['Manrope'] pb-12 pl-12">
 			{/* Navigation Breadcrumb */}
 			<nav className="px-8 mt-6 mb-10 flex items-center gap-2 text-[10px] uppercase tracking-widest text-[#dae6d8]/40">
 				<Link href="/" className="hover:text-[#00ff87] transition-colors">
@@ -175,8 +200,9 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
 							</p>
 
 							{/* Quantity and CTA */}
-							<div className="flex gap-4 mb-12">
-								<div className="flex items-center bg-[#141e16] border border-[#dae6d8]/10">
+							<div className="flex flex-col sm:flex-row gap-4 mb-12">
+								{/* Quantity Selector */}
+								<div className="flex items-center bg-[#141e16] border border-[#dae6d8]/10 rounded-lg">
 									<button
 										onClick={() => setQuantity(Math.max(1, quantity - 1))}
 										className="px-4 py-4 text-[#dae6d8]/40 hover:text-[#00ff87] transition-colors">
@@ -191,12 +217,39 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
 										<Plus size={16} />
 									</button>
 								</div>
-								<button className="flex-1 bg-[#00ff87] text-[#0c160e] text-[11px] uppercase tracking-[0.2em] font-bold px-8 py-4 hover:bg-white transition-all active:scale-[0.98]">
-									Secure Allocation
-								</button>
-								<button className="p-4 border border-[#dae6d8]/10 text-[#dae6d8]/40 hover:text-[#00ff87] hover:border-[#00ff87]/30 transition-all duration-300">
+
+								{/* Secure Allocation Button */}
+								<div className="flex flex-col gap-1">
+									<button
+										className={`flex-1 flex items-center justify-center gap-2 text-[11px] uppercase tracking-[0.2em] font-bold px-4 py-4 rounded-lg transition-all duration-300 active:scale-[0.98] ${
+											isAllocated
+												? "bg-emerald-900/40 text-emerald-400 border-2 border-emerald-500/50 hover:bg-emerald-900/60"
+												: "bg-[#00ff87] text-[#0c160e] hover:bg-emerald-400 shadow-lg shadow-emerald-500/20"
+										}`}
+										onClick={handleAllocation}
+									>
+										{isAllocated ? (
+											<span className="flex items-center gap-2">
+												<span className="w-4 h-4 rounded-full bg-emerald-500 flex items-center justify-center text-[10px] text-[#0c160e] font-bold">✓</span>
+												<span>Added to Garage</span>
+											</span>
+										) : (
+											<span>Secure Allocation</span>
+										)}
+									</button>
+									{isAllocated && (
+										<span className="text-[9px] text-center text-emerald-400/60">
+											Click to remove from garage
+										</span>
+									)}
+								</div>
+
+								{/* Favorite Button */}
+								<button className="p-4 border border-[#dae6d8]/10 text-[#dae6d8]/40 hover:text-[#00ff87] hover:border-[#00ff87]/30 transition-all duration-300 rounded-lg">
 									<Heart
-										className={`w-5 h-5 ${car.isFavorite ? "fill-[#00ff87] text-[#00ff87]" : ""}`}
+										className={`w-5 h-5 ${
+											car.isFavorite ? "fill-[#00ff87] text-[#00ff87]" : ""
+										}`}
 									/>
 								</button>
 							</div>
@@ -224,25 +277,27 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
 							</div>
 
 							{/* Configuration */}
-							<div>
-								<span className="block text-[10px] uppercase tracking-[0.2em] text-[#dae6d8]/40 mb-4 font-bold">
-									Exterior Configuration
-								</span>
-								<div className="flex gap-3">
-									{colors.map((color) => (
-										<button
-											key={color.id}
-											onClick={() => setSelectedColor(color.id)}
-											className={`w-8 h-8 rounded-full transition-all duration-300 ring-offset-4 ring-offset-[#0c160e] ${
-												selectedColor === color.id
-													? "ring-2 ring-[#00ff87]"
-													: "hover:scale-110"
-											}`}
-											style={{ backgroundColor: color.hex }}
-										/>
-									))}
+							{colors.length > 0 && (
+								<div>
+									<span className="block text-[10px] uppercase tracking-[0.2em] text-[#dae6d8]/40 mb-4 font-bold">
+										Exterior Configuration
+									</span>
+									<div className="flex gap-3">
+										{colors.map((color: any) => (
+											<button
+												key={color.id}
+												onClick={() => setSelectedColor(color.id)}
+												className={`w-8 h-8 rounded-full transition-all duration-300 ring-offset-4 ring-offset-[#0c160e] ${
+													selectedColor === color.id
+														? "ring-2 ring-[#00ff87]"
+														: "hover:scale-110"
+												}`}
+												style={{ backgroundColor: color.hex }}
+											/>
+										))}
+									</div>
 								</div>
-							</div>
+							)}
 						</div>
 					</div>
 				</div>
@@ -255,7 +310,7 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
 				</h2>
 
 				<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-					{features.map((feature, idx) => {
+					{features.map((feature: any, idx: number) => {
 						const Icon = iconMap[feature.icon] || Settings2;
 						return (
 							<div
