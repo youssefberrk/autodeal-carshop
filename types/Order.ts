@@ -34,11 +34,13 @@ export interface ShippingAddress {
 export interface CarStore {
 	allocatedCars: Car[];
 	purchasedCars: Car[];
+	quant: number;
 	currentOrder: Order | null;
 
 	addToAllocation: (car: Car) => void;
 	removeFromAllocation: (carId: number) => void;
 	addToPurchased: (car: Car) => void;
+	quantityChosen: (quantity: number) => void;
 	setCurrentOrder: (order: Order) => void;
 	clearAllocation: () => void;
 }

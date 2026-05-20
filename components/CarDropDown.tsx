@@ -10,7 +10,7 @@ interface CarDropDownProps {
 }
 
 export default function CarDropDown({ onClose }: CarDropDownProps) {
-	const { allocatedCars, removeFromAllocation } = useCarStore();
+	const { allocatedCars, removeFromAllocation, quant } = useCarStore();
 
 	const totalPrice = allocatedCars.reduce((sum, car) => sum + car.price, 0);
 
@@ -20,8 +20,7 @@ export default function CarDropDown({ onClose }: CarDropDownProps) {
 			style={{
 				background: "rgba(6, 13, 16, 0.95)",
 				border: "1px solid rgba(0, 255, 135, 0.2)",
-			}}
-		>
+			}}>
 			{/* Header */}
 			<div className="flex justify-between items-center mb-4">
 				<h3 className="text-white font-bold flex items-center gap-2">
@@ -40,8 +39,7 @@ export default function CarDropDown({ onClose }: CarDropDownProps) {
 					<Link
 						href="/shop"
 						className="text-emerald-400 hover:text-emerald-300 text-sm"
-						onClick={onClose}
-					>
+						onClick={onClose}>
 						Browse Cars →
 					</Link>
 				</div>
@@ -52,8 +50,7 @@ export default function CarDropDown({ onClose }: CarDropDownProps) {
 						{allocatedCars.map((car) => (
 							<div
 								key={car.id}
-								className="flex items-center gap-3 p-2 bg-gray-800/50 rounded-lg"
-							>
+								className="flex items-center gap-3 p-2 bg-gray-800/50 rounded-lg">
 								<div className="w-16 h-12 relative rounded overflow-hidden">
 									<Image
 										src={car.image}
@@ -68,10 +65,10 @@ export default function CarDropDown({ onClose }: CarDropDownProps) {
 										${car.price.toLocaleString()}
 									</p>
 								</div>
+								<span>{quant}</span>
 								<button
 									onClick={() => removeFromAllocation(car.id)}
-									className="text-gray-400 hover:text-red-400 p-1"
-								>
+									className="text-gray-400 hover:text-red-400 p-1">
 									<X size={16} />
 								</button>
 							</div>
@@ -89,8 +86,7 @@ export default function CarDropDown({ onClose }: CarDropDownProps) {
 						<Link
 							href="/checkout"
 							onClick={onClose}
-							className="w-full flex items-center justify-center gap-2 py-2 bg-emerald-500 hover:bg-emerald-600 text-black font-bold rounded-lg transition-colors"
-						>
+							className="w-full flex items-center justify-center gap-2 py-2 bg-emerald-500 hover:bg-emerald-600 text-black font-bold rounded-lg transition-colors">
 							Confirm Purchase
 							<ArrowRight size={16} />
 						</Link>

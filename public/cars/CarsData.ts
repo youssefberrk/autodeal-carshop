@@ -37,6 +37,7 @@ export const featCars: featuredCars[] = [
 	},
 ];
 
+// i want to handle car purchase quantity, we re gonna add availability prop to each car in carsdata its gonna be a number betwen 1 and 5, then the user can't purchase a car more than its availability number if he exceeds the number we wanna display a message like this quantity its not available on this car, then store the quantity chosen to the purchase informations
 export const carsData: Cars[] = [
 	{
 		id: 1,
@@ -46,6 +47,7 @@ export const carsData: Cars[] = [
 		specs: "3.8L Twin-Turbo Flat-6, 640 HP",
 		bodySilhouette: "Coupe",
 		price: 120000,
+		availability: 3,
 		image: "/cars/shop-featured/911/p1.jpg",
 		carAlbum: {
 			photo1: "/cars/shop-featured/911/p1.jpg",
@@ -91,6 +93,7 @@ export const carsData: Cars[] = [
 		specs: "3.9L V8 Twin-Turbo, 710 HP",
 		bodySilhouette: "Coupe",
 		price: 280000,
+		availability: 2,
 		image: "/cars/ferrari/f8-1.jpg",
 		carAlbum: {
 			photo1: "/cars/ferrari/f8-1.jpg",
@@ -131,6 +134,7 @@ export const carsData: Cars[] = [
 		specs: "Dual Electric Motors, 516 HP",
 		bodySilhouette: "Electric",
 		price: 95000,
+		availability: 4,
 		image: "/cars/mercedes/sclass-1.jpg",
 		carAlbum: {
 			photo1: "/cars/mercedes/sclass-1.jpg",
@@ -171,6 +175,7 @@ export const carsData: Cars[] = [
 		specs: "3.0L V6 Turbo, 335 HP",
 		bodySilhouette: "SUV",
 		price: 80000,
+		availability: 5,
 		image: "/cars/audi/q8-1.jpg",
 		carAlbum: {
 			photo1: "/cars/audi/q8-1.jpg",
@@ -211,6 +216,7 @@ export const carsData: Cars[] = [
 		specs: "Dual Electric Motors, 536 HP",
 		bodySilhouette: "Electric",
 		price: 70000,
+		availability: 4,
 		image: "/cars/bmw/m5-1.jpg",
 		carAlbum: {
 			photo1: "/cars/bmw/m5-1.jpg",
@@ -251,6 +257,7 @@ export const carsData: Cars[] = [
 		specs: "2.9L V6 + Electric Motor, 536 HP",
 		bodySilhouette: "Electric",
 		price: 220000,
+		availability: 1,
 		image: "/cars/bentley/flyingspur-1.jpg",
 		carAlbum: {
 			photo1: "/cars/bentley/flyingspur-1.jpg",
@@ -291,6 +298,7 @@ export const carsData: Cars[] = [
 		specs: "4.0L V8 Twin-Turbo, 503 HP",
 		bodySilhouette: "Coupe",
 		price: 180000,
+		availability: 2,
 		image: "/cars/astonmartin/db11-1.jpg",
 		carAlbum: {
 			photo1: "/cars/astonmartin/db11-1.jpg",
@@ -331,6 +339,7 @@ export const carsData: Cars[] = [
 		specs: "5.2L V10, 631 HP",
 		bodySilhouette: "Coupe",
 		price: 300000,
+		availability: 1,
 		image: "/cars/lamborghini/huracan-1.jpg",
 		carAlbum: {
 			photo1: "/cars/lamborghini/huracan-1.jpg",
@@ -371,6 +380,7 @@ export const carsData: Cars[] = [
 		specs: "4.0L V8 Twin-Turbo, 541 HP",
 		bodySilhouette: "SUV",
 		price: 90000,
+		availability: 3,
 		image: "/cars/porsche/cayenne-1.jpg",
 		carAlbum: {
 			photo1: "/cars/porsche/cayenne-1.jpg",
@@ -408,6 +418,7 @@ export const carsData: Cars[] = [
 		specs: "3.9L V8 Twin-Turbo, 612 HP",
 		bodySilhouette: "Performance",
 		price: 350000,
+		availability: 2,
 		image: "/cars/ferrari/roma-1.jpg",
 		carAlbum: {
 			photo1: "/cars/ferrari/roma-1.jpg",
@@ -445,6 +456,7 @@ export const carsData: Cars[] = [
 		specs: "4.0L V8 Twin-Turbo, 523 HP",
 		bodySilhouette: "Coupe",
 		price: 140000,
+		availability: 3,
 		image: "/cars/mercedes/amg-gt-1.jpg",
 		carAlbum: {
 			photo1: "/cars/mercedes/amg-gt-1.jpg",
@@ -482,6 +494,7 @@ export const carsData: Cars[] = [
 		specs: "Dual Electric Motors, 469 HP",
 		bodySilhouette: "Electric",
 		price: 85000,
+		availability: 4,
 		image: "/cars/audi/rs7-1.jpg",
 		carAlbum: {
 			photo1: "/cars/audi/rs7-1.jpg",
@@ -519,6 +532,7 @@ export const carsData: Cars[] = [
 		specs: "3.0L Inline-6 Twin-Turbo, 503 HP",
 		bodySilhouette: "Coupe",
 		price: 110000,
+		availability: 3,
 		image: "/cars/bmw/m4-1.jpg",
 		carAlbum: {
 			photo1: "/cars/bmw/m4-1.jpg",
@@ -556,6 +570,7 @@ export const carsData: Cars[] = [
 		specs: "6.0L W12 Twin-Turbo, 626 HP",
 		bodySilhouette: "Coupe",
 		price: 250000,
+		availability: 1,
 		image: "/cars/bentley/continental-1.jpg",
 		carAlbum: {
 			photo1: "/cars/bentley/continental-1.jpg",
@@ -593,6 +608,7 @@ export const carsData: Cars[] = [
 		specs: "4.0L V8 Twin-Turbo, 697 HP",
 		bodySilhouette: "SUV",
 		price: 160000,
+		availability: 2,
 		image: "/cars/astonmartin/dbx-1.jpg",
 		carAlbum: {
 			photo1: "/cars/astonmartin/dbx-1.jpg",
@@ -630,6 +646,7 @@ export const carsData: Cars[] = [
 		specs: "4.0L V8 Twin-Turbo, 657 HP",
 		bodySilhouette: "SUV",
 		price: 230000,
+		availability: 2,
 		image: "/cars/lamborghini/urus-1.jpg",
 		carAlbum: {
 			photo1: "/cars/lamborghini/urus-1.jpg",
@@ -667,6 +684,7 @@ export const carsData: Cars[] = [
 		specs: "Dual Electric Motors, 750 HP",
 		bodySilhouette: "Electric",
 		price: 100000,
+		availability: 3,
 		image: "/cars/porsche/taycan-1.jpg",
 		carAlbum: {
 			photo1: "/cars/porsche/taycan-1.jpg",
@@ -704,6 +722,7 @@ export const carsData: Cars[] = [
 		specs: "4.0L V8 + 3 Electric Motors, 986 HP",
 		bodySilhouette: "Coupe",
 		price: 320000,
+		availability: 1,
 		image: "/cars/ferrari/sf90-1.jpg",
 		carAlbum: {
 			photo1: "/cars/ferrari/sf90-1.jpg",
@@ -741,6 +760,7 @@ export const carsData: Cars[] = [
 		specs: "3.0L Inline-6 Turbo, 429 HP",
 		bodySilhouette: "SUV",
 		price: 125000,
+		availability: 4,
 		image: "/cars/mercedes/gle-1.jpg",
 		carAlbum: {
 			photo1: "/cars/mercedes/gle-1.jpg",
@@ -778,6 +798,7 @@ export const carsData: Cars[] = [
 		specs: "5.2L V10, 602 HP",
 		bodySilhouette: "Coupe",
 		price: 150000,
+		availability: 2,
 		image: "/cars/audi/r8-1.jpg",
 		carAlbum: {
 			photo1: "/cars/audi/r8-1.jpg",
@@ -815,6 +836,7 @@ export const carsData: Cars[] = [
 		specs: "4.4L V8 Twin-Turbo, 600 HP",
 		bodySilhouette: "SUV",
 		price: 90000,
+		availability: 3,
 		image: "/cars/bmw/x6-1.jpg",
 		carAlbum: {
 			photo1: "/cars/bmw/x6-1.jpg",
@@ -852,6 +874,7 @@ export const carsData: Cars[] = [
 		specs: "4.0L V8 Twin-Turbo, 542 HP",
 		bodySilhouette: "SUV",
 		price: 210000,
+		availability: 1,
 		image: "/cars/bentley/bentayga-1.jpg",
 		carAlbum: {
 			photo1: "/cars/bentley/bentayga-1.jpg",
@@ -889,6 +912,7 @@ export const carsData: Cars[] = [
 		specs: "4.0L V8 Twin-Turbo, 503 HP",
 		bodySilhouette: "Coupe",
 		price: 200000,
+		availability: 2,
 		image: "/cars/astonmartin/vantage-1.jpg",
 		carAlbum: {
 			photo1: "/cars/astonmartin/vantage-1.jpg",
@@ -926,6 +950,7 @@ export const carsData: Cars[] = [
 		specs: "6.5L V12, 770 HP",
 		bodySilhouette: "Performance",
 		price: 340000,
+		availability: 1,
 		image: "/cars/lamborghini/aventador-1.jpg",
 		carAlbum: {
 			photo1: "/cars/lamborghini/aventador-1.jpg",
@@ -963,6 +988,7 @@ export const carsData: Cars[] = [
 		specs: "Dual Electric Motors, 536 HP",
 		bodySilhouette: "Electric",
 		price: 60000,
+		availability: 5,
 		image: "/cars/bmw/series3-1.jpg",
 		carAlbum: {
 			photo1: "/cars/bmw/series3-1.jpg",

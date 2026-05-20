@@ -18,6 +18,7 @@ export type Cars = {
 	specs?: string;
 	bodySilhouette: string;
 	price: number | string;
+	availability?: number;
 	isFavorite?: boolean;
 	image?: string;
 	carAlbum?: {
