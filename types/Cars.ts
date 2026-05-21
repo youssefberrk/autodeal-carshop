@@ -11,7 +11,7 @@ type color = {
 	}
 
 export type Cars = {
-	id?: number;
+	id: number;
 	brand: string;
 	badge?: string;
 	model?: string;

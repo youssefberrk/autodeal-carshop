@@ -11,10 +11,9 @@ const handler = NextAuth({
 	],
 	callbacks: {
 		async session({ session, user, token }) {
-			session.user = {
-				...session.user,
-				id: token.sub || `user-${Math.random()}`,
-			};
+			if (session.user) {
+				(session.user as any).id = token.sub || `user-${Math.random()}`;
+			}
 			return session;
 		},
 	},

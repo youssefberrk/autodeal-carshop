@@ -30,7 +30,7 @@ const CarsCard = ({
 			{/* Image Container */}
 			<div className="card-image-wrap">
 				<Image
-					src={image}
+					src={image || ""}
 					width={600}
 					height={400}
 					alt={`${brand} ${model}`}

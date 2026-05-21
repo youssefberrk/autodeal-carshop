@@ -17,7 +17,7 @@ export const useCarStore = create<CarStore>()(
 					if (exists) return state;
 
 					return {
-						allocatedCars: [...state.allocatedCars, car],
+						allocatedCars: [...state.allocatedCars, { ...car, quantity: car.quantity || 1 }],
 					};
 				}),
 
@@ -40,11 +40,18 @@ export const useCarStore = create<CarStore>()(
 				set(() => ({
 					allocatedCars: [],
 				})),
-			quantityChosen: (quantity: number) =>
-				set(() => ({
-					quant: quantity,
-          
-				})),
+			quantityChosen: (quantity: number, carId?: number) =>
+				set((state) => {
+					const updatedAllocatedCars = carId !== undefined
+						? state.allocatedCars.map((c) =>
+								c.id === carId ? { ...c, quantity } : c,
+						  )
+						: state.allocatedCars;
+					return {
+						quant: quantity,
+						allocatedCars: updatedAllocatedCars,
+					};
+				}),
 		}),
 
 		// PERSIST CONFIGURATION - saves to localStorage

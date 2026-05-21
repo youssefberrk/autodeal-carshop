@@ -10,9 +10,9 @@ interface CarDropDownProps {
 }
 
 export default function CarDropDown({ onClose }: CarDropDownProps) {
-	const { allocatedCars, removeFromAllocation, quant } = useCarStore();
+	const { allocatedCars, removeFromAllocation } = useCarStore();
 
-	const totalPrice = allocatedCars.reduce((sum, car) => sum + car.price, 0);
+	const totalPrice = allocatedCars.reduce((sum, car) => sum + car.price * (car.quantity || 1), 0);
 
 	return (
 		<div
@@ -65,7 +65,7 @@ export default function CarDropDown({ onClose }: CarDropDownProps) {
 										${car.price.toLocaleString()}
 									</p>
 								</div>
-								<span>{quant}</span>
+								<span>{car.quantity || 1}</span>
 								<button
 									onClick={() => removeFromAllocation(car.id)}
 									className="text-gray-400 hover:text-red-400 p-1">

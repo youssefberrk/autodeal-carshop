@@ -5,7 +5,7 @@ const PurchaesdCar = ({ car }: CarDetailsClientProps) => {
 	// console.log(car);
 	const [purchasedCars, setPurchasedCars] = useState([{car}]);
     if (purchasedCars.length > 1){
-        setPurchasedCars(({prev}) => [...prev, car])
+        setPurchasedCars((prev) => [...prev, {car}])
     }
     // useEffect(() => { ; }, [car]);
 

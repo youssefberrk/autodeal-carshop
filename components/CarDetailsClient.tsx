@@ -74,11 +74,11 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
 	const isAllocated = allocatedCars.some((c) => c.id === car.id);
 
 	// Get thumbnails from car album
-	const thumbnails = car.carAlbum
+	const thumbnails = (car.carAlbum
 		? [car.carAlbum.photo1, car.carAlbum.photo2, car.carAlbum.photo3].filter(
 				Boolean,
 			)
-		: [car.image].filter(Boolean);
+		: [car.image].filter(Boolean)) as string[];
 
 	// Specs data
 	const specs = [
@@ -117,11 +117,11 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
 	const handleAllocation = () => {
 		if (isAllocated) {
 			// Remove from garage
-			removeFromAllocation(car.id);
+			removeFromAllocation(car.id!);
 		} else {
 			// Add to garage
 			addToAllocation({
-				id: car.id,
+				id: car.id!,
 				brand: car.brand,
 				model: car.model || "",
 				price: typeof car.price === "number" ? car.price : 0,
@@ -129,6 +129,7 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
 				badge: car.badge,
 				bodySilhouette: car.bodySilhouette,
 				specs: car.specs,
+				quantity: quantity,
 			});
 		}
 	};
@@ -137,7 +138,7 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
 		if (quantity < maxAvailability) {
 			const nextQuantity = quantity + 1;
 			setQuantity(nextQuantity);
-			quantityChosen(nextQuantity);
+			quantityChosen(nextQuantity, car.id);
 			return;
 		} else {
 			setIsAvailable(false);
@@ -245,7 +246,7 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
 											onClick={() => {
 												const nextQuantity = Math.max(1, quantity - 1);
 												setQuantity(nextQuantity);
-												quantityChosen(nextQuantity);
+												quantityChosen(nextQuantity, car.id);
 												setIsAvailable(true);
 											}}
 											className="px-4 py-3 text-[#e5efe3]/45 transition-colors duration-150 [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] hover:text-[#00ff87] active:scale-[0.97]">

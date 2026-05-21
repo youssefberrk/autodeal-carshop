@@ -8,6 +8,7 @@ export interface Car {
 	badge?: string;
 	bodySilhouette?: string;
 	specs?: string;
+	quantity?: number;
 }
 
 export interface Order {
@@ -40,7 +41,7 @@ export interface CarStore {
 	addToAllocation: (car: Car) => void;
 	removeFromAllocation: (carId: number) => void;
 	addToPurchased: (car: Car) => void;
-	quantityChosen: (quantity: number) => void;
+	quantityChosen: (quantity: number, carId?: number) => void;
 	setCurrentOrder: (order: Order) => void;
 	clearAllocation: () => void;
 }

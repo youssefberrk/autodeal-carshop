@@ -3,6 +3,7 @@
 import { AtSign, Key, User } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { signIn } from "next-auth/react";
 
 interface SignUpFormProps {
 	onSuccess?: () => void;
