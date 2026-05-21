@@ -34,13 +34,13 @@ const brands: Brand[] = [
 ];
 
 const BrandItem = ({ brand }: BrandItemProps) => (
-	<div className="flex flex-col items-center gap-4 group cursor-pointer px-4 sm:px-6 md:px-8">
+	<div className="flex flex-col items-center gap-4 group cursor-pointer px-4 sm:px-6 md:px-8 transition-transform hover:scale-105 active:scale-95">
 		<Image
 			src={brand.logo}
 			alt={brand.name}
 			width={22}
 			height={22}
-			className="h-12 w-auto opacity-40 grayscale group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-300"
+			className="h-12 w-auto opacity-40 grayscale group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-300 ease-out"
 		/>
 		<span className="text-gray-600 text-xs uppercase tracking-wider group-hover:text-[#00C853] transition-colors duration-300">
 			{brand.name}
@@ -70,14 +70,19 @@ const BrandsSection: React.FC = () => {
 		};
 	}, []);
 	return (
-		<section className="flex flex-col bg-[#0a0a0a] border-y border-[#1a1a1a] py-10 overflow-hidden">
-			<div className="text-center mt-2 mb-5">
-				<p className="text-gray-50 text-2xl font-bold uppercase tracking-widest">
-					Trusted Brands We Carry
+		<section className="flex flex-col bg-background border-y border-border py-12 overflow-hidden relative">
+			<div className="absolute inset-0 bg-brand/5 blur-[100px] pointer-events-none" />
+			
+			<div className="text-center mb-8 relative z-10">
+				<p className="text-muted-foreground text-xs font-bold uppercase tracking-[0.4em] opacity-60">
+					Engineering Partners
 				</p>
+				<h2 className="text-foreground text-2xl lg:text-3xl font-bold mt-2">
+					Trusted Brands We Carry
+				</h2>
 			</div>
 
-			<div className="marquee-wrapper marquee-mask mb-5 mt-10">
+			<div className="marquee-wrapper marquee-mask mb-5 mt-8 relative z-10">
 				<div ref={trackRef} className="marquee-track">
 					{[...brands, ...brands, ...brands].map((brand, index) => (
 						<div key={index} className="item">

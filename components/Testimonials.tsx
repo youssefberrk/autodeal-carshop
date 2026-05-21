@@ -72,7 +72,7 @@ const Testimonials = () => {
 				{/* Testimonials Grid */}
 				<div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
 					{/* Testimonial 1 - Julian Vance - 5 stars */}
-					<div className="group relative overflow-hidden rounded-lg border border-green-400/10 bg-gradient-to-br from-[#0d1f1a]/40 to-[#0a0f0d]/60 p-8 backdrop-blur-sm transition-all duration-300 hover:border-green-400/30 hover:shadow-[0_0_30px_rgba(57,255,20,0.1)]">
+					<div className="group relative overflow-hidden rounded-lg border border-green-400/10 bg-gradient-to-br from-[#0d1f1a]/40 to-[#0a0f0d]/60 p-8 backdrop-blur-sm transition-all duration-500 cubic-bezier(0.23, 1, 0.32, 1) hover:border-green-400/30 hover:shadow-[0_20px_40px_rgba(57,255,20,0.08)] hover:-translate-y-1">
 						{/* Quote */}
 						<p className="mb-6 text-lg leading-relaxed text-gray-300">
 							<span className="text-3xl text-green-400/60 md:text-5xl">❞</span>{" "}
@@ -109,7 +109,7 @@ const Testimonials = () => {
 					</div>
 
 					{/* Testimonial 2 - Elena Moretti - 4.5 stars */}
-					<div className="group relative overflow-hidden rounded-lg border border-green-400/10 bg-gradient-to-br from-[#0d1f1a]/40 to-[#0a0f0d]/60 p-8 backdrop-blur-sm transition-all duration-300 hover:border-green-400/30 hover:shadow-[0_0_30px_rgba(57,255,20,0.1)]">
+					<div className="group relative overflow-hidden rounded-lg border border-green-400/10 bg-gradient-to-br from-[#0d1f1a]/40 to-[#0a0f0d]/60 p-8 backdrop-blur-sm transition-all duration-500 cubic-bezier(0.23, 1, 0.32, 1) hover:border-green-400/30 hover:shadow-[0_20px_40px_rgba(57,255,20,0.08)] hover:-translate-y-1">
 						{/* Quote */}
 						<p className="mb-6 text-lg leading-relaxed text-gray-300">
 							<span className="text-3xl text-green-400/60 md:text-5xl">❞</span>{" "}
@@ -140,7 +140,7 @@ const Testimonials = () => {
 					</div>
 
 					{/* Testimonial 3 - Julian Vance - 5 stars */}
-					<div className="group relative overflow-hidden rounded-lg border border-green-400/10 bg-gradient-to-br from-[#0d1f1a]/40 to-[#0a0f0d]/60 p-8 backdrop-blur-sm transition-all duration-300 hover:border-green-400/30 hover:shadow-[0_0_30px_rgba(57,255,20,0.1)]">
+					<div className="group relative overflow-hidden rounded-lg border border-green-400/10 bg-gradient-to-br from-[#0d1f1a]/40 to-[#0a0f0d]/60 p-8 backdrop-blur-sm transition-all duration-500 cubic-bezier(0.23, 1, 0.32, 1) hover:border-green-400/30 hover:shadow-[0_20px_40px_rgba(57,255,20,0.08)] hover:-translate-y-1">
 						{/* Quote */}
 						<p className="mb-6 text-lg leading-relaxed text-gray-300">
 							<span className="text-3xl text-green-400/60 md:text-5xl">❞</span>{" "}

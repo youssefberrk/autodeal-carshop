@@ -88,8 +88,8 @@ const NavBar = () => {
 				{/* Right Side */}
 				<div className="flex  items-center justify-end gap-6 text-lg relative  text-slate-300">
 					{/* Search */}
-					<button aria-label="Search">
-						<FaSearch className="hover:text-green-400 hover:scale-110 transition cursor-pointer" />
+					<button aria-label="Search" className="transition-transform active:scale-90">
+						<FaSearch className="hover:text-green-400 transition cursor-pointer" />
 					</button>
 
 					{/* Car cart with badge */}
@@ -97,8 +97,8 @@ const NavBar = () => {
 						<button
 							onClick={() => setCarDropdownOpen(!carDropdownOpen)}
 							aria-label="My Cars"
-							className="relative">
-							<IoCarSport className="hover:text-green-400 hover:scale-110 transition text-xl cursor-pointer" />
+							className="relative transition-transform active:scale-90">
+							<IoCarSport className="hover:text-green-400 transition text-xl cursor-pointer" />
 							{carCount > 0 && (
 								<span className="absolute -top-2 -right-2 bg-emerald-500 text-white text-xs px-1.5 rounded-full">
 									{carCount}
@@ -115,15 +115,16 @@ const NavBar = () => {
 					<div className="relative">
 						<button
 							onClick={() => setProfileOpen(!profileOpen)}
-							aria-label="Profile">
-							<CgProfile className="hover:text-green-400 hover:scale-110  transition text-xl cursor-pointer" />
+							aria-label="Profile"
+							className="transition-transform active:scale-90">
+							<CgProfile className="hover:text-green-400 transition text-xl cursor-pointer" />
 						</button>
 
 						{/* Dropdown */}
 						{profileOpen &&
 							(session ? (
 								<div
-									className="absolute right-0 mt-3  w-40 rounded-lg p-2 backdrop-blur-md"
+									className="absolute right-0 mt-3  w-40 rounded-lg p-2 backdrop-blur-md animate-in origin-top-right"
 									style={{
 										background: "rgba(6, 13, 16, 0.90)",
 										border: "1px solid rgba(34, 197, 94, 0.18)",
@@ -146,7 +147,7 @@ const NavBar = () => {
 								</div>
 							) : (
 								<div
-									className="absolute right-0 mt-3  w-40 rounded-lg p-2 backdrop-blur-md"
+									className="absolute right-0 mt-3  w-40 rounded-lg p-2 backdrop-blur-md animate-in origin-top-right"
 									style={{
 										background: "rgba(6, 13, 16, 0.90)",
 										border: "1px solid rgba(34, 197, 94, 0.18)",

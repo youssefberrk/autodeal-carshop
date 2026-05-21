@@ -16,7 +16,7 @@ export default function CarDropDown({ onClose }: CarDropDownProps) {
 
 	return (
 		<div
-			className="absolute right-0 mt-3 w-80 md:w-96 rounded-xl p-4 backdrop-blur-md z-50"
+			className="absolute right-0 mt-3 w-80 md:w-96 rounded-xl p-4 backdrop-blur-md z-50 animate-in origin-top-right"
 			style={{
 				background: "rgba(6, 13, 16, 0.95)",
 				border: "1px solid rgba(0, 255, 135, 0.2)",

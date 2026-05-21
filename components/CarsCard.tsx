@@ -100,21 +100,21 @@ const CarsCard = ({
 					position: relative;
 					background: linear-gradient(
 						165deg,
-						rgba(20, 30, 22, 0.98),
-						rgba(12, 22, 14, 0.99)
+						oklch(0.16 0.02 160 / 98%),
+						oklch(0.12 0.015 160 / 99%)
 					);
-					border: 1px solid rgba(218, 230, 216, 0.05);
+					border: 1px solid oklch(0.95 0.01 160 / 5%);
 					border-radius: 1.5rem;
 					overflow: hidden;
-					transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-					            border-color 0.4s ease,
-					            box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+					transition: transform 0.3s var(--ease-out),
+					            border-color 0.3s ease,
+					            box-shadow 0.3s var(--ease-out);
 				}
 
 				.cars-card:hover {
-					border-color: rgba(0, 255, 135, 0.25);
-					box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6),
-					            0 0 50px -15px rgba(0, 255, 135, 0.2);
+					border-color: oklch(var(--brand) / 25%);
+					box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.6),
+					            0 0 40px -15px oklch(var(--brand) / 15%);
 				}
 
 				/* Image */
@@ -122,7 +122,7 @@ const CarsCard = ({
 					position: relative;
 					aspect-ratio: 16 / 10;
 					overflow: hidden;
-					background: #0a120d;
+					background: var(--background);
 				}
 
 				.card-image {
@@ -130,12 +130,12 @@ const CarsCard = ({
 					height: 100%;
 					object-fit: cover;
 					opacity: 0.75;
-					transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-					            opacity 0.4s ease;
+					transition: transform 0.6s var(--ease-out),
+					            opacity 0.3s ease;
 				}
 
 				.cars-card:hover .card-image {
-					transform: scale(1.08);
+					transform: scale(1.04);
 					opacity: 0.9;
 				}
 
@@ -144,8 +144,8 @@ const CarsCard = ({
 					inset: 0;
 					background: linear-gradient(
 						to top,
-						rgba(12, 22, 14, 0.9) 0%,
-						rgba(12, 22, 14, 0.2) 40%,
+						oklch(0.12 0.015 160 / 90%) 0%,
+						oklch(0.12 0.015 160 / 20%) 40%,
 						transparent 70%
 					);
 					pointer-events: none;
@@ -166,8 +166,8 @@ const CarsCard = ({
 					font-weight: 800;
 					letter-spacing: 0.2em;
 					text-transform: uppercase;
-					color: #0c160e;
-					background: #00ff87;
+					color: var(--primary-foreground);
+					background: var(--primary);
 					padding: 0.35rem 0.75rem;
 					border-radius: 4px;
 				}
@@ -183,38 +183,43 @@ const CarsCard = ({
 					justify-content: center;
 					width: 40px;
 					height: 40px;
-					background: rgba(12, 22, 14, 0.6);
+					background: oklch(0.12 0.015 160 / 60%);
 					backdrop-filter: blur(8px);
 					-webkit-backdrop-filter: blur(8px);
-					border: 1px solid rgba(218, 230, 216, 0.1);
+					border: 1px solid oklch(0.95 0.01 160 / 10%);
 					border-radius: 50%;
 					cursor: pointer;
-					transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+					transition: all 0.2s var(--ease-out);
 				}
 
 				.card-favorite:hover {
-					background: rgba(12, 22, 14, 0.9);
-					border-color: rgba(218, 230, 216, 0.2);
+					background: oklch(0.12 0.015 160 / 90%);
+					border-color: oklch(0.95 0.01 160 / 20%);
+					transform: scale(1.05);
+				}
+
+				.card-favorite:active {
+					transform: scale(0.92);
 				}
 
 				.heart-icon {
-					color: rgba(218, 230, 216, 0.5);
-					transition: color 0.3s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+					color: oklch(0.95 0.01 160 / 50%);
+					transition: color 0.2s ease, transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
 				}
 
 				.card-favorite:hover .heart-icon {
-					color: #ff6b8a;
+					color: oklch(0.55 0.20 25);
 				}
 
 				.heart-icon.is-liked {
-					color: #ff6b8a;
-					fill: #ff6b8a;
+					color: oklch(0.55 0.20 25);
+					fill: oklch(0.55 0.20 25);
 					animation: heartPop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 				}
 
 				@keyframes heartPop {
 					0% { transform: scale(1); }
-					50% { transform: scale(1.3); }
+					50% { transform: scale(1.25); }
 					100% { transform: scale(1); }
 				}
 
@@ -223,21 +228,22 @@ const CarsCard = ({
 					position: absolute;
 					bottom: 1rem;
 					left: 50%;
-					transform: translateX(-50%) translateY(10px);
+					transform: translateX(-50%) translateY(8px);
 					opacity: 0;
 					font-family: 'Orbitron', sans-serif;
 					font-size: 0.55rem;
 					font-weight: 600;
 					letter-spacing: 0.15em;
 					text-transform: uppercase;
-					color: #0c160e;
-					background: rgba(255, 255, 255, 0.95);
+					color: var(--primary-foreground);
+					background: oklch(0.95 0.01 160 / 95%);
 					backdrop-filter: blur(8px);
 					padding: 0.5rem 1.25rem;
 					border-radius: 100px;
 					white-space: nowrap;
-					transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+					transition: opacity 0.2s ease, transform 0.2s var(--ease-out);
 					z-index: 10;
+					pointer-events: none;
 				}
 
 				.card-quick-view[data-visible="true"] {
@@ -264,7 +270,7 @@ const CarsCard = ({
 					font-weight: 600;
 					letter-spacing: 0.2em;
 					text-transform: uppercase;
-					color: rgba(218, 230, 216, 0.5);
+					color: var(--muted-foreground);
 					margin-bottom: 0.25rem;
 				}
 
@@ -273,21 +279,22 @@ const CarsCard = ({
 					font-size: 1.375rem;
 					font-weight: 500;
 					font-style: italic;
-					color: #dae6d8;
+					color: var(--foreground);
 					line-height: 1.2;
 					margin-bottom: 0.125rem;
 					transition: color 0.3s ease;
 				}
 
 				.cars-card:hover .card-model {
-					color: #00ff87;
+					color: var(--primary);
 				}
 
 				.card-body-type {
 					font-family: 'Inter', sans-serif;
 					font-size: 0.7rem;
 					font-weight: 400;
-					color: rgba(218, 230, 216, 0.4);
+					color: var(--muted-foreground);
+					opacity: 0.6;
 					letter-spacing: 0.03em;
 				}
 
@@ -302,7 +309,7 @@ const CarsCard = ({
 					font-size: 1.5rem;
 					font-weight: 600;
 					font-style: italic;
-					color: #00ff87;
+					color: var(--primary);
 					line-height: 1;
 				}
 
@@ -312,7 +319,8 @@ const CarsCard = ({
 					font-size: 0.5rem;
 					font-weight: 500;
 					letter-spacing: 0.1em;
-					color: rgba(218, 230, 216, 0.3);
+					color: var(--muted-foreground);
+					opacity: 0.4;
 					margin-top: 0.25rem;
 				}
 
@@ -320,7 +328,8 @@ const CarsCard = ({
 					font-family: 'Inter', sans-serif;
 					font-size: 0.7rem;
 					font-weight: 400;
-					color: rgba(218, 230, 216, 0.35);
+					color: var(--muted-foreground);
+					opacity: 0.8;
 					line-height: 1.7;
 					letter-spacing: 0.08em;
 					text-transform: uppercase;
@@ -336,7 +345,7 @@ const CarsCard = ({
 					display: flex;
 					gap: 0.75rem;
 					padding-top: 1.25rem;
-					border-top: 1px solid rgba(218, 230, 216, 0.06);
+					border-top: 1px solid var(--border);
 				}
 
 				.btn-details {
@@ -350,22 +359,22 @@ const CarsCard = ({
 					font-weight: 700;
 					letter-spacing: 0.15em;
 					text-transform: uppercase;
-					color: #0c160e;
-					background: #00ff87;
+					color: var(--primary-foreground);
+					background: var(--primary);
 					border: none;
 					padding: 1rem 1.5rem;
 					border-radius: 100px;
 					cursor: pointer;
-					transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+					transition: all 0.2s var(--ease-out);
 				}
 
 				.btn-details svg {
-					transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+					transition: transform 0.2s var(--ease-out);
 				}
 
 				.btn-details:hover {
-					background: #00e07a;
-					box-shadow: 0 0 25px rgba(0, 255, 135, 0.4);
+					background: var(--brand-hover);
+					box-shadow: 0 0 25px oklch(var(--brand) / 40%);
 				}
 
 				.btn-details:hover svg {

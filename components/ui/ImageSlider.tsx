@@ -50,8 +50,8 @@ export const ImageSlider = ({ album }: { album: string[] }) => {
 		<div className="relative overflow-hidden w-full h-[300px] group">
 			{/* SLIDER TRACK */}
 			<div
-				className={`flex h-[300px] hover:scale-[120%]  ${
-					isTransitioning ? "transition-transform duration-500 ease-in-out" : ""
+				className={`flex h-[300px] ${
+					isTransitioning ? "transition-transform duration-500 cubic-bezier(0.23, 1, 0.32, 1)" : ""
 				}`}
 				style={{
 					transform: `translateX(-${index * 100}%)`,
@@ -68,20 +68,24 @@ export const ImageSlider = ({ album }: { album: string[] }) => {
 				))}
 			</div>
 
-			<div className="absolute bottom-1 left-1/2 -translate-x-1/2  hidden group-hover:flex  gap-2">
+			<div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none group-hover:pointer-events-auto">
 				{album.map((_, i) => (
-					<button onClick={() => setIndex(i + 1)} key={i}>
+					<button 
+						onClick={() => setIndex(i + 1)} 
+						key={i}
+						className="transition-transform active:scale-75"
+					>
 						{i === index - 1 ? (
 							<CircleDot
 								strokeWidth={3}
 								size={17}
-								className="text-black cursor-pointer"
+								className="text-white cursor-pointer drop-shadow-md"
 							/>
 						) : (
 							<Circle
 								strokeWidth={3}
 								size={8}
-								className="text-gray-500 opacity-60 cursor-pointer"
+								className="text-white/60 cursor-pointer drop-shadow-md hover:text-white transition-colors"
 							/>
 						)}
 					</button>
@@ -91,14 +95,14 @@ export const ImageSlider = ({ album }: { album: string[] }) => {
 			{/* BUTTONS */}
 			<button
 				onClick={prevImg}
-				className="absolute h-full hidden group-hover:block left-0 top-1/2 -translate-y-1/2 bg-black/20 text-white cursor-pointer p-0">
-				<ChevronLeft size={48} />
+				className="absolute h-full left-0 top-0 bg-black/10 hover:bg-black/20 text-white cursor-pointer p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+				<ChevronLeft size={32} />
 			</button>
 
 			<button
 				onClick={nextImg}
-				className="absolute h-full hidden group-hover:block right-0 top-1/2 -translate-y-1/2 bg-black/20 text-white cursor-pointer p-0 ">
-				<ChevronRight size={48} />
+				className="absolute h-full right-0 top-0 bg-black/10 hover:bg-black/20 text-white cursor-pointer p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+				<ChevronRight size={32} />
 			</button>
 		</div>
 	);

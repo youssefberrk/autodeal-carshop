@@ -10,29 +10,29 @@ export default function Logo() {
 					<polygon
 						points="0,-20 17.3,-10 17.3,10 0,20 -17.3,10 -17.3,-10"
 						fill="none"
-						stroke="#22c55e"
+						stroke="var(--brand)"
 						strokeWidth="1.5"
 						opacity="0.6"
 					/>
 					{/* Car silhouette */}
 					<path
 						d="M-10,3 L-13,3 L-13,8 L13,8 L13,3 L10,3 L7,-2 L0,-6 L-7,-2 Z"
-						fill="#22c55e"
+						fill="var(--brand)"
 					/>
 					<circle
 						cx="-8"
 						cy="9"
 						r="2.5"
-						fill="#152331"
-						stroke="#22c55e"
+						fill="var(--background)"
+						stroke="var(--brand)"
 						strokeWidth="1"
 					/>
 					<circle
 						cx="8"
 						cy="9"
 						r="2.5"
-						fill="#152331"
-						stroke="#22c55e"
+						fill="var(--background)"
+						stroke="var(--brand)"
 						strokeWidth="1"
 					/>
 				</svg>
@@ -43,16 +43,16 @@ export default function Logo() {
 				<h1
 					className="text-[1.75rem] font-black tracking-[0.1em] leading-tight"
 					style={{ fontFamily: "'Orbitron', sans-serif" }}>
-					<span className="text-white">AUTO</span>
-					<span className="text-green-400">DEAL</span>
+					<span className="text-foreground">AUTO</span>
+					<span className="text-primary">DEAL</span>
 				</h1>
 
 				{/* Accent line + tagline */}
 				<div className="flex items-center gap-2 mt-0.5">
-					<div className="h-[1.5px] w-full bg-gradient-to-r from-green-400 to-transparent" />
+					<div className="h-[1.5px] w-full bg-gradient-to-r from-primary to-transparent" />
 				</div>
 				<span
-					className="text-green-400 text-[0.42rem] tracking-[0.35em] mt-0.5 opacity-70"
+					className="text-primary text-[0.42rem] tracking-[0.35em] mt-0.5 opacity-70"
 					style={{ fontFamily: "'Orbitron', sans-serif" }}>
 					PREMIUM AUTOMOTIVE
 				</span>
