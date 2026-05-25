@@ -3,17 +3,27 @@
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import { Package, Truck, CreditCard, Calendar, MapPin, Car } from "lucide-react";
+import { useCarStore } from "@/store/useCarStore";
 
 const OrdersPage = () => {
-	const { data: session, status } = useSession();
+	const { status } = useSession();
+	const { currentOrder } = useCarStore();
 	
 	// If user is not authenticated, redirect to login page
 	if (status === "unauthenticated") {
 		redirect('/login');
 	}
 	
-	// Mock order data
+	// Dynamic + Mock order data
 	const orders = [
+		...(currentOrder ? [{
+			id: currentOrder.id,
+			date: currentOrder.createdAt,
+			status: currentOrder.orderStatus === "processing" ? "Processing" : "Delivered",
+			total: `$${currentOrder.totalAmount.toLocaleString()}`,
+			car: currentOrder.cars.map(c => `${c.brand} ${c.model}`).join(", "),
+			image: currentOrder.cars[0]?.image || "/cars/tesla-model-s.jpg"
+		}] : []),
 		{
 			id: "ORD-001",
 			date: "2024-05-10",
@@ -64,7 +74,7 @@ const OrdersPage = () => {
 						</div>
 						<h2 className="text-2xl font-bold mb-3">No Orders Yet</h2>
 						<p className="text-gray-400 max-w-md mx-auto mb-6">
-							You haven't placed any orders yet. When you do, they'll appear here.
+							You haven&apos;t placed any orders yet. When you do, they&apos;ll appear here.
 						</p>
 						<button className="bg-emerald-600 hover:bg-emerald-700 text-white py-3 px-6 rounded-xl transition-colors font-medium">
 							Browse Cars
