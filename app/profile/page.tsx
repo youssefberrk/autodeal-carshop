@@ -4,6 +4,7 @@ import { useSession, signOut } from "next-auth/react";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import { useState } from "react";
+import { useCarStore } from "@/store/useCarStore";
 import {
 	Settings,
 	ShoppingBasket,
@@ -16,12 +17,14 @@ import {
 	MapPin,
 	Bell,
 	Car,
+	Trash2,
 } from "lucide-react";
 import Image from "next/image";
 
 const ProfilePage = () => {
 	const { data: session, status } = useSession();
 	const [activeTab, setActiveTab] = useState("profile");
+	const {whishListCars, removeFromWhishList} = useCarStore();
 
 	// If user is not authenticated, redirect to login page
 	if (status === "unauthenticated") {
@@ -39,26 +42,7 @@ const ProfilePage = () => {
 			</div>
 		);
 	}
-
-	// Mock data for wishlist cars
-	const wishlistCars = [
-		{
-			id: 1,
-			model: "Porsche 911 Turbo S",
-			brand: "Porsche",
-			price: 120000,
-			image: "/cars/shop-featured/911/p1.jpg",
-			badge: "Popular",
-		},
-		{
-			id: 2,
-			model: "Ferrari F8 Tributo",
-			brand: "Ferrari",
-			price: 280000,
-			image: "/cars/ferrari/f8-1.jpg",
-			badge: "Top Speed",
-		},
-	];
+	
 
 	// Mock data for purchased cars
 	const purchasedCars = [
@@ -213,51 +197,8 @@ const ProfilePage = () => {
 							</div>
 						</div>
 
-						{/* Recent Activity */}
-						<div className="bg-gray-800/50 backdrop-blur-lg rounded-2xl p-6 border border-gray-700/50 shadow-xl mb-8">
-							<h3 className="text-xl font-bold mb-6 flex items-center gap-2">
-								<Calendar className="text-emerald-500" />
-								Recent Activity
-							</h3>
-
-							<div className="space-y-4">
-								<div className="flex items-center gap-4 p-4 bg-gray-700/30 rounded-xl border border-gray-700/50">
-									<div className="w-10 h-10 rounded-full bg-emerald-900/30 flex items-center justify-center">
-										<ShoppingCart size={20} className="text-emerald-400" />
-									</div>
-									<div>
-										<h4 className="font-medium">Viewed a car</h4>
-										<p className="text-gray-400 text-sm">
-											Tesla Model S - 2 hours ago
-										</p>
-									</div>
-								</div>
-
-								<div className="flex items-center gap-4 p-4 bg-gray-700/30 rounded-xl border border-gray-700/50">
-									<div className="w-10 h-10 rounded-full bg-emerald-900/30 flex items-center justify-center">
-										<Heart size={20} className="text-emerald-400" />
-									</div>
-									<div>
-										<h4 className="font-medium">Added to wishlist</h4>
-										<p className="text-gray-400 text-sm">
-											Porsche 911 - 1 day ago
-										</p>
-									</div>
-								</div>
-
-								<div className="flex items-center gap-4 p-4 bg-gray-700/30 rounded-xl border border-gray-700/50">
-									<div className="w-10 h-10 rounded-full bg-emerald-900/30 flex items-center justify-center">
-										<User size={20} className="text-emerald-400" />
-									</div>
-									<div>
-										<h4 className="font-medium">Account created</h4>
-										<p className="text-gray-400 text-sm">
-											Welcome to AutoDeal! - 2 days ago
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
+						
+						
 
 						{/* Virtual Garage */}
 						<div className="bg-gray-800/50 backdrop-blur-lg rounded-2xl p-6 border border-gray-700/50 shadow-xl">
@@ -275,7 +216,7 @@ const ProfilePage = () => {
 									}`}
 									onClick={() => setActiveTab("profile")}>
 									<Heart size={16} />
-									Wishlist ({wishlistCars.length})
+									Wishlist ({whishListCars?.length > 0 ? whishListCars.length: 0})
 								</button>
 								<button
 									className={`px-4 py-2 rounded-lg flex items-center gap-2 ${
@@ -290,11 +231,11 @@ const ProfilePage = () => {
 
 							{activeTab === "profile" ? (
 								<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-									{wishlistCars.length > 0 ? (
-										wishlistCars.map((car) => (
+									{whishListCars?.length > 0 ? (
+										whishListCars?.map((car) => (
 											<div
 												key={car.id}
-												className="bg-gray-700/30 p-4 rounded-xl border border-gray-700/50 flex flex-col sm:flex-row gap-4">
+												className="bg-gray-700/30 p-4 rounded-xl border border-gray-700/50 flex flex-col sm:flex-row gap-4 relative group">
 												<div className="w-full sm:w-1/3">
 													<div className="bg-gray-600 rounded-lg overflow-hidden">
 														<Image
@@ -317,11 +258,18 @@ const ProfilePage = () => {
 														<span className="text-emerald-400 font-bold">
 															${car.price.toLocaleString()}
 														</span>
-														<span className="bg-emerald-900/30 text-emerald-400 px-2 py-1 rounded-full text-xs">
+														<span className="absolute top-4 right-2 bg-emerald-900/30 text-emerald-400 px-2 py-1 rounded-full text-xs">
 															{car.badge}
 														</span>
 													</div>
 												</div>
+												<button
+													onClick={() => removeFromWhishList(car)}
+													className="absolute bottom-3 right-3 p-2 rounded-lg bg-gray-800/80 hover:bg-red-500/20 text-gray-400 hover:text-red-400 border border-gray-700/50 hover:border-red-500/30 transition-all duration-200 cursor-pointer"
+													title="Remove from wishlist"
+												>
+													<Trash2 size={16} />
+												</button>
 											</div>
 										))
 									) : (

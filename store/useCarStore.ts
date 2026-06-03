@@ -7,6 +7,7 @@ export const useCarStore = create<CarStore>()(
 		(set) => ({
 			allocatedCars: [],
 			purchasedCars: [],
+			whishListCars: [],
 			quant: 1,
 			currentOrder: null,
 
@@ -29,6 +30,21 @@ export const useCarStore = create<CarStore>()(
 			addToPurchased: (car: Car) =>
 				set((state) => ({
 					purchasedCars: [...state.purchasedCars, car],
+				})),
+
+			addToWhishList: (car: Car) =>
+				set((state) => {
+					const exists = state.whishListCars.find((c) => c.id === car.id);
+					if (exists) return state;
+
+					return {
+						whishListCars: [...state.whishListCars, car],
+					};
+				}),
+
+			removeFromWhishList: (car: Car) =>
+				set((state) => ({
+					whishListCars: state.whishListCars.filter((c) => c.id !== car.id),
 				})),
 
 			setCurrentOrder: (order: Order) =>

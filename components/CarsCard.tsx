@@ -3,6 +3,7 @@
 import { Cars } from "@/types/Cars";
 import { Heart } from "lucide-react";
 import Image from "next/image";
+import { useCarStore } from "@/store/useCarStore";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -15,12 +16,37 @@ const CarsCard = ({
 	bodySilhouette,
 	specs,
 	price,
-	isFavorite = false,
 }: Cars) => {
 	const router = useRouter();
 	const [isHovered, setIsHovered] = useState(false);
-	const [isLiked, setIsLiked] = useState(isFavorite);
 
+	const { addToWhishList, removeFromWhishList } = useCarStore();
+	
+	const isLiked = useCarStore((state) => 
+		state.whishListCars?.some((car) => car.id === id) || false
+	);
+
+	const handleFavorite = () => {
+		const carItem = {
+			id,
+			brand,
+			model: model || "",
+			price: typeof price === 'number' ? price : parseFloat(String(price).replace(/[^0-9.]/g, '')) || 0,
+			image: image || "",
+			badge,
+			bodySilhouette,
+			specs,
+		};
+
+		if (!isLiked) {
+			addToWhishList(carItem);
+		} else {
+			removeFromWhishList(carItem);
+		}
+	};
+
+		
+	
 	return (
 		<div
 			className="cars-card"
@@ -50,7 +76,7 @@ const CarsCard = ({
 					className="card-favorite"
 					onClick={(e) => {
 						e.stopPropagation();
-						setIsLiked(!isLiked);
+						handleFavorite();
 					}}
 					aria-label={isLiked ? "Remove from favorites" : "Add to favorites"}
 				>
