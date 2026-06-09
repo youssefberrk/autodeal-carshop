@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useCarStore } from '@/store/useCarStore';
+import { Car } from '@/types/Order';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
@@ -14,7 +15,8 @@ import {
   Truck,
   ArrowRight,
   Loader2,
-  Sparkles
+  Sparkles,
+  AlertCircle
 } from 'lucide-react';
 import CountrySelect from '@/components/ui/CountrySelect';
 
@@ -37,16 +39,13 @@ const CheckoutPage = () => {
   const [countryName, setCountryName] = useState("United States");
   const [paymentMethod, setPaymentMethod] = useState('credit_card');
   
-  // Payment fields
-  const [cardNumber, setCardNumber] = useState("");
-  const [expiryDate, setExpiryDate] = useState("");
-  const [cvv, setCvv] = useState("");
-  
   // UI states
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
   const [createdOrderId, setCreatedOrderId] = useState("");
+  const [purchasedCarsList, setPurchasedCarsList] = useState<Car[]>([]);
+  const [successTotalAllocation, setSuccessTotalAllocation] = useState<number>(0);
 
   // Pre-fill user info if logged in
   useEffect(() => {
@@ -57,6 +56,107 @@ const CheckoutPage = () => {
       setEmail(session.user.email || "");
     }
   }, [session]);
+
+  // Handle Stripe redirect query parameters
+  useEffect(() => {
+    const query = new URLSearchParams(window.location.search);
+    const success = query.get('success');
+    const sessionId = query.get('session_id');
+    const canceled = query.get('canceled');
+
+    if (success === 'true' && sessionId) {
+      const verifySession = async () => {
+        setIsSubmitting(true);
+        try {
+          const res = await fetch(`/api/checkout-session?session_id=${sessionId}`);
+          if (!res.ok) throw new Error('Verification failed');
+          const data = await res.json();
+          
+          if (data.paymentStatus === 'paid') {
+            const metadata = data.metadata;
+            const compactCars = JSON.parse(metadata.carsJson);
+            
+            // Map compact keys back to Car type
+            const cars: Car[] = compactCars.map((c: any) => ({
+              id: c.id,
+              brand: c.b,
+              model: c.m,
+              price: c.p,
+              image: c.i,
+              bodySilhouette: c.bs,
+              specs: c.s,
+              quantity: c.q || 1
+            }));
+            
+            const name = metadata.fullName;
+            const mail = metadata.email;
+            
+            // Reconstruct order details
+            setFullName(name);
+            setEmail(mail);
+            setAddress(metadata.address);
+            setCity(metadata.city);
+            setPostalCode(metadata.zipCode);
+            setStateName(metadata.state);
+            setCountryName(metadata.country);
+            setPhoneNumber(metadata.phone);
+            
+            // Process purchase client-side
+            cars.forEach((car: Car) => addToPurchased(car));
+            
+            setPurchasedCarsList(cars);
+            const orderId = sessionId.slice(-12).toUpperCase();
+            setCreatedOrderId(orderId);
+            
+            const sub = cars.reduce((sum: number, car: Car) => sum + car.price * (car.quantity || 1), 0);
+            const customConfig = Math.round(sub * 0.1);
+            const delivery = 1650;
+            const totalAlloc = sub + customConfig + delivery;
+            setSuccessTotalAllocation(totalAlloc);
+
+            const orderObj = {
+              id: orderId,
+              cars: cars,
+              totalAmount: totalAlloc,
+              paymentStatus: "paid" as const,
+              orderStatus: "processing" as const,
+              shippingAddress: {
+                fullName: name,
+                email: mail,
+                phone: metadata.phone || "Not provided",
+                address: metadata.address,
+                city: metadata.city,
+                state: metadata.state || "Not provided",
+                zipCode: metadata.zipCode,
+                country: metadata.country,
+              },
+              createdAt: new Date().toISOString().split('T')[0]
+            };
+            
+            setCurrentOrder(orderObj);
+            clearAllocation();
+            setIsSuccessModalOpen(true);
+            
+            // Clean up query params from URL
+            router.replace('/checkout');
+          } else {
+            setErrors({ stripe: 'Stripe payment was not completed.' });
+          }
+        } catch (err) {
+          console.error('Error verifying Stripe session:', err);
+          const error = err as Error;
+          setErrors({ stripe: error.message || 'Failed to verify payment session. Please contact support.' });
+        } finally {
+          setIsSubmitting(false);
+        }
+      };
+
+      verifySession();
+    } else if (canceled === 'true') {
+      setErrors({ stripe: 'Stripe payment process was canceled.' });
+      router.replace('/checkout');
+    }
+  }, [addToPurchased, clearAllocation, setCurrentOrder, router]);
 
   const mockCar = {
     id: 999,
@@ -81,6 +181,9 @@ const CheckoutPage = () => {
   const totalQuantity = activeCars.reduce((sum, car) => sum + (car.quantity || 1), 0);
   const depositRequired = totalQuantity > 0 ? 10000 * totalQuantity : 0;
 
+  const displayCars = purchasedCarsList.length > 0 ? purchasedCarsList : activeCars;
+  const displayTotal = successTotalAllocation || totalAllocation;
+
   const handleValidation = () => {
     const tempErrors: Record<string, string> = {};
     if (!fullName.trim()) tempErrors.fullName = "Full name is required";
@@ -89,28 +192,59 @@ const CheckoutPage = () => {
     if (!city.trim()) tempErrors.city = "City is required";
     if (!postalCode.trim()) tempErrors.postalCode = "Postal code is required";
     
-    if (paymentMethod === 'credit_card') {
-      if (!cardNumber.trim() || cardNumber.replace(/\s/g, '').length < 16) {
-        tempErrors.cardNumber = "Valid 16-digit card number is required";
-      }
-      if (!expiryDate.trim() || !/^\d{2}\/\d{2}$/.test(expiryDate)) {
-        tempErrors.expiryDate = "Expiry date must be in MM/YY format";
-      }
-      if (!cvv.trim() || cvv.length < 3) {
-        tempErrors.cvv = "Valid CVV is required";
-      }
-    }
+    // Card inputs are handled on Stripe Hosted Checkout page, so we don't validate them locally.
     setErrors(tempErrors);
     return Object.keys(tempErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!handleValidation()) return;
     
     setIsSubmitting(true);
+    setErrors({});
     
-    // Simulate high-end backend processing
+    if (paymentMethod === 'credit_card') {
+      try {
+        const response = await fetch('/api/checkout-session', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            cars: activeCars,
+            fullName,
+            email,
+            address,
+            city,
+            postalCode,
+            stateName,
+            countryName,
+            phoneNumber,
+          }),
+        });
+
+        const data = await response.json();
+        if (!response.ok) {
+          throw new Error(data.error || 'Failed to create checkout session');
+        }
+
+        if (data.url) {
+          // Redirect to Stripe Hosted Checkout
+          window.location.href = data.url;
+        } else {
+          throw new Error('No checkout URL returned from server');
+        }
+      } catch (err) {
+        console.error('Stripe redirect error:', err);
+        const error = err as Error;
+        setErrors({ stripe: error.message || 'Payment initiation failed. Please try again.' });
+        setIsSubmitting(false);
+      }
+      return;
+    }
+
+    // Simulate wire transfer booking (offline payment)
     setTimeout(() => {
       const orderId = `ORD-${Math.floor(100000 + Math.random() * 900000)}`;
       setCreatedOrderId(orderId);
@@ -136,6 +270,8 @@ const CheckoutPage = () => {
       
       // Save order to store and clear allocations
       activeCars.forEach(car => addToPurchased(car));
+      setPurchasedCarsList([...activeCars]);
+      setSuccessTotalAllocation(totalAllocation);
       setCurrentOrder(orderObj);
       
       if (!useMock) {
@@ -147,7 +283,7 @@ const CheckoutPage = () => {
     }, 2500);
   };
 
-  if (isGarageEmpty) {
+  if (isGarageEmpty && !isSuccessModalOpen) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#0c160e] text-[#dae6d8] font-['Manrope'] px-6 py-24 relative overflow-hidden">
         {/* Dynamic ambient backgrounds */}
@@ -433,55 +569,30 @@ const CheckoutPage = () => {
                 </button>
               </div>
 
-              {paymentMethod === 'credit_card' ? (
-                <div className="space-y-6">
-                  <div>
-                    <label className="block text-[9px] uppercase tracking-widest text-[#dae6d8]/40 mb-2 font-bold">Card Number</label>
-                    <div className="relative">
-                      <input 
-                        type="text" 
-                        value={cardNumber}
-                        onChange={(e) => {
-                          // Format with spaces
-                          const val = e.target.value.replace(/\s/g, '').replace(/(\d{4})/g, '$1 ').trim();
-                          setCardNumber(val.slice(0, 19));
-                        }}
-                        className={`w-full bg-[#141e16] border ${errors.cardNumber ? 'border-red-500' : 'border-[#dae6d8]/10'} rounded-lg px-5 py-4 text-sm focus:border-[#00ff87]/50 focus:outline-none transition-all placeholder:text-[#dae6d8]/20`} 
-                        placeholder="4111 2222 3333 8888" 
-                      />
-                      <CreditCard className="absolute right-5 top-1/2 -translate-y-1/2 text-[#dae6d8]/20" size={16} />
-                    </div>
-                    {errors.cardNumber && <span className="text-red-500 text-[10px] mt-1 block">{errors.cardNumber}</span>}
-                  </div>
+              {errors.stripe && (
+                <div className="bg-red-500/10 border border-red-500/20 text-red-400 p-4 rounded-lg text-xs tracking-wide mb-6 flex items-start gap-3">
+                  <AlertCircle size={16} className="shrink-0 mt-0.5" />
+                  <p>{errors.stripe}</p>
+                </div>
+              )}
 
-                  <div className="grid grid-cols-2 gap-6">
+              {paymentMethod === 'credit_card' ? (
+                <div className="bg-[#141e16] p-6 border border-[#00ff87]/20 rounded-lg space-y-4 shadow-[0_0_20px_rgba(0,255,135,0.02)]">
+                  <div className="flex justify-between items-center border-b border-[#dae6d8]/5 pb-3">
+                    <h4 className="text-xs uppercase tracking-widest font-bold text-[#e5efe3]">Stripe Secure Payment</h4>
+                    <span className="text-[9px] bg-[#00ff87]/10 text-[#00ff87] border border-[#00ff87]/20 px-2 py-0.5 rounded-full uppercase tracking-widest font-bold">Test Mode</span>
+                  </div>
+                  <p className="text-[11px] text-[#dae6d8]/60 leading-relaxed">
+                    You will be securely redirected to Stripe Test Checkout to complete your payment. You can use standard Stripe test cards (e.g. <code className="text-[#00ff87] bg-black/30 px-1 py-0.5 rounded">4242 4242 4242 4242</code>) on the checkout page.
+                  </p>
+                  <div className="grid grid-cols-2 gap-4 text-xs pt-2">
                     <div>
-                      <label className="block text-[9px] uppercase tracking-widest text-[#dae6d8]/40 mb-2 font-bold">Expiry Date</label>
-                      <input 
-                        type="text" 
-                        value={expiryDate}
-                        onChange={(e) => {
-                          let val = e.target.value.replace(/\D/g, '');
-                          if (val.length > 2) {
-                            val = `${val.slice(0, 2)}/${val.slice(2, 4)}`;
-                          }
-                          setExpiryDate(val.slice(0, 5));
-                        }}
-                        className={`w-full bg-[#141e16] border ${errors.expiryDate ? 'border-red-500' : 'border-[#dae6d8]/10'} rounded-lg px-5 py-4 text-sm focus:border-[#00ff87]/50 focus:outline-none transition-all placeholder:text-[#dae6d8]/20`} 
-                        placeholder="MM / YY" 
-                      />
-                      {errors.expiryDate && <span className="text-red-500 text-[10px] mt-1 block">{errors.expiryDate}</span>}
+                      <span className="text-[#dae6d8]/40 block text-[9px] uppercase tracking-widest">Transaction Type</span>
+                      <span className="font-bold text-[#e5efe3]">Reservation Deposit</span>
                     </div>
                     <div>
-                      <label className="block text-[9px] uppercase tracking-widest text-[#dae6d8]/40 mb-2 font-bold">CVV</label>
-                      <input 
-                        type="password" 
-                        value={cvv}
-                        onChange={(e) => setCvv(e.target.value.replace(/\D/g, '').slice(0, 4))}
-                        className={`w-full bg-[#141e16] border ${errors.cvv ? 'border-red-500' : 'border-[#dae6d8]/10'} rounded-lg px-5 py-4 text-sm focus:border-[#00ff87]/50 focus:outline-none transition-all placeholder:text-[#dae6d8]/20`} 
-                        placeholder="•••" 
-                      />
-                      {errors.cvv && <span className="text-red-500 text-[10px] mt-1 block">{errors.cvv}</span>}
+                      <span className="text-[#dae6d8]/40 block text-[9px] uppercase tracking-widest">Immediate Charge</span>
+                      <span className="font-bold text-[#00ff87]">${depositRequired.toLocaleString()}</span>
                     </div>
                   </div>
                 </div>
@@ -584,11 +695,11 @@ const CheckoutPage = () => {
                 <div className="border-b border-[#dae6d8]/5 pb-3">
                   <span className="block text-[9px] uppercase tracking-widest text-[#dae6d8]/40 mb-1">Vehicles Locked</span>
                   <div className="space-y-1">
-                    {activeCars.map((car, i) => (
+                    {displayCars.map((car, i) => (
                       <div key={i} className="flex justify-between items-center">
                         <p className="text-sm font-bold text-[#e5efe3]">{car.brand} {car.model}</p>
                         <p className="text-[10px] text-[#00ff87] font-bold">
-                          {car.quantity > 1 ? `x${car.quantity}` : ""}
+                          {(car.quantity || 1) > 1 ? `x${car.quantity}` : ""}
                         </p>
                       </div>
                     ))}
@@ -601,7 +712,7 @@ const CheckoutPage = () => {
                   </div>
                   <div>
                     <span className="block text-[9px] uppercase tracking-widest text-[#dae6d8]/40 mb-1">Total Guarantee</span>
-                    <p className="text-xs font-bold text-[#00ff87]">${totalAllocation.toLocaleString()}</p>
+                    <p className="text-xs font-bold text-[#00ff87]">${displayTotal.toLocaleString()}</p>
                   </div>
                 </div>
               </div>
