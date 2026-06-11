@@ -137,6 +137,23 @@ const CheckoutPage = () => {
             clearAllocation();
             setIsSuccessModalOpen(true);
             
+            // Trigger confirmation email
+            try {
+              await fetch('/api/send-confirmation', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  email: mail,
+                  fullName: name,
+                  orderId: orderId,
+                  totalAmount: totalAlloc,
+                  cars: cars,
+                }),
+              });
+            } catch (emailError) {
+              console.error('Failed to send confirmation email:', emailError);
+            }
+
             // Clean up query params from URL
             router.replace('/checkout');
           } else {
@@ -278,6 +295,23 @@ const CheckoutPage = () => {
         clearAllocation();
       }
       
+      // Trigger confirmation email for wire transfer
+      try {
+        fetch('/api/send-confirmation', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: email,
+            fullName: fullName,
+            orderId: orderId,
+            totalAmount: totalAllocation,
+            cars: activeCars,
+          }),
+        });
+      } catch (emailError) {
+        console.error('Failed to send confirmation email for wire transfer:', emailError);
+      }
+
       setIsSubmitting(false);
       setIsSuccessModalOpen(true);
     }, 2500);
