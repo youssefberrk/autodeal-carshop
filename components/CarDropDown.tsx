@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { X, ShoppingCart, ArrowRight } from "lucide-react";
@@ -11,11 +12,29 @@ interface CarDropDownProps {
 
 export default function CarDropDown({ onClose }: CarDropDownProps) {
 	const { allocatedCars, removeFromAllocation } = useCarStore();
+	const dropdownRef = useRef<HTMLDivElement>(null);
+
+	useEffect(() => {
+		const handleClickOutside = (event: MouseEvent) => {
+			if (
+				dropdownRef.current &&
+				!dropdownRef.current.contains(event.target as Node) &&
+				!(event.target as Element).closest("[aria-label='My Cars']")
+			) {
+				onClose();
+			}
+		};
+		document.addEventListener("mousedown", handleClickOutside);
+		return () => {
+			document.removeEventListener("mousedown", handleClickOutside);
+		};
+	}, [onClose]);
 
 	const totalPrice = allocatedCars.reduce((sum, car) => sum + car.price * (car.quantity || 1), 0);
 
 	return (
 		<div
+			ref={dropdownRef}
 			className="absolute right-0 mt-3 w-80 md:w-96 rounded-xl p-4 backdrop-blur-md z-50 animate-in origin-top-right"
 			style={{
 				background: "rgba(6, 13, 16, 0.95)",
@@ -51,20 +70,24 @@ export default function CarDropDown({ onClose }: CarDropDownProps) {
 							<div
 								key={car.id}
 								className="flex items-center gap-3 p-2 bg-gray-800/50 rounded-lg">
-								<div className="w-16 h-12 relative rounded overflow-hidden">
-									<Image
-										src={car.image}
-										alt={car.model}
-										fill
-										className="object-cover"
-									/>
-								</div>
-								<div className="flex-1">
-									<p className="text-white text-sm font-medium">{car.model}</p>
-									<p className="text-emerald-400 text-xs">
-										${car.price.toLocaleString()}
-									</p>
-								</div>
+								<Link href={`/details/${car.id}`} onClick={onClose} className="flex items-center gap-3 flex-1">
+									<div className="w-16 h-12 relative rounded overflow-hidden">
+										<Image
+											src={car.image}
+											alt={car.model}
+											fill
+											className="object-cover"
+										/>
+									</div>
+									<div className="flex-1">
+										<p className="text-white text-sm font-medium">{car.model}</p>
+										<p className="text-emerald-400 text-xs">
+											${car.price.toLocaleString()}
+										</p>
+									</div>
+								</Link>
+								<span className="h-5 w-5 rounded-full ring-offset-4 ring-offset-[#0c160e] ring-2 ring-[#00ff87] shadow-[0_0_0_5px_rgba(0,255,135,0.12)]" 
+									style={{ backgroundColor: car.color?.hex }} />
 								<span>{car.quantity || 1}</span>
 								<button
 									onClick={() => removeFromAllocation(car.id)}

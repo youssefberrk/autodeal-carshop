@@ -175,7 +175,7 @@ const CheckoutPage = () => {
     }
   }, [addToPurchased, clearAllocation, setCurrentOrder, router]);
 
-  const mockCar = {
+  const mockCar: Car = {
     id: 999,
     brand: 'Porsche',
     model: '911 GT3 RS',
@@ -183,7 +183,11 @@ const CheckoutPage = () => {
     image: '/cars/shop-featured/911/p1.jpg',
     bodySilhouette: 'Coupe',
     specs: '4.0L Flat-6 Naturally Aspirated',
-    quantity: 1
+    quantity: 1,
+    color: {
+      id: 'Lizard Green',
+      hex: '#00ff87'
+    }
   };
 
   const activeCars = useMock ? [mockCar] : allocatedCars;
@@ -411,6 +415,16 @@ const CheckoutPage = () => {
                       <span className="text-[10px] text-[#dae6d8]/40 mt-1 uppercase tracking-tight font-medium">
                         {(car.quantity || 1)} × ${car.price.toLocaleString()} = ${(car.price * (car.quantity || 1)).toLocaleString()}
                       </span>
+                    </div>
+                  </div>
+                  <div>
+                    <span className="block text-[9px] uppercase tracking-widest text-[#dae6d8]/40 mb-1.5">Color Selected</span>
+                    <div className="flex flex-col gap-4">
+                      <span className="text-sm font-bold text-[#e5efe3] leading-tight block">{car.color?.id}</span>
+                      <span className="h-5 w-5 rounded-full ring-offset-4 ring-offset-[#0c160e]  ring-2 ring-[#00ff87] shadow-[0_0_0_5px_rgba(0,255,135,0.12)]" 
+												style={{ backgroundColor: car.color?.hex }} />
+                     
+                    
                     </div>
                   </div>
                   <div>

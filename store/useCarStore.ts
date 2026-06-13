@@ -18,7 +18,7 @@ export const useCarStore = create<CarStore>()(
 					if (exists) return state;
 
 					return {
-						allocatedCars: [...state.allocatedCars, { ...car, quantity: car.quantity || 1 }],
+						allocatedCars: [...state.allocatedCars, { ...car, quantity: car.quantity || 1, color: car.color }],
 					};
 				}),
 

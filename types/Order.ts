@@ -4,7 +4,10 @@ export interface Car {
 	model: string;
 	price: number;
 	image: string;
-
+	color?: {
+	id: string;
+	hex: string;
+};
 	badge?: string;
 	bodySilhouette?: string;
 	specs?: string;
