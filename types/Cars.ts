@@ -19,7 +19,7 @@ export type Cars = {
 	bodySilhouette: string;
 	price: number | string;
 	availability?: number;
-	isFavorite?: boolean;
+	isFavoriteCar?: boolean;
 	image?: string;
 	carAlbum?: {
 		photo1: string;

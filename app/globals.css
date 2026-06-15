@@ -224,6 +224,20 @@
   }
 }
 
+@keyframes fadein-out {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 @keyframes glowPulse {
   0%,
   100% {
@@ -262,7 +276,93 @@
 .story-title {
   animation: slideInLeft 0.8s var(--ease-out) both;
 }
+.fav-notif {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(12, 22, 14, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 255, 135, 0.2);
+  border-radius: 12px;
+  padding: 12px 18px;
+  color: #e5efe3;
+  font-family: "Manrope", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  box-shadow:
+    0 20px 40px -15px rgba(0, 0, 0, 0.5),
+    0 0 30px -10px rgba(0, 255, 135, 0.15);
 
+  opacity: 0;
+  transform: translateY(16px) scale(0.95);
+  transition:
+    opacity 300ms var(--ease-out),
+    transform 300ms var(--ease-out),
+    border-color 0.3s ease;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.fav-notif.show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.fav-notif-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+}
+
+.fav-notif-icon.add {
+  background: rgba(0, 255, 135, 0.15);
+  color: #00ff87;
+}
+
+.fav-notif-icon.remove {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+}
+
+.progress-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  transform-origin: left;
+  transform: scaleX(0);
+}
+
+.fav-notif.show .progress-bar {
+  animation: shrinkBar 2.5s linear forwards;
+}
+
+.fav-notif-icon.add ~ .progress-bar {
+  background: #00ff87;
+}
+
+.fav-notif-icon.remove ~ .progress-bar {
+  background: #ef4444;
+}
+
+@keyframes shrinkBar {
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: scaleX(0);
+  }
+}
 .story-para {
   animation: fadeInUp 0.8s var(--ease-out) 0.2s both;
 }

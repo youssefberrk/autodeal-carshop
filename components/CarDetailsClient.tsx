@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useCarStore } from "@/store/useCarStore";
 import {
   ChevronRight,
@@ -22,8 +22,11 @@ import {
   OctagonMinus,
 } from "lucide-react";
 import { Cars } from "@/types/Cars";
+import { Car } from "@/types/Order";
 import Image from "next/image";
 import Link from "next/link";
+import { carsData } from "@/public/cars/CarsData";
+import CarsCard from "./CarsCard";
 
 interface FeatureItem {
   icon: string;
@@ -62,14 +65,42 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
     hex: car.colors?.[0]?.hex || "#00ff87",
   });
   const [activeImage, setActiveImage] = useState(0);
-
   const {
     addToAllocation,
     removeFromAllocation,
     allocatedCars,
     quantityChosen,
+    addToWhishList,
+    removeFromWhishList,
+    whishListCars,
     quant,
   } = useCarStore();
+
+  const isFavorite = whishListCars?.some((c) => c.id === car.id) || false;
+
+  const [toast, setToast] = useState<{
+    show: boolean;
+    visible: boolean;
+    message: string;
+    type: "add" | "remove";
+  } | null>(null);
+
+  // Manage toast notification lifecycle
+  useEffect(() => {
+    if (!toast || !toast.show) return;
+
+    if (toast.visible) {
+      const fadeOutTimer = setTimeout(() => {
+        setToast((prev) => (prev ? { ...prev, visible: false } : null));
+      }, 2500);
+      return () => clearTimeout(fadeOutTimer);
+    } else {
+      const unmountTimer = setTimeout(() => {
+        setToast(null);
+      }, 300);
+      return () => clearTimeout(unmountTimer);
+    }
+  }, [toast?.visible, toast?.message]);
 
   // Check if this car is already allocated
   const isAllocated = allocatedCars.some((c) => c.id === car.id);
@@ -116,6 +147,17 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
   // Colors from car data
   const colors: CarColor[] = car.colors || [];
 
+  // Similar cars logic
+  const similarCars = carsData
+    .filter((c) => c.bodySilhouette === car.bodySilhouette && c.id !== car.id)
+    .sort((a, b) => {
+      // Prioritize same brand
+      if (a.brand === car.brand && b.brand !== car.brand) return -1;
+      if (a.brand !== car.brand && b.brand === car.brand) return 1;
+      return 0;
+    })
+    .slice(0, 4);
+
   // Handle allocation click - toggle between add/remove
   const handleAllocation = () => {
     if (isAllocated) {
@@ -150,13 +192,44 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
     console.log(quant);
   };
 
+  const handleAddToWishList = () => {
+    if (isFavorite) {
+      removeFromWhishList({ id: car.id! } as Car);
+      setToast({
+        show: true,
+        visible: true,
+        message: "Removed from your wish list",
+        type: "remove",
+      });
+    } else {
+      addToWhishList({
+        id: car.id!,
+        brand: car.brand,
+        model: car.model || "",
+        price: typeof car.price === "number" ? car.price : 0,
+        color: selectedColor,
+        image: car.image || "",
+        badge: car.badge,
+        bodySilhouette: car.bodySilhouette,
+        specs: car.specs,
+        quantity: quantity,
+      });
+      setToast({
+        show: true,
+        visible: true,
+        message: "Added successfully to your wish list",
+        type: "add",
+      });
+    }
+  };
+
   return (
     <div className="relative min-h-screen overflow-hidden bg-[#0b140e] text-[#e5efe3] font-['Manrope']">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_12%,rgba(0,255,135,0.18),transparent_38%),radial-gradient(circle_at_82%_0%,rgba(148,163,184,0.14),transparent_32%),linear-gradient(to_bottom,rgba(20,34,25,0.85),rgba(10,16,12,0.98))]" />
       <div className="pointer-events-none absolute inset-0 opacity-[0.06] [background-image:linear-gradient(to_right,rgba(229,239,227,0.25)_1px,transparent_1px),linear-gradient(to_bottom,rgba(229,239,227,0.2)_1px,transparent_1px)] [background-size:56px_56px]" />
-      <div className="relative mx-auto w-full max-w-[1400px] px-4 pb-16 pt-6 sm:px-6 md:px-10 lg:px-14">
+      <div className="relative mx-auto w-full max-w-[1400px] px-6 pb-24 pt-10 sm:px-10 lg:px-16">
         {/* Navigation Breadcrumb */}
-        <nav className="mb-8 flex items-center gap-2 text-[10px] uppercase tracking-[0.22em] text-[#e5efe3]/45 sm:mb-10">
+        <nav className="mb-12 flex items-center gap-2 text-[10px] uppercase tracking-[0.22em] text-[#e5efe3]/45 sm:mb-16">
           <Link
             href="/"
             className="transition-colors duration-200 [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] hover:text-[#00ff87]"
@@ -177,12 +250,12 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
         </nav>
 
         {/* Main Hero Section */}
-        <section className="mb-20 sm:mb-24">
-          <h1 className="mb-5 text-5xl font-['Newsreader'] uppercase font-bold leading-[0.9] tracking-[-0.03em]">
+        <section className="mb-24 sm:mb-32">
+          <h1 className="mb-8 text-5xl font-['Newsreader'] uppercase font-bold leading-[0.9] tracking-[-0.03em] sm:text-6xl md:text-7xl">
             {car.brand} <span className="block md:inline">{car.model}</span>
           </h1>
 
-          <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-12">
+          <div className="relative grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
             {/* Gallery Column */}
             <div className="lg:col-span-7">
               <div className="group relative mb-5 aspect-[16/10] overflow-hidden rounded-2xl border border-[#e5efe3]/10 bg-[#111c15] shadow-[0_30px_70px_-42px_rgba(0,0,0,0.85)]">
@@ -349,21 +422,37 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
                   </div>
 
                   {/* Favorite Button */}
-                  <button className="rounded-lg border border-[#e5efe3]/12 h-[52px] w-[52px] flex items-center justify-center text-[#e5efe3]/45 cursor-pointer transition-[transform,color,border-color] duration-200 [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] hover:border-[#00ff87]/40 hover:text-[#00ff87] active:scale-[0.97]">
+                  <button
+                    className="rounded-lg border border-[#e5efe3]/12 h-[52px] w-[52px] flex items-center justify-center text-[#e5efe3]/45 cursor-pointer transition-[transform,color,border-color] duration-200 [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] hover:border-[#00ff87]/40 hover:text-[#00ff87] active:scale-[0.97]"
+                    onClick={handleAddToWishList}
+                  >
                     <Heart
                       className={`w-5 h-5 ${
-                        car.isFavorite ? "fill-[#00ff87] text-[#00ff87]" : ""
+                        isFavorite ? "fill-[#00ff87] text-[#00ff87]" : ""
                       }`}
                     />
                   </button>
                 </div>
               </div>
             </div>
+            {toast && toast.show && (
+              <div className={`fav-notif ${toast.visible ? "show" : ""}`}>
+                <div className={`fav-notif-icon ${toast.type}`}>
+                  {toast.type === "add" ? (
+                    <Heart className="w-3.5 h-3.5 fill-[#00ff87] text-[#00ff87]" />
+                  ) : (
+                    <CircleOff className="w-3.5 h-3.5" />
+                  )}
+                </div>
+                <span>{toast.message}</span>
+                <div className="progress-bar" />
+              </div>
+            )}
           </div>
         </section>
 
         {/* Performance Features Section */}
-        <section className="border-t border-[#e5efe3]/10 pt-16 sm:pt-24">
+        <section className="mb-24 border-t border-[#e5efe3]/10 pt-16 sm:mb-32 sm:pt-24">
           <h2 className="mb-12 text-4xl font-['Newsreader'] italic font-bold tracking-tight sm:mb-16 sm:text-5xl">
             Performance Features
           </h2>
@@ -390,6 +479,20 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
             })}
           </div>
         </section>
+
+        {/* Curated Alternatives Section */}
+        {similarCars.length > 0 && (
+          <section className="mb-16 border-t border-[#e5efe3]/10 pt-16 sm:mb-24 sm:pt-24">
+            <h2 className="mb-12 text-4xl font-['Newsreader'] font-bold tracking-tight sm:text-5xl">
+              Curated Alternatives
+            </h2>
+            <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+              {similarCars.map((similarCar) => (
+                <CarsCard key={similarCar.id} {...similarCar} />
+              ))}
+            </div>
+          </section>
+        )}
       </div>
     </div>
   );
