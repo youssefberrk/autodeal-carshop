@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { useCarStore } from "@/store/useCarStore";
 import {
   ChevronRight,
@@ -60,6 +61,12 @@ export interface CarDetailsClientProps {
 const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
   const [quantity, setQuantity] = useState<number>(1);
   const [isAvailable, setIsAvailable] = useState<boolean>(true);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const [selectedColor, setSelectedColor] = useState({
     id: car.colors?.[0]?.id || "blue",
     hex: car.colors?.[0]?.hex || "#00ff87",
@@ -435,19 +442,23 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
                 </div>
               </div>
             </div>
-            {toast && toast.show && (
-              <div className={`fav-notif ${toast.visible ? "show" : ""}`}>
-                <div className={`fav-notif-icon ${toast.type}`}>
-                  {toast.type === "add" ? (
-                    <Heart className="w-3.5 h-3.5 fill-[#00ff87] text-[#00ff87]" />
-                  ) : (
-                    <CircleOff className="w-3.5 h-3.5" />
-                  )}
-                </div>
-                <span>{toast.message}</span>
-                <div className="progress-bar" />
-              </div>
-            )}
+            {mounted &&
+              toast &&
+              toast.show &&
+              createPortal(
+                <div className={`fav-notif ${toast.visible ? "show" : ""}`}>
+                  <div className={`fav-notif-icon ${toast.type}`}>
+                    {toast.type === "add" ? (
+                      <Heart className="w-3.5 h-3.5 fill-[#00ff87] text-[#00ff87]" />
+                    ) : (
+                      <CircleOff className="w-3.5 h-3.5" />
+                    )}
+                  </div>
+                  <span>{toast.message}</span>
+                  <div className="progress-bar" />
+                </div>,
+                document.body,
+              )}
           </div>
         </section>
 
