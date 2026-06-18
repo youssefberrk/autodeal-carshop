@@ -35,10 +35,17 @@ export interface ShippingAddress {
 	country: string;
 }
 
+export interface Notification {
+  id: string;
+  message: string;
+  type: "add" | "remove";
+}
+
 export interface CarStore {
 	allocatedCars: Car[];
 	purchasedCars: Car[];
 	whishListCars: Car[];
+	notifications: Notification[];
 	quant: number;
 	currentOrder: Order | null;
 
@@ -47,6 +54,8 @@ export interface CarStore {
 	addToPurchased: (car: Car) => void;
 	addToWhishList: (car: Car) => void;
 	removeFromWhishList: (car: Car) => void;
+	addNotification: (message: string, type: "add" | "remove") => void;
+	removeNotification: (id: string) => void;
 	quantityChosen: (quantity: number, carId?: number) => void;
 	setCurrentOrder: (order: Order) => void;
 	clearAllocation: () => void;

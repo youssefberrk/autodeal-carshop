@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import { createPortal } from "react-dom";
 import { useCarStore } from "@/store/useCarStore";
 import {
@@ -23,6 +23,7 @@ import {
   OctagonMinus,
 } from "lucide-react";
 import { Cars } from "@/types/Cars";
+import { ImageSlider } from "./ui/ImageSlider";
 import { Car } from "@/types/Order";
 import Image from "next/image";
 import Link from "next/link";
@@ -72,6 +73,16 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
     hex: car.colors?.[0]?.hex || "#00ff87",
   });
   const [activeImage, setActiveImage] = useState(0);
+
+  // Reset active image when car changes
+  useEffect(() => {
+    setActiveImage(0);
+  }, [car.id]);
+
+  const handleImageChange = useCallback((idx: number) => {
+    setActiveImage(idx);
+  }, []);
+
   const {
     addToAllocation,
     removeFromAllocation,
@@ -113,13 +124,13 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
   const isAllocated = allocatedCars.some((c) => c.id === car.id);
 
   // Get thumbnails from car album
-  const thumbnails = (
+  const thumbnails = useMemo(() => (
     car.carAlbum
       ? [car.carAlbum.photo1, car.carAlbum.photo2, car.carAlbum.photo3].filter(
           Boolean,
         )
       : [car.image].filter(Boolean)
-  ) as string[];
+  ) as string[], [car.carAlbum, car.image]);
 
   // Specs data
   const specs = [
@@ -267,15 +278,10 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
             <div className="lg:col-span-7">
               <div className="group relative mb-5 aspect-[16/10] overflow-hidden rounded-2xl border border-[#e5efe3]/10 bg-[#111c15] shadow-[0_30px_70px_-42px_rgba(0,0,0,0.85)]">
                 <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-[#0c160e]/25 to-transparent opacity-80" />
-                <Image
-                  src={
-                    thumbnails[activeImage] ||
-                    car.image ||
-                    "/api/placeholder/1200/750"
-                  }
-                  alt={`${car.brand} ${car.model}`}
-                  fill
-                  className="object-cover transition-transform duration-500 [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] group-hover:scale-[1.03]"
+                <ImageSlider
+                  album={thumbnails}
+                  activeImage={activeImage}
+                  onImageChange={handleImageChange}
                 />
               </div>
               <div className="grid grid-cols-4 gap-3 sm:gap-4">

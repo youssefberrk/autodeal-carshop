@@ -100,10 +100,9 @@ const CarsCard = ({
       <div className="card-image-wrap">
         <Image
           src={image || ""}
-          width={600}
-          height={400}
           alt={`${brand} ${model}`}
-          className="card-image"
+          fill
+          className="card-image object-cover"
         />
         <div className="card-image-overlay" />
 
@@ -140,7 +139,7 @@ const CarsCard = ({
         <div className="card-header">
           <div className="card-brand-wrap">
             <p className="card-brand">{brand}</p>
-            <h3 className="card-model">{model}</h3>
+            <h3 className="card-model uppercase">{model}</h3>
             <p className="card-body-type">{bodySilhouette}</p>
           </div>
           <div className="card-price-wrap">

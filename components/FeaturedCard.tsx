@@ -5,42 +5,48 @@ import { ImageSlider } from "@/components/ui/ImageSlider";
 import { useState } from "react";
 
 const FeaturedCard = ({ album, model, info, price }: featuredCars) => {
-	const [isHovered, setIsHovered] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
-	return (
-		<div
-			className="featured-card"
-			onMouseEnter={() => setIsHovered(true)}
-			onMouseLeave={() => setIsHovered(false)}
-		>
-			<div className="card-media">
-				<ImageSlider album={[album.photo1, album.photo2, album.photo3]} />
-				<div className="card-overlay" />
-				<div className="card-shine" data-visible={isHovered} />
-			</div>
+  return (
+    <div
+      className="featured-card"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div className="card-media">
+        <ImageSlider album={[album.photo1, album.photo2, album.photo3]} />
+        <div className="card-overlay" />
+        <div className="card-shine" data-visible={isHovered} />
+      </div>
 
-			<div className="card-content">
-				<div className="card-meta">
-					<span className="card-badge">Featured</span>
-				</div>
+      <div className="card-content">
+        <div className="card-meta">
+          <span className="card-badge">Featured</span>
+        </div>
 
-				<div className="card-body">
-					<h3 className="card-model">{model}</h3>
-					<p className="card-info">{info}</p>
-				</div>
+        <div className="card-body">
+          <h3 className="card-model uppercase">{model}</h3>
+          <p className="card-info">{info}</p>
+        </div>
 
-				<div className="card-footer">
-					<span className="card-price">{price}$</span>
-					<button className="card-cta">
-						<span>Discover</span>
-						<svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-							<path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-						</svg>
-					</button>
-				</div>
-			</div>
+        <div className="card-footer">
+          <span className="card-price">{price}$</span>
+          <button className="card-cta">
+            <span>Discover</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path
+                d="M3 8h10M9 4l4 4-4 4"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
 
-			<style>{`
+      <style>{`
 				.featured-card {
 					width: 100%;
 					max-width: 420px;
@@ -236,8 +242,8 @@ const FeaturedCard = ({ album, model, info, price }: featuredCars) => {
 					}
 				}
 			`}</style>
-		</div>
-	);
+    </div>
+  );
 };
 
 export default FeaturedCard;

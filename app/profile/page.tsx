@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import { useState } from "react";
 import { useCarStore } from "@/store/useCarStore";
+import WhishListCarsCard from "@/components/WhishListCarsCard";
 import {
   Settings,
   ShoppingBasket,
@@ -259,47 +260,13 @@ const ProfilePage = () => {
               {activeTab === "profile" ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {whishListCars?.length > 0 ? (
-                    whishListCars?.map((car) => (
-                      <div
-                        key={car.id}
-                        className="bg-[#141e16] p-5 rounded-xl border border-[#dae6d8]/5 flex flex-col sm:flex-row gap-4 relative group hover:border-[#00ff87]/20 transition-all duration-300"
-                      >
-                        <div className="w-full sm:w-1/3">
-                          <div className="bg-[#0c160e] rounded-lg overflow-hidden border border-[#dae6d8]/5 aspect-[4/3] relative">
-                            <Image
-                              src={car.image}
-                              alt={car.model}
-                              fill
-                              className="object-cover"
-                            />
-                          </div>
-                        </div>
-                        <div className="flex-1">
-                          <h4 className="font-['Newsreader'] italic font-bold text-xl mb-1 text-[#e5efe3]">
-                            {car.model}
-                          </h4>
-                          <p className="text-[#dae6d8]/50 text-xs mb-3 uppercase tracking-wider">
-                            {car.brand}
-                          </p>
-                          <div className="flex justify-between items-center">
-                            <span className="text-[#00ff87] font-bold text-sm font-['Manrope']">
-                              ${car.price.toLocaleString()}
-                            </span>
-                            {car.badge && (
-                              <span className="absolute top-4 right-4 bg-[#00ff87]/10 text-[#00ff87] border border-[#00ff87]/20 px-2.5 py-0.5 rounded-full text-[9px] uppercase tracking-wider font-bold">
-                                {car.badge}
-                              </span>
-                            )}
-                          </div>
-                        </div>
-                        <button
-                          onClick={() => removeFromWhishList(car)}
-                          className="absolute bottom-3 right-3 p-2 rounded-lg bg-black/40 hover:bg-red-500/20 text-gray-400 hover:text-red-400 border border-gray-700/50 hover:border-red-500/30 transition-all duration-200 cursor-pointer"
-                          title="Remove from wishlist"
-                        >
-                          <Trash2 size={16} />
-                        </button>
-                      </div>
+                    whishListCars?.map((car, index) => (
+                      <WhishListCarsCard
+                        car={car}
+                        key={index}
+                        onRemoveFromWhishList={removeFromWhishList}
+                        variant="compact"
+                      />
                     ))
                   ) : (
                     <div className="col-span-2 text-center py-12 text-[#dae6d8]/30">

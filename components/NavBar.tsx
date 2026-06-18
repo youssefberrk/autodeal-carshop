@@ -53,9 +53,9 @@ const NavBar = () => {
     };
   }, [profileOpen]);
 
-  const { allocatedCars } = useCarStore();
+  const { allocatedCars, whishListCars } = useCarStore();
   const carCount = allocatedCars.length;
-
+  const whishListCount = whishListCars.length;
   const isScrolled = scrollProgress > 0.02;
   // console.log(session);
   return (
@@ -72,7 +72,9 @@ const NavBar = () => {
           ? "rgba(25, 42, 32, 0.45)"
           : "rgba(20, 32, 24, 0.3)",
         border: isScrolled ? "1px solid rgba(0, 255, 135, 0.2)" : "none",
-        borderBottom: isScrolled ? "none" : "1px solid rgba(218, 230, 216, 0.08)",
+        borderBottom: isScrolled
+          ? "none"
+          : "1px solid rgba(218, 230, 216, 0.08)",
       }}
     >
       <div
@@ -147,6 +149,11 @@ const NavBar = () => {
               className="transition-transform active:scale-90"
             >
               <CgProfile className="hover:text-green-400 transition text-xl cursor-pointer" />
+              {whishListCount > 0 && (
+                <span className="absolute -top-2 -right-2 bg-emerald-500 text-white text-xs px-1.5 rounded-full">
+                  {whishListCount}
+                </span>
+              )}
             </button>
 
             {/* Dropdown */}
@@ -167,6 +174,18 @@ const NavBar = () => {
                       className="block px-3 py-2 text-slate-300 hover:text-green-400 hover:bg-white/5 rounded transition-colors text-sm"
                     >
                       Profile
+                    </Link>
+                    <Link
+                      onClick={() => setProfileOpen(false)}
+                      href="/whishlist"
+                      className="block px-3 py-2 text-slate-300 hover:text-green-400 hover:bg-white/5 rounded transition-colors text-sm"
+                    >
+                      Whishlist
+                      {whishListCount > 0 && (
+                        <span className="ml-2 bg-emerald-500 text-white text-xs px-1.5 rounded-full">
+                          {whishListCount}
+                        </span>
+                      )}
                     </Link>
                     <Link
                       onClick={() => setProfileOpen(false)}

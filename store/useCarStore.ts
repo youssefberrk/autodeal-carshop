@@ -8,6 +8,7 @@ export const useCarStore = create<CarStore>()(
 			allocatedCars: [],
 			purchasedCars: [],
 			whishListCars: [],
+			notifications: [],
 			quant: 1,
 			currentOrder: null,
 
@@ -47,6 +48,19 @@ export const useCarStore = create<CarStore>()(
 					whishListCars: state.whishListCars.filter((c) => c.id !== car.id),
 				})),
 
+			addNotification: (message: string, type: "add" | "remove") =>
+				set((state) => ({
+					notifications: [
+						...state.notifications,
+						{ id: Math.random().toString(36).substring(2, 9), message, type },
+					],
+				})),
+
+			removeNotification: (id: string) =>
+				set((state) => ({
+					notifications: state.notifications.filter((n) => n.id !== id),
+				})),
+
 			setCurrentOrder: (order: Order) =>
 				set(() => ({
 					currentOrder: order,
@@ -74,6 +88,13 @@ export const useCarStore = create<CarStore>()(
 		{
 			name: "car-shop-storage", // name of the item in localStorage
 			storage: createJSONStorage(() => localStorage), // use localStorage
+			partialize: (state) => ({
+				allocatedCars: state.allocatedCars,
+				purchasedCars: state.purchasedCars,
+				whishListCars: state.whishListCars,
+				quant: state.quant,
+				currentOrder: state.currentOrder,
+			}),
 		},
 	),
 );

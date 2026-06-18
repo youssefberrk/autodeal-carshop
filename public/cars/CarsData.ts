@@ -76,8 +76,8 @@ export const carsData: Cars[] = [
 		],
 		colors: [
 			{
-				id: "yellow",
-				hex: "#FFEA00",
+				id: "lightgreen",
+				hex: "#90EE90",
 			},
 			{
 				id: "grey",
@@ -94,11 +94,11 @@ export const carsData: Cars[] = [
 		bodySilhouette: "Coupe",
 		price: 280000,
 		availability: 2,
-		image: "/cars/ferrari/f8-1.jpg",
+		image: "/ferari.jpg",
 		carAlbum: {
-			photo1: "/cars/ferrari/f8-1.jpg",
-			photo2: "/cars/ferrari/f8-2.jpg",
-			photo3: "/cars/ferrari/f8-3.jpg",
+			photo1: "/ferari.jpg",
+			photo2: "/cars/shop-featured/911/p2.jpg",
+			photo3: "/cars/shop-featured/lambo/lambo3.jpeg",
 		},
 		features: [
 			{
@@ -135,11 +135,11 @@ export const carsData: Cars[] = [
 		bodySilhouette: "Electric",
 		price: 95000,
 		availability: 4,
-		image: "/cars/mercedes/sclass-1.jpg",
+		image: "/cars/shop-featured/am/am1.jpeg",
 		carAlbum: {
-			photo1: "/cars/mercedes/sclass-1.jpg",
-			photo2: "/cars/mercedes/sclass-2.jpg",
-			photo3: "/cars/mercedes/sclass-3.jpg",
+			photo1: "/cars/shop-featured/am/am1.jpeg",
+			photo2: "/cars/shop-featured/am/am2.jpg",
+			photo3: "/cars/shop-featured/am/am3.jpeg",
 		},
 		features: [
 			{
@@ -176,11 +176,11 @@ export const carsData: Cars[] = [
 		bodySilhouette: "SUV",
 		price: 80000,
 		availability: 5,
-		image: "/cars/audi/q8-1.jpg",
+		image: "/cars/shop-featured/911/p3.jpg",
 		carAlbum: {
-			photo1: "/cars/audi/q8-1.jpg",
-			photo2: "/cars/audi/q8-2.jpg",
-			photo3: "/cars/audi/q8-3.jpg",
+			photo1: "/cars/shop-featured/911/p3.jpg",
+			photo2: "/cars/shop-featured/911/p1.jpg",
+			photo3: "/cars/shop-featured/911/p2.jpg",
 		},
 		features: [
 			{
