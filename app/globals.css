@@ -277,9 +277,7 @@
   animation: slideInLeft 0.8s var(--ease-out) both;
 }
 .fav-notif {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
+  position: relative;
   z-index: 9999;
   display: flex;
   align-items: center;
@@ -289,7 +287,7 @@
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(0, 255, 135, 0.2);
   border-radius: 12px;
-  padding: 12px 18px;
+  padding: 0px 18px;
   color: #e5efe3;
   font-family: "Manrope", sans-serif;
   font-size: 0.875rem;
@@ -299,10 +297,15 @@
     0 0 30px -10px rgba(0, 255, 135, 0.15);
 
   opacity: 0;
+  max-height: 0px;
+  margin-bottom: 0px;
   transform: translateY(16px) scale(0.95);
   transition:
     opacity 300ms var(--ease-out),
     transform 300ms var(--ease-out),
+    max-height 300ms var(--ease-out),
+    padding 300ms var(--ease-out),
+    margin-bottom 300ms var(--ease-out),
     border-color 0.3s ease;
   pointer-events: none;
   overflow: hidden;
@@ -310,6 +313,9 @@
 
 .fav-notif.show {
   opacity: 1;
+  max-height: 100px;
+  padding: 12px 18px;
+  margin-bottom: 12px;
   transform: translateY(0) scale(1);
   pointer-events: auto;
 }
@@ -909,13 +915,26 @@
     transform: scale(1);
   }
   50% {
-    transform: scale(1.25);
+    transform: scale(1.45);
   }
   100% {
     transform: scale(1);
   }
 }
-
+@keyframes Pop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.PopUp {
+  animation: Pop 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
 /* Quick View reveal */
 .card-quick-view {
   position: absolute;

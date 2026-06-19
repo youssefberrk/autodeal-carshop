@@ -6,7 +6,6 @@ import Image from "next/image";
 import { useCarStore } from "@/store/useCarStore";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
-import { createPortal } from "react-dom";
 
 const CarsCard = ({
   id,
@@ -32,30 +31,6 @@ const CarsCard = ({
     (state) => state.whishListCars?.some((car) => car.id === id) || false,
   );
 
-  const [toast, setToast] = useState<{
-    show: boolean;
-    visible: boolean;
-    message: string;
-    type: "add" | "remove";
-  } | null>(null);
-
-  // Manage toast notification lifecycle
-  useEffect(() => {
-    if (!toast || !toast.show) return;
-
-    if (toast.visible) {
-      const fadeOutTimer = setTimeout(() => {
-        setToast((prev) => (prev ? { ...prev, visible: false } : null));
-      }, 2500);
-      return () => clearTimeout(fadeOutTimer);
-    } else {
-      const unmountTimer = setTimeout(() => {
-        setToast(null);
-      }, 300);
-      return () => clearTimeout(unmountTimer);
-    }
-  }, [toast?.visible, toast?.message]);
-
   const handleFavorite = () => {
     const carItem = {
       id,
@@ -73,20 +48,8 @@ const CarsCard = ({
 
     if (!isLiked) {
       addToWhishList(carItem);
-      setToast({
-        show: true,
-        visible: true,
-        message: "Added successfully to your wish list",
-        type: "add",
-      });
     } else {
       removeFromWhishList(carItem);
-      setToast({
-        show: true,
-        visible: true,
-        message: "Removed from your wish list",
-        type: "remove",
-      });
     }
   };
 
@@ -168,23 +131,6 @@ const CarsCard = ({
           </button>
         </div>
       </div>
-      {mounted &&
-        toast &&
-        toast.show &&
-        createPortal(
-          <div className={`fav-notif ${toast.visible ? "show" : ""}`}>
-            <div className={`fav-notif-icon ${toast.type}`}>
-              {toast.type === "add" ? (
-                <Heart className="w-3.5 h-3.5 fill-[#00ff87] text-[#00ff87]" />
-              ) : (
-                <CircleOff className="w-3.5 h-3.5" />
-              )}
-            </div>
-            <span>{toast.message}</span>
-            <div className="progress-bar" />
-          </div>,
-          document.body,
-        )}
     </div>
   );
 };

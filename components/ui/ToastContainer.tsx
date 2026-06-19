@@ -12,10 +12,10 @@ const ToastItem = ({ notification }: { notification: Notification }) => {
   useEffect(() => {
     // Trigger entry animation
     const entryTimer = setTimeout(() => setVisible(true), 10);
-    
+
     // Trigger exit animation before removal
     const exitTimer = setTimeout(() => setVisible(false), 2700);
-    
+
     // Remove from store
     const removeTimer = setTimeout(() => {
       removeNotification(notification.id);
@@ -29,7 +29,7 @@ const ToastItem = ({ notification }: { notification: Notification }) => {
   }, [notification.id, removeNotification]);
 
   return (
-    <div className={`fav-notif ${visible ? "show" : ""}`} style={{ position: 'relative', bottom: 'auto', right: 'auto', marginBottom: '12px', pointerEvents: 'auto' }}>
+    <div className={`fav-notif ${visible ? "show" : ""}`}>
       <div className={`fav-notif-icon ${notification.type}`}>
         {notification.type === "add" ? (
           <Heart className="w-3.5 h-3.5 fill-[#00ff87] text-[#00ff87]" />
@@ -59,6 +59,6 @@ export const ToastContainer = () => {
         <ToastItem key={n.id} notification={n} />
       ))}
     </div>,
-    document.body
+    document.body,
   );
 };

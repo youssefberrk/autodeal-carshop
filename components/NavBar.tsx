@@ -15,6 +15,9 @@ const NavBar = () => {
   const [profileOpen, setProfileOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [carDropdownOpen, setCarDropdownOpen] = useState(false);
+  const [isWishListCountChecked, setIsWhishListCountChecked] = useState(false);
+  const [isCarCountChecked, setIsCarCountChecked] = useState(false);
+
   const { data: session, status } = useSession();
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -53,11 +56,17 @@ const NavBar = () => {
     };
   }, [profileOpen]);
 
-  const { allocatedCars, whishListCars } = useCarStore();
+  const { allocatedCars, whishListCars, isPopUp, isPurchasedPopUp } =
+    useCarStore();
   const carCount = allocatedCars.length;
   const whishListCount = whishListCars.length;
   const isScrolled = scrollProgress > 0.02;
-  // console.log(session);
+
+  // Reset checked state when wishlist count changes (e.g. when an item is added)
+  useEffect(() => {
+    setIsWhishListCountChecked(false);
+  }, [whishListCount]);
+
   return (
     <nav
       className={`sticky z-50 transition duration-300 backdrop-blur-md
@@ -130,7 +139,9 @@ const NavBar = () => {
             >
               <IoCarSport className="hover:text-green-400 transition text-xl cursor-pointer" />
               {carCount > 0 && (
-                <span className="absolute -top-2 -right-2 bg-emerald-500 text-white text-xs px-1.5 rounded-full">
+                <span
+                  className={`absolute -top-2 -right-2 ${isPurchasedPopUp ? "PopUp" : ""} bg-emerald-500 text-white text-xs px-1.5 rounded-full`}
+                >
                   {carCount}
                 </span>
               )}
@@ -150,8 +161,10 @@ const NavBar = () => {
             >
               <CgProfile className="hover:text-green-400 transition text-xl cursor-pointer" />
               {whishListCount > 0 && (
-                <span className="absolute -top-2 -right-2 bg-emerald-500 text-white text-xs px-1.5 rounded-full">
-                  {whishListCount}
+                <span
+                  className={`absolute -top-2 -right-2 transition-transform  ${isPopUp ? "PopUp" : ""} bg-red-600 text-white text-xs px-1.5 rounded-full`}
+                >
+                  {isWishListCountChecked ? " " : whishListCount}
                 </span>
               )}
             </button>
@@ -176,13 +189,16 @@ const NavBar = () => {
                       Profile
                     </Link>
                     <Link
-                      onClick={() => setProfileOpen(false)}
+                      onClick={() => {
+                        setProfileOpen(false);
+                        setIsWhishListCountChecked(true);
+                      }}
                       href="/whishlist"
                       className="block px-3 py-2 text-slate-300 hover:text-green-400 hover:bg-white/5 rounded transition-colors text-sm"
                     >
                       Whishlist
                       {whishListCount > 0 && (
-                        <span className="ml-2 bg-emerald-500 text-white text-xs px-1.5 rounded-full">
+                        <span className="ml-2 bg-red-500 text-white text-xs py-0.5 pr-1 px-0.5 rounded-full">
                           {whishListCount}
                         </span>
                       )}

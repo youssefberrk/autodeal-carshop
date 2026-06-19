@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useMemo, useCallback } from "react";
-import { createPortal } from "react-dom";
 import { useCarStore } from "@/store/useCarStore";
 import {
   ChevronRight,
@@ -96,41 +95,21 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
 
   const isFavorite = whishListCars?.some((c) => c.id === car.id) || false;
 
-  const [toast, setToast] = useState<{
-    show: boolean;
-    visible: boolean;
-    message: string;
-    type: "add" | "remove";
-  } | null>(null);
-
-  // Manage toast notification lifecycle
-  useEffect(() => {
-    if (!toast || !toast.show) return;
-
-    if (toast.visible) {
-      const fadeOutTimer = setTimeout(() => {
-        setToast((prev) => (prev ? { ...prev, visible: false } : null));
-      }, 2500);
-      return () => clearTimeout(fadeOutTimer);
-    } else {
-      const unmountTimer = setTimeout(() => {
-        setToast(null);
-      }, 300);
-      return () => clearTimeout(unmountTimer);
-    }
-  }, [toast?.visible, toast?.message]);
-
   // Check if this car is already allocated
   const isAllocated = allocatedCars.some((c) => c.id === car.id);
 
   // Get thumbnails from car album
-  const thumbnails = useMemo(() => (
-    car.carAlbum
-      ? [car.carAlbum.photo1, car.carAlbum.photo2, car.carAlbum.photo3].filter(
-          Boolean,
-        )
-      : [car.image].filter(Boolean)
-  ) as string[], [car.carAlbum, car.image]);
+  const thumbnails = useMemo(
+    () =>
+      (car.carAlbum
+        ? [
+            car.carAlbum.photo1,
+            car.carAlbum.photo2,
+            car.carAlbum.photo3,
+          ].filter(Boolean)
+        : [car.image].filter(Boolean)) as string[],
+    [car.carAlbum, car.image],
+  );
 
   // Specs data
   const specs = [
@@ -213,12 +192,6 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
   const handleAddToWishList = () => {
     if (isFavorite) {
       removeFromWhishList({ id: car.id! } as Car);
-      setToast({
-        show: true,
-        visible: true,
-        message: "Removed from your wish list",
-        type: "remove",
-      });
     } else {
       addToWhishList({
         id: car.id!,
@@ -231,12 +204,6 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
         bodySilhouette: car.bodySilhouette,
         specs: car.specs,
         quantity: quantity,
-      });
-      setToast({
-        show: true,
-        visible: true,
-        message: "Added successfully to your wish list",
-        type: "add",
       });
     }
   };
@@ -440,31 +407,14 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
                     onClick={handleAddToWishList}
                   >
                     <Heart
-                      className={`w-5 h-5 ${
-                        isFavorite ? "fill-[#00ff87] text-[#00ff87]" : ""
+                      className={`w-5 h-5 heart-icon ${
+                        isFavorite ? "is-liked" : ""
                       }`}
                     />
                   </button>
                 </div>
               </div>
             </div>
-            {mounted &&
-              toast &&
-              toast.show &&
-              createPortal(
-                <div className={`fav-notif ${toast.visible ? "show" : ""}`}>
-                  <div className={`fav-notif-icon ${toast.type}`}>
-                    {toast.type === "add" ? (
-                      <Heart className="w-3.5 h-3.5 fill-[#00ff87] text-[#00ff87]" />
-                    ) : (
-                      <CircleOff className="w-3.5 h-3.5" />
-                    )}
-                  </div>
-                  <span>{toast.message}</span>
-                  <div className="progress-bar" />
-                </div>,
-                document.body,
-              )}
           </div>
         </section>
 

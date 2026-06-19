@@ -46,6 +46,8 @@ export interface CarStore {
 	purchasedCars: Car[];
 	whishListCars: Car[];
 	notifications: Notification[];
+	isPopUp: boolean;
+	isPurchasedPopUp: boolean;
 	quant: number;
 	currentOrder: Order | null;
 
