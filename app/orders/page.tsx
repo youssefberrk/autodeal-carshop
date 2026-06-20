@@ -4,6 +4,7 @@ import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import { Package, Truck, CreditCard, Calendar, MapPin, Car } from "lucide-react";
 import { useCarStore } from "@/store/useCarStore";
+import CarWheelLoader from "@/components/ui/CarWheelLoader";
 
 const OrdersPage = () => {
 	const { status } = useSession();
@@ -53,11 +54,8 @@ const OrdersPage = () => {
 	// Show loading state while checking session
 	if (status === "loading") {
 		return (
-			<div className="min-h-screen bg-gray-900 text-white flex items-center justify-center">
-				<div className="text-center">
-					<div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-500 mx-auto mb-4"></div>
-					<p>Loading orders...</p>
-				</div>
+			<div className="min-h-screen bg-[#0c160e] text-[#dae6d8] flex items-center justify-center font-['Manrope']">
+				<CarWheelLoader text="Retrieving order history..." size={72} />
 			</div>
 		);
 	}

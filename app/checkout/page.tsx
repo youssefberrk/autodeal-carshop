@@ -18,6 +18,7 @@ import {
   Sparkles,
   AlertCircle
 } from 'lucide-react';
+import CarWheelLoader from '@/components/ui/CarWheelLoader';
 import CountrySelect from '@/components/ui/CountrySelect';
 
 const CheckoutPage = () => {
@@ -701,7 +702,7 @@ const CheckoutPage = () => {
                 >
                   {isSubmitting ? (
                     <>
-                      <Loader2 className="animate-spin text-[#0c160e]" size={16} />
+                      <CarWheelLoader size={16} color="#0c160e" />
                       Locking Slot Allocation...
                     </>
                   ) : (
@@ -715,6 +716,15 @@ const CheckoutPage = () => {
           </form>
         </div>
       </main>
+
+      {/* Processing Loader Overlay */}
+      {isSubmitting && (
+        <CarWheelLoader
+          fullPage
+          text="Securing your premium slot allocation..."
+          size={80}
+        />
+      )}
 
       {/* Success Modal Overlay */}
       {isSuccessModalOpen && (

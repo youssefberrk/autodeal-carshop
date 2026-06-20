@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { useCarStore } from "@/store/useCarStore";
 import WhishListCarsCard from "@/components/WhishListCarsCard";
+import CarWheelLoader from "@/components/ui/CarWheelLoader";
 import {
   Settings,
   ShoppingBasket,
@@ -34,12 +35,7 @@ const ProfilePage = () => {
   if (status === "loading") {
     return (
       <div className="min-h-screen bg-[#0c160e] text-[#dae6d8] flex items-center justify-center font-['Manrope']">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#00ff87] mx-auto mb-4"></div>
-          <p className="text-sm uppercase tracking-widest text-[#dae6d8]/60 font-bold">
-            Loading profile...
-          </p>
-        </div>
+        <CarWheelLoader text="Syncing collector profile..." size={72} />
       </div>
     );
   }
