@@ -10,7 +10,7 @@ export const useCarStore = create<CarStore>()(
 			whishListCars: [],
 			notifications: [],
 			quant: 1,
-			currentOrder: null,
+			currentOrder: [],
 			isPopUp: false,
 			isPurchasedPopUp: false,
 
@@ -99,9 +99,18 @@ export const useCarStore = create<CarStore>()(
 				})),
 
 			setCurrentOrder: (order: Order) =>
-				set(() => ({
-					currentOrder: order,
-				})),
+				set((state) => {
+					const currentOrders = Array.isArray(state.currentOrder)
+						? state.currentOrder
+						: state.currentOrder
+						? [state.currentOrder as unknown as Order]
+						: [];
+					const exists = currentOrders.some((o) => o.id === order.id);
+					if (exists) return state;
+					return {
+						currentOrder: [...currentOrders, order],
+					};
+				}),
 
 			clearAllocation: () =>
 				set(() => ({

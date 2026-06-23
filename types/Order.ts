@@ -49,7 +49,7 @@ export interface CarStore {
 	isPopUp: boolean;
 	isPurchasedPopUp: boolean;
 	quant: number;
-	currentOrder: Order | null;
+	currentOrder: Order[] | null;
 
 	addToAllocation: (car: Car) => void;
 	removeFromAllocation: (carId: number) => void;
