@@ -1,15 +1,20 @@
 "use client";
 
 import { Cars } from "@/types/Cars";
+
 import { Heart, CircleOff } from "lucide-react";
 import Image from "next/image";
+
 import { useCarStore } from "@/store/useCarStore";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
+import { AnimatePresence } from "framer-motion";
+import QuickViewModal from "./ui/QuickViewModal";
 
 const CarsCard = ({
   id,
   image,
+  carAlbum,
   badge,
   brand,
   model,
@@ -20,6 +25,7 @@ const CarsCard = ({
   const router = useRouter();
   const [isHovered, setIsHovered] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [isQuickViewClicked, setIsQuickViewClicked] = useState<boolean>(false);
 
   useEffect(() => {
     setMounted(true);
@@ -55,14 +61,14 @@ const CarsCard = ({
 
   return (
     <div
-      className="cars-card"
+      className="relative cars-card"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Image Container */}
       <div className="card-image-wrap">
         <Image
-          src={image || ""}
+          src={carAlbum.photo1}
           alt={`${brand} ${model}`}
           fill
           className="card-image object-cover"
@@ -93,9 +99,26 @@ const CarsCard = ({
 
         {/* Hover reveal CTA */}
         <div className="card-quick-view" data-visible={isHovered}>
-          <span>Quick View</span>
+          <button
+            onClick={() => {
+              setIsQuickViewClicked((prev) => !prev);
+              console.log(isQuickViewClicked);
+            }}
+          >
+            Quick View
+          </button>
         </div>
       </div>
+
+      {/* Quick View Modal */}
+      <AnimatePresence>
+        {isQuickViewClicked && (
+          <QuickViewModal
+            car={{ id, image, carAlbum, badge, brand, model, bodySilhouette, specs, price }}
+            setIsQuickViewClicked={setIsQuickViewClicked}
+          />
+        )}
+      </AnimatePresence>
 
       {/* Content */}
       <div className="card-content">

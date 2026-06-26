@@ -9,7 +9,7 @@ interface ImageSliderProps {
   onImageChange?: (index: number) => void;
 }
 
-export const ImageSlider = ({
+const ImageSlider = ({
   album,
   activeImage = 0,
   onImageChange,
@@ -158,3 +158,5 @@ export const ImageSlider = ({
     </div>
   );
 };
+
+export default ImageSlider;

@@ -152,7 +152,7 @@ const ShopPage = () => {
                   price={car.price}
                   specs={car.specs}
                   badge={car.badge}
-                  image={car.image}
+                  carAlbum={car.carAlbum}
                   model={car.model}
                 />
               </div>

@@ -22,7 +22,7 @@ import {
   OctagonMinus,
 } from "lucide-react";
 import { Cars } from "@/types/Cars";
-import { ImageSlider } from "./ui/ImageSlider";
+import ImageSlider from "./ui/ImageSlider";
 import { Car } from "@/types/Order";
 import Image from "next/image";
 import Link from "next/link";

@@ -21,7 +21,7 @@ export type Cars = {
 	availability?: number;
 	isFavoriteCar?: boolean;
 	image?: string;
-	carAlbum?: {
+	carAlbum: {
 		photo1: string;
 		photo2: string;
 		photo3: string;

@@ -1,7 +1,7 @@
 "use client";
 
 import { featuredCars } from "@/types/CarsTypes";
-import { ImageSlider } from "@/components/ui/ImageSlider";
+import ImageSlider from "@/components/ui/ImageSlider";
 import { useState } from "react";
 
 const FeaturedCard = ({ album, model, info, price }: featuredCars) => {
