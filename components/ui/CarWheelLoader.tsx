@@ -1,24 +1,24 @@
-import React from "react";
-
 interface CarWheelLoaderProps {
 	size?: number;
 	className?: string;
-	color?: string; // Brake caliper color
+	color?: string;
 	fullPage?: boolean;
 	text?: string;
 }
 
+const fiveLugAngles = [0, 72, 144, 216, 288];
+const ventAngles = [0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330];
+
 export default function CarWheelLoader({
 	size = 64,
 	className = "",
-	color = "#00ff87", // Brand accent color
+	color = "#00ff87",
 	fullPage = false,
 	text,
 }: CarWheelLoaderProps) {
 	const content = (
 		<div className={`flex flex-col items-center justify-center gap-4 ${className}`}>
 			<div className="relative" style={{ width: size, height: size }}>
-				{/* Outer/Backing element: fixed brake caliper (stationary) */}
 				<svg
 					width={size}
 					height={size}
@@ -26,118 +26,103 @@ export default function CarWheelLoader({
 					fill="none"
 					className="absolute inset-0 pointer-events-none z-10"
 				>
-					{/* Brake Caliper (stationary, rendered in front of disc but behind spokes) */}
-					{/* Sits at roughly 10 o'clock to 12 o'clock */}
 					<path
-						d="M 22 36 A 35 35 0 0 1 52 15 L 48 24 A 26 26 0 0 0 26 40 Z"
+						d="M 17 34 C 22 21 34 13 49 11 L 55 18 L 50 28 C 39 29 30 35 25 45 Z"
 						fill={color}
-						opacity="0.95"
-						style={{ filter: `drop-shadow(0px 0px 4px ${color})` }}
+						opacity="0.97"
+						style={{ filter: `drop-shadow(0 0 6px ${color})` }}
 					/>
-					{/* Caliper hardware details (bolts/pins) */}
-					<circle cx="28" cy="32" r="1.2" fill="#1c2d21" opacity="0.8" />
-					<circle cx="46" cy="19" r="1.2" fill="#1c2d21" opacity="0.8" />
+					<path
+						d="M 24 34 C 30 25 39 21 49 20 L 46 25 C 38 26 32 31 28 38 Z"
+						fill="#0c160e"
+						opacity="0.38"
+					/>
+					<rect x="22" y="34" width="13" height="4.2" rx="2.1" fill="#0b130d" opacity="0.34" />
+					<circle cx="27.5" cy="31" r="1.35" fill="#132117" opacity="0.86" />
+					<circle cx="45.5" cy="18.5" r="1.35" fill="#132117" opacity="0.86" />
 				</svg>
 
-				{/* Spinning element: Brake Disc + Alloy spokes + Tire */}
 				<svg
 					width={size}
 					height={size}
 					viewBox="0 0 100 100"
 					fill="none"
 					className="absolute inset-0 animate-spin"
-					style={{ animationDuration: "0.8s", animationTimingFunction: "linear" }}
+					style={{ animationDuration: "0.72s", animationTimingFunction: "linear" }}
 				>
 					<defs>
-						{/* Metallic Radial Gradient for Brake Disc */}
-						<radialGradient id="discGrad" cx="50%" cy="50%" r="50%">
-							<stop offset="0%" stopColor="#2a2e2b" />
-							<stop offset="70%" stopColor="#4c534e" />
-							<stop offset="90%" stopColor="#7a857d" />
-							<stop offset="95%" stopColor="#5b635e" />
-							<stop offset="100%" stopColor="#3d423f" />
+						<radialGradient id="loaderCarbonDisc" cx="50%" cy="50%" r="52%">
+							<stop offset="0%" stopColor="#1f241f" />
+							<stop offset="48%" stopColor="#3d433e" />
+							<stop offset="77%" stopColor="#747d75" />
+							<stop offset="100%" stopColor="#232923" />
 						</radialGradient>
-
-						{/* Metallic Linear Gradient for Spoke Facing (Light highlight) */}
-						<linearGradient id="spokeLight" x1="0%" y1="0%" x2="100%" y2="100%">
-							<stop offset="0%" stopColor="#9ca3af" />
-							<stop offset="50%" stopColor="#f3f4f6" />
-							<stop offset="100%" stopColor="#d1d5db" />
+						<linearGradient id="loaderMachinedFace" x1="14%" y1="8%" x2="86%" y2="94%">
+							<stop offset="0%" stopColor="#f4f7f4" />
+							<stop offset="34%" stopColor="#a9b3ac" />
+							<stop offset="62%" stopColor="#4b554e" />
+							<stop offset="100%" stopColor="#171d18" />
 						</linearGradient>
-
-						{/* Metallic Linear Gradient for Spoke Shading (Darker side) */}
-						<linearGradient id="spokeDark" x1="0%" y1="0%" x2="100%" y2="100%">
-							<stop offset="0%" stopColor="#374151" />
-							<stop offset="50%" stopColor="#4b5563" />
-							<stop offset="100%" stopColor="#1f2937" />
+						<linearGradient id="loaderSpokeShadow" x1="18%" y1="12%" x2="88%" y2="90%">
+							<stop offset="0%" stopColor="#6d7970" />
+							<stop offset="56%" stopColor="#242b25" />
+							<stop offset="100%" stopColor="#090c0a" />
 						</linearGradient>
+						<radialGradient id="loaderTireSheen" cx="35%" cy="22%" r="70%">
+							<stop offset="0%" stopColor="#303832" />
+							<stop offset="54%" stopColor="#111512" />
+							<stop offset="100%" stopColor="#050605" />
+						</radialGradient>
 					</defs>
 
-					{/* 1. ROTATING BRAKE DISC (Behind Wheel Spokes) */}
-					<circle cx="50" cy="50" r="35" fill="url(#discGrad)" stroke="#1a1c1a" strokeWidth="1" />
-					
-					{/* Slotted Holes & Slots on Brake Disc (Ventilation Holes) */}
-					<g stroke="#1a1c1a" strokeWidth="0.8" opacity="0.6">
-						{[0, 45, 90, 135, 180, 225, 270, 315].map((deg) => (
-							<g key={deg} transform={`rotate(${deg} 50 50)`}>
-								<circle cx="50" cy="22" r="0.8" fill="#111" />
-								<circle cx="50" cy="27" r="0.8" fill="#111" />
-								<circle cx="53" cy="24.5" r="0.8" fill="#111" />
-								<line x1="48" y1="20" x2="43" y2="30" stroke="#222" strokeWidth="1.2" strokeLinecap="round" />
-							</g>
-						))}
-					</g>
+					<circle cx="50" cy="50" r="49" fill="url(#loaderTireSheen)" />
+					<circle cx="50" cy="50" r="45.5" stroke="#242b25" strokeWidth="2.1" />
+					<circle cx="50" cy="50" r="42.4" stroke="#050605" strokeWidth="1.6" />
 
-					{/* 2. ROTATING TIRE & RIM */}
-					{/* Outer rubber tire */}
-					<circle cx="50" cy="50" r="48" stroke="#161816" strokeWidth="4" />
-					<circle cx="50" cy="50" r="45" stroke="#262826" strokeWidth="2" />
-					<circle cx="50" cy="50" r="43" stroke="#000000" strokeWidth="1" />
-
-					{/* Outer Rim Lip */}
-					<circle cx="50" cy="50" r="41.5" stroke="#6b7280" strokeWidth="1.5" opacity="0.8" />
-					
-					{/* 3. ROTATING SPOKES (V-spoke high performance design) */}
-					{[0, 72, 144, 216, 288].map((deg) => (
+					{ventAngles.map((deg) => (
 						<g key={deg} transform={`rotate(${deg} 50 50)`}>
-							{/* Spoke Left Prong (Light metallic highlight) */}
-							<path
-								d="M 50 15 L 47 18 L 44 41 L 49 40 L 50 22 Z"
-								fill="url(#spokeLight)"
-							/>
-							{/* Spoke Right Prong (Darker metallic shading) */}
-							<path
-								d="M 50 15 L 50 22 L 51 40 L 56 41 L 53 18 Z"
-								fill="url(#spokeDark)"
-							/>
-							{/* Connecting Web between V prongs */}
-							<path
-								d="M 47 18 L 50 15 L 53 18 L 50 23 Z"
-								fill="#1e201f"
-								stroke="#374151"
-								strokeWidth="0.5"
-							/>
+							<path d="M 47.6 5.5 L 50 2.7 L 52.4 5.5 L 51.2 14 L 48.8 14 Z" fill="#080a08" opacity="0.9" />
 						</g>
 					))}
 
-					{/* Center Hub cap */}
-					<circle cx="50" cy="50" r="9" fill="#1c201d" stroke="#4b5563" strokeWidth="1" />
-					<circle cx="50" cy="50" r="7.5" fill="url(#discGrad)" />
-					
-					{/* Center brand logo accent (Glowing Center Cap) */}
-					<circle cx="50" cy="50" r="3.5" fill="#0c160e" stroke={color} strokeWidth="1" />
-					<circle cx="50" cy="50" r="1.5" fill={color} />
+					<circle cx="50" cy="50" r="37.5" fill="url(#loaderCarbonDisc)" stroke="#111511" strokeWidth="1.2" />
+					<circle cx="50" cy="50" r="31" fill="none" stroke="rgba(218,230,216,0.18)" strokeWidth="1" />
 
-					{/* Wheel Lug Nuts (5 small circles in a pentagon) */}
-					{[0, 72, 144, 216, 288].map((deg) => (
+					{ventAngles.map((deg) => (
+						<g key={deg} transform={`rotate(${deg} 50 50)`}>
+							<circle cx="50" cy="18.8" r="1.05" fill="#070907" />
+							<circle cx="53.2" cy="23.7" r="0.82" fill="#0b0e0b" />
+							<line x1="46.8" y1="21" x2="41.7" y2="31" stroke="#121612" strokeWidth="1.2" strokeLinecap="round" />
+						</g>
+					))}
+
+					<circle cx="50" cy="50" r="40.5" fill="none" stroke="#929d95" strokeWidth="1.7" opacity="0.72" />
+					<circle cx="50" cy="50" r="38.4" fill="none" stroke="#202721" strokeWidth="2.2" />
+
+					{fiveLugAngles.map((deg) => (
+						<g key={deg} transform={`rotate(${deg} 50 50)`}>
+							<path d="M 50 10 L 44.5 17 L 42.2 41 L 48.7 38 L 50 23 Z" fill="url(#loaderMachinedFace)" />
+							<path d="M 50 10 L 50 23 L 51.3 38 L 57.8 41 L 55.5 17 Z" fill="url(#loaderSpokeShadow)" />
+							<path d="M 43.4 41 L 35 61 L 43 58 L 49 39 Z" fill="#111611" opacity="0.88" />
+							<path d="M 56.6 41 L 65 61 L 57 58 L 51 39 Z" fill="#29312b" opacity="0.9" />
+							<path d="M 44.5 17 L 50 10 L 55.5 17 L 50 24 Z" fill="#111611" stroke="#566158" strokeWidth="0.45" />
+						</g>
+					))}
+
+					<circle cx="50" cy="50" r="12" fill="#111711" stroke="#6d7870" strokeWidth="1.1" />
+					<circle cx="50" cy="50" r="8.3" fill="url(#loaderCarbonDisc)" stroke="#1a211b" strokeWidth="1" />
+					<circle cx="50" cy="50" r="4.4" fill="#0c160e" stroke={color} strokeWidth="1.2" />
+					<circle cx="50" cy="50" r="1.9" fill={color} />
+
+					{fiveLugAngles.map((deg) => (
 						<circle
 							key={deg}
-							cx={50 + 5.5 * Math.sin((deg * Math.PI) / 180)}
-							cy={50 - 5.5 * Math.cos((deg * Math.PI) / 180)}
-							r="1"
-							fill="#111"
-							stroke="#9ca3af"
-							strokeWidth="0.4"
+							cx={50 + 6.2 * Math.sin((deg * Math.PI) / 180)}
+							cy={50 - 6.2 * Math.cos((deg * Math.PI) / 180)}
+							r="1.15"
+							fill="#060806"
+							stroke="#b6c0b9"
+							strokeWidth="0.45"
 						/>
 					))}
 				</svg>
