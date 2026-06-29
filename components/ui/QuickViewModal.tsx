@@ -56,7 +56,7 @@ const QuickViewModal: React.FC<QuickViewModalProps> = ({
       scale: 1,
       y: 0,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         duration: 0.4,
         bounce: 0.15,
       },
