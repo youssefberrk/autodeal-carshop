@@ -236,9 +236,40 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
 
         {/* Main Hero Section */}
         <section className="mb-24 sm:mb-32">
-          <h1 className="mb-8 text-5xl font-['Newsreader'] uppercase font-bold leading-[0.9] tracking-[-0.03em] sm:text-6xl md:text-7xl">
-            {car.brand} <span className="block md:inline">{car.model}</span>
-          </h1>
+          <div className="mb-10 sm:mb-12">
+            {/* Eyebrow label */}
+            <p
+              className="mb-3 text-[10px] uppercase tracking-[0.35em] text-[#00ff87]/70"
+              style={{ fontFamily: "Orbitron, sans-serif" }}
+            >
+              {car.bodySilhouette} · {car.badge ?? "Performance"}
+            </p>
+
+            {/* Brand + Model — single line */}
+            <h1 className="flex flex-wrap items-baseline gap-x-6 leading-none">
+              <span
+                className="text-[clamp(1.8rem,4.5vw,3.8rem)] font-black uppercase tracking-[-0.03em] text-transparent select-none"
+                style={{
+                  fontFamily: "Orbitron, sans-serif",
+                  WebkitTextStroke: "1px rgba(229,239,227,0.22)",
+                }}
+              >
+                {car.brand}
+              </span>
+              <span
+                className="text-[clamp(2rem,5.5vw,4.5rem)] font-medium italic tracking-[-0.01em] bg-gradient-to-br from-[#f1f3f5] via-[#c8ccd1] to-[#eef1f4] bg-clip-text text-transparent"
+                style={{ fontFamily: "Newsreader, Georgia, serif" }}
+              >
+                {car.model}
+              </span>
+            </h1>
+
+            {/* Accent rule */}
+            <div className="mt-4 flex items-center gap-3">
+              <span className="h-[1.5px] w-10 rounded-full bg-[#00ff87]" />
+              <span className="h-px flex-1 rounded-full bg-[#e5efe3]/8" />
+            </div>
+          </div>
 
           <div className="relative grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
             {/* Gallery Column */}
@@ -291,7 +322,7 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
                   </span>
                 </div>
 
-                <p className="mb-10 text-sm leading-relaxed text-[#e5efe3]/66 sm:mb-12">
+                <p className="mb-10 text-sm font-mono italic leading-relaxed text-[#e5efe3]/66 sm:mb-12">
                   The {car.brand} {car.model} is a masterpiece of automotive
                   engineering. Featuring a {car.specs}, it delivers an
                   unparalleled driving experience that blurs the line between
@@ -305,15 +336,15 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
                   {specs.map((spec, idx) => {
                     const Icon = spec.icon;
                     return (
-                      <div key={idx} className="flex items-center gap-4">
+                      <div key={idx} className="flex items-center gap-4 ">
                         <div className="flex h-10 w-10 items-center justify-center rounded-full border border-[#e5efe3]/12 bg-[#111b14] text-[#00ff87]">
                           <Icon size={18} />
                         </div>
-                        <div>
+                        <div className="space-y-1">
                           <span className="block text-[9px] uppercase tracking-widest text-[#e5efe3]/42">
                             {spec.label}
                           </span>
-                          <span className="block text-xs font-bold text-[#e5efe3]">
+                          <span className="block text-xs font-mono font-bold text-[#e5efe3]">
                             {spec.value}
                           </span>
                         </div>
@@ -435,7 +466,7 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
                   <div className="mb-8 text-[#00ff87] transition-transform duration-300 [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] group-hover:-translate-y-0.5">
                     <Icon size={32} strokeWidth={1.5} />
                   </div>
-                  <h3 className="text-xl font-bold mb-4 font-['Manrope'] tracking-tight">
+                  <h3 className="text-2xl font-bold mb-4 font-mono tracking-tight">
                     {feature.title}
                   </h3>
                   <p className="text-sm leading-relaxed text-[#e5efe3]/55 transition-colors duration-200 [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] group-hover:text-[#e5efe3]/74">
