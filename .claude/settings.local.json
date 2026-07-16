@@ -5,7 +5,11 @@
       "WebFetch(domain:github.com)",
       "WebFetch(domain:emilkowal.ski)",
       "Bash(npx skills *)",
-      "Bash(npm list *)"
+      "Bash(npm list *)",
+      "Bash(cygpath *)",
+      "Bash(mkdir -p .claude/skills/frontend-design)",
+      "Bash(cp /tmp/skill-extract/frontend-design/SKILL.md .claude/skills/frontend-design/SKILL.md)",
+      "Bash(cp /tmp/skill-extract/frontend-design/LICENSE.txt .claude/skills/frontend-design/LICENSE.txt)"
     ]
   }
 }

@@ -18,6 +18,7 @@ import {
   LogIn,
   UserPlus,
 } from "lucide-react";
+import SearchOverlay from "./SearchOverlay";
 
 const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -26,9 +27,28 @@ const NavBar = () => {
   const [carDropdownOpen, setCarDropdownOpen] = useState(false);
   const [isWishListCountChecked, setIsWhishListCountChecked] = useState(false);
   const [isCarCountChecked, setIsCarCountChecked] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   const { data: session, status } = useSession();
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Global search keyboard shortcuts: "/" or "Ctrl+K"
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      const activeEl = document.activeElement;
+      const isInputActive = activeEl && (activeEl.tagName === "INPUT" || activeEl.tagName === "TEXTAREA" || activeEl.getAttribute("contenteditable") === "true");
+      
+      if (e.key === "/" && !isInputActive) {
+        e.preventDefault();
+        setIsSearchOpen(true);
+      } else if ((e.ctrlKey || e.metaKey) && e.key?.toLowerCase() === "k") {
+        e.preventDefault();
+        setIsSearchOpen(true);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -77,8 +97,9 @@ const NavBar = () => {
   }, [whishListCount]);
 
   return (
-    <nav
-      className={`sticky z-50 transition duration-300 backdrop-blur-md
+    <>
+      <nav
+        className={`sticky z-50 transition duration-300 backdrop-blur-md
 		${
       isScrolled
         ? "mt-22 top-2 w-full max-w-6xl md:w-6xl mx-auto rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.3)]"
@@ -133,6 +154,7 @@ const NavBar = () => {
         <div className="flex  items-center justify-end gap-6 text-lg relative  text-slate-300">
           {/* Search */}
           <button
+            onClick={() => setIsSearchOpen(true)}
             aria-label="Search"
             className="transition-transform active:scale-90"
           >
@@ -372,7 +394,15 @@ const NavBar = () => {
         </div>
       )}
     </nav>
-  );
+
+    {/* Search overlay component */}
+    <AnimatePresence>
+      {isSearchOpen && (
+        <SearchOverlay isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
+      )}
+    </AnimatePresence>
+  </>
+);
 };
 
 export default NavBar;
