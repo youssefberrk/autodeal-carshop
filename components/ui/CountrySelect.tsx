@@ -256,7 +256,7 @@ const CountrySelect = ({ value, onChange, label }: CountrySelectProps) => {
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className={`w-full bg-[#141e16] border ${isOpen ? 'border-[#00ff87]/50' : 'border-[#dae6d8]/10'} rounded-lg px-5 py-4 text-sm flex items-center justify-between transition-all hover:border-[#dae6d8]/30 group`}
+        className={`w-full bg-[#091a11] border ${isOpen ? 'border-[#00ff87]/50' : 'border-[#dae6d8]/10'} rounded-lg px-5 py-4 text-sm flex items-center justify-between transition-all hover:border-[#dae6d8]/30 group`}
       >
         <div className="flex items-center gap-3">
           <span className="text-xl leading-none">{selectedCountry?.flag}</span>
@@ -270,11 +270,11 @@ const CountrySelect = ({ value, onChange, label }: CountrySelectProps) => {
 
       {/* Dropdown Menu */}
       <div 
-        className={`absolute left-0 right-0 top-[calc(100%+8px)] z-50 bg-[#0c160e] border border-[#dae6d8]/10 rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden transition-all duration-300 origin-top ${
+        className={`absolute left-0 right-0 top-[calc(100%+8px)] z-50 bg-[#050e0a] border border-[#dae6d8]/10 rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden transition-all duration-300 origin-top ${
           isOpen ? 'opacity-100 scale-100 translate-y-0 visible' : 'opacity-0 scale-95 -translate-y-2 invisible'
         }`}
       >
-        <div className="p-4 border-b border-[#dae6d8]/5 flex items-center gap-3 bg-[#141e16]/50">
+        <div className="p-4 border-b border-[#dae6d8]/5 flex items-center gap-3 bg-[#091a11]/50">
           <Search size={14} className="text-[#dae6d8]/30" />
           <input
             ref={inputRef}

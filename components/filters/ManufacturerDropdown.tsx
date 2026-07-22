@@ -75,7 +75,7 @@ const ManufacturerDropdown = ({ brands, selectedBrand, onBrandChange }: Manufact
 					align-items: center;
 					justify-content: space-between;
 					padding: 0.875rem 1rem;
-					background: rgba(20, 30, 22, 0.8);
+					background: rgba(9, 26, 17, 0.8);
 					border: 1px solid rgba(218, 230, 216, 0.1);
 					border-radius: 0.75rem;
 					color: #dae6d8;
@@ -85,7 +85,7 @@ const ManufacturerDropdown = ({ brands, selectedBrand, onBrandChange }: Manufact
 
 				.dropdown-trigger:hover {
 					border-color: rgba(0, 255, 135, 0.3);
-					background: rgba(20, 30, 22, 1);
+					background: rgba(9, 26, 17, 1);
 				}
 
 				.dropdown-value {
@@ -111,7 +111,7 @@ const ManufacturerDropdown = ({ brands, selectedBrand, onBrandChange }: Manufact
 					top: calc(100% + 8px);
 					left: 0;
 					right: 0;
-					background: rgba(12, 22, 14, 0.95);
+					background: rgba(5, 14, 10, 0.95);
 					backdrop-filter: blur(20px);
 					-webkit-backdrop-filter: blur(20px);
 					border: 1px solid rgba(218, 230, 216, 0.08);

@@ -50,7 +50,7 @@ const FeaturedCard = ({ album, model, info, price }: featuredCars) => {
 				.featured-card {
 					width: 100%;
 					max-width: 420px;
-					background: linear-gradient(145deg, rgba(20, 30, 22, 0.95), rgba(12, 22, 14, 0.98));
+					background: linear-gradient(145deg, rgba(9, 26, 17, 0.95), rgba(5, 14, 10, 0.98));
 					border: 1px solid rgba(218, 230, 216, 0.06);
 					border-radius: 1.25rem;
 					overflow: hidden;
@@ -78,7 +78,7 @@ const FeaturedCard = ({ album, model, info, price }: featuredCars) => {
 					inset: 0;
 					background: linear-gradient(
 						to top,
-						rgba(12, 22, 14, 0.8) 0%,
+						rgba(5, 14, 10, 0.8) 0%,
 						transparent 50%
 					);
 					pointer-events: none;
@@ -217,7 +217,7 @@ const FeaturedCard = ({ album, model, info, price }: featuredCars) => {
 				}
 
 				.card-cta:hover {
-					color: #0c160e;
+					color: #050e0a;
 					background: #00ff87;
 					border-color: #00ff87;
 					box-shadow: 0 0 20px rgba(0, 255, 135, 0.3);

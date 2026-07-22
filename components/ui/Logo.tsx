@@ -99,7 +99,7 @@ function WheelMark({ size = 48 }: { size?: number }) {
 
 				<circle cx="50" cy="50" r="12" fill="#111711" stroke="#6d7870" strokeWidth="1.1" />
 				<circle cx="50" cy="50" r="8.3" fill="url(#logoCarbonDisc)" stroke="#1a211b" strokeWidth="1" />
-				<circle cx="50" cy="50" r="4.4" fill="#0c160e" stroke="var(--brand)" strokeWidth="1.2" />
+				<circle cx="50" cy="50" r="4.4" fill="#050e0a" stroke="var(--brand)" strokeWidth="1.2" />
 				<circle cx="50" cy="50" r="1.9" fill="var(--brand)" />
 
 				{fiveLugAngles.map((deg) => (
@@ -122,7 +122,7 @@ function WheelMark({ size = 48 }: { size?: number }) {
 				/>
 				<path
 					d="M 24 36 C 30 27 39 22 49 21 L 46 27 C 38 28 32 33 28 41 Z"
-					fill="#0c160e"
+					fill="#050e0a"
 					opacity="0.62"
 				/>
 				<path

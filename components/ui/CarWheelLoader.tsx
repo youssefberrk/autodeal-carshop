@@ -34,7 +34,7 @@ export default function CarWheelLoader({
 					/>
 					<path
 						d="M 24 34 C 30 25 39 21 49 20 L 46 25 C 38 26 32 31 28 38 Z"
-						fill="#0c160e"
+						fill="#050e0a"
 						opacity="0.38"
 					/>
 					<rect x="22" y="34" width="13" height="4.2" rx="2.1" fill="#0b130d" opacity="0.34" />
@@ -111,7 +111,7 @@ export default function CarWheelLoader({
 
 					<circle cx="50" cy="50" r="12" fill="#111711" stroke="#6d7870" strokeWidth="1.1" />
 					<circle cx="50" cy="50" r="8.3" fill="url(#loaderCarbonDisc)" stroke="#1a211b" strokeWidth="1" />
-					<circle cx="50" cy="50" r="4.4" fill="#0c160e" stroke={color} strokeWidth="1.2" />
+					<circle cx="50" cy="50" r="4.4" fill="#050e0a" stroke={color} strokeWidth="1.2" />
 					<circle cx="50" cy="50" r="1.9" fill={color} />
 
 					{fiveLugAngles.map((deg) => (
@@ -138,7 +138,7 @@ export default function CarWheelLoader({
 
 	if (fullPage) {
 		return (
-			<div className="fixed inset-0 z-50 flex items-center justify-center bg-[#0c160e]/92 backdrop-blur-md animate-in fade-in duration-300">
+			<div className="fixed inset-0 z-50 flex items-center justify-center bg-[#050e0a]/92 backdrop-blur-md animate-in fade-in duration-300">
 				{content}
 			</div>
 		);

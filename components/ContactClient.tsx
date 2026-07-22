@@ -204,7 +204,7 @@ const ContactClient = () => {
               return (
                 <motion.div
                   key={idx}
-                  className="group p-6 bg-[#0c160e]/50 backdrop-blur-md rounded-xl border border-[rgba(218,230,216,0.06)] flex flex-col gap-4 hover:border-[#00ff87]/25 transition-colors duration-300"
+                  className="group p-6 bg-[#050e0a]/50 backdrop-blur-md rounded-xl border border-[rgba(218,230,216,0.06)] flex flex-col gap-4 hover:border-[#00ff87]/25 transition-colors duration-300"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
@@ -248,7 +248,7 @@ const ContactClient = () => {
 
               {isSubmitted ? (
                 <motion.div
-                  className="flex flex-col items-center justify-center text-center p-16 bg-[#0c160e]/50 backdrop-blur-md rounded-2xl border border-[#00ff87]/20"
+                  className="flex flex-col items-center justify-center text-center p-16 bg-[#050e0a]/50 backdrop-blur-md rounded-2xl border border-[#00ff87]/20"
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{
@@ -365,7 +365,7 @@ const ContactClient = () => {
                           <option
                             key={opt.value}
                             value={opt.value}
-                            className="bg-[#0c160e] text-[#dae6d8]"
+                            className="bg-[#050e0a] text-[#dae6d8]"
                           >
                             {opt.label}
                           </option>
@@ -394,11 +394,11 @@ const ContactClient = () => {
                   <button
                     type="submit"
                     disabled={isSending}
-                    className="group relative flex items-center justify-center gap-3 w-full sm:w-auto px-10 py-4 bg-[#00ff87] text-[#0c160e] font-mono text-sm uppercase font-bold tracking-widest rounded-lg overflow-hidden transition-all duration-150 active:scale-97 hover:shadow-[0_0_30px_rgba(0,255,135,0.4)] disabled:opacity-70 disabled:cursor-not-allowed"
+                    className="group relative flex items-center justify-center gap-3 w-full sm:w-auto px-10 py-4 bg-[#00ff87] text-[#050e0a] font-mono text-sm uppercase font-bold tracking-widest rounded-lg overflow-hidden transition-all duration-150 active:scale-97 hover:shadow-[0_0_30px_rgba(0,255,135,0.4)] disabled:opacity-70 disabled:cursor-not-allowed"
                   >
                     {isSending ? (
                       <>
-                        <span className="inline-block w-4 h-4 border-2 border-[#0c160e]/30 border-t-[#0c160e] rounded-full animate-spin" />
+                        <span className="inline-block w-4 h-4 border-2 border-[#050e0a]/30 border-t-[#050e0a] rounded-full animate-spin" />
                         Transmitting...
                       </>
                     ) : (
@@ -424,7 +424,7 @@ const ContactClient = () => {
             <div className="lg:col-span-2 flex flex-col gap-8">
               {/* Showroom Location Card */}
               <motion.div
-                className="p-8 bg-[#0c160e]/50 backdrop-blur-md rounded-2xl border border-[rgba(218,230,216,0.06)] flex flex-col gap-6"
+                className="p-8 bg-[#050e0a]/50 backdrop-blur-md rounded-2xl border border-[rgba(218,230,216,0.06)] flex flex-col gap-6"
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
@@ -443,7 +443,7 @@ const ContactClient = () => {
                 </div>
 
                 {/* Stylized Map Container */}
-                <div className="relative w-full aspect-[16/10] rounded-xl overflow-hidden border border-[#00ff87]/10 bg-[#080e09]">
+                <div className="relative w-full aspect-[16/10] rounded-xl overflow-hidden border border-[#00ff87]/10 bg-[#050e0a]">
                   <iframe
                     className="w-full h-full grayscale-[0.8] opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-700"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5248.796658770807!2d2.3096559000000005!3d48.8696826!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66fc501e717f1%3A0x9ef912b439932bd6!2s12%20Av.%20des%20Champs-%C3%89lys%C3%A9es%2C%2075008%20Paris%2C%20France!5e0!3m2!1sen!2sma!4v1782737664208!5m2!1sen!2sma"
@@ -464,7 +464,7 @@ const ContactClient = () => {
                     transition={{ delay: 0.5, type: "spring" }}
                   >
                     <div className="w-4 h-4 rounded-full bg-[#00ff87] shadow-[0_0_20px_rgba(0,255,135,0.6)] animate-pulse" />
-                    <span className="text-[#00ff87] text-[9px] font-mono uppercase tracking-wider mt-2 bg-[#0c160e]/80 px-2 py-0.5 rounded backdrop-blur-sm whitespace-nowrap">
+                    <span className="text-[#00ff87] text-[9px] font-mono uppercase tracking-wider mt-2 bg-[#050e0a]/80 px-2 py-0.5 rounded backdrop-blur-sm whitespace-nowrap">
                       AutoDeal HQ
                     </span>
                   </motion.div>
@@ -490,7 +490,7 @@ const ContactClient = () => {
 
               {/* FAQ Teaser */}
               <motion.div
-                className="p-8 bg-[#0c160e]/50 backdrop-blur-md rounded-2xl border border-[rgba(218,230,216,0.06)] flex flex-col gap-5"
+                className="p-8 bg-[#050e0a]/50 backdrop-blur-md rounded-2xl border border-[rgba(218,230,216,0.06)] flex flex-col gap-5"
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}

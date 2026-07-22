@@ -16,7 +16,7 @@ export default async function SearchPage({ searchParams }: PageProps) {
   const q = resolvedParams.q || "";
 
   return (
-    <Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-[#0c160e] text-slate-400 font-manrope">Loading showroom results...</div>}>
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center bg-[#050e0a] text-slate-400 font-manrope">Loading showroom results...</div>}>
       <SearchClient initialQuery={q} />
     </Suspense>
   );

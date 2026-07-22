@@ -72,7 +72,7 @@ const SearchClient = ({ initialQuery }: SearchClientProps) => {
   const totalResults = filteredData.cars.length + filteredData.showrooms.length;
 
   return (
-    <div className="min-h-screen bg-[#0c160e] text-white pt-28 pb-20 px-6 font-manrope">
+    <div className="min-h-screen bg-[#050e0a] text-white pt-28 pb-20 px-6 font-manrope">
       <div className="max-w-7xl mx-auto flex flex-col gap-12">
         
         {/* Page Header */}

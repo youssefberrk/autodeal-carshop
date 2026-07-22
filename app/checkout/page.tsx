@@ -324,11 +324,11 @@ const CheckoutPage = () => {
 
   if (isGarageEmpty && !isSuccessModalOpen) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#0c160e] text-[#dae6d8] font-['Manrope'] px-6 py-24 relative overflow-hidden">
+      <div className="min-h-screen flex items-center justify-center bg-[#050e0a] text-[#dae6d8] font-['Manrope'] px-6 py-24 relative overflow-hidden">
         {/* Dynamic ambient backgrounds */}
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,rgba(0,255,135,0.06),transparent_50%)]" />
         
-        <div className="max-w-md w-full text-center relative z-10 border border-[#dae6d8]/10 bg-[#141e16]/80 p-10 rounded-2xl backdrop-blur-md shadow-2xl">
+        <div className="max-w-md w-full text-center relative z-10 border border-[#dae6d8]/10 bg-[#091a11]/80 p-10 rounded-2xl backdrop-blur-md shadow-2xl">
           <div className="w-16 h-16 bg-[#00ff87]/10 rounded-full flex items-center justify-center text-[#00ff87] mx-auto mb-6 border border-[#00ff87]/20">
             <Truck size={28} />
           </div>
@@ -340,7 +340,7 @@ const CheckoutPage = () => {
           <div className="flex flex-col gap-4">
             <Link 
               href="/shop" 
-              className="w-full bg-[#00ff87] text-[#0c160e] py-4 rounded-lg flex items-center justify-center gap-2 text-xs uppercase tracking-[0.2em] font-bold hover:brightness-110 active:scale-[0.98] transition-all shadow-[0_0_30px_rgba(0,255,135,0.15)]"
+              className="w-full bg-[#00ff87] text-[#050e0a] py-4 rounded-lg flex items-center justify-center gap-2 text-xs uppercase tracking-[0.2em] font-bold hover:brightness-110 active:scale-[0.98] transition-all shadow-[0_0_30px_rgba(0,255,135,0.15)]"
             >
               Browse Inventory <ArrowRight size={14} />
             </Link>
@@ -357,7 +357,7 @@ const CheckoutPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#0c160e] text-[#dae6d8] font-['Manrope'] pb-24 pt-20 relative">
+    <div className="min-h-screen bg-[#050e0a] text-[#dae6d8] font-['Manrope'] pb-24 pt-20 relative">
       {/* Background Glows */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_12%,rgba(0,255,135,0.06),transparent_38%),radial-gradient(circle_at_82%_0%,rgba(148,163,184,0.04),transparent_32%)]" />
 
@@ -387,7 +387,7 @@ const CheckoutPage = () => {
                   </h3>
                 </div>
 
-                <div className="aspect-[16/10] bg-[#141e16] mb-8 overflow-hidden border border-[#dae6d8]/5 rounded-xl shadow-lg relative">
+                <div className="aspect-[16/10] bg-[#091a11] mb-8 overflow-hidden border border-[#dae6d8]/5 rounded-xl shadow-lg relative">
                   <img 
                     src={car.image || '/api/placeholder/1200/800'} 
                     alt={`${car.brand} ${car.model}`} 
@@ -422,7 +422,7 @@ const CheckoutPage = () => {
                     <span className="block text-[9px] uppercase tracking-widest text-[#dae6d8]/40 mb-1.5">Color Selected</span>
                     <div className="flex flex-col gap-4">
                       <span className="text-sm font-bold text-[#e5efe3] leading-tight block">{car.color?.id}</span>
-                      <span className="h-5 w-5 rounded-full ring-offset-4 ring-offset-[#0c160e]  ring-2 ring-[#00ff87] shadow-[0_0_0_5px_rgba(0,255,135,0.12)]" 
+                      <span className="h-5 w-5 rounded-full ring-offset-4 ring-offset-[#050e0a]  ring-2 ring-[#00ff87] shadow-[0_0_0_5px_rgba(0,255,135,0.12)]" 
 												style={{ backgroundColor: car.color?.hex }} />
                      
                     
@@ -445,7 +445,7 @@ const CheckoutPage = () => {
           </div>
 
           {/* Pricing Summary Card */}
-          <div className="bg-[#141e16] p-8 border border-[#dae6d8]/5 rounded-xl shadow-xl">
+          <div className="bg-[#091a11] p-8 border border-[#dae6d8]/5 rounded-xl shadow-xl">
             <div className="space-y-4 mb-8">
               <div className="flex justify-between text-xs tracking-wide">
                 <span className="text-[#dae6d8]/50">Subtotal MSRP</span>
@@ -496,7 +496,7 @@ const CheckoutPage = () => {
                     type="text" 
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
-                    className={`w-full bg-[#141e16] border ${errors.fullName ? 'border-red-500' : 'border-[#dae6d8]/10'} rounded-lg px-5 py-4 text-sm focus:border-[#00ff87]/50 focus:outline-none transition-all placeholder:text-[#dae6d8]/10`} 
+                    className={`w-full bg-[#091a11] border ${errors.fullName ? 'border-red-500' : 'border-[#dae6d8]/10'} rounded-lg px-5 py-4 text-sm focus:border-[#00ff87]/50 focus:outline-none transition-all placeholder:text-[#dae6d8]/10`} 
                     placeholder="Julian Obsidian" 
                   />
                   {errors.fullName && <span className="text-red-500 text-[10px] mt-1 block">{errors.fullName}</span>}
@@ -508,7 +508,7 @@ const CheckoutPage = () => {
                     type="email" 
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className={`w-full bg-[#141e16] border ${errors.email ? 'border-red-500' : 'border-[#dae6d8]/10'} rounded-lg px-5 py-4 text-sm focus:border-[#00ff87]/50 focus:outline-none transition-all placeholder:text-[#dae6d8]/10`} 
+                    className={`w-full bg-[#091a11] border ${errors.email ? 'border-red-500' : 'border-[#dae6d8]/10'} rounded-lg px-5 py-4 text-sm focus:border-[#00ff87]/50 focus:outline-none transition-all placeholder:text-[#dae6d8]/10`} 
                     placeholder="concierge@obsidian.com" 
                   />
                   {errors.email && <span className="text-red-500 text-[10px] mt-1 block">{errors.email}</span>}
@@ -520,7 +520,7 @@ const CheckoutPage = () => {
                     type="tel" 
                     value={phoneNumber}
                     onChange={(e) => setPhoneNumber(e.target.value)}
-                    className="w-full bg-[#141e16] border border-[#dae6d8]/10 rounded-lg px-5 py-4 text-sm focus:border-[#00ff87]/50 focus:outline-none transition-all placeholder:text-[#dae6d8]/10" 
+                    className="w-full bg-[#091a11] border border-[#dae6d8]/10 rounded-lg px-5 py-4 text-sm focus:border-[#00ff87]/50 focus:outline-none transition-all placeholder:text-[#dae6d8]/10" 
                     placeholder="+1 (555) 0199" 
                   />
                 </div>
@@ -539,7 +539,7 @@ const CheckoutPage = () => {
                     type="text" 
                     value={address}
                     onChange={(e) => setAddress(e.target.value)}
-                    className={`w-full bg-[#141e16] border ${errors.address ? 'border-red-500' : 'border-[#dae6d8]/10'} rounded-lg px-5 py-4 text-sm focus:border-[#00ff87]/50 focus:outline-none transition-all placeholder:text-[#dae6d8]/10`} 
+                    className={`w-full bg-[#091a11] border ${errors.address ? 'border-red-500' : 'border-[#dae6d8]/10'} rounded-lg px-5 py-4 text-sm focus:border-[#00ff87]/50 focus:outline-none transition-all placeholder:text-[#dae6d8]/10`} 
                     placeholder="128 Kinetic Way, Beverly Hills, CA" 
                   />
                   {errors.address && <span className="text-red-500 text-[10px] mt-1 block">{errors.address}</span>}
@@ -551,7 +551,7 @@ const CheckoutPage = () => {
                     type="text" 
                     value={city}
                     onChange={(e) => setCity(e.target.value)}
-                    className={`w-full bg-[#141e16] border ${errors.city ? 'border-red-500' : 'border-[#dae6d8]/10'} rounded-lg px-5 py-4 text-sm focus:border-[#00ff87]/50 focus:outline-none transition-all placeholder:text-[#dae6d8]/10`} 
+                    className={`w-full bg-[#091a11] border ${errors.city ? 'border-red-500' : 'border-[#dae6d8]/10'} rounded-lg px-5 py-4 text-sm focus:border-[#00ff87]/50 focus:outline-none transition-all placeholder:text-[#dae6d8]/10`} 
                     placeholder="Los Angeles" 
                   />
                   {errors.city && <span className="text-red-500 text-[10px] mt-1 block">{errors.city}</span>}
@@ -564,7 +564,7 @@ const CheckoutPage = () => {
                       type="text" 
                       value={stateName}
                       onChange={(e) => setStateName(e.target.value)}
-                      className="w-full bg-[#141e16] border border-[#dae6d8]/10 rounded-lg px-5 py-4 text-sm focus:border-[#00ff87]/50 focus:outline-none transition-all placeholder:text-[#dae6d8]/10" 
+                      className="w-full bg-[#091a11] border border-[#dae6d8]/10 rounded-lg px-5 py-4 text-sm focus:border-[#00ff87]/50 focus:outline-none transition-all placeholder:text-[#dae6d8]/10" 
                       placeholder="CA" 
                     />
                   </div>
@@ -574,7 +574,7 @@ const CheckoutPage = () => {
                       type="text" 
                       value={postalCode}
                       onChange={(e) => setPostalCode(e.target.value)}
-                      className={`w-full bg-[#141e16] border ${errors.postalCode ? 'border-red-500' : 'border-[#dae6d8]/10'} rounded-lg px-5 py-4 text-sm focus:border-[#00ff87]/50 focus:outline-none transition-all placeholder:text-[#dae6d8]/10`} 
+                      className={`w-full bg-[#091a11] border ${errors.postalCode ? 'border-red-500' : 'border-[#dae6d8]/10'} rounded-lg px-5 py-4 text-sm focus:border-[#00ff87]/50 focus:outline-none transition-all placeholder:text-[#dae6d8]/10`} 
                       placeholder="90210" 
                     />
                     {errors.postalCode && <span className="text-red-500 text-[10px] mt-1 block">{errors.postalCode}</span>}
@@ -626,7 +626,7 @@ const CheckoutPage = () => {
               )}
 
               {paymentMethod === 'credit_card' ? (
-                <div className="bg-[#141e16] p-6 border border-[#00ff87]/20 rounded-lg space-y-4 shadow-[0_0_20px_rgba(0,255,135,0.02)]">
+                <div className="bg-[#091a11] p-6 border border-[#00ff87]/20 rounded-lg space-y-4 shadow-[0_0_20px_rgba(0,255,135,0.02)]">
                   <div className="flex justify-between items-center border-b border-[#dae6d8]/5 pb-3">
                     <h4 className="text-xs uppercase tracking-widest font-bold text-[#e5efe3]">Stripe Secure Payment</h4>
                     <span className="text-[9px] bg-[#00ff87]/10 text-[#00ff87] border border-[#00ff87]/20 px-2 py-0.5 rounded-full uppercase tracking-widest font-bold">Test Mode</span>
@@ -646,7 +646,7 @@ const CheckoutPage = () => {
                   </div>
                 </div>
               ) : (
-                <div className="bg-[#141e16] p-6 border border-[#dae6d8]/10 rounded-lg space-y-4">
+                <div className="bg-[#091a11] p-6 border border-[#dae6d8]/10 rounded-lg space-y-4">
                   <h4 className="text-xs uppercase tracking-widest font-bold text-[#e5efe3]">Obsidian Wire Instructions</h4>
                   <div className="grid grid-cols-2 gap-4 text-xs">
                     <div>
@@ -672,7 +672,7 @@ const CheckoutPage = () => {
                 </div>
               )}
 
-              <div className="bg-[#141e16]/50 border-l-2 border-[#00ff87] p-6 flex gap-4 mt-8 rounded-r-lg">
+              <div className="bg-[#091a11]/50 border-l-2 border-[#00ff87] p-6 flex gap-4 mt-8 rounded-r-lg">
                 <Info size={20} className="text-[#00ff87] shrink-0" />
                 <p className="text-[11px] text-[#dae6d8]/60 leading-relaxed">
                   By selecting &apos;Secure Allocation&apos;, you agree to our terms of premium delivery and vehicle reservation. A ${depositRequired.toLocaleString()} non-refundable deposit will be charged to secure your build slot allocation.
@@ -698,11 +698,11 @@ const CheckoutPage = () => {
                 <button 
                   type="submit"
                   disabled={isSubmitting}
-                  className="flex-1 bg-[#00ff87] text-[#0c160e] py-5 rounded-lg flex items-center justify-center gap-3 text-xs uppercase tracking-[0.3em] font-bold hover:brightness-110 active:scale-[0.98] transition-all shadow-[0_0_40px_rgba(0,255,135,0.18)] disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="flex-1 bg-[#00ff87] text-[#050e0a] py-5 rounded-lg flex items-center justify-center gap-3 text-xs uppercase tracking-[0.3em] font-bold hover:brightness-110 active:scale-[0.98] transition-all shadow-[0_0_40px_rgba(0,255,135,0.18)] disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? (
                     <>
-                      <CarWheelLoader size={16} color="#0c160e" />
+                      <CarWheelLoader size={16} color="#050e0a" />
                       Locking Slot Allocation...
                     </>
                   ) : (
@@ -729,7 +729,7 @@ const CheckoutPage = () => {
       {/* Success Modal Overlay */}
       {isSuccessModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-xl animate-in font-['Manrope'] p-6">
-          <div className="max-w-xl w-full border border-[#00ff87]/30 bg-[#0c160e]/95 p-10 rounded-2xl shadow-[0_0_80px_rgba(0,255,135,0.15)] relative overflow-hidden">
+          <div className="max-w-xl w-full border border-[#00ff87]/30 bg-[#050e0a]/95 p-10 rounded-2xl shadow-[0_0_80px_rgba(0,255,135,0.15)] relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-emerald-500 via-[#00ff87] to-teal-500" />
             
             <div className="flex flex-col items-center text-center">
@@ -749,7 +749,7 @@ const CheckoutPage = () => {
               </p>
 
               {/* Order breakdown */}
-              <div className="w-full bg-[#141e16] border border-[#dae6d8]/5 p-6 rounded-xl text-left space-y-4 mb-8">
+              <div className="w-full bg-[#091a11] border border-[#dae6d8]/5 p-6 rounded-xl text-left space-y-4 mb-8">
                 <div className="border-b border-[#dae6d8]/5 pb-3">
                   <span className="block text-[9px] uppercase tracking-widest text-[#dae6d8]/40 mb-1">Vehicles Locked</span>
                   <div className="space-y-1">
@@ -790,7 +790,7 @@ const CheckoutPage = () => {
                     setIsSuccessModalOpen(false);
                     router.push('/');
                   }}
-                  className="flex-1 bg-[#00ff87] text-[#0c160e] py-4 rounded-lg text-xs uppercase tracking-[0.2em] font-bold hover:brightness-110 active:scale-[0.98] transition-all shadow-[0_0_20px_rgba(0,255,135,0.2)]"
+                  className="flex-1 bg-[#00ff87] text-[#050e0a] py-4 rounded-lg text-xs uppercase tracking-[0.2em] font-bold hover:brightness-110 active:scale-[0.98] transition-all shadow-[0_0_20px_rgba(0,255,135,0.2)]"
                 >
                   Return to Showroom
                 </button>

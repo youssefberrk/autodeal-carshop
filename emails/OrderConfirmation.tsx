@@ -44,8 +44,8 @@ export const OrderConfirmationEmail = ({
             extend: {
               colors: {
                 brand: "#00ff87",
-                bgDark: "#0c160e",
-                bgCard: "#111c15",
+                bgDark: "#050e0a",
+                bgCard: "#091a11",
                 textLight: "#e5efe3",
               },
             },

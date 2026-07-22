@@ -145,7 +145,7 @@ export const SignUpForm = ({ onSuccess }: SignUpFormProps) => {
 			<div className="pt-4 space-y-4">
 				<button
 					className="w-full relative overflow-hidden group py-[14px] text-[10px] uppercase tracking-[0.25em] font-bold transition-all active:scale-[0.98] duration-200"
-					style={{ background: "#00ff87", color: "#080e0a" }}>
+					style={{ background: "#00ff87", color: "#050e0a" }}>
 					<span className="relative z-10 flex items-center justify-center gap-3">
 						Create Account
 						<svg width="14" height="14" viewBox="0 0 14 14" fill="none">

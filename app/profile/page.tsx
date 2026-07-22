@@ -34,7 +34,7 @@ const ProfilePage = () => {
   // Show loading state while checking session
   if (status === "loading") {
     return (
-      <div className="min-h-screen bg-[#0c160e] text-[#dae6d8] flex items-center justify-center font-['Manrope']">
+      <div className="min-h-screen bg-[#020503] text-[#dae6d8] flex items-center justify-center font-['Manrope']">
         <CarWheelLoader text="Syncing collector profile..." size={72} />
       </div>
     );
@@ -61,24 +61,36 @@ const ProfilePage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#0c160e] text-[#dae6d8] font-['Manrope'] pb-24 pt-20 relative overflow-hidden">
+    <div className="min-h-screen bg-[#020503] text-[#dae6d8] font-['Manrope'] pb-24 pt-20 relative overflow-hidden">
       {/* Ambient Background Glows */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_12%,rgba(0,255,135,0.06),transparent_38%),radial-gradient(circle_at_82%_0%,rgba(148,163,184,0.04),transparent_32%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_-10%,rgba(0,255,135,0.12),transparent_70%),radial-gradient(circle_at_0%_100%,rgba(0,255,135,0.04),transparent_40%),radial-gradient(circle_at_100%_0%,rgba(218,230,216,0.03),transparent_35%)]" />
 
       <div className="max-w-[1400px] mx-auto px-6 md:px-12 relative z-10">
-        <div className="flex items-center justify-center gap-4 mb-12">
-          <UserPen size={48} className="text-[#00ff87]" />
-          <h1 className="text-5xl font-['Newsreader'] uppercase font-bold tracking-wide text-[#e5efe3]">
-            Your Profile
-          </h1>
+        <div className="mb-16 border-b border-[#dae6d8]/10 pb-8 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+          <div>
+            <p className="text-[10px] uppercase tracking-[0.3em] text-[#00ff87] font-bold mb-3 font-['Orbitron']">
+              Collector Workspace
+            </p>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-['Newsreader'] italic font-bold tracking-tight text-[#e5efe3] leading-none">
+              Showcase Portfolio
+            </h1>
+          </div>
+          <div className="flex items-center gap-3 bg-[#07130c]/50 border border-[#dae6d8]/5 rounded-2xl px-5 py-3 text-xs text-[#dae6d8]/50 shadow-[0_4px_20px_rgba(0,0,0,0.2)]">
+            <div className="w-2 h-2 rounded-full bg-[#00ff87] relative">
+              <span className="absolute inset-0 rounded-full bg-[#00ff87] animate-ping opacity-75" />
+            </div>
+            <span className="font-medium tracking-wide">
+              Authenticated Collector Account
+            </span>
+          </div>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
           {/* Left Column: User Info Card */}
           <div className="lg:col-span-4">
-            <div className="bg-[#141e16]/80 backdrop-blur-md rounded-2xl p-8 border border-[#dae6d8]/10 shadow-2xl relative overflow-hidden">
+            <div className="bg-[#050d08]/85 backdrop-blur-xl rounded-2xl p-8 border border-[#dae6d8]/10 shadow-[0_24px_48px_-12px_rgba(0,0,0,0.5)] relative overflow-hidden">
               <div className="flex flex-col items-center">
                 {session?.user?.image ? (
-                  <div className="w-24 h-24 rounded-full mb-6 overflow-hidden border border-[#00ff87]/30 shadow-[0_0_20px_rgba(0,255,135,0.15)]">
+                  <div className="w-24 h-24 rounded-full mb-6 overflow-hidden border border-[#00ff87]/20 shadow-[0_0_20px_rgba(0,255,135,0.1)]">
                     <Image
                       src={session.user.image}
                       alt={session.user.name || "User"}
@@ -88,7 +100,7 @@ const ProfilePage = () => {
                     />
                   </div>
                 ) : (
-                  <div className="w-24 h-24 rounded-full bg-gradient-to-br from-[#0c160e] to-[#141e16] mb-6 flex items-center justify-center border border-[#00ff87]/30 shadow-[0_0_20px_rgba(0,255,135,0.15)]">
+                  <div className="w-24 h-24 rounded-full bg-gradient-to-br from-[#020503] to-[#07130c] mb-6 flex items-center justify-center border border-[#00ff87]/20 shadow-[0_0_20px_rgba(0,255,135,0.1)]">
                     <User size={36} className="text-[#00ff87]" />
                   </div>
                 )}
@@ -133,10 +145,10 @@ const ProfilePage = () => {
           {/* Right Column: Details & Garage */}
           <div className="lg:col-span-8 space-y-12">
             {/* Profile Navigation */}
-            <div className="bg-[#141e16]/80 backdrop-blur-md rounded-2xl p-8 border border-[#dae6d8]/10 shadow-2xl">
+            <div className="bg-[#050d08]/85 backdrop-blur-xl rounded-2xl p-8 border border-[#dae6d8]/10 shadow-[0_24px_48px_-12px_rgba(0,0,0,0.5)]">
               <div className="flex flex-wrap gap-3 border-b border-[#dae6d8]/10 pb-6 mb-8">
                 <Link
-                  className="px-5 py-3 rounded-lg bg-[#00ff87] text-[#0c160e] font-bold flex items-center gap-2 text-xs uppercase tracking-[0.15em] transition-all active:scale-[0.98] shadow-[0_0_20px_rgba(0,255,135,0.15)]"
+                  className="px-5 py-3 rounded-lg bg-[#00ff87] text-[#020503] font-bold flex items-center gap-2 text-xs uppercase tracking-[0.15em] transition-all active:scale-[0.98] shadow-[0_0_20px_rgba(0,255,135,0.15)]"
                   href="/"
                 >
                   <User size={14} />
@@ -166,7 +178,7 @@ const ProfilePage = () => {
                 </h3>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="bg-[#141e16] p-6 rounded-xl border border-[#dae6d8]/5 hover:border-[#00ff87]/10 transition-all duration-300">
+                  <div className="bg-[#07130c]/50 p-6 rounded-xl border border-[#dae6d8]/5 hover:border-[#00ff87]/20 hover:shadow-[0_0_20px_rgba(0,255,135,0.03)] transition-all duration-300">
                     <h4 className="text-sm font-bold mb-3 flex items-center gap-2 text-[#e5efe3] uppercase tracking-wider">
                       <MapPin className="text-[#00ff87]" size={16} />
                       Address
@@ -174,12 +186,12 @@ const ProfilePage = () => {
                     <p className="text-[#dae6d8]/40 text-sm">
                       No address saved yet
                     </p>
-                    <button className="mt-4 text-[#00ff87] hover:text-emerald-300 text-xs uppercase tracking-wider font-bold transition-colors">
+                    <button className="mt-4 text-[#00ff87] hover:text-emerald-300 text-xs uppercase tracking-wider font-bold transition-colors active:scale-95 transition-transform duration-100">
                       Add Address
                     </button>
                   </div>
 
-                  <div className="bg-[#141e16] p-6 rounded-xl border border-[#dae6d8]/5 hover:border-[#00ff87]/10 transition-all duration-300">
+                  <div className="bg-[#07130c]/50 p-6 rounded-xl border border-[#dae6d8]/5 hover:border-[#00ff87]/20 hover:shadow-[0_0_20px_rgba(0,255,135,0.03)] transition-all duration-300">
                     <h4 className="text-sm font-bold mb-3 flex items-center gap-2 text-[#e5efe3] uppercase tracking-wider">
                       <CreditCard className="text-[#00ff87]" size={16} />
                       Payment Methods
@@ -187,12 +199,12 @@ const ProfilePage = () => {
                     <p className="text-[#dae6d8]/40 text-sm">
                       No payment methods saved
                     </p>
-                    <button className="mt-4 text-[#00ff87] hover:text-emerald-300 text-xs uppercase tracking-wider font-bold transition-colors">
+                    <button className="mt-4 text-[#00ff87] hover:text-emerald-300 text-xs uppercase tracking-wider font-bold transition-colors active:scale-95 transition-transform duration-100">
                       Add Payment Method
                     </button>
                   </div>
 
-                  <div className="bg-[#141e16] p-6 rounded-xl border border-[#dae6d8]/5 hover:border-[#00ff87]/10 transition-all duration-300">
+                  <div className="bg-[#07130c]/50 p-6 rounded-xl border border-[#dae6d8]/5 hover:border-[#00ff87]/20 hover:shadow-[0_0_20px_rgba(0,255,135,0.03)] transition-all duration-300">
                     <h4 className="text-sm font-bold mb-3 flex items-center gap-2 text-[#e5efe3] uppercase tracking-wider">
                       <Bell className="text-[#00ff87]" size={16} />
                       Notifications
@@ -200,12 +212,12 @@ const ProfilePage = () => {
                     <p className="text-[#dae6d8]/40 text-sm">
                       Email notifications enabled
                     </p>
-                    <button className="mt-4 text-[#00ff87] hover:text-emerald-300 text-xs uppercase tracking-wider font-bold transition-colors">
+                    <button className="mt-4 text-[#00ff87] hover:text-emerald-300 text-xs uppercase tracking-wider font-bold transition-colors active:scale-95 transition-transform duration-100">
                       Manage Settings
                     </button>
                   </div>
 
-                  <div className="bg-[#141e16] p-6 rounded-xl border border-[#dae6d8]/5 hover:border-[#00ff87]/10 transition-all duration-300">
+                  <div className="bg-[#07130c]/50 p-6 rounded-xl border border-[#dae6d8]/5 hover:border-[#00ff87]/20 hover:shadow-[0_0_20px_rgba(0,255,135,0.03)] transition-all duration-300">
                     <h4 className="text-sm font-bold mb-3 flex items-center gap-2 text-[#e5efe3] uppercase tracking-wider">
                       <Heart className="text-[#00ff87]" size={16} />
                       Wishlist
@@ -213,7 +225,7 @@ const ProfilePage = () => {
                     <p className="text-[#dae6d8]/40 text-sm">
                       No items in your wishlist yet
                     </p>
-                    <button className="mt-4 text-[#00ff87] hover:text-emerald-300 text-xs uppercase tracking-wider font-bold transition-colors">
+                    <button className="mt-4 text-[#00ff87] hover:text-emerald-300 text-xs uppercase tracking-wider font-bold transition-colors active:scale-95 transition-transform duration-100">
                       Browse Cars
                     </button>
                   </div>
@@ -222,7 +234,7 @@ const ProfilePage = () => {
             </div>
 
             {/* Virtual Garage */}
-            <div className="bg-[#141e16]/80 backdrop-blur-md rounded-2xl p-8 border border-[#dae6d8]/10 shadow-2xl">
+            <div className="bg-[#050d08]/85 backdrop-blur-xl rounded-2xl p-8 border border-[#dae6d8]/10 shadow-[0_24px_48px_-12px_rgba(0,0,0,0.5)]">
               <h3 className="text-3xl font-['Newsreader'] italic font-bold mb-6 flex items-center gap-2 text-[#e5efe3]">
                 <Car className="text-[#00ff87]" size={24} />
                 Virtual Garage
@@ -230,9 +242,9 @@ const ProfilePage = () => {
 
               <div className="flex flex-wrap gap-4 mb-8">
                 <button
-                  className={`px-5 py-2.5 rounded-lg flex items-center gap-2 text-xs uppercase tracking-wider font-bold transition-all ${
+                  className={`px-5 py-2.5 rounded-lg flex items-center gap-2 text-xs uppercase tracking-wider font-bold transition-all active:scale-[0.98] ${
                     activeTab === "profile"
-                      ? "bg-[#00ff87] text-[#0c160e] shadow-[0_0_20px_rgba(0,255,135,0.15)]"
+                      ? "bg-[#00ff87] text-[#020503] shadow-[0_0_20px_rgba(0,255,135,0.15)]"
                       : "border border-[#dae6d8]/10 text-[#dae6d8]/60 hover:text-[#e5efe3] hover:bg-[#dae6d8]/5"
                   }`}
                   onClick={() => setActiveTab("profile")}
@@ -242,9 +254,9 @@ const ProfilePage = () => {
                   {whishListCars?.length > 0 ? whishListCars.length : 0})
                 </button>
                 <button
-                  className={`px-5 py-2.5 rounded-lg flex items-center gap-2 text-xs uppercase tracking-wider font-bold transition-all ${
+                  className={`px-5 py-2.5 rounded-lg flex items-center gap-2 text-xs uppercase tracking-wider font-bold transition-all active:scale-[0.98] ${
                     activeTab === "garage"
-                      ? "bg-[#00ff87] text-[#0c160e] shadow-[0_0_20px_rgba(0,255,135,0.15)]"
+                      ? "bg-[#00ff87] text-[#020503] shadow-[0_0_20px_rgba(0,255,135,0.15)]"
                       : "border border-[#dae6d8]/10 text-[#dae6d8]/60 hover:text-[#e5efe3] hover:bg-[#dae6d8]/5"
                   }`}
                   onClick={() => setActiveTab("garage")}
@@ -278,10 +290,10 @@ const ProfilePage = () => {
                     purchasedCars.map((car) => (
                       <div
                         key={car.id}
-                        className="bg-[#141e16] p-5 rounded-xl border border-[#dae6d8]/5 flex flex-col sm:flex-row gap-4 relative hover:border-[#00ff87]/20 transition-all duration-300"
+                        className="bg-[#07130c]/50 p-5 rounded-xl border border-[#dae6d8]/5 flex flex-col sm:flex-row gap-4 relative hover:border-[#00ff87]/20 hover:shadow-[0_0_20px_rgba(0,255,135,0.03)] transition-all duration-300"
                       >
                         <div className="w-full sm:w-1/3">
-                          <div className="bg-[#0c160e] rounded-lg overflow-hidden border border-[#dae6d8]/5 aspect-[4/3] relative">
+                          <div className="bg-[#020503] rounded-lg overflow-hidden border border-[#dae6d8]/5 aspect-[4/3] relative">
                             <Image
                               src={car.image}
                               alt={car.model}

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
-import { redirect } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import Image from "next/image";
 import {
   Package,
@@ -20,6 +20,7 @@ const OrdersPage = () => {
   const { data: session, status } = useSession();
   const { currentOrder } = useCarStore();
   const [isMounted, setIsMounted] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     setIsMounted(true);
@@ -35,7 +36,7 @@ const OrdersPage = () => {
   // Loading state while checking session or pre-mounting (preventing hydration issues)
   if (status === "loading" || !isMounted || status === "unauthenticated") {
     return (
-      <div className="min-h-screen bg-[#0c160e] text-[#dae6d8] flex items-center justify-center font-['Manrope']">
+      <div className="min-h-screen bg-[#050e0a] text-[#dae6d8] flex items-center justify-center font-['Manrope']">
         <CarWheelLoader text="Retrieving order history..." size={72} />
       </div>
     );
@@ -45,8 +46,8 @@ const OrdersPage = () => {
   const rawOrders: Order[] = Array.isArray(currentOrder)
     ? currentOrder
     : currentOrder
-    ? [currentOrder as unknown as Order]
-    : [];
+      ? [currentOrder as unknown as Order]
+      : [];
   const orders = rawOrders.filter(
     (order: Order) =>
       !order.shippingAddress?.email ||
@@ -54,7 +55,7 @@ const OrdersPage = () => {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-950 text-white font-['Manrope']">
+    <div className="min-h-screen bg-#050e0a  text-white font-['Manrope']">
       <div className="container mx-auto px-4 py-8">
         <h1 className="text-3xl md:text-4xl font-bold mb-8">Order History</h1>
 
@@ -68,7 +69,10 @@ const OrdersPage = () => {
               You haven&apos;t placed any orders yet. When you do, they&apos;ll
               appear here.
             </p>
-            <button className="bg-emerald-600 hover:bg-emerald-700 text-white py-3 px-6 rounded-xl transition-colors font-medium">
+            <button
+              className="bg-emerald-600 hover:bg-emerald-700 text-white py-3 px-6 rounded-xl transition-colors font-medium"
+              onClick={() => router.push("/shop")}
+            >
               Browse Cars
             </button>
           </div>

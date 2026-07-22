@@ -19,11 +19,11 @@ const WhishListCarsCard = ({
 
   return (
     <div
-      className={`bg-[#141e16] rounded-xl border border-[#dae6d8]/5 flex flex-col sm:flex-row gap-4 relative group hover:border-[#00ff87]/20 transition-all duration-300 ${isDetailed ? "p-6 sm:p-7" : "p-5"}`}
+      className={`bg-[#07130c]/50 rounded-xl border border-[#dae6d8]/5 flex flex-col sm:flex-row gap-4 relative group hover:border-[#00ff87]/20 hover:shadow-[0_0_20px_rgba(0,255,135,0.03)] transition-all duration-300 ${isDetailed ? "p-6 sm:p-7" : "p-5"}`}
     >
       <div className={`${isDetailed ? "w-full sm:w-2/5" : "w-full sm:w-1/3"}`}>
         <div
-          className={`bg-[#0c160e] rounded-lg overflow-hidden border border-[#dae6d8]/5 relative ${isDetailed ? "aspect-video" : "aspect-[4/3]"}`}
+          className={`bg-[#020503] rounded-lg overflow-hidden border border-[#dae6d8]/5 relative ${isDetailed ? "aspect-video" : "aspect-[4/3]"}`}
         >
           <Image
             src={car.image}
@@ -59,7 +59,7 @@ const WhishListCarsCard = ({
         {isDetailed && (
           <div className="space-y-3 mb-6 flex-1">
             <div className="flex flex-wrap gap-4 mt-2">
-              <div className="flex items-center gap-2 bg-[#0c160e] px-3 py-1.5 rounded-md border border-[#dae6d8]/5">
+              <div className="flex items-center gap-2 bg-[#020503]/60 px-3 py-1.5 rounded-md border border-[#dae6d8]/5">
                 <Gauge size={14} className="text-[#00ff87]" />
                 <span className="text-[10px] uppercase tracking-widest text-[#dae6d8]/70 font-medium">
                   {car.bodySilhouette || "Performance"}
@@ -80,7 +80,7 @@ const WhishListCarsCard = ({
           {isDetailed && (
             <Link
               href={`/details/${car.id}`}
-              className="flex-1 bg-[#00ff87]/5 hover:bg-[#00ff87] text-[#00ff87] hover:text-[#0c160e] border border-[#00ff87]/20 hover:border-[#00ff87] py-2.5 rounded-lg text-[10px] font-bold uppercase tracking-widest transition-all duration-300 flex items-center justify-center gap-2 group/btn"
+              className="flex-1 bg-[#00ff87]/5 hover:bg-[#00ff87] text-[#00ff87] hover:text-[#020503] border border-[#00ff87]/20 hover:border-[#00ff87] py-2.5 rounded-lg text-[10px] font-bold uppercase tracking-widest transition-all duration-300 flex items-center justify-center gap-2 group/btn"
             >
               View Details
               <ArrowUpRight
@@ -107,7 +107,7 @@ const WhishListCarsCard = ({
       </div>
 
       {isDetailed && car.badge && (
-        <span className="absolute top-4 left-4 bg-[#00ff87] text-[#0c160e] px-3 py-1 rounded-md text-[10px] uppercase tracking-wider font-extrabold shadow-[0_0_20px_rgba(0,255,135,0.2)]">
+        <span className="absolute top-4 left-4 bg-[#00ff87] text-[#020503] px-3 py-1 rounded-md text-[10px] uppercase tracking-wider font-extrabold shadow-[0_0_20px_rgba(0,255,135,0.2)]">
           {car.badge}
         </span>
       )}

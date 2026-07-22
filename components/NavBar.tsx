@@ -108,8 +108,8 @@ const NavBar = () => {
 `}
       style={{
         background: isScrolled
-          ? "rgba(25, 42, 32, 0.45)"
-          : "rgba(20, 32, 24, 0.3)",
+          ? "rgba(9, 26, 17, 0.45)"
+          : "rgba(9, 26, 17, 0.3)",
         border: isScrolled ? "1px solid rgba(0, 255, 135, 0.2)" : "none",
         borderBottom: isScrolled
           ? "none"
@@ -212,9 +212,9 @@ const NavBar = () => {
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.95, y: -10 }}
                     transition={{ duration: 0.2, ease: [0.23, 1, 0.32, 1] }}
-                    className="absolute right-0 mt-3 w-56 md:w-64 rounded-2xl p-2.5 backdrop-blur-xl z-50 origin-top-right border border-[#00ff87]/15 shadow-[0_20px_50px_rgba(0,0,0,0.6)]"
+                    className="absolute right-0 mt-3 w-56 md:w-64 rounded-2xl p-2.5 backdrop-blur-xl z-50 origin-top-right border border-[#00ff87]/15 shadow-[0_25px_60px_rgba(0,0,0,0.65)]"
                     style={{
-                      background: "rgba(10, 22, 15, 0.96)",
+                      background: "rgba(5, 13, 8, 0.95)",
                     }}
                   >
                     {session ? (

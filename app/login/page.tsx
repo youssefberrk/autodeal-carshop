@@ -27,7 +27,7 @@ const Login = () => {
 			/>
 
 			{/* Dark base tint over entire page */}
-			<div className="absolute inset-0 bg-[#080e0a]/55 z-0" />
+			<div className="absolute inset-0 bg-[#050e0a]/55 z-0" />
 
 			{/* ─── Visual Side (Left 60%) ─── */}
 			<div className="hidden lg:block lg:w-[60%] relative overflow-hidden z-10">

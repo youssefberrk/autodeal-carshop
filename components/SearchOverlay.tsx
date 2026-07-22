@@ -93,7 +93,7 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95, y: -20 }}
         transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
-        className="w-full max-w-3xl bg-[#0a120c]/90 border border-[#00ff87]/20 rounded-3xl p-6 md:p-8 shadow-[0_0_50px_rgba(0,255,135,0.15)] flex flex-col gap-6"
+        className="w-full max-w-3xl bg-[#050e0a]/90 border border-[#00ff87]/20 rounded-3xl p-6 md:p-8 shadow-[0_0_50px_rgba(0,255,135,0.15)] flex flex-col gap-6"
       >
         {/* Search Header */}
         <div className="flex items-center justify-between border-b border-[#00ff87]/15 pb-4">

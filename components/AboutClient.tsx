@@ -193,7 +193,7 @@ const AboutClient = () => {
             <motion.div variants={heroItemVariants} className="flex gap-4">
               <Link
                 href="/shop"
-                className="group relative flex items-center gap-2 px-8 py-4 bg-[#00ff87] text-[#0c160e] font-mono text-sm uppercase font-bold tracking-widest rounded-lg overflow-hidden transition-transform duration-150 active:scale-97 hover:shadow-[0_0_30px_rgba(0,255,135,0.4)]"
+                className="group relative flex items-center gap-2 px-8 py-4 bg-[#00ff87] text-[#050e0a] font-mono text-sm uppercase font-bold tracking-widest rounded-lg overflow-hidden transition-transform duration-150 active:scale-97 hover:shadow-[0_0_30px_rgba(0,255,135,0.4)]"
               >
                 Explore Showroom
                 <ArrowRight
@@ -234,7 +234,7 @@ const AboutClient = () => {
                   variants={cardHoverEffect}
                   whileHover="whileHover"
                   whileTap="whileTap"
-                  className="p-8 bg-[#0c160e]/50 backdrop-blur-md rounded-xl border border-[rgba(218,230,216,0.06)] flex flex-col justify-between"
+                  className="p-8 bg-[#050e0a]/50 backdrop-blur-md rounded-xl border border-[rgba(218,230,216,0.06)] flex flex-col justify-between"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
@@ -261,7 +261,7 @@ const AboutClient = () => {
         </section>
 
         {/* METRICS SECTION */}
-        <section className="py-20 border-t border-[rgba(218,230,216,0.06)] bg-[#0c160e]/20 backdrop-blur-sm rounded-2xl px-8 my-10 border">
+        <section className="py-20 border-t border-[rgba(218,230,216,0.06)] bg-[#050e0a]/20 backdrop-blur-sm rounded-2xl px-8 my-10 border">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
             {stats.map((stat, idx) => {
               const Icon = stat.icon;
@@ -325,12 +325,12 @@ const AboutClient = () => {
                     }`}
                   >
                     {/* Node Dot */}
-                    <div className="absolute left-4 md:left-1/2 -translate-x-[6.5px] w-[14px] h-[14px] rounded-full bg-[#0c160e] border-2 border-[#00ff87] z-20 shadow-[0_0_10px_#00ff87]"></div>
+                    <div className="absolute left-4 md:left-1/2 -translate-x-[6.5px] w-[14px] h-[14px] rounded-full bg-[#050e0a] border-2 border-[#00ff87] z-20 shadow-[0_0_10px_#00ff87]"></div>
 
                     {/* Content Panel */}
                     <div className="w-full md:w-1/2 pl-12 md:pl-0 md:px-12">
                       <motion.div
-                        className="p-8 bg-[#0c160e]/50 backdrop-blur-md rounded-xl border border-[rgba(218,230,216,0.05)] shadow-lg"
+                        className="p-8 bg-[#050e0a]/50 backdrop-blur-md rounded-xl border border-[rgba(218,230,216,0.05)] shadow-lg"
                         initial={{ opacity: 0, x: isEven ? -30 : 30 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true, margin: "-100px" }}
@@ -381,7 +381,7 @@ const AboutClient = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
             {/* Curator 1 */}
             <motion.div
-              className="group relative flex flex-col md:flex-row items-center gap-8 p-6 bg-[#0c160e]/30 rounded-2xl border border-[rgba(218,230,216,0.05)] overflow-hidden"
+              className="group relative flex flex-col md:flex-row items-center gap-8 p-6 bg-[#050e0a]/30 rounded-2xl border border-[rgba(218,230,216,0.05)] overflow-hidden"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -425,7 +425,7 @@ const AboutClient = () => {
 
             {/* Curator 2 */}
             <motion.div
-              className="group relative flex flex-col md:flex-row items-center gap-8 p-6 bg-[#0c160e]/30 rounded-2xl border border-[rgba(218,230,216,0.05)] overflow-hidden"
+              className="group relative flex flex-col md:flex-row items-center gap-8 p-6 bg-[#050e0a]/30 rounded-2xl border border-[rgba(218,230,216,0.05)] overflow-hidden"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -471,7 +471,7 @@ const AboutClient = () => {
 
         {/* CTA SECTION */}
         <section className="py-24 text-center relative rounded-2xl overflow-hidden border border-[#00ff87]/20 my-20">
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0c160e]/50 to-[#00ff87]/5 z-0"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-[#050e0a]/50 to-[#00ff87]/5 z-0"></div>
           <div className="relative z-10 max-w-3xl mx-auto px-6">
             <h2
               className="text-3xl md:text-6xl font-bold uppercase text-white mb-6 tracking-wide"
@@ -486,7 +486,7 @@ const AboutClient = () => {
             </p>
             <Link
               href="/shop"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-[#00ff87] text-[#0c160e] font-mono text-sm uppercase font-black tracking-widest rounded-lg hover:shadow-[0_0_30px_rgba(0,255,135,0.4)] transition-transform duration-150 active:scale-97"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-[#00ff87] text-[#050e0a] font-mono text-sm uppercase font-black tracking-widest rounded-lg hover:shadow-[0_0_30px_rgba(0,255,135,0.4)] transition-transform duration-150 active:scale-97"
             >
               Enter Showroom
               <ArrowRight size={16} />

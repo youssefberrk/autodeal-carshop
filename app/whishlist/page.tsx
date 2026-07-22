@@ -9,9 +9,9 @@ const WhishlistPage = () => {
   const { whishListCars, removeFromWhishList } = useCarStore();
   
   return (
-    <div className="min-h-screen bg-[#0c160e] text-[#dae6d8] font-['Manrope'] pb-24 pt-28 relative overflow-hidden">
+    <div className="min-h-screen bg-[#020503] text-[#dae6d8] font-['Manrope'] pb-24 pt-28 relative overflow-hidden">
       {/* Ambient Background Glows */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_12%,rgba(0,255,135,0.06),transparent_38%),radial-gradient(circle_at_82%_0%,rgba(148,163,184,0.04),transparent_32%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_-10%,rgba(0,255,135,0.12),transparent_70%),radial-gradient(circle_at_0%_100%,rgba(0,255,135,0.04),transparent_40%),radial-gradient(circle_at_100%_0%,rgba(218,230,216,0.03),transparent_35%)]" />
 
       <div className="max-w-[1000px] mx-auto px-6 relative z-10">
         <div className="mb-12">
@@ -50,7 +50,7 @@ const WhishlistPage = () => {
             ))}
           </div>
         ) : (
-          <div className="bg-[#141e16]/50 backdrop-blur-md rounded-2xl p-20 border border-[#dae6d8]/5 text-center">
+          <div className="bg-[#050d08]/85 backdrop-blur-xl rounded-2xl p-20 border border-[#dae6d8]/5 text-center shadow-[0_24px_48px_-12px_rgba(0,0,0,0.5)]">
             <Heart size={48} className="text-[#dae6d8]/10 mx-auto mb-6" />
             <h2 className="text-2xl font-['Newsreader'] italic font-bold text-[#e5efe3] mb-3">
               Your wishlist is empty
@@ -60,7 +60,7 @@ const WhishlistPage = () => {
             </p>
             <Link 
               href="/shop"
-              className="inline-block bg-[#00ff87] text-[#0c160e] px-8 py-4 rounded-xl text-xs uppercase tracking-[0.2em] font-bold hover:bg-emerald-300 transition-all active:scale-[0.98] shadow-[0_0_30px_rgba(0,255,135,0.2)]"
+              className="inline-block bg-[#00ff87] text-[#020503] px-8 py-4 rounded-xl text-xs uppercase tracking-[0.2em] font-bold hover:bg-emerald-300 transition-all active:scale-[0.98] shadow-[0_0_30px_rgba(0,255,135,0.2)]"
             >
               Start Exploring
             </Link>

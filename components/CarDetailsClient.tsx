@@ -209,8 +209,8 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
   };
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-[#0b140e] text-[#e5efe3] font-['Manrope']">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_12%,rgba(0,255,135,0.18),transparent_38%),radial-gradient(circle_at_82%_0%,rgba(148,163,184,0.14),transparent_32%),linear-gradient(to_bottom,rgba(20,34,25,0.85),rgba(10,16,12,0.98))]" />
+    <div className="relative min-h-screen overflow-hidden bg-[#050e0a] text-[#e5efe3] font-['Manrope']">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_12%,rgba(0,255,135,0.18),transparent_38%),radial-gradient(circle_at_82%_0%,rgba(148,163,184,0.14),transparent_32%),linear-gradient(to_bottom,rgba(9, 26, 17,0.85),rgba(5, 14, 10,0.98))]" />
       <div className="pointer-events-none absolute inset-0 opacity-[0.06] [background-image:linear-gradient(to_right,rgba(229,239,227,0.25)_1px,transparent_1px),linear-gradient(to_bottom,rgba(229,239,227,0.2)_1px,transparent_1px)] [background-size:56px_56px]" />
       <div className="relative mx-auto w-full max-w-[1400px] px-6 pb-24 pt-10 sm:px-10 lg:px-16">
         {/* Navigation Breadcrumb */}
@@ -274,8 +274,8 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
           <div className="relative grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
             {/* Gallery Column */}
             <div className="lg:col-span-7">
-              <div className="group relative mb-5 aspect-[16/10] overflow-hidden rounded-2xl border border-[#e5efe3]/10 bg-[#111c15] shadow-[0_30px_70px_-42px_rgba(0,0,0,0.85)]">
-                <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-[#0c160e]/25 to-transparent opacity-80" />
+              <div className="group relative mb-5 aspect-[16/10] overflow-hidden rounded-2xl border border-[#e5efe3]/10 bg-[#091a11] shadow-[0_30px_70px_-42px_rgba(0,0,0,0.85)]">
+                <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-[#050e0a]/25 to-transparent opacity-80" />
                 <ImageSlider
                   album={thumbnails}
                   activeImage={activeImage}
@@ -287,7 +287,7 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
                   <button
                     key={idx}
                     onClick={() => setActiveImage(idx)}
-                    className={`relative aspect-video overflow-hidden rounded-lg border bg-[#141e16] transition-[opacity,transform,border-color] duration-200 [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] active:scale-[0.97] ${
+                    className={`relative aspect-video overflow-hidden rounded-lg border bg-[#091a11] transition-[opacity,transform,border-color] duration-200 [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] active:scale-[0.97] ${
                       activeImage === idx
                         ? "border-[#00ff87] opacity-100"
                         : "border-[#e5efe3]/10 opacity-60 hover:border-[#00ff87]/35 hover:opacity-100"
@@ -306,7 +306,7 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
 
             {/* Configuration Column */}
             <div className="lg:col-span-5 flex flex-col justify-center">
-              <div className="max-w-xl rounded-2xl border border-[#e5efe3]/10 bg-[linear-gradient(145deg,rgba(20,32,24,0.82),rgba(12,21,16,0.68))] p-6 shadow-[0_26px_70px_-48px_rgba(0,0,0,0.95)] backdrop-blur-md sm:p-8">
+              <div className="max-w-xl rounded-2xl border border-[#e5efe3]/10 bg-[linear-gradient(145deg,rgba(9, 26, 17,0.82),rgba(5, 14, 10,0.68))] p-6 shadow-[0_26px_70px_-48px_rgba(0,0,0,0.95)] backdrop-blur-md sm:p-8">
                 <p className="mb-3 font-['Newsreader'] text-2xl italic text-[#e5efe3] sm:text-3xl">
                   {car.bodySilhouette} excellence in its purest form.
                 </p>
@@ -337,7 +337,7 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
                     const Icon = spec.icon;
                     return (
                       <div key={idx} className="flex items-center gap-4 ">
-                        <div className="flex h-10 w-10 items-center justify-center rounded-full border border-[#e5efe3]/12 bg-[#111b14] text-[#00ff87]">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-full border border-[#e5efe3]/12 bg-[#091a11] text-[#00ff87]">
                           <Icon size={18} />
                         </div>
                         <div className="space-y-1">
@@ -364,7 +364,7 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
                         <button
                           key={color.id}
                           onClick={() => setSelectedColor(color)}
-                          className={`h-8 w-8 rounded-full ring-offset-4 ring-offset-[#0c160e] transition-[transform,box-shadow,outline-color] duration-200 [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] active:scale-[0.95] cursor-pointer ${
+                          className={`h-8 w-8 rounded-full ring-offset-4 ring-offset-[#050e0a] transition-[transform,box-shadow,outline-color] duration-200 [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] active:scale-[0.95] cursor-pointer ${
                             selectedColor.id === color.id
                               ? "ring-2 ring-[#00ff87] shadow-[0_0_0_5px_rgba(0,255,135,0.12)]"
                               : "hover:scale-110"
@@ -377,7 +377,7 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
                 )}
                 <div className="mt-6 flex flex-col gap-2 sm:mb-12 sm:flex-row sm:items-center">
                   {/* Quantity Selector */}
-                  <div className="flex items-center rounded-lg border border-[#e5efe3]/12 bg-[#131f17] h-[52px]">
+                  <div className="flex items-center rounded-lg border border-[#e5efe3]/12 bg-[#091a11] h-[52px]">
                     <button
                       onClick={() => {
                         const nextQuantity = Math.max(1, quantity - 1);
@@ -410,14 +410,14 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
                       className={`flex w-full h-[52px] flex-col items-center justify-center gap-1 cursor-pointer rounded-lg border px-4 text-[11px] font-bold uppercase tracking-[0.18em] shadow-[0_16px_36px_-26px_rgba(0,0,0,1)] transition-[transform,background-color,color,border-color] duration-200 [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] active:scale-[0.97] ${
                         isAllocated
                           ? "border-emerald-500/50 bg-emerald-900/40 text-emerald-300 hover:bg-emerald-900/65"
-                          : "border-[#00ff87]/70 bg-[#00ff87] text-[#0c160e] hover:bg-emerald-300"
+                          : "border-[#00ff87]/70 bg-[#00ff87] text-[#050e0a] hover:bg-emerald-300"
                       }`}
                       onClick={handleAllocation}
                     >
                       {isAllocated ? (
                         <span className="flex flex-col items-center justify-center h-full">
                           <span className="flex items-center gap-2">
-                            <span className="w-3.5 h-3.5 rounded-full bg-emerald-500 flex items-center justify-center text-[10px] text-[#0c160e] font-bold">
+                            <span className="w-3.5 h-3.5 rounded-full bg-emerald-500 flex items-center justify-center text-[10px] text-[#050e0a] font-bold">
                               ✓
                             </span>
                             <span>Added to Garage</span>
@@ -461,7 +461,7 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
               return (
                 <div
                   key={idx}
-                  className="group rounded-xl border border-[#e5efe3]/8 bg-[linear-gradient(180deg,rgba(20,31,24,0.95),rgba(16,25,20,0.62))] p-8 transition-[transform,border-color,box-shadow] duration-300 [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] hover:-translate-y-0.5 hover:border-[#00ff87]/35 hover:shadow-[0_24px_52px_-40px_rgba(0,255,135,0.55)] sm:p-10"
+                  className="group rounded-xl border border-[#e5efe3]/8 bg-[linear-gradient(180deg,rgba(9, 26, 17,0.95),rgba(5, 14, 10,0.62))] p-8 transition-[transform,border-color,box-shadow] duration-300 [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] hover:-translate-y-0.5 hover:border-[#00ff87]/35 hover:shadow-[0_24px_52px_-40px_rgba(0,255,135,0.55)] sm:p-10"
                 >
                   <div className="mb-8 text-[#00ff87] transition-transform duration-300 [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] group-hover:-translate-y-0.5">
                     <Icon size={32} strokeWidth={1.5} />

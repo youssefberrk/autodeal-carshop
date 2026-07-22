@@ -108,32 +108,32 @@ button,
   --brand-muted: oklch(0.79 0.1 150 / 20%);
 
   /* Refined Palette - Tinted Neutrals */
-  --background: oklch(0.12 0.015 160); /* Deep Emerald-Tinted Black */
-  --foreground: oklch(0.95 0.01 160); /* Pearl white with slight tint */
+  --background: oklch(0.08 0.012 155); /* Deep Emerald-Tinted Black */
+  --foreground: oklch(0.95 0.01 155); /* Pearl white with slight tint */
 
-  --card: oklch(0.16 0.02 160);
-  --card-foreground: oklch(0.9 0.01 160);
+  --card: oklch(0.11 0.018 155);
+  --card-foreground: oklch(0.9 0.01 155);
 
-  --popover: oklch(0.14 0.02 160);
-  --popover-foreground: oklch(0.95 0.01 160);
+  --popover: oklch(0.09 0.015 155);
+  --popover-foreground: oklch(0.95 0.01 155);
 
   --primary: var(--brand);
-  --primary-foreground: oklch(0.12 0.015 160);
+  --primary-foreground: oklch(0.08 0.012 155);
 
-  --secondary: oklch(0.25 0.03 160);
-  --secondary-foreground: oklch(0.95 0.01 160);
+  --secondary: oklch(0.15 0.02 155);
+  --secondary-foreground: oklch(0.95 0.01 155);
 
-  --muted: oklch(0.2 0.02 160);
-  --muted-foreground: oklch(0.65 0.02 160);
+  --muted: oklch(0.12 0.015 155);
+  --muted-foreground: oklch(0.55 0.015 155);
 
-  --accent: oklch(0.25 0.03 160);
-  --accent-foreground: oklch(0.95 0.01 160);
+  --accent: oklch(0.15 0.02 155);
+  --accent-foreground: oklch(0.95 0.01 155);
 
   --destructive: oklch(0.55 0.2 25);
   --destructive-foreground: oklch(0.98 0.01 25);
 
-  --border: oklch(0.25 0.02 160 / 15%);
-  --input: oklch(0.25 0.02 160 / 20%);
+  --border: oklch(0.2 0.015 155 / 15%);
+  --input: oklch(0.2 0.015 155 / 20%);
   --ring: var(--brand);
 
   /* Motion */
@@ -149,15 +149,15 @@ button,
   --color-accent-dim: rgba(0, 255, 135, 0.15);
   --color-text: #dae6d8;
   --color-text-muted: rgba(218, 230, 216, 0.4);
-  --color-bg-dark: #0c160e;
-  --color-glass: rgba(12, 22, 14, 0.7);
+  --color-bg-dark: #050e0a;
+  --color-glass: rgba(5, 14, 10, 0.7);
   --color-glass-border: rgba(218, 230, 216, 0.08);
 }
 
 .dark {
   /* Dark mode is the primary mode for this brand register */
-  --background: oklch(0.12 0.015 160);
-  --foreground: oklch(0.95 0.01 160);
+  --background: oklch(0.08 0.012 155);
+  --foreground: oklch(0.95 0.01 155);
 }
 
 @layer base {
@@ -168,8 +168,8 @@ button,
     background: var(--background);
     background: radial-gradient(
       ellipse at 50% 0%,
-      oklch(0.2 0.06 160) 0%,
-      oklch(0.15 0.03 160) 35%,
+      oklch(0.14 0.035 155) 0%,
+      oklch(0.10 0.02 155) 35%,
       var(--background) 85%
     );
     background-attachment: fixed;
@@ -292,7 +292,7 @@ button,
   display: flex;
   align-items: center;
   gap: 12px;
-  background: rgba(12, 22, 14, 0.85);
+  background: rgba(5, 14, 10, 0.85);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(0, 255, 135, 0.2);
@@ -626,6 +626,11 @@ button,
 .filters-panel {
   position: sticky;
   top: 100px;
+  max-height: calc(100vh - 140px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 255, 135, 0.2) transparent;
   background: var(--color-glass);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -633,6 +638,23 @@ button,
   border-radius: 1.5rem;
   padding: 2rem;
   transition: border-color 0.3s ease;
+}
+
+.filters-panel::-webkit-scrollbar {
+  width: 4px;
+}
+
+.filters-panel::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.filters-panel::-webkit-scrollbar-thumb {
+  background: rgba(0, 255, 135, 0.2);
+  border-radius: 10px;
+}
+
+.filters-panel::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 255, 135, 0.4);
 }
 
 .filters-panel:hover {
@@ -801,7 +823,7 @@ button,
     oklch(0.16 0.02 160 / 98%),
     oklch(0.12 0.015 160 / 99%)
   );
-  border: 1px solid oklch(0.95 0.01 160 / 5%);
+  border: 1px solid oklch(0.95 0.01 155 / 5%);
   border-radius: 1.5rem;
   overflow: hidden;
   transition:
@@ -894,7 +916,7 @@ button,
 
 .card-favorite:hover {
   background: oklch(0.12 0.015 160 / 90%);
-  border-color: oklch(0.95 0.01 160 / 20%);
+  border-color: oklch(0.95 0.01 155 / 20%);
   transform: scale(1.05);
 }
 
@@ -903,7 +925,7 @@ button,
 }
 
 .heart-icon {
-  color: oklch(0.95 0.01 160 / 50%);
+  color: oklch(0.95 0.01 155 / 50%);
   transition:
     color 0.2s ease,
     transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -957,7 +979,7 @@ button,
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--primary-foreground);
-  background: oklch(0.95 0.01 160 / 95%);
+  background: oklch(0.95 0.01 155 / 95%);
   backdrop-filter: blur(8px);
   padding: 0.5rem 1.25rem;
   border-radius: 100px;
