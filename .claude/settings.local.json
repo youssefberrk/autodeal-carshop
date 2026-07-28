@@ -9,7 +9,20 @@
       "Bash(cygpath *)",
       "Bash(mkdir -p .claude/skills/frontend-design)",
       "Bash(cp /tmp/skill-extract/frontend-design/SKILL.md .claude/skills/frontend-design/SKILL.md)",
-      "Bash(cp /tmp/skill-extract/frontend-design/LICENSE.txt .claude/skills/frontend-design/LICENSE.txt)"
+      "Bash(cp /tmp/skill-extract/frontend-design/LICENSE.txt .claude/skills/frontend-design/LICENSE.txt)",
+      "Bash(dir C:UsersLenovoWorkCar-Shope-car-shop *)",
+      "Bash(pnpm dlx *)",
+      "Bash(node_modules/.bin/tsc --noEmit components/Footer.tsx app/shop/page.tsx)",
+      "Bash(node_modules/.bin/tsc --noEmit)",
+      "Bash(node_modules/.bin/next dev *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"http://localhost:3100/\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" \"http://localhost:3100/shop?badge=Popular\")",
+      "Bash(curl -s -o /dev/null -w \"root: %{http_code}\\\\n\" \"http://localhost:3000/\")",
+      "Bash(curl -s -o /dev/null -w \"shop: %{http_code}\\\\n\" \"http://localhost:3000/shop?badge=Popular\")",
+      "Bash(curl -s -o /dev/null -w \"about: %{http_code}\\\\n\" \"http://localhost:3000/about\")",
+      "Bash(curl -s \"http://localhost:3000/\")",
+      "Bash(curl -s \"http://localhost:3000/shop?badge=Popular\")",
+      "Bash(curl -s \"http://localhost:3000/shop?status=new-arrivals\")"
     ]
   }
 }
