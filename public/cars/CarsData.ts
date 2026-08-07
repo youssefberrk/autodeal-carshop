@@ -137,9 +137,9 @@ export const carsData: Cars[] = [
 		availability: 4,
 		image: "/cars/shop-featured/am/am1.jpeg",
 		carAlbum: {
-			photo1: "/cars/shop-featured/am/am1.jpeg",
-			photo2: "/cars/shop-featured/am/am2.jpg",
-			photo3: "/cars/shop-featured/am/am3.jpeg",
+			photo1: "/cars/mercedes/eqs-1.avif",
+			photo2: "/cars/mercedes/eqs-2.avif",
+			photo3: "/cars/mercedes/eqs-3.jpg",
 		},
 		features: [
 			{
@@ -178,9 +178,9 @@ export const carsData: Cars[] = [
 		availability: 5,
 		image: "/cars/shop-featured/911/p3.jpg",
 		carAlbum: {
-			photo1: "/cars/shop-featured/911/p3.jpg",
-			photo2: "/cars/shop-featured/911/p1.jpg",
-			photo3: "/cars/shop-featured/911/p2.jpg",
+			photo1: "/cars/audi/q8-1.webp",
+			photo2: "/cars/audi/q8-2.webp",
+			photo3: "/cars/audi/q8-3.webp",
 		},
 		features: [
 			{
@@ -459,9 +459,9 @@ export const carsData: Cars[] = [
 		availability: 3,
 		image: "/cars/mercedes/amg-gt-1.jpg",
 		carAlbum: {
-			photo1: "/cars/mercedes/amg-gt-1.jpg",
-			photo2: "/cars/mercedes/amg-gt-2.jpg",
-			photo3: "/cars/mercedes/amg-gt-3.jpg",
+			photo1: "/cars/mercedes/amg-gt-1.avif",
+			photo2: "/cars/mercedes/amg-gt-2.avif",
+			photo3: "/cars/mercedes/amg-gt-3.avif",
 		},
 		features: [
 			{
@@ -497,9 +497,9 @@ export const carsData: Cars[] = [
 		availability: 4,
 		image: "/cars/audi/rs7-1.jpg",
 		carAlbum: {
-			photo1: "/cars/audi/rs7-1.jpg",
-			photo2: "/cars/audi/rs7-2.jpg",
-			photo3: "/cars/audi/rs7-3.jpg",
+			photo1: "/cars/audi/etron-1.webp",
+			photo2: "/cars/audi/etron-2.webp",
+			photo3: "/cars/audi/etron-3.webp",
 		},
 		features: [
 			{
@@ -573,9 +573,9 @@ export const carsData: Cars[] = [
 		availability: 1,
 		image: "/cars/bentley/continental-1.jpg",
 		carAlbum: {
-			photo1: "/cars/bentley/continental-1.jpg",
-			photo2: "/cars/bentley/continental-2.jpg",
-			photo3: "/cars/bentley/continental-3.jpg",
+			photo1: "/cars/bentley/continental-1.webp",
+			photo2: "/cars/bentley/continental-2.webp",
+			photo3: "/cars/bentley/continental-3.webp",
 		},
 		features: [
 			{
@@ -611,9 +611,9 @@ export const carsData: Cars[] = [
 		availability: 2,
 		image: "/cars/astonmartin/dbx-1.jpg",
 		carAlbum: {
-			photo1: "/cars/astonmartin/dbx-1.jpg",
-			photo2: "/cars/astonmartin/dbx-2.jpg",
-			photo3: "/cars/astonmartin/dbx-3.jpg",
+			photo1: "/cars/astonmartin/dbx-1.webp",
+			photo2: "/cars/astonmartin/dbx-2.webp",
+			photo3: "/cars/astonmartin/dbx-3.webp",
 		},
 		features: [
 			{
@@ -633,8 +633,8 @@ export const carsData: Cars[] = [
 			},
 		],
 		colors: [
-			{ id: "apex-grey", hex: "#4E5452" },
 			{ id: "podium-green", hex: "#004B49" },
+			{ id: "apex-grey", hex: "#4E5452" },
 			{ id: "lunar-white", hex: "#EAEAEA" },
 		],
 	},
@@ -649,9 +649,9 @@ export const carsData: Cars[] = [
 		availability: 2,
 		image: "/cars/lamborghini/urus-1.jpg",
 		carAlbum: {
-			photo1: "/cars/lamborghini/urus-1.jpg",
-			photo2: "/cars/lamborghini/urus-2.jpg",
-			photo3: "/cars/lamborghini/urus-3.jpg",
+			photo1: "/cars/lamborghini/urus-1.png",
+			photo2: "/cars/lamborghini/urus-2.png",
+			photo3: "/cars/lamborghini/urus-3.png",
 		},
 		features: [
 			{
@@ -763,9 +763,9 @@ export const carsData: Cars[] = [
 		availability: 4,
 		image: "/cars/mercedes/gle-1.jpg",
 		carAlbum: {
-			photo1: "/cars/mercedes/gle-1.jpg",
-			photo2: "/cars/mercedes/gle-2.jpg",
-			photo3: "/cars/mercedes/gle-3.jpg",
+			photo1: "/cars/mercedes/gle-1.webp",
+			photo2: "/cars/mercedes/gle-2.webp",
+			photo3: "/cars/mercedes/gle-3.webp",
 		},
 		features: [
 			{
@@ -801,9 +801,9 @@ export const carsData: Cars[] = [
 		availability: 2,
 		image: "/cars/audi/r8-1.jpg",
 		carAlbum: {
-			photo1: "/cars/audi/r8-1.jpg",
-			photo2: "/cars/audi/r8-2.jpg",
-			photo3: "/cars/audi/r8-3.jpg",
+			photo1: "/cars/audi/r8-1.webp",
+			photo2: "/cars/audi/r8-2.webp",
+			photo3: "/cars/audi/r8-3.webp",
 		},
 		features: [
 			{
@@ -951,11 +951,11 @@ export const carsData: Cars[] = [
 		bodySilhouette: "Performance",
 		price: 340000,
 		availability: 1,
-		image: "/cars/lamborghini/aventador-1.jpg",
+		image: "/cars/lamborghini/aventador-1.webp",
 		carAlbum: {
-			photo1: "/cars/lamborghini/aventador-1.jpg",
-			photo2: "/cars/lamborghini/aventador-2.jpg",
-			photo3: "/cars/lamborghini/aventador-3.jpg",
+			photo1: "/cars/lamborghini/aventador-1.webp",
+			photo2: "/cars/lamborghini/aventador-2.webp",
+			photo3: "/cars/lamborghini/aventador-3.webp",
 		},
 		features: [
 			{
@@ -975,47 +975,10 @@ export const carsData: Cars[] = [
 			},
 		],
 		colors: [
-			{ id: "viola-pasifae", hex: "#7D26CD" },
+			{ id: "san-remo-green", hex: "#004B23" },
 			{ id: "arancio-atlas", hex: "#FF8C00" },
 			{ id: "bianco-isis", hex: "#FFFFFF" },
 		],
 	},
-	{
-		id: 25,
-		brand: "BMW",
-		model: "i4 M50",
-		badge: "Electric M",
-		specs: "Dual Electric Motors, 536 HP",
-		bodySilhouette: "Electric",
-		price: 60000,
-		availability: 5,
-		image: "/cars/bmw/series3-1.jpg",
-		carAlbum: {
-			photo1: "/cars/bmw/series3-1.jpg",
-			photo2: "/cars/bmw/series3-2.jpg",
-			photo3: "/cars/bmw/series3-3.jpg",
-		},
-		features: [
-			{
-				icon: "Zap",
-				title: "Electric M Power",
-				description: "The first all-electric BMW M model, combining high performance with zero emissions.",
-			},
-			{
-				icon: "Cpu",
-				title: "BMW Live Cockpit",
-				description: "Fully digital display network with curved screen and cloud-based navigation.",
-			},
-			{
-				icon: "Maximize",
-				title: "IconicSounds Electric",
-				description: "Unique soundscapes composed by Hans Zimmer to enhance the emotional driving experience.",
-			},
-		],
-		colors: [
-			{ id: "portimao-blue", hex: "#1E3A8A" },
-			{ id: "san-remo-green", hex: "#004B23" },
-			{ id: "dravit-grey", hex: "#4E5452" },
-		],
-	},
+	
 ];
