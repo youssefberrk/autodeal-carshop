@@ -94,11 +94,11 @@ export const carsData: Cars[] = [
 		bodySilhouette: "Coupe",
 		price: 280000,
 		availability: 2,
-		image: "/ferari.jpg",
+		image: "/cars/ferrari/f8-1.jpg",
 		carAlbum: {
-			photo1: "/ferari.jpg",
-			photo2: "/cars/shop-featured/911/p2.jpg",
-			photo3: "/cars/shop-featured/lambo/lambo3.jpeg",
+			photo1: "/cars/ferrari/f8-1.jpg",
+			photo2: "/cars/ferrari/f8-2.jpg",
+			photo3: "/cars/ferrari/f8-3.jpg",
 		},
 		features: [
 			{

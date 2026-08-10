@@ -141,28 +141,32 @@ function WheelMark({ size = 48 }: { size?: number }) {
 	);
 }
 
-export default function Logo() {
+export default function Logo({ shrink = false }: { shrink?: boolean }) {
 	return (
 		<div
-			className="group flex items-center gap-3.5"
+			className="group flex items-center gap-2 sm:gap-3.5 transition-all duration-300"
 			aria-label="AutoDeal Premium Automotive"
 		>
-			<div className="relative grid size-12 shrink-0 place-items-center rounded-full bg-[radial-gradient(circle_at_35%_25%,rgba(218,230,216,0.13),rgba(0,255,135,0.04)_42%,rgba(5,10,7,0.9)_74%)] ring-1 ring-[color-mix(in_oklch,var(--brand)_42%,transparent)] shadow-[inset_0_0_18px_rgba(218,230,216,0.06),0_0_26px_rgba(0,255,135,0.12)] transition-shadow duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:shadow-[inset_0_0_18px_rgba(218,230,216,0.08),0_0_34px_rgba(0,255,135,0.2)]">
+			<div className={`relative grid shrink-0 place-items-center rounded-full bg-[radial-gradient(circle_at_35%_25%,rgba(218,230,216,0.13),rgba(0,255,135,0.04)_42%,rgba(5,10,7,0.9)_74%)] ring-1 ring-[color-mix(in_oklch,var(--brand)_42%,transparent)] shadow-[inset_0_0_18px_rgba(218,230,216,0.06),0_0_26px_rgba(0,255,135,0.12)] transition-all duration-300 group-hover:shadow-[inset_0_0_18px_rgba(218,230,216,0.08),0_0_34px_rgba(0,255,135,0.2)] ${
+				shrink ? "size-9 md:size-12" : "size-10 sm:size-12"
+			}`}>
 				<div className="will-change-transform transition-transform duration-[850ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-0.5">
-					<WheelMark size={42} />
+					<WheelMark size={shrink ? 30 : 38} />
 				</div>
 			</div>
 
 			<div className="flex flex-col leading-none">
 				<div
-					className="text-[1.55rem] font-black leading-[0.95] tracking-[0.075em] sm:text-[1.75rem]"
+					className={`font-black leading-[0.95] tracking-[0.075em] transition-all duration-300 ${
+						shrink ? "text-[1.2rem] md:text-[1.55rem] lg:text-[1.75rem]" : "text-[1.4rem] sm:text-[1.55rem] md:text-[1.75rem]"
+					}`}
 					style={{ fontFamily: "'Orbitron', sans-serif" }}
 				>
 					<span className="text-foreground">Auto</span>
 					<span className="text-primary">Deal</span>
 				</div>
 
-				<div className="mt-1 flex items-center gap-2">
+				<div className={`mt-1 flex items-center gap-2 transition-all duration-300 ${shrink ? "hidden md:flex" : "flex"}`}>
 					<div className="h-px w-10 bg-primary/80 shadow-[0_0_10px_rgba(0,255,135,0.45)] transition-all duration-300 group-hover:w-14" />
 					<span
 						className="text-[0.42rem] font-semibold tracking-[0.32em] text-primary/70 sm:text-[0.46rem]"

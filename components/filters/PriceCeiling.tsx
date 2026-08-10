@@ -1,13 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface PriceCeilingSliderProps {
 	min: number;
 	max: number;
 	step?: number;
 	initialValue?: number;
-
+	value?: number;
 	currency?: string;
 	onPriceChange: (value: number) => void;
 }
@@ -17,15 +17,25 @@ const PriceCeilingSlider: React.FC<PriceCeilingSliderProps> = ({
 	max,
 	step = 1000,
 	initialValue,
-
+	value: controlledValue,
 	currency = "$",
 	onPriceChange,
 }) => {
-	const start = initialValue ?? min;
-	const [value, setValue] = useState<number>(start);
+	const initial = controlledValue ?? initialValue ?? min;
+	const [value, setValue] = useState<number>(initial);
+
+	useEffect(() => {
+		if (controlledValue !== undefined) {
+			setValue(controlledValue);
+		} else if (initialValue !== undefined) {
+			setValue(initialValue);
+		}
+	}, [controlledValue, initialValue]);
+
+	const currentValue = controlledValue !== undefined ? controlledValue : value;
 
 	// Calculate percentage for the custom track fill (0 - 100)
-	const percentage = ((value - min) / (max - min)) * 100;
+	const percentage = max > min ? ((currentValue - min) / (max - min)) * 100 : 0;
 
 	return (
 		<div className="w-full max-w-xs font-['Manrope']">
@@ -35,7 +45,7 @@ const PriceCeilingSlider: React.FC<PriceCeilingSliderProps> = ({
 				</label>
 				<span className="text-xs font-bold text-[#00ff87] tracking-widest">
 					{currency}
-					{Math.round(value).toLocaleString()}
+					{Math.round(currentValue).toLocaleString()}
 				</span>
 			</div>
 
@@ -55,7 +65,7 @@ const PriceCeilingSlider: React.FC<PriceCeilingSliderProps> = ({
 					min={min}
 					max={max}
 					step={step}
-					value={value}
+					value={currentValue}
 					onChange={(e) => {
 						const v = parseInt(e.target.value, 10);
 						setValue(v);
@@ -95,3 +105,4 @@ const PriceCeilingSlider: React.FC<PriceCeilingSliderProps> = ({
 };
 
 export default PriceCeilingSlider;
+

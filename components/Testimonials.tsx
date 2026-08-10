@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 import curly from "@/public/testimonials/curly.jpg";
 import elena from "@/public/testimonials/elena.jpg";
+import starBg from "@/public/testimonials/star_bg.png";
 
 const StarRating = ({ rating }: { rating: number }) => {
 	const fullStars = Math.floor(rating);
@@ -52,12 +53,15 @@ const Testimonials = () => {
 	// Star rating component
 
 	return (
-		<section className="relative overflow-hidden bg-[#0a0f0d] py-20">
+		<section className="relative overflow-hidden bg-gradient-to-b from-[#0a2e1b] to-[#054c0b] py-20">
 			{/* Background Effects - matching your Story section */}
 			<div className="absolute inset-0 bg-gradient-to-b from-[#0d1f1a]/30 via-transparent to-[#0d1f1a]/30" />
 			<div className="absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#39ff14]/3 blur-[100px]" />
+			<div className="absolute inset-0 pointer-events-none animate-pulse" style={{ backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.2) 1px, transparent 1px)', backgroundSize: '20px 20px', opacity: 0.15 }} />
+			<div className="absolute inset-0 bg-cover bg-center opacity-20" style={{ backgroundImage: `url(${starBg})` }} />
 
-			<div className="relative z-10 mx-10 text-white">
+
+			<div className="relative z-10 px-4 sm:px-8 max-w-7xl mx-auto text-white">
 				{/* Header */}
 				<div className="mb-16 text-center">
 					<span className="text-sm uppercase tracking-[0.3em] text-green-400">

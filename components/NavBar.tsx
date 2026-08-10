@@ -99,10 +99,10 @@ const NavBar = () => {
   return (
     <>
       <nav
-        className={`sticky z-50 transition duration-300 backdrop-blur-md
+        className={`sticky z-50 transition-all duration-300 backdrop-blur-md
 		${
       isScrolled
-        ? "mt-22 top-2 w-full max-w-6xl md:w-6xl mx-auto rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.3)]"
+        ? "mt-2 sm:mt-4 top-1.5 sm:top-2 w-[calc(100%-1.5rem)] max-w-6xl mx-auto rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.3)]"
         : "w-full lg:mx-0 top-0"
     }
 `}
@@ -123,16 +123,20 @@ const NavBar = () => {
           transition: "width 0.1s ease-out",
         }}
       />
-      <div className="flex items-center justify-between px-6 py-2 max-w-7xl mx-auto">
+      <div className={`flex items-center justify-between transition-all duration-300 max-w-7xl mx-auto ${
+        isScrolled
+          ? "px-4 py-1.5 sm:px-6 sm:py-2"
+          : "px-6 py-3 sm:py-4"
+      }`}>
         {/* Logo */}
         <div className=" ">
           <Link href="/" className="text-xl font-bold">
-            <Logo />
+            <Logo shrink={isScrolled} />
           </Link>
         </div>
 
         {/* Desktop Links */}
-        <div className="hidden md:flex items-center justify-center gap-[10em] w-2/3 logo fon uppercase text-slate-300 text-[10px] tracking-[0.2em]  ">
+        <div className="hidden md:flex items-center justify-center gap-6 lg:gap-12 xl:gap-16 w-2/3 logo fon uppercase text-slate-300 text-[10px] tracking-[0.2em]">
           {[
             { href: "/", label: "Home" },
             { href: "/shop", label: "Shop" },
@@ -151,14 +155,20 @@ const NavBar = () => {
         </div>
 
         {/* Right Side */}
-        <div className="flex  items-center justify-end gap-6 text-lg relative  text-slate-300">
+        <div className={`flex items-center justify-end transition-all duration-300 relative text-slate-300 ${
+          isScrolled
+            ? "gap-3 sm:gap-4 md:gap-6"
+            : "gap-4 sm:gap-5 md:gap-6"
+        }`}>
           {/* Search */}
           <button
             onClick={() => setIsSearchOpen(true)}
             aria-label="Search"
             className="transition-transform active:scale-90"
           >
-            <FaSearch className="hover:text-green-400 transition cursor-pointer" />
+            <FaSearch className={`hover:text-green-400 transition cursor-pointer transition-all duration-300 ${
+              isScrolled ? "text-sm sm:text-base md:text-lg" : "text-base sm:text-lg"
+            }`} />
           </button>
 
           {/* Car cart with badge */}
@@ -168,10 +178,16 @@ const NavBar = () => {
               aria-label="My Cars"
               className="relative transition-transform active:scale-90"
             >
-              <IoCarSport className="hover:text-green-400 transition text-xl cursor-pointer" />
+              <IoCarSport className={`hover:text-green-400 transition cursor-pointer transition-all duration-300 ${
+                isScrolled ? "text-base sm:text-lg md:text-xl" : "text-lg sm:text-xl"
+              }`} />
               {carCount > 0 && (
                 <span
-                  className={`absolute -top-2 -right-2 ${isPurchasedPopUp ? "PopUp" : ""} bg-emerald-500 text-white text-xs px-1.5 rounded-full`}
+                  className={`absolute transition-all duration-300 ${
+                    isScrolled 
+                      ? "-top-1.5 -right-1.5 text-[9px] px-1" 
+                      : "-top-2 -right-2 text-xs px-1.5"
+                  } ${isPurchasedPopUp ? "PopUp" : ""} bg-emerald-500 text-white rounded-full`}
                 >
                   {carCount}
                 </span>
@@ -185,17 +201,22 @@ const NavBar = () => {
           </div>
 
           {/* Profile */}
-
           <div className="relative">
             <button
               onClick={() => setProfileOpen(!profileOpen)}
               aria-label="Profile"
               className="transition-transform active:scale-90"
             >
-              <CgProfile className="hover:text-green-400 transition text-xl cursor-pointer" />
+              <CgProfile className={`hover:text-green-400 transition cursor-pointer transition-all duration-300 ${
+                isScrolled ? "text-base sm:text-lg md:text-xl" : "text-lg sm:text-xl"
+              }`} />
               {whishListCount > 0 && (
                 <span
-                  className={`absolute -top-2 -right-2 transition-transform  ${isPopUp ? "PopUp" : ""} bg-red-600 text-white text-xs px-1.5 rounded-full`}
+                  className={`absolute transition-all duration-300 ${
+                    isScrolled 
+                      ? "-top-1.5 -right-1.5 text-[9px] px-1" 
+                      : "-top-2 -right-2 text-xs px-1.5"
+                  } transition-transform ${isPopUp ? "PopUp" : ""} bg-red-600 text-white rounded-full`}
                 >
                   {isWishListCountChecked ? " " : whishListCount}
                 </span>
@@ -203,7 +224,6 @@ const NavBar = () => {
             </button>
 
             {/* Dropdown */}
-
             <div ref={dropdownRef}>
               <AnimatePresence>
                 {profileOpen && (
@@ -362,7 +382,9 @@ const NavBar = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-slate-300 hover:text-green-400 transition-colors"
+            className={`md:hidden text-slate-300 hover:text-green-400 transition-all duration-300 ${
+              isScrolled ? "text-sm sm:text-base" : "text-base sm:text-lg"
+            }`}
             onClick={() => setMenuOpen(!menuOpen)}
           >
             {menuOpen ? <FaTimes /> : <FaBars />}
@@ -373,7 +395,9 @@ const NavBar = () => {
       {/* Mobile Menu */}
       {menuOpen && (
         <div
-          className="md:hidden px-6 pb-4 flex flex-col gap-4 font-medium text-slate-300 text-sm"
+          className={`md:hidden pb-4 flex flex-col gap-3 font-medium text-slate-300 text-sm transition-all duration-300 ${
+            isScrolled ? "px-4" : "px-6"
+          }`}
           style={{ borderTop: "1px solid rgba(34, 197, 94, 0.1)" }}
         >
           {[
@@ -385,6 +409,7 @@ const NavBar = () => {
             <Link
               key={href}
               href={href}
+              onClick={() => setMenuOpen(false)}
               className="relative group hover:text-green-400 transition-colors duration-300 pt-3 first:pt-3 w-fit"
             >
               {label}

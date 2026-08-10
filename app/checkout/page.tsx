@@ -16,7 +16,8 @@ import {
   ArrowRight,
   Loader2,
   Sparkles,
-  AlertCircle
+  AlertCircle,
+  X
 } from 'lucide-react';
 import CarWheelLoader from '@/components/ui/CarWheelLoader';
 import CountrySelect from '@/components/ui/CountrySelect';
@@ -24,7 +25,7 @@ import CountrySelect from '@/components/ui/CountrySelect';
 const CheckoutPage = () => {
   const router = useRouter();
   const { data: session } = useSession();
-  const { allocatedCars, addToPurchased, clearAllocation, setCurrentOrder } = useCarStore();
+  const { allocatedCars, addToPurchased, clearAllocation, setCurrentOrder, removeFromAllocation } = useCarStore();
   
   // State for using mock car if garage is empty
   const [useMock, setUseMock] = useState(false);
@@ -424,8 +425,6 @@ const CheckoutPage = () => {
                       <span className="text-sm font-bold text-[#e5efe3] leading-tight block">{car.color?.id}</span>
                       <span className="h-5 w-5 rounded-full ring-offset-4 ring-offset-[#050e0a]  ring-2 ring-[#00ff87] shadow-[0_0_0_5px_rgba(0,255,135,0.12)]" 
 												style={{ backgroundColor: car.color?.hex }} />
-                     
-                    
                     </div>
                   </div>
                   <div>
@@ -439,6 +438,32 @@ const CheckoutPage = () => {
                       Locked for Reservation
                     </span>
                   </div>
+                </div>
+
+                {/* Actions: See Details & Unlock */}
+                <div className="flex flex-col sm:flex-row gap-3.5 mt-6 pb-10 border-b border-[#dae6d8]/5">
+                  <Link
+                    href={`/details/${car.id}`}
+                    className="flex-1 py-3 px-4 rounded-xl border border-white/10 hover:border-[#00ff87]/30 text-slate-300 hover:text-white font-bold text-[10px] sm:text-xs uppercase tracking-wider transition-all active:scale-[0.98] cursor-pointer flex items-center justify-center gap-2 bg-white/5 hover:bg-[#00ff87]/5 group"
+                  >
+                    <span>See Details</span>
+                    <ArrowRight size={14} className="transition-transform duration-200 group-hover:translate-x-0.5" />
+                  </Link>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (useMock) {
+                        setUseMock(false);
+                      } else {
+                        removeFromAllocation(car.id);
+                      }
+                    }}
+                    className="flex-1 py-3 px-4 rounded-xl border border-red-500/10 hover:border-red-500/40 text-red-400 hover:text-red-300 font-bold text-[10px] sm:text-xs uppercase tracking-wider transition-all active:scale-[0.98] cursor-pointer flex items-center justify-center gap-2 bg-red-500/5 hover:bg-red-500/10"
+                  >
+                    <X size={14} />
+                    <span>Unlock Slot</span>
+                  </button>
                 </div>
               </div>
             ))}

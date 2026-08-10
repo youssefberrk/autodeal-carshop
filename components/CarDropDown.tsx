@@ -40,7 +40,7 @@ export default function CarDropDown({ onClose }: CarDropDownProps) {
 			animate={{ opacity: 1, scale: 1, y: 0 }}
 			exit={{ opacity: 0, scale: 0.95, y: -10 }}
 			transition={{ duration: 0.2, ease: [0.23, 1, 0.32, 1] }}
-			className="absolute right-0 mt-3 w-80 md:w-[26rem] rounded-2xl p-5 backdrop-blur-2xl z-50 origin-top-right border border-[#00ff87]/15 shadow-[0_25px_60px_rgba(0,0,0,0.65)]"
+			className="absolute right-0 mt-3 w-[calc(100vw-2rem)] max-w-xs sm:w-80 md:w-[26rem] rounded-2xl p-5 backdrop-blur-2xl z-50 origin-top-right border border-[#00ff87]/15 shadow-[0_25px_60px_rgba(0,0,0,0.65)]"
 			style={{
 				background: "rgba(5, 13, 8, 0.95)",
 			}}>
@@ -82,12 +82,15 @@ export default function CarDropDown({ onClose }: CarDropDownProps) {
 			) : (
 				<>
 					{/* Cars List */}
-					<div className="space-y-2.5 max-h-64 overflow-y-auto pr-1">
+					<div className="space-y-2.5 max-h-64 overflow-y-auto pr-1.5 [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-track]:bg-white/[0.01] [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#00ff87]/20 [&::-webkit-scrollbar-thumb:hover]:bg-[#00ff87]/50 [&::-webkit-scrollbar-thumb:active]:bg-[#00ff87]/85 [&::-webkit-scrollbar-thumb]:rounded-full">
 						{allocatedCars.map((car) => (
 							<div
 								key={car.id}
-								className="flex items-center gap-3 p-2.5 bg-[#07130c]/30 border border-white/[0.04] hover:border-[#00ff87]/20 hover:shadow-[0_0_15px_rgba(0,255,135,0.02)] rounded-xl transition-all duration-200 group/item">
-								<Link href={`/details/${car.id}`} onClick={onClose} className="flex items-center gap-3 flex-1 min-w-0">
+								className="flex items-center justify-between gap-3 p-3 bg-[#07130c]/30 border border-white/[0.04] hover:border-[#00ff87]/20 hover:shadow-[0_0_15px_rgba(0,255,135,0.02)] rounded-xl transition-all duration-200 group/item">
+								
+								{/* Left/Middle: Image, Model & Metadata */}
+								<Link href={`/details/${car.id}`} onClick={onClose} className="flex items-center gap-3.5 flex-1 min-w-0">
+									{/* Image */}
 									<div className="w-16 h-12 relative rounded-lg overflow-hidden border border-white/10 ring-1 ring-white/5 flex-shrink-0">
 										<Image
 											src={car.image}
@@ -96,19 +99,35 @@ export default function CarDropDown({ onClose }: CarDropDownProps) {
 											className="object-cover transition-transform duration-300 group-hover/item:scale-105"
 										/>
 									</div>
+									
+									{/* Info */}
 									<div className="flex-1 min-w-0">
-										<p className="text-white text-xs font-medium truncate group-hover/item:text-emerald-400 transition-colors duration-200">{car.model}</p>
-										<p className="text-slate-400 text-[10px] mt-0.5 uppercase tracking-wider font-semibold" style={{ fontFamily: 'Orbitron, sans-serif' }}>
-											{car.brand}
+										<p className="text-white text-xs font-semibold truncate group-hover/item:text-emerald-400 transition-colors duration-200">
+											{car.model}
 										</p>
+										
+										{/* Metadata Row */}
+										<div className="flex items-center gap-2 mt-1 flex-wrap">
+											<span className="text-slate-400 text-[9px] uppercase tracking-wider font-semibold" style={{ fontFamily: 'Orbitron, sans-serif' }}>
+												{car.brand}
+											</span>
+											<span className="w-1 h-1 rounded-full bg-white/20 flex-shrink-0" />
+											{/* Color Dot */}
+											<span className="h-3 w-3 rounded-full ring-1 ring-[#00ff87]/30 flex-shrink-0" 
+												style={{ backgroundColor: car.color?.hex || '#ffffff' }}
+												title={car.color?.id} 
+											/>
+											<span className="w-1 h-1 rounded-full bg-white/20 flex-shrink-0" />
+											{/* Qty */}
+											<span className="text-[9px] text-slate-300 font-bold font-mono">
+												x{car.quantity || 1}
+											</span>
+										</div>
 									</div>
 								</Link>
-								<div className="flex items-center gap-3">
-									<span className="h-4.5 w-4.5 rounded-full ring-2 ring-[#00ff87]/30 ring-offset-2 ring-offset-[#050d08] shadow-[0_0_10px_rgba(0,255,135,0.2)] flex-shrink-0" 
-										style={{ backgroundColor: car.color?.hex || '#ffffff' }} />
-									<span className="text-xs text-white bg-white/5 px-2 py-0.5 rounded border border-white/5 font-semibold">
-										{car.quantity || 1}
-									</span>
+
+								{/* Right: Price & Remove action */}
+								<div className="flex items-center gap-3 flex-shrink-0 pl-1">
 									<span className="text-emerald-400 text-xs font-bold font-mono">
 										${car.price.toLocaleString()}
 									</span>

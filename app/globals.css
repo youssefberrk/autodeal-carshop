@@ -169,7 +169,7 @@ button,
     background: radial-gradient(
       ellipse at 50% 0%,
       oklch(0.14 0.035 155) 0%,
-      oklch(0.10 0.02 155) 35%,
+      oklch(0.1 0.02 155) 35%,
       var(--background) 85%
     );
     background-attachment: fixed;
@@ -443,7 +443,7 @@ button,
   text-align: center;
   align-content: center;
 
-  /* gap: 3em; */
+  gap: 3em;
 }
 
 /* Fade edges */
@@ -589,7 +589,7 @@ button,
 
 .featured-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
   justify-items: center;
 }
@@ -638,6 +638,13 @@ button,
   border-radius: 1.5rem;
   padding: 2rem;
   transition: border-color 0.3s ease;
+}
+
+@media (max-width: 1024px) {
+  .filters-panel {
+    position: static;
+    max-height: none;
+  }
 }
 
 .filters-panel::-webkit-scrollbar {
@@ -702,7 +709,7 @@ button,
 /* ===== Cars Grid ===== */
 .cars-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1.5rem;
 }
 
@@ -1166,7 +1173,9 @@ button,
   border-radius: 1rem;
   background: var(--color-glass);
   backdrop-filter: blur(12px);
-  transition: border-color 0.3s ease, transform 0.3s var(--ease-out);
+  transition:
+    border-color 0.3s ease,
+    transform 0.3s var(--ease-out);
 }
 
 .new-spot-card:hover {

@@ -6,7 +6,7 @@ import edited1 from "@/public/edited1.png";
 
 const HeroSection: React.FC = () => {
   return (
-    <section className="relative min-h-[80vh] flex items-center bg-background overflow-hidden">
+    <section className="relative min-h-[80vh] flex items-center bg-background py-12 overflow-hidden">
       {/* Immersive Background Reveal */}
       <div className="absolute inset-0 z-0 bg-gradient-to-br from-brand/5 via-transparent to-transparent opacity-50" />
 
@@ -41,23 +41,25 @@ const HeroSection: React.FC = () => {
             Experience the pinnacle of automotive engineering. Curated luxury
             and performance, delivered with precision.
           </p>
-          <div className="flex hero-buttons gap-4 pt-4">
-            <Link href="/shop" passHref>
+          <div className="flex flex-col sm:flex-row hero-buttons gap-4 pt-4 w-full">
+            <Link href="/shop" passHref className="w-full sm:w-auto">
               <Button
                 size="lg"
-                className="w-[200px] h-[56px] text-lg font-bold rounded-full"
+                className="w-full sm:w-[200px] h-[56px] text-lg font-bold rounded-full"
               >
                 Explore Collection
               </Button>
             </Link>
 
-            <Button
-              variant="outline"
-              size="lg"
-              className="w-[200px] h-[56px] text-lg font-bold rounded-full border-brand/30 hover:border-brand"
-            >
-              Contact Us
-            </Button>
+            <Link href="/contact" passHref className="w-full sm:w-auto">
+              <Button
+                variant="outline"
+                size="lg"
+                className="w-full sm:w-[200px] h-[56px] text-lg font-bold rounded-full border-brand/30 hover:border-brand"
+              >
+                Contact Us
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

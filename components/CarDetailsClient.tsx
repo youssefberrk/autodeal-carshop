@@ -375,9 +375,9 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
                     </div>
                   </div>
                 )}
-                <div className="mt-6 flex flex-col gap-2 sm:mb-12 sm:flex-row sm:items-center">
+                <div className="mt-6 flex flex-wrap gap-3 sm:mb-12 sm:flex-nowrap sm:items-center">
                   {/* Quantity Selector */}
-                  <div className="flex items-center rounded-lg border border-[#e5efe3]/12 bg-[#091a11] h-[52px]">
+                  <div className="flex items-center rounded-lg border border-[#e5efe3]/12 bg-[#091a11] h-[52px] shrink-0">
                     <button
                       onClick={() => {
                         const nextQuantity = Math.max(1, quantity - 1);
@@ -405,7 +405,7 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
                   </div>
 
                   {/* Secure Allocation Button */}
-                  <div className="flex-1">
+                  <div className="flex-1 min-w-[200px]">
                     <button
                       className={`flex w-full h-[52px] flex-col items-center justify-center gap-1 cursor-pointer rounded-lg border px-4 text-[11px] font-bold uppercase tracking-[0.18em] shadow-[0_16px_36px_-26px_rgba(0,0,0,1)] transition-[transform,background-color,color,border-color] duration-200 [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] active:scale-[0.97] ${
                         isAllocated
@@ -434,7 +434,7 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
 
                   {/* Favorite Button */}
                   <button
-                    className="rounded-lg border border-[#e5efe3]/12 h-[52px] w-[52px] flex items-center justify-center text-[#e5efe3]/45 cursor-pointer transition-[transform,color,border-color] duration-200 [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] hover:border-[#00ff87]/40 hover:text-[#00ff87] active:scale-[0.97]"
+                    className="rounded-lg border border-[#e5efe3]/12 h-[52px] w-[52px] flex items-center justify-center text-[#e5efe3]/45 cursor-pointer shrink-0 transition-[transform,color,border-color] duration-200 [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] hover:border-[#00ff87]/40 hover:text-[#00ff87] active:scale-[0.97]"
                     onClick={handleAddToWishList}
                   >
                     <Heart
