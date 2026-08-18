@@ -207,8 +207,8 @@ const ContactClient = () => {
                   className="group p-6 bg-[#050e0a]/50 backdrop-blur-md rounded-xl border border-[rgba(218,230,216,0.06)] flex flex-col gap-4 hover:border-[#00ff87]/25 transition-colors duration-300"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.5, delay: idx * 0.08 }}
+                  viewport={{ once: true, margin: "-80px" }}
+                  transition={{ duration: 0.7, ease: easeOutExpo, delay: 0.1 + idx * 0.12 }}
                   whileTap={{ scale: 0.98, transition: { duration: 0.1 } }}
                 >
                   <div className="w-11 h-11 rounded-lg bg-[#00ff87]/10 flex items-center justify-center text-[#00ff87] border border-[#00ff87]/25 group-hover:bg-[#00ff87]/15 transition-colors duration-300">
@@ -294,7 +294,7 @@ const ContactClient = () => {
                   animate={
                     formInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
                   }
-                  transition={{ duration: 0.6, ease: easeOutExpo }}
+                  transition={{ duration: 0.7, ease: easeOutExpo }}
                 >
                   {/* Name + Email Row */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -427,8 +427,8 @@ const ContactClient = () => {
                 className="p-8 bg-[#050e0a]/50 backdrop-blur-md rounded-2xl border border-[rgba(218,230,216,0.06)] flex flex-col gap-6"
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, ease: easeOutExpo }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.7, ease: easeOutExpo }}
               >
                 <div>
                   <span className="text-[#00ff87] text-[10px] font-mono uppercase tracking-widest block mb-2">
@@ -493,8 +493,8 @@ const ContactClient = () => {
                 className="p-8 bg-[#050e0a]/50 backdrop-blur-md rounded-2xl border border-[rgba(218,230,216,0.06)] flex flex-col gap-5"
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.15, ease: easeOutExpo }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.7, delay: 0.15, ease: easeOutExpo }}
               >
                 <div>
                   <span className="text-[#00ff87] text-[10px] font-mono uppercase tracking-widest block mb-2">

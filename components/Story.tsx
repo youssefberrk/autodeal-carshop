@@ -2,7 +2,7 @@
 
 import Image, { type StaticImageData } from "next/image";
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { Compass, Globe2, ShieldCheck } from "lucide-react";
+import { Compass, Globe2, ShieldCheck, Quote, Sparkles } from "lucide-react";
 import ferari from "@/public/ferari.jpg";
 import porscheEngine from "@/public/porsche-w-engine-ai.jpg";
 import showroom from "@/public/showroom.png";
@@ -65,6 +65,31 @@ const stats = [
   { target: 48, label: "source review", suffix: "h" },
 ];
 
+const useInView = (options?: IntersectionObserverInit) => {
+  const [isInView, setIsInView] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      options || { threshold: 0.15, rootMargin: "0px 0px -50px 0px" },
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [options]);
+
+  return [ref, isInView] as const;
+};
+
 const StoryImage = ({
   src,
   alt,
@@ -77,7 +102,7 @@ const StoryImage = ({
   className: string;
 }) => (
   <figure
-    className={`group relative min-h-[320px] overflow-hidden rounded-lg border border-[#00ff87]/10 bg-[#08110c] shadow-[0_28px_80px_rgba(0,0,0,0.42)] ${className}`}
+    className={`group relative min-h-[400px] sm:min-h-[480px] lg:min-h-[580px] overflow-hidden rounded-lg border border-[#00ff87]/10 bg-[#08110c] shadow-[0_28px_80px_rgba(0,0,0,0.42)] ${className}`}
   >
     <Image
       src={src}
@@ -87,8 +112,9 @@ const StoryImage = ({
       className="object-cover opacity-80 transition duration-500 ease-out group-hover:scale-[1.035] group-hover:opacity-95"
     />
     <div className="absolute inset-0 bg-gradient-to-t from-[#050806]/90 via-[#050806]/10 to-transparent" />
-    <figcaption className="absolute bottom-4 left-4 right-4 inline-flex max-w-max items-center border border-[#00ff87]/20 bg-[#020503]/85 px-3 py-2 font-mono text-[10px] uppercase tracking-[0.22em] text-[#00ff87]/85 backdrop-blur-sm">
-      {label}
+    <figcaption className="absolute bottom-4 left-4 right-4 inline-flex max-w-max items-center gap-2 border border-[#00ff87]/25 bg-[#020503]/90 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.22em] text-[#00ff87] backdrop-blur-md shadow-[0_4px_20px_rgba(0,0,0,0.5)]">
+      <span className="h-1.5 w-1.5 rounded-full bg-[#00ff87] shadow-[0_0_8px_#00ff87] animate-pulse" />
+      <span>{label}</span>
     </figcaption>
   </figure>
 );
@@ -297,40 +323,34 @@ const HudTimeline = ({
 };
 
 const Story = () => {
-  const [isVisible, setIsVisible] = useState(false);
   const [activePrincipleIndex, setActivePrincipleIndex] = useState(0);
-  const sectionRef = useRef<HTMLElement>(null);
   const wheelLockRef = useRef(false);
   const wheelReleaseRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  useEffect(() => {
-    const currentSection = sectionRef.current;
-    if (!currentSection) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(entry.target);
-        }
-      },
-      {
-        threshold: 0.18,
-        rootMargin: "0px 0px -80px 0px",
-      },
-    );
-
-    observer.observe(currentSection);
-
-    return () => observer.disconnect();
-  }, []);
+  // Independent scroll observers for progressive reveal
+  const [headerRef, headerInView] = useInView({
+    threshold: 0.2,
+    rootMargin: "0px 0px -40px 0px",
+  });
+  const [quoteRef, quoteInView] = useInView({
+    threshold: 0.2,
+    rootMargin: "0px 0px -40px 0px",
+  });
+  const [contentRef, contentInView] = useInView({
+    threshold: 0.15,
+    rootMargin: "0px 0px -40px 0px",
+  });
+  const [doctrineRef, doctrineInView] = useInView({
+    threshold: 0.15,
+    rootMargin: "0px 0px -40px 0px",
+  });
 
   const [displayStats, setDisplayStats] = useState<number[]>(() =>
     stats.map(() => 0),
   );
 
   useEffect(() => {
-    if (!isVisible) return;
+    if (!contentInView) return;
 
     let animationFrameId = 0;
     const startTime = performance.now();
@@ -349,7 +369,7 @@ const Story = () => {
     animationFrameId = requestAnimationFrame(animate);
 
     return () => cancelAnimationFrame(animationFrameId);
-  }, [isVisible]);
+  }, [contentInView]);
 
   useEffect(() => {
     return () => {
@@ -407,10 +427,7 @@ const Story = () => {
   );
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative isolate overflow-hidden border-y border-[#00ff87]/10 bg-[#050806] px-4 py-20 text-white sm:px-6 lg:py-28"
-    >
+    <section className="relative isolate overflow-hidden border-y border-[#00ff87]/10 bg-[#050806] px-4 py-20 text-white sm:px-6 lg:py-28">
       <Image
         src={porscheEngine}
         alt=""
@@ -422,68 +439,169 @@ const Story = () => {
       <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,#050806_0%,rgba(5,8,6,0.84)_34%,#050806_100%)]" />
       <div className="absolute left-1/2 top-24 -z-10 h-[26rem] w-[26rem] -translate-x-1/2 rounded-full bg-[#00ff87]/5 blur-[120px]" />
 
-      <div
-        className={`mx-auto grid max-w-7xl gap-12 transition duration-700 ease-out lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:gap-16 ${
-          isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
-        }`}
-      >
-        <div className="flex flex-col justify-between gap-10">
-          <div>
-            <span className="inline-flex max-w-full border border-[#00ff87]/20 bg-[#00ff87]/5 px-3 py-2 font-mono text-[10px] uppercase tracking-[0.28em] text-[#00ff87] backdrop-blur-sm sm:tracking-[0.42em]">
-              Origin & heritage
-            </span>
-            <h2 className="mt-6 max-w-3xl [font-family:Orbitron,sans-serif] text-4xl font-black uppercase leading-[0.95] text-white sm:text-5xl lg:text-6xl">
-              The Auto<span className="text-[#00ff87]">Deal</span> Story
-            </h2>
-          </div>
+      <div className="mx-auto max-w-7xl">
+        {/* Step 1: Centered Section Header (Scroll Animated) */}
+        <div
+          ref={headerRef}
+          className="mx-auto max-w-3xl text-center mb-14 lg:mb-24"
+        >
+          <span
+            style={{ transitionDelay: "0ms" }}
+            className={`inline-flex max-w-full border border-[#00ff87]/20 bg-[#00ff87]/5 px-3 py-2 font-mono text-[10px] uppercase tracking-[0.28em] text-[#00ff87] backdrop-blur-sm sm:tracking-[0.42em] transition duration-700 ease-out ${
+              headerInView
+                ? "translate-y-0 opacity-100"
+                : "translate-y-6 opacity-0"
+            }`}
+          >
+            Origin & heritage
+          </span>
+          <h2
+            style={{ transitionDelay: "120ms" }}
+            className={`mt-6 [font-family:Orbitron,sans-serif] font-black uppercase leading-[0.95] text-white sm:text-5xl md:text-7xl transition duration-700 ease-out ${
+              headerInView
+                ? "translate-y-0 opacity-100"
+                : "translate-y-6 opacity-0"
+            }`}
+          >
+            The Auto<span className="text-[#00ff87]">Deal</span> Story
+          </h2>
+          <div
+            style={{ transitionDelay: "240ms" }}
+            className={`mx-auto mt-6 h-[2px] w-28 bg-gradient-to-r from-transparent via-[#00ff87] to-transparent transition duration-700 ease-out ${
+              headerInView ? "opacity-100" : "opacity-0"
+            }`}
+          />
+        </div>
 
-          <div className="space-y-6 border-l border-[#00ff87]/30 pl-5 sm:pl-7">
-            <p className="max-w-2xl text-2xl font-semibold uppercase leading-tight tracking-wide text-white sm:text-3xl">
-              Founded in 2024, AutoDeal was born from a singular obsession: the
-              intersection of kinetic energy and mechanical art.
-            </p>
-            <p className="max-w-xl text-base leading-8 text-[#dae6d8]/68 sm:text-lg">
-              We do not just sell vehicles. We curate high-performance legacies
-              for discerning drivers through provenance research, mechanical
-              expertise, and a showroom standard built around trust.
-            </p>
-          </div>
+        {/* Step 2: Featured Core Philosophy Quote (Scroll Animated) */}
+        <div ref={quoteRef} className="mx-auto mb-16 max-w-4xl lg:mb-28">
+          <div
+            style={{ transitionDelay: "0ms" }}
+            className={`group relative overflow-hidden rounded-2xl border border-[#00ff87]/20 bg-[linear-gradient(135deg,rgba(0,255,135,0.05),rgba(8,17,12,0.85)_40%,rgba(3,7,5,0.95))] p-8 sm:p-12 lg:p-14 shadow-[0_30px_100px_rgba(0,0,0,0.6)] backdrop-blur-md transition duration-700 ease-out ${
+              quoteInView
+                ? "translate-y-0 opacity-100"
+                : "translate-y-6 opacity-0"
+            }`}
+          >
+            {/* Decorative HUD Corner Markers */}
+            <div className="pointer-events-none absolute left-0 top-0 h-10 w-10 border-l-2 border-t-2 border-[#00ff87]/40" />
+            <div className="pointer-events-none absolute right-0 bottom-0 h-10 w-10 border-r-2 border-b-2 border-[#00ff87]/40" />
+            <div className="absolute -right-20 -top-20 h-60 w-60 rounded-full bg-[#00ff87]/10 blur-3xl transition duration-1000 group-hover:bg-[#00ff87]/20" />
 
-          <div className="grid gap-4 border-t border-white/10 pt-6 sm:grid-cols-3">
-            {stats.map(({ label, suffix }, index) => (
-              <div
-                key={label}
-                style={{ transitionDelay: `${index * 120}ms` }}
-                className={`rounded-3xl border border-[#00ff87]/10 bg-[#08100c]/70 p-4 shadow-[0_24px_80px_rgba(0,255,135,0.06)] transition duration-700 ease-out hover:border-[#00ff87]/30 sm:p-5 ${
-                  isVisible
-                    ? "translate-y-0 opacity-100"
-                    : "translate-y-4 opacity-0"
-                }`}
-              >
-                <p className="[font-family:Orbitron,sans-serif] text-xl font-semibold text-[#00ff87] sm:text-2xl">
-                  {displayStats[index]}
-                  <span className="ml-1 text-sm font-medium text-[#dae6d8]/85">
-                    {suffix}
-                  </span>
+            <div className="relative z-10 flex flex-col items-center text-center">
+              {/* HUD Pill Badge */}
+              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#00ff87]/30 bg-[#00ff87]/10 px-4 py-1.5 font-mono text-[10px] uppercase tracking-[0.3em] text-[#00ff87] shadow-[0_0_20px_rgba(0,255,135,0.15)]">
+                <Sparkles className="h-3.5 w-3.5" />
+                <span>Core Philosophy</span>
+              </div>
+
+              {/* Quote Icon */}
+              <Quote className="mb-4 h-10 w-10 text-[#00ff87]/35 rotate-180" />
+
+              {/* Main Statement */}
+              <blockquote className="max-w-3xl text-2xl font-bold uppercase leading-tight tracking-wide text-white sm:text-3xl lg:text-4xl [font-family:Orbitron,sans-serif]">
+                Founded in 2024, AutoDeal was born from a singular obsession:{" "}
+                <span className="bg-gradient-to-r from-white via-[#00ff87] to-[#00ff87] bg-clip-text text-transparent drop-shadow-[0_0_35px_rgba(0,255,135,0.4)]">
+                  the intersection of kinetic energy and mechanical art.
+                </span>
+              </blockquote>
+
+              {/* Bottom HUD Metadata */}
+              <div className="mt-8 flex items-center gap-3">
+                <span className="h-px w-12 bg-gradient-to-r from-transparent to-[#00ff87]/60" />
+                <span className="font-mono text-[10px] uppercase tracking-[0.35em] text-[#dae6d8]/50">
+                  AutoDeal Genesis // 2024
+                </span>
+                <span className="h-px w-12 bg-gradient-to-l from-transparent to-[#00ff87]/60" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Step 3: Detailed Story Content Grid (Text, Stats & Images) */}
+        <div
+          ref={contentRef}
+          className={`grid gap-12 transition duration-700 ease-out lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-14 xl:gap-20 items-center ${
+            contentInView
+              ? "translate-y-0 opacity-100"
+              : "translate-y-6 opacity-0"
+          }`}
+        >
+          {/* Narrative & Metrics Column */}
+          <div className="flex flex-col justify-center gap-10 sm:gap-12">
+            {/* Context Narrative */}
+            <div className="space-y-5">
+              <div className="inline-flex items-center gap-2.5 font-mono text-[15px] uppercase tracking-[0.32em] text-[#00ff87]/80">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#00ff87] shadow-[0_0_8px_#00ff87]" />
+                <span>Curation Philosophy</span>
+              </div>
+
+              <div className="relative border-l-2 border-gradient pl-5 sm:pl-7 [border-image:linear-gradient(to_bottom,#00ff87_0%,rgba(0,255,135,0.3)_60%,transparent_100%)_1]">
+                <p className="max-w-xl text-lg sm:text-xl lg:text-[1.45rem] font-semibold leading-relaxed uppercase text-white tracking-wide">
+                  We do not just sell vehicles. We curate{" "}
+                  <span className="bg-gradient-to-r from-[#00ff87] via-[#38ef7d] to-emerald-400 bg-clip-text text-transparent drop-shadow-[0_0_18px_rgba(0,255,135,0.2)]">
+                    high-performance legacies
+                  </span>{" "}
+                  for discerning drivers.
                 </p>
-                <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.18em] text-[#dae6d8]/45">
-                  {label}
+                <p className="mt-5 max-w-lg text-sm sm:text-base leading-relaxed sm:leading-8 text-[#dae6d8]/75 font-normal italic tracking-wide">
+                  Our approach is rooted in exhaustive{" "}
+                  <span className="text-white border-b border-[#00ff87]/30 pb-0.5 font-medium transition-colors hover:text-[#00ff87]">
+                    provenance research
+                  </span>
+                  , precision{" "}
+                  <span className="text-white border-b border-[#00ff87]/30 pb-0.5 font-medium transition-colors hover:text-[#00ff87]">
+                    mechanical expertise
+                  </span>
+                  , and an uncompromising showroom standard built around
+                  absolute trust.
                 </p>
               </div>
+            </div>
+
+            {/* Verified Metrics Grid */}
+            <div className="grid gap-3 sm:grid-cols-3 sm:gap-4 border-t border-white/10 pt-8">
+              {stats.map(({ label, suffix }, index) => (
+                <div
+                  key={label}
+                  style={{ transitionDelay: `${index * 120}ms` }}
+                  className={`group relative overflow-hidden rounded-2xl border border-[#00ff87]/15 bg-[linear-gradient(135deg,rgba(0,255,135,0.03),rgba(8,16,12,0.85))] p-4 sm:p-5 shadow-[0_16px_50px_rgba(0,0,0,0.4)] backdrop-blur-sm transition duration-700 ease-out hover:border-[#00ff87]/40 hover:shadow-[0_20px_60px_rgba(0,255,135,0.08)] ${
+                    contentInView
+                      ? "translate-y-0 opacity-100"
+                      : "translate-y-4 opacity-0"
+                  }`}
+                >
+                  <div className="pointer-events-none absolute top-0 right-0 h-3.5 w-3.5 border-t border-r border-[#00ff87]/30 transition-colors group-hover:border-[#00ff87]/60" />
+                  <p className="[font-family:Orbitron,sans-serif] text-xl font-bold text-[#00ff87] sm:text-2xl drop-shadow-[0_0_12px_rgba(0,255,135,0.2)]">
+                    {displayStats[index]}
+                    <span className="ml-1 text-sm font-medium text-[#dae6d8]/85">
+                      {suffix}
+                    </span>
+                  </p>
+                  <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.2em] text-[#dae6d8]/50">
+                    {label}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Staggered Gallery Column */}
+          <div className="grid gap-4 sm:grid-cols-2 sm:gap-5 lg:gap-6 items-center">
+            {images.map((image) => (
+              <StoryImage key={image.label} {...image} />
             ))}
           </div>
         </div>
-
-        <div className="grid gap-4 sm:grid-cols-2 sm:gap-5 lg:gap-6">
-          {images.map((image) => (
-            <StoryImage key={image.label} {...image} />
-          ))}
-        </div>
       </div>
 
+      {/* Step 4: Operational Doctrine & Live Cockpit HUD Timeline */}
       <div
-        className={`mx-auto mt-14 max-w-7xl transition duration-700 ease-out lg:mt-24 ${
-          isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
+        ref={doctrineRef}
+        className={`mx-auto mt-16 max-w-7xl transition duration-700 ease-out lg:mt-28 ${
+          doctrineInView
+            ? "translate-y-0 opacity-100"
+            : "translate-y-6 opacity-0"
         }`}
       >
         <div className="mb-10 flex items-end justify-between gap-6 border-b border-white/10 pb-6">
@@ -514,7 +632,7 @@ const Story = () => {
               <div
                 style={{ transitionDelay: `0ms` }}
                 className={`relative transition duration-700 ease-out lg:mr-8 ${
-                  isVisible
+                  doctrineInView
                     ? "translate-x-0 opacity-100"
                     : "-translate-x-6 opacity-0"
                 }`}
@@ -540,7 +658,7 @@ const Story = () => {
               <div
                 style={{ transitionDelay: `300ms` }}
                 className={`relative transition duration-700 ease-out lg:ml-12 ${
-                  isVisible
+                  doctrineInView
                     ? "translate-x-0 opacity-100"
                     : "-translate-x-6 opacity-0"
                 }`}
@@ -566,7 +684,7 @@ const Story = () => {
             </div>
 
             <HudTimeline
-              isVisible={isVisible}
+              isVisible={doctrineInView}
               activeIndex={activePrincipleIndex}
               onSelectIndex={setActivePrincipleIndex}
             />
@@ -575,7 +693,7 @@ const Story = () => {
               <div
                 style={{ transitionDelay: `150ms` }}
                 className={`relative transition duration-700 ease-out lg:ml-8 ${
-                  isVisible
+                  doctrineInView
                     ? "translate-x-0 opacity-100"
                     : "translate-x-6 opacity-0"
                 }`}
@@ -645,7 +763,7 @@ const Story = () => {
             {/* The HUD Visual Timeline Wheel */}
             <div className="w-full flex justify-center -my-8">
               <HudTimeline
-                isVisible={isVisible}
+                isVisible={doctrineInView}
                 activeIndex={activePrincipleIndex}
                 onSelectIndex={setActivePrincipleIndex}
               />
