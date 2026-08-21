@@ -6,6 +6,7 @@ import Link from "next/link";
 import { X, ShoppingCart, ArrowRight } from "lucide-react";
 import { useCarStore } from "@/store/useCarStore";
 import { motion } from "framer-motion";
+import { getValidImageSrc } from "@/lib/utils";
 
 interface CarDropDownProps {
 	onClose: () => void;
@@ -93,8 +94,8 @@ export default function CarDropDown({ onClose }: CarDropDownProps) {
 									{/* Image */}
 									<div className="w-16 h-12 relative rounded-lg overflow-hidden border border-white/10 ring-1 ring-white/5 flex-shrink-0">
 										<Image
-											src={car.image}
-											alt={car.model}
+											src={getValidImageSrc(car.image)}
+											alt={car.model || "Car"}
 											fill
 											className="object-cover transition-transform duration-300 group-hover/item:scale-105"
 										/>

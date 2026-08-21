@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useCarStore } from "@/store/useCarStore";
 import WhishListCarsCard from "@/components/WhishListCarsCard";
 import CarWheelLoader from "@/components/ui/CarWheelLoader";
+import { getValidImageSrc } from "@/lib/utils";
 import {
   Settings,
   ShoppingBasket,
@@ -295,8 +296,8 @@ const ProfilePage = () => {
                         <div className="w-full sm:w-1/3">
                           <div className="bg-[#020503] rounded-lg overflow-hidden border border-[#dae6d8]/5 aspect-[4/3] relative">
                             <Image
-                              src={car.image}
-                              alt={car.model}
+                              src={getValidImageSrc(car.image)}
+                              alt={car.model || "Car"}
                               fill
                               className="object-cover"
                             />

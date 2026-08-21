@@ -116,7 +116,8 @@ const ImageSlider = ({
           <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none group-hover:pointer-events-auto z-20">
             {album.map((_, i) => (
               <button
-                onClick={() => {
+                onClick={(e) => {
+                  e.stopPropagation();
                   setIsTransitioning(true);
                   setIndex(i + 1);
                 }}
@@ -141,14 +142,14 @@ const ImageSlider = ({
           </div>
 
           <button
-            onClick={prevImg}
+            onClick={(e) => { e.stopPropagation(); prevImg(); }}
             className="absolute h-full left-0 top-0 bg-black/10 hover:bg-black/20 text-white cursor-pointer p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20"
           >
             <ChevronLeft size={32} />
           </button>
 
           <button
-            onClick={nextImg}
+            onClick={(e) => { e.stopPropagation(); nextImg(); }}
             className="absolute h-full right-0 top-0 bg-black/10 hover:bg-black/20 text-white cursor-pointer p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20"
           >
             <ChevronRight size={32} />

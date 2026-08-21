@@ -46,7 +46,7 @@ const CarsCard = ({
         typeof price === "number"
           ? price
           : parseFloat(String(price).replace(/[^0-9.]/g, "")) || 0,
-      image: image || "",
+      image: image || carAlbum?.photo1 || carAlbum?.photo2 || "",
       badge,
       bodySilhouette,
       specs,

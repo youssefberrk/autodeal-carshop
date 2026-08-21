@@ -158,7 +158,7 @@ export default function Logo({ shrink = false }: { shrink?: boolean }) {
 			<div className="flex flex-col leading-none">
 				<div
 					className={`font-black leading-[0.95] tracking-[0.075em] transition-all duration-300 ${
-						shrink ? "text-[1.2rem] md:text-[1.55rem] lg:text-[1.75rem]" : "text-[1.4rem] sm:text-[1.55rem] md:text-[1.75rem]"
+						shrink ? "text-[1.2rem] md:text-[1.55rem] lg:text-[1.75rem]" : "text-[1.15rem] sm:text-[1.55rem] md:text-[1.75rem]"
 					}`}
 					style={{ fontFamily: "'Orbitron', sans-serif" }}
 				>
@@ -166,7 +166,7 @@ export default function Logo({ shrink = false }: { shrink?: boolean }) {
 					<span className="text-primary">Deal</span>
 				</div>
 
-				<div className={`mt-1 flex items-center gap-2 transition-all duration-300 ${shrink ? "hidden md:flex" : "flex"}`}>
+				<div className={`mt-1 items-center gap-2 transition-all duration-300 ${shrink ? "hidden md:flex" : "hidden sm:flex"}`}>
 					<div className="h-px w-10 bg-primary/80 shadow-[0_0_10px_rgba(0,255,135,0.45)] transition-all duration-300 group-hover:w-14" />
 					<span
 						className="text-[0.42rem] font-semibold tracking-[0.32em] text-primary/70 sm:text-[0.46rem]"
