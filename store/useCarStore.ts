@@ -14,26 +14,37 @@ export const useCarStore = create<CarStore>()(
 			isPopUp: false,
 			isPurchasedPopUp: false,
 
-			addToAllocation: (car: Car) =>{
-				let exists = false;
-				set((state) => {
-					// Check if car already exists to avoid duplicates
-					exists = !!state.allocatedCars.find((c) => c.id === car.id);
-					if (exists) return state;
+			addToAllocation: (car: Car) => {
+    let wasAdded = false;
 
-					return {
-						isPurchasedPopUp: true,
-						allocatedCars: [...state.allocatedCars, { ...car, quantity: car.quantity || 1, color: car.color }],
-					};
-					
-				})
-			
-				if (!exists) {
-					setTimeout(() => {
-						set({ isPurchasedPopUp: false });
-					}, 2000);
-				}
-			},
+    set((state) => {
+        const exists = state.allocatedCars.some(
+            (c) => c.id === car.id
+        );
+
+        if (exists) return state;
+
+        wasAdded = true;
+
+        return {
+            isPurchasedPopUp: true,
+            allocatedCars: [
+                ...state.allocatedCars,
+                {
+                    ...car,
+                    quantity: car.quantity || 1,
+                    color: car.color,
+                },
+            ],
+        };
+    });
+
+    if (wasAdded) {
+        setTimeout(() => {
+            set({ isPurchasedPopUp: false });
+        }, 2000);
+    }
+},
 
 			removeFromAllocation: (carId: number) =>
 				set((state) => ({
