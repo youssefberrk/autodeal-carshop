@@ -306,6 +306,7 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
 											src={thumb}
 											alt={`View ${idx + 1}`}
 											fill
+											sizes="(max-width: 768px) 25vw, 150px"
 											className="object-cover"
 										/>
 									</button>

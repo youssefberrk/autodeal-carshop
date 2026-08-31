@@ -71,6 +71,7 @@ const CarsCard = ({
           src={carAlbum.photo1}
           alt={`${brand} ${model}`}
           fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className="card-image object-cover"
         />
         <div className="card-image-overlay" />

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
-import { Car } from '@/types/Order';
+import { carsData } from '@/public/cars/CarsData';
 
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 if (!stripeSecretKey) {
@@ -8,11 +8,17 @@ if (!stripeSecretKey) {
 }
 const stripe = new Stripe(stripeSecretKey || '');
 
+/**
+ * Trusted server-side car lookup.
+ * Never accept price, total, or discount from the client.
+ * The client sends only carIds + quantities; the server resolves everything else.
+ */
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     const {
-      cars,
+      carIds,        // number[]  – the only car data trusted from the client
+      quantities,    // Record<number, number>  – carId → quantity chosen by the user
       fullName,
       email,
       address,
@@ -23,30 +29,95 @@ export async function POST(request: NextRequest) {
       phoneNumber,
     } = body;
 
-    // Validate request data
-    if (!cars || !Array.isArray(cars) || cars.length === 0) {
-      return NextResponse.json({ error: 'Allocated cars are required' }, { status: 400 });
+    // ── Validate shape ────────────────────────────────────────────────────────
+    if (!carIds || !Array.isArray(carIds) || carIds.length === 0) {
+      return NextResponse.json({ error: 'carIds are required' }, { status: 400 });
     }
     if (!fullName || !email || !address || !city || !postalCode) {
       return NextResponse.json({ error: 'Missing required delivery details' }, { status: 400 });
     }
 
+    // ── Resolve each car from the authoritative server-side catalog ───────────
+    const resolvedCars: Array<{
+      id: number;
+      brand: string;
+      model: string;
+      price: number;
+      image: string;
+      bodySilhouette: string;
+      specs: string;
+      quantity: number;
+    }> = [];
+
+    for (const rawId of carIds) {
+      const carId = Number(rawId);
+      if (!Number.isInteger(carId) || carId <= 0) {
+        return NextResponse.json({ error: `Invalid carId: ${rawId}` }, { status: 400 });
+      }
+
+      // Look up in the authoritative catalog – never use client-supplied price
+      const catalogCar = carsData.find((c) => c.id === carId);
+      if (!catalogCar) {
+        return NextResponse.json({ error: `Car not found: ${carId}` }, { status: 404 });
+      }
+
+      // Clamp quantity: must be ≥ 1 and ≤ availability
+      const requestedQty = quantities && quantities[carId] ? Number(quantities[carId]) : 1;
+      const availability = catalogCar.availability ?? 1;
+      if (!Number.isInteger(requestedQty) || requestedQty < 1) {
+        return NextResponse.json(
+          { error: `Invalid quantity for car ${carId}` },
+          { status: 400 }
+        );
+      }
+      if (requestedQty > availability) {
+        return NextResponse.json(
+          {
+            error: `Requested quantity (${requestedQty}) exceeds availability (${availability}) for ${catalogCar.brand} ${catalogCar.model}`,
+          },
+          { status: 400 }
+        );
+      }
+
+      // Authoritative price from the catalog (number, not string)
+      const authorizedPrice =
+        typeof catalogCar.price === 'number' ? catalogCar.price : null;
+      if (authorizedPrice === null) {
+        return NextResponse.json(
+          { error: `${catalogCar.brand} ${catalogCar.model} is "Price On Request" and cannot be purchased online.` },
+          { status: 400 }
+        );
+      }
+
+      resolvedCars.push({
+        id: catalogCar.id,
+        brand: catalogCar.brand,
+        model: catalogCar.model ?? '',
+        price: authorizedPrice,
+        image: catalogCar.image ?? '',
+        bodySilhouette: catalogCar.bodySilhouette ?? '',
+        specs: catalogCar.specs ?? '',
+        quantity: requestedQty,
+      });
+    }
+
     const origin = request.headers.get('origin') || 'http://localhost:3000';
 
-    // Map cars to Stripe line items (deposit of $10,000 per vehicle)
-    const lineItems = cars.map((car: Car) => {
-      // Form absolute image URL for Stripe checkout page
+    // ── Build Stripe line items from server-resolved data ─────────────────────
+    // Deposit: $10,000 per vehicle (server-defined, not client-controlled)
+    const DEPOSIT_CENTS = 1_000_000; // $10,000 in cents
+
+    const lineItems = resolvedCars.map((car) => {
       let imageUrls: string[] = [];
       if (car.image) {
         try {
-          // If image is relative, make it absolute
-          if (car.image.startsWith('/')) {
-            imageUrls = [new URL(car.image, origin).toString()];
-          } else if (car.image.startsWith('http')) {
-            imageUrls = [car.image];
-          }
-        } catch (e) {
-          console.error('Error parsing car image URL:', e);
+          imageUrls = [
+            car.image.startsWith('/')
+              ? new URL(car.image, origin).toString()
+              : car.image,
+          ];
+        } catch {
+          // skip invalid URLs silently
         }
       }
 
@@ -58,31 +129,32 @@ export async function POST(request: NextRequest) {
             images: imageUrls,
             description: `Non-refundable build slot reservation deposit for ${car.brand} ${car.model}. Spec: ${car.specs || 'Custom'}.`,
           },
-          unit_amount: 1000000, // $10,000 in cents
+          unit_amount: DEPOSIT_CENTS,
         },
-        quantity: car.quantity || 1,
+        quantity: car.quantity,
       };
     });
 
-    // Compact the cars object for metadata to save space (Stripe limit is 500 chars per value)
-    const compactCars = cars.map((c: Car) => ({
+    // ── Compact metadata (Stripe 500-char limit per value) ────────────────────
+    // Store only IDs + quantities; prices are NOT persisted in metadata because
+    // on success the server re-derives them from the catalog.
+    const compactCars = resolvedCars.map((c) => ({
       id: c.id,
       b: c.brand,
       m: c.model,
-      p: c.price,
-      i: c.image || '',
-      bs: c.bodySilhouette || '',
-      s: c.specs || '',
-      q: c.quantity || 1,
+      i: c.image,
+      bs: c.bodySilhouette,
+      s: c.specs,
+      q: c.quantity,
+      // NOTE: price (p) is intentionally omitted – re-derived server-side on success
     }));
 
     const carsJson = JSON.stringify(compactCars);
     if (carsJson.length > 500) {
-      // If still too long, we might need a different approach, but for now we'll log it
       console.warn('Metadata carsJson exceeds Stripe 500 character limit:', carsJson.length);
     }
 
-    // Create Stripe Checkout Session
+    // ── Create Stripe Checkout Session ────────────────────────────────────────
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: lineItems,
@@ -99,7 +171,7 @@ export async function POST(request: NextRequest) {
         state: stateName || '',
         zipCode: postalCode,
         country: countryName || 'United States',
-        carsJson: carsJson,
+        carsJson,
       },
     });
 

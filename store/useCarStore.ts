@@ -18,7 +18,7 @@ export const useCarStore = create<CarStore>()(
 				let exists = false;
 				set((state) => {
 					// Check if car already exists to avoid duplicates
-					const exists = state.allocatedCars.find((c) => c.id === car.id);
+					exists = !!state.allocatedCars.find((c) => c.id === car.id);
 					if (exists) return state;
 
 					return {

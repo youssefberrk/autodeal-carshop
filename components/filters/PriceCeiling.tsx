@@ -41,7 +41,7 @@ const PriceCeilingSlider: React.FC<PriceCeilingSliderProps> = ({
 		<div className="w-full max-w-xs font-['Manrope']">
 			<div className="flex justify-between items-end mb-4">
 				<label className="text-[10px] uppercase tracking-[0.2em] text-[#dae6d8]/60 font-bold">
-					Price Floor
+					Price Ceiling
 				</label>
 				<span className="text-xs font-bold text-[#00ff87] tracking-widest">
 					{currency}

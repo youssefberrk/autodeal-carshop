@@ -94,9 +94,10 @@ export default function CarDropDown({ onClose }: CarDropDownProps) {
 									{/* Image */}
 									<div className="w-16 h-12 relative rounded-lg overflow-hidden border border-white/10 ring-1 ring-white/5 flex-shrink-0">
 										<Image
-											src={getValidImageSrc(car.image)}
+											src={getValidImageSrc(car.image, car.id)}
 											alt={car.model || "Car"}
 											fill
+											sizes="64px"
 											className="object-cover transition-transform duration-300 group-hover/item:scale-105"
 										/>
 									</div>

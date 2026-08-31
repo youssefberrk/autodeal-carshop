@@ -224,7 +224,7 @@ const ShopPage = () => {
             </div>
 
             <div className="filter-group">
-              <label className="filter-label">Price Floor</label>
+              <label className="filter-label">Price Range</label>
               <PriceCeiling
                 onPriceChange={setPriceRange}
                 min={minPrice}
@@ -248,7 +248,9 @@ const ShopPage = () => {
                 No Matching Vehicles Available
               </h3>
               <p className="text-slate-400 text-xs md:text-sm max-w-md mb-6 leading-relaxed">
-                No vehicles currently meet your specified criteria. Try adjusting your manufacturer, body silhouette, or price floor parameters.
+                No vehicles currently meet your specified criteria. Try
+                adjusting your manufacturer, body silhouette, or price floor
+                parameters.
               </p>
               <button
                 onClick={handleResetFilters}
@@ -318,7 +320,10 @@ const ShopPage = () => {
         {isMobileFilterOpen && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md lg:hidden overflow-y-auto">
             {/* Backdrop overlay click */}
-            <div className="absolute inset-0 -z-10" onClick={handleCancelMobileFilters} />
+            <div
+              className="absolute inset-0 -z-10"
+              onClick={handleCancelMobileFilters}
+            />
 
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
@@ -339,7 +344,10 @@ const ShopPage = () => {
                   </h2>
                 </div>
                 <div className="flex items-center gap-2">
-                  {(draftBrand !== "ALL BRANDS" || (draftBodySilhouette !== "" && draftBodySilhouette !== "All") || draftPriceRange > minPrice) && (
+                  {(draftBrand !== "ALL BRANDS" ||
+                    (draftBodySilhouette !== "" &&
+                      draftBodySilhouette !== "All") ||
+                    draftPriceRange > minPrice) && (
                     <button
                       type="button"
                       onClick={handleResetDraftFilters}

@@ -135,7 +135,7 @@ export const carsData: Cars[] = [
 		bodySilhouette: "Electric",
 		price: 95000,
 		availability: 4,
-		image: "/cars/shop-featured/am/am1.jpeg",
+		image: "/cars/mercedes/eqs-1.avif",
 		carAlbum: {
 			photo1: "/cars/mercedes/eqs-1.avif",
 			photo2: "/cars/mercedes/eqs-2.avif",
@@ -176,7 +176,7 @@ export const carsData: Cars[] = [
 		bodySilhouette: "SUV",
 		price: 80000,
 		availability: 5,
-		image: "/cars/shop-featured/911/p3.jpg",
+		image: "/cars/audi/q8-1.webp",
 		carAlbum: {
 			photo1: "/cars/audi/q8-1.webp",
 			photo2: "/cars/audi/q8-2.webp",
@@ -457,7 +457,7 @@ export const carsData: Cars[] = [
 		bodySilhouette: "Coupe",
 		price: 140000,
 		availability: 3,
-		image: "/cars/mercedes/amg-gt-1.jpg",
+		image: "/cars/mercedes/amg-gt-1.avif",
 		carAlbum: {
 			photo1: "/cars/mercedes/amg-gt-1.avif",
 			photo2: "/cars/mercedes/amg-gt-2.avif",
@@ -495,7 +495,7 @@ export const carsData: Cars[] = [
 		bodySilhouette: "Electric",
 		price: 85000,
 		availability: 4,
-		image: "/cars/audi/rs7-1.jpg",
+		image: "/cars/audi/etron-1.webp",
 		carAlbum: {
 			photo1: "/cars/audi/etron-1.webp",
 			photo2: "/cars/audi/etron-2.webp",
@@ -571,7 +571,7 @@ export const carsData: Cars[] = [
 		bodySilhouette: "Coupe",
 		price: 250000,
 		availability: 1,
-		image: "/cars/bentley/continental-1.jpg",
+		image: "/cars/bentley/continental-1.webp",
 		carAlbum: {
 			photo1: "/cars/bentley/continental-1.webp",
 			photo2: "/cars/bentley/continental-2.webp",
@@ -609,7 +609,7 @@ export const carsData: Cars[] = [
 		bodySilhouette: "SUV",
 		price: 160000,
 		availability: 2,
-		image: "/cars/astonmartin/dbx-1.jpg",
+		image: "/cars/astonmartin/dbx-1.webp",
 		carAlbum: {
 			photo1: "/cars/astonmartin/dbx-1.webp",
 			photo2: "/cars/astonmartin/dbx-2.webp",
@@ -647,7 +647,7 @@ export const carsData: Cars[] = [
 		bodySilhouette: "SUV",
 		price: 230000,
 		availability: 2,
-		image: "/cars/lamborghini/urus-1.jpg",
+		image: "/cars/lamborghini/urus-1.png",
 		carAlbum: {
 			photo1: "/cars/lamborghini/urus-1.png",
 			photo2: "/cars/lamborghini/urus-2.png",
@@ -761,7 +761,7 @@ export const carsData: Cars[] = [
 		bodySilhouette: "SUV",
 		price: 125000,
 		availability: 4,
-		image: "/cars/mercedes/gle-1.jpg",
+		image: "/cars/mercedes/gle-1.webp",
 		carAlbum: {
 			photo1: "/cars/mercedes/gle-1.webp",
 			photo2: "/cars/mercedes/gle-2.webp",
@@ -799,7 +799,7 @@ export const carsData: Cars[] = [
 		bodySilhouette: "Coupe",
 		price: 150000,
 		availability: 2,
-		image: "/cars/audi/r8-1.jpg",
+		image: "/cars/audi/r8-1.webp",
 		carAlbum: {
 			photo1: "/cars/audi/r8-1.webp",
 			photo2: "/cars/audi/r8-2.webp",
