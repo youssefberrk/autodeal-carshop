@@ -17,8 +17,6 @@ import {
   MapPin,
   Bell,
   Car,
-  Trash2,
-  UserPen,
 } from "lucide-react";
 import Image from "next/image";
 

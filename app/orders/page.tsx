@@ -1,6 +1,5 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { redirect, useRouter } from "next/navigation";
 import Image from "next/image";
@@ -19,22 +18,15 @@ import { Order } from "@/types/Order";
 const OrdersPage = () => {
   const { data: session, status } = useSession();
   const { currentOrder } = useCarStore();
-  const [isMounted, setIsMounted] = useState(false);
   const router = useRouter();
 
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
   // Redirect to login if unauthenticated
-  useEffect(() => {
-    if (isMounted && status === "unauthenticated") {
-      redirect("/login");
-    }
-  }, [isMounted, status]);
+  if (status === "unauthenticated") {
+    redirect("/login");
+  }
 
-  // Loading state while checking session or pre-mounting (preventing hydration issues)
-  if (status === "loading" || !isMounted || status === "unauthenticated") {
+  // Loading state while checking session
+  if (status === "loading") {
     return (
       <div className="min-h-screen bg-[#050e0a] text-[#dae6d8] flex items-center justify-center font-['Manrope']">
         <CarWheelLoader text="Retrieving order history..." size={72} />

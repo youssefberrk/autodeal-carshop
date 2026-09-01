@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect, useCallback } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import {
   MapPin,
@@ -31,13 +31,6 @@ const ContactClient = () => {
     "WHETHER YOU'RE SEEKING A RARE ALLOCATION, A BESPOKE CONFIGURATION, OR SIMPLY WISH TO DISCUSS YOUR COLLECTION \u2014 OUR CONCIERGE TEAM IS AT YOUR SERVICE.";
   const [displayedText, setDisplayedText] = useState("");
   const [cursorVisible, setCursorVisible] = useState(true);
-
-  const typeChar = useCallback(() => {
-    setDisplayedText((prev) => {
-      if (prev.length >= typewriterText.length) return prev;
-      return typewriterText.slice(0, prev.length + 1);
-    });
-  }, [typewriterText]);
 
   useEffect(() => {
     // Start typing after a short hero stagger delay

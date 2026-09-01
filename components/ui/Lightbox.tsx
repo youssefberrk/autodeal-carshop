@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { X, ZoomIn, ZoomOut, ChevronLeft, ChevronRight, Maximize } from "lucide-react";
@@ -17,9 +17,20 @@ const Lightbox = ({ images, currentIndex, isOpen, onClose, onIndexChange }: Ligh
   const [scale, setScale] = useState(1);
   const containerRef = useRef<HTMLDivElement>(null);
 
+  const nextImg = useCallback(() => {
+    if (images.length <= 1) return;
+    onIndexChange((currentIndex + 1) % images.length);
+  }, [currentIndex, images.length, onIndexChange]);
+
+  const prevImg = useCallback(() => {
+    if (images.length <= 1) return;
+    onIndexChange((currentIndex - 1 + images.length) % images.length);
+  }, [currentIndex, images.length, onIndexChange]);
+
   // Reset scale when image changes or closes
   useEffect(() => {
-    setScale(1);
+    const timer = setTimeout(() => setScale(1), 0);
+    return () => clearTimeout(timer);
   }, [currentIndex, isOpen]);
 
   // Handle keyboard events
@@ -32,17 +43,7 @@ const Lightbox = ({ images, currentIndex, isOpen, onClose, onIndexChange }: Ligh
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isOpen, currentIndex, images.length]);
-
-  const nextImg = () => {
-    if (images.length <= 1) return;
-    onIndexChange((currentIndex + 1) % images.length);
-  };
-
-  const prevImg = () => {
-    if (images.length <= 1) return;
-    onIndexChange((currentIndex - 1 + images.length) % images.length);
-  };
+  }, [isOpen, onClose, prevImg, nextImg]);
 
   const handleZoomIn = () => setScale((s) => Math.min(s + 0.5, 4));
   const handleZoomOut = () => setScale((s) => Math.max(s - 0.5, 1));
@@ -151,7 +152,7 @@ const Lightbox = ({ images, currentIndex, isOpen, onClose, onIndexChange }: Ligh
                   fill
                   className="object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
                   quality={100}
-                  priority
+                  preload
                   sizes="100vw"
                   unoptimized={images[currentIndex].startsWith("http")}
                   draggable={false}

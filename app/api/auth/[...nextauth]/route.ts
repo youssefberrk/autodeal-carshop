@@ -1,6 +1,5 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import { authOptions } from "@/auth";
 
 const handler = NextAuth({
 	providers: [
@@ -10,9 +9,10 @@ const handler = NextAuth({
 		}),
 	],
 	callbacks: {
-		async session({ session, user, token }) {
+		async session({ session, token }) {
 			if (session.user) {
-				(session.user as any).id = token.sub || `user-${Math.random()}`;
+				(session.user as { id?: string }).id =
+					token.sub || `user-${Math.random()}`;
 			}
 			return session;
 		},

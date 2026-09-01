@@ -32,7 +32,7 @@ export default function NewArrivalsPage() {
           alt="New arrivals"
           fill
           className="hero-image object-cover"
-          priority
+          preload
         />
         <div className="hero-overlay" />
         <div className="hero-content">

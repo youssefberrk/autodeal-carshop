@@ -11,6 +11,16 @@ import { shippingSchema, ShippingFormData } from '../_schemas/checkoutSchema';
 // Re-export for compatibility
 export type { ShippingFormData as ShippingFields };
 
+type CompactCheckoutCar = {
+  id: number;
+  b: string;
+  m: string;
+  i: string;
+  bs: string;
+  s: string;
+  q?: number;
+};
+
 // ── Mock car used when the garage is empty (preview mode) ─────────────────────
 
 const MOCK_CAR: Car = {
@@ -124,10 +134,10 @@ export function useCheckout() {
 
       if (data.paymentStatus === 'paid') {
         const metadata = data.metadata;
-        const compactCars = JSON.parse(metadata.carsJson);
+        const compactCars = JSON.parse(metadata.carsJson) as CompactCheckoutCar[];
 
         // Re-derive prices from the server-side catalog — never trust metadata prices.
-        const cars: Car[] = compactCars.map((c: any) => {
+        const cars: Car[] = compactCars.map((c) => {
           const catalogCar = carsData.find((cat) => cat.id === c.id);
           const resolvedPrice =
             catalogCar && typeof catalogCar.price === 'number' ? catalogCar.price : 0;

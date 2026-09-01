@@ -45,13 +45,9 @@ const ToastItem = ({ notification }: { notification: Notification }) => {
 
 export const ToastContainer = () => {
   const { notifications } = useCarStore();
-  const [mounted, setMounted] = useState(false);
+  const portalTarget = typeof document === "undefined" ? null : document.body;
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) return null;
+  if (!portalTarget) return null;
 
   return createPortal(
     <div className="fixed bottom-6 right-6 z-[9999] flex flex-col items-end pointer-events-none">
@@ -59,6 +55,6 @@ export const ToastContainer = () => {
         <ToastItem key={n.id} notification={n} />
       ))}
     </div>,
-    document.body,
+    portalTarget,
   );
 };

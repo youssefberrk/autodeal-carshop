@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Gclass from "@/public/cars/shop-featured/g1.jpg";
 import { featCars, carsData } from "@/public/cars/CarsData";
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo } from "react";
 import FeaturedCard from "@/components/FeaturedCard";
 import CarsCard from "@/components/CarsCard";
 import ManufacturerDropdown from "@/components/filters/ManufacturerDropdown";
@@ -21,8 +21,6 @@ const ShopPage = () => {
   const [selectedBrand, setSelectedBrand] = useState<string>("ALL BRANDS");
   const [bodySilhouette, setBodySilhouette] = useState<string>("");
   const [visibleCarsCount, setVisibleCarsCount] = useState<number>(6);
-  const [isLoaded, setIsLoaded] = useState(false);
-
   const minPrice = Math.min(...carsData.map((c) => Number(c.price)));
   const maxPrice = Math.max(...carsData.map((c) => Number(c.price)));
   const [priceRange, setPriceRange] = useState<number>(minPrice);
@@ -32,11 +30,6 @@ const ShopPage = () => {
   const [draftBrand, setDraftBrand] = useState<string>("ALL BRANDS");
   const [draftBodySilhouette, setDraftBodySilhouette] = useState<string>("");
   const [draftPriceRange, setDraftPriceRange] = useState<number>(minPrice);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setIsLoaded(true), 100);
-    return () => clearTimeout(timer);
-  }, []);
 
   const filteredCars = useMemo(() => {
     return carsData.filter((car) => {
@@ -102,7 +95,7 @@ const ShopPage = () => {
           alt="G-class"
           fill
           className="hero-image object-cover"
-          priority
+          preload
         />
         <div className="hero-overlay" />
         <div className="hero-content">

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo, useCallback } from "react";
+import { useState, useMemo, useCallback } from "react";
 import { useCarStore } from "@/store/useCarStore";
 import { getValidImageSrc } from "@/lib/utils";
 import {
@@ -63,23 +63,13 @@ export interface CarDetailsClientProps {
 const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
 	const [quantity, setQuantity] = useState<number>(1);
 	const [isAvailable, setIsAvailable] = useState<boolean>(true);
-	const [mounted, setMounted] = useState(false);
 	const [isLightboxOpen, setIsLightboxOpen] = useState(false);
-
-	useEffect(() => {
-		setMounted(true);
-	}, []);
 
 	const [selectedColor, setSelectedColor] = useState({
 		id: car.colors?.[0]?.id || "blue",
 		hex: car.colors?.[0]?.hex || "#00ff87",
 	});
 	const [activeImage, setActiveImage] = useState(0);
-
-	// Reset active image when car changes
-	useEffect(() => {
-		setActiveImage(0);
-	}, [car.id]);
 
 	const handleImageChange = useCallback((idx: number) => {
 		setActiveImage(idx);
@@ -93,7 +83,6 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
 		addToWhishList,
 		removeFromWhishList,
 		whishListCars,
-		quant,
 	} = useCarStore();
 
 	const isFavorite = whishListCars?.some((c) => c.id === car.id) || false;
@@ -189,7 +178,6 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
 		} else {
 			setIsAvailable(false);
 		}
-		console.log(quant);
 	};
 
 	const handleAddToWishList = () => {

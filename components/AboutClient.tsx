@@ -22,14 +22,14 @@ interface AnimatedCounterProps {
 const AnimatedCounter: React.FC<AnimatedCounterProps> = ({ value }) => {
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
-  const [displayValue, setDisplayValue] = useState("0");
+  const hasNumericValue = /[\d.]+/.test(value);
+  const [displayValue, setDisplayValue] = useState(hasNumericValue ? "0" : value);
 
   useEffect(() => {
     if (!isInView) return;
 
     const numMatch = value.match(/([\d.]+)/);
     if (!numMatch) {
-      setDisplayValue(value);
       return;
     }
 

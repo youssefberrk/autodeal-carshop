@@ -7,12 +7,30 @@ import OrderConfirmationEmail from '@/emails/OrderConfirmation';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+const confirmationCarSchema = z.object({
+  id: z.number(),
+  brand: z.string(),
+  model: z.string(),
+  price: z.number(),
+  image: z.string(),
+  badge: z.string().optional(),
+  bodySilhouette: z.string().optional(),
+  specs: z.string().optional(),
+  quantity: z.number().optional(),
+  color: z
+    .object({
+      id: z.string(),
+      hex: z.string(),
+    })
+    .optional(),
+});
+
 const confirmationSchema = z.object({
   email: z.string().email({ message: 'Valid recipient email is required' }),
   fullName: z.string().min(1, { message: 'Full name is required' }),
   orderId: z.string().min(1, { message: 'Order ID is required' }),
   totalAmount: z.number().positive({ message: 'Total amount must be positive' }),
-  cars: z.array(z.any()).min(1, { message: 'At least one vehicle must be included' }),
+  cars: z.array(confirmationCarSchema).min(1, { message: 'At least one vehicle must be included' }),
 });
 
 export async function POST(request: NextRequest) {

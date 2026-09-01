@@ -1,8 +1,7 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
-import Image from "next/image";
+import { useState, useMemo } from "react";
+import { useRouter } from "next/navigation";
 import { FaSearch, FaTimes } from "react-icons/fa";
 import { MapPin, Phone, Clock, Compass } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -16,14 +15,7 @@ interface SearchClientProps {
 
 const SearchClient = ({ initialQuery }: SearchClientProps) => {
   const router = useRouter();
-  const searchParams = useSearchParams();
   const [searchTerm, setSearchTerm] = useState(initialQuery);
-
-  // Sync state with URL changes (e.g. if navigated from elsewhere or popstate)
-  useEffect(() => {
-    const q = searchParams.get("q") || "";
-    setSearchTerm(q);
-  }, [searchParams]);
 
   // Compute filtered cars and showrooms
   const filteredData = useMemo(() => {

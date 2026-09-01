@@ -21,9 +21,12 @@ const ImageSlider = ({
   // Sync from external prop
   useEffect(() => {
     if (activeImage !== lastPropIndex.current) {
-      setIsTransitioning(true);
-      setIndex(activeImage + 1);
-      lastPropIndex.current = activeImage;
+      const timer = setTimeout(() => {
+        setIsTransitioning(true);
+        setIndex(activeImage + 1);
+        lastPropIndex.current = activeImage;
+      }, 0);
+      return () => clearTimeout(timer);
     }
   }, [activeImage]);
 
@@ -90,7 +93,7 @@ const ImageSlider = ({
                 fill
                 sizes="(max-width: 768px) 100vw, 800px"
                 className="object-cover"
-                priority={i === 1}
+                preload={i === 1}
                 unoptimized={photo.startsWith("http")}
               />
             </div>
@@ -104,7 +107,7 @@ const ImageSlider = ({
               loading="lazy"
               sizes="(max-width: 768px) 100vw, 800px"
               className="object-cover"
-              priority
+              preload
               unoptimized={album[0].startsWith("http")}
             />
           </div>

@@ -8,6 +8,7 @@ import CarDropDown from "./CarDropDown";
 import { FaSearch, FaBars, FaTimes } from "react-icons/fa";
 import { IoCarSport } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
+import Image from "next/image";
 import Logo from "./ui/Logo";
 import { useSession, signOut } from "next-auth/react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -67,9 +68,6 @@ const NavBar = () => {
 	const [profileOpen, setProfileOpen] = useState(false);
 	const [scrollProgress, setScrollProgress] = useState(0);
 	const [carDropdownOpen, setCarDropdownOpen] = useState(false);
-	const [checkedWishListCount, setCheckedWishListCount] = useState<
-		number | null
-	>(null);
 	const [isSearchOpen, setIsSearchOpen] = useState(false);
 	const pathname = usePathname();
 
@@ -349,10 +347,12 @@ const NavBar = () => {
 													<div className="px-3 py-2.5 border-b border-[#00ff87]/10 mb-2">
 														<div className="flex items-center gap-2.5">
 															{session.user?.image ? (
-																<img
+																<Image
 																	src={session.user.image}
 																	alt={session.user.name || "User"}
-																	className="w-9 h-9 rounded-full object-cover ring-2 ring-[#00ff87]/30"
+																	width={36}
+																	height={36}
+																	className="h-9 w-9 rounded-full object-cover ring-2 ring-[#00ff87]/30"
 																/>
 															) : (
 																<div className="w-9 h-9 rounded-full bg-[#00ff87]/10 border border-[#00ff87]/30 flex items-center justify-center text-[#00ff87] font-bold text-sm shadow-[0_0_10px_rgba(0,255,135,0.1)]">
@@ -391,7 +391,6 @@ const NavBar = () => {
 														<Link
 															onClick={() => {
 																setProfileOpen(false);
-																setCheckedWishListCount(whishListCount);
 															}}
 															href="/whishlist"
 															className="flex items-center justify-between px-3 py-2 text-slate-300 hover:text-[#00ff87] hover:bg-[#00ff87]/5 rounded-lg transition-all duration-200 text-sm group/item active:scale-[0.97]">
@@ -550,10 +549,7 @@ const NavBar = () => {
 										</Link>
 										<Link
 											href="/whishlist"
-											onClick={() => {
-												setMenuOpen(false);
-												setCheckedWishListCount(whishListCount);
-											}}
+											onClick={() => setMenuOpen(false)}
 											className="flex items-center justify-between gap-2.5 px-3 py-2.5 text-xs text-slate-300 hover:text-[#00ff87] hover:bg-[#00ff87]/5 border border-transparent hover:border-[#00ff87]/10 rounded-xl transition-all duration-200 active:scale-[0.97]">
 											<div className="flex items-center gap-2.5">
 												<Heart size={14} className="text-slate-400" />

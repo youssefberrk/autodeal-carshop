@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Car } from '@/types/Order';
 import { CheckCircle2, Sparkles, ArrowRight, X } from 'lucide-react';
 import { getValidImageSrc } from '@/lib/utils';
@@ -77,9 +78,11 @@ export default function OrderSummary({
 
               {/* Vehicle Image Thumbnail */}
               <div className="aspect-[16/9] w-full bg-[#030c07] mb-4 overflow-hidden border border-[#dae6d8]/10 group-hover:border-[#00ff87]/30 rounded-xl relative shadow-md">
-                <img
-                  src={car.image || '/api/placeholder/1200/800'}
+                <Image
+                  src={getValidImageSrc(car.image)}
                   alt={`${car.brand} ${car.model}`}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 420px"
                   className="w-full h-full object-cover grayscale-[0.03] contrast-[1.05] group-hover:scale-105 transition-transform duration-500"
                 />
                 {useMock && index === 0 && (

@@ -1,12 +1,16 @@
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 import { carsData } from "@/public/cars/CarsData"
+import type { StaticImageData } from "next/image"
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export function getValidImageSrc(img: any, carId?: number): string {
+export function getValidImageSrc(
+  img: string | StaticImageData | null | undefined,
+  carId?: number,
+): string {
   if (carId !== undefined) {
     const foundCar = carsData.find((c) => c.id === Number(carId));
     if (foundCar) {
@@ -23,7 +27,12 @@ export function getValidImageSrc(img: any, carId?: number): string {
 
   if (typeof img === "string" && img.trim().length > 0 && img !== "/edited.png") {
     resolved = img.trim();
-  } else if (typeof img === "object" && typeof img.src === "string" && img.src.trim().length > 0) {
+  } else if (
+    img &&
+    typeof img === "object" &&
+    typeof img.src === "string" &&
+    img.src.trim().length > 0
+  ) {
     resolved = img.src.trim();
   }
 

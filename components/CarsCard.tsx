@@ -2,12 +2,12 @@
 
 import { Cars } from "@/types/Cars";
 
-import { Heart, CircleOff } from "lucide-react";
+import { Heart } from "lucide-react";
 import Image from "next/image";
 
 import { useCarStore } from "@/store/useCarStore";
 import { useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import QuickViewModal from "./ui/QuickViewModal";
 
@@ -24,12 +24,7 @@ const CarsCard = ({
 }: Cars) => {
   const router = useRouter();
   const [isHovered, setIsHovered] = useState(false);
-  const [mounted, setMounted] = useState(false);
   const [isQuickViewClicked, setIsQuickViewClicked] = useState<boolean>(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const { addToWhishList, removeFromWhishList } = useCarStore();
 
@@ -103,7 +98,6 @@ const CarsCard = ({
           <button
             onClick={() => {
               setIsQuickViewClicked((prev) => !prev);
-              console.log(isQuickViewClicked);
             }}
           >
             Quick View

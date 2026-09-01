@@ -20,7 +20,7 @@ const HeroSection: React.FC = () => {
             className="shadow-2xl max-w-full h-auto drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
             width={860}
             height={860}
-            priority
+            preload
           />
         </div>
         {/* right side - Text */}

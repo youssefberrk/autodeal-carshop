@@ -33,7 +33,7 @@ export default function PreOwnedPage() {
           alt="Pre-owned luxury vehicles"
           fill
           className="hero-image object-cover"
-          priority
+          preload
         />
         <div className="hero-overlay" />
         <div className="hero-content">

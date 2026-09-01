@@ -239,14 +239,19 @@ const CountrySelect = ({ value, onChange, label }: CountrySelectProps) => {
     if (isOpen && inputRef.current) {
       inputRef.current.focus();
     }
-    if (!isOpen) {
-      setSearchQuery("");
-    }
   }, [isOpen]);
 
   const handleSelect = (countryName: string) => {
     onChange(countryName);
+    setSearchQuery("");
     setIsOpen(false);
+  };
+
+  const handleOpenChange = (nextIsOpen: boolean) => {
+    if (!nextIsOpen) {
+      setSearchQuery("");
+    }
+    setIsOpen(nextIsOpen);
   };
 
   return (
@@ -255,7 +260,7 @@ const CountrySelect = ({ value, onChange, label }: CountrySelectProps) => {
       
       <button
         type="button"
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={() => handleOpenChange(!isOpen)}
         className={`w-full bg-[#091a11] border ${isOpen ? 'border-[#00ff87]/50' : 'border-[#dae6d8]/10'} rounded-lg px-5 py-4 text-sm flex items-center justify-between transition-all hover:border-[#dae6d8]/30 group`}
       >
         <div className="flex items-center gap-3">

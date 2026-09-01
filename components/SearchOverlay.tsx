@@ -8,8 +8,6 @@ import { MapPin, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { carsData } from "@/public/cars/CarsData";
 import { showroomsData } from "@/public/showrooms/ShowroomsData";
-import { Cars } from "@/types/Cars";
-import { Showroom } from "@/types/Showroom";
 
 interface SearchOverlayProps {
   isOpen: boolean;

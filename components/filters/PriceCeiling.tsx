@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 interface PriceCeilingSliderProps {
 	min: number;
@@ -23,14 +23,6 @@ const PriceCeilingSlider: React.FC<PriceCeilingSliderProps> = ({
 }) => {
 	const initial = controlledValue ?? initialValue ?? min;
 	const [value, setValue] = useState<number>(initial);
-
-	useEffect(() => {
-		if (controlledValue !== undefined) {
-			setValue(controlledValue);
-		} else if (initialValue !== undefined) {
-			setValue(initialValue);
-		}
-	}, [controlledValue, initialValue]);
 
 	const currentValue = controlledValue !== undefined ? controlledValue : value;
 
