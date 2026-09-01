@@ -1,14 +1,19 @@
-import CountrySelect from '@/components/ui/CountrySelect';
+import { UseFormReturn, Controller } from 'react-hook-form';
 import { Truck } from 'lucide-react';
-import { ShippingFields } from '../_hooks/useCheckout';
+import CountrySelect from '@/components/ui/CountrySelect';
+import { ShippingFormData } from '../_schemas/checkoutSchema';
 
 interface ShippingFormProps {
-  fields: ShippingFields;
-  errors: Record<string, string>;
-  onChange: <K extends keyof ShippingFields>(key: K, value: ShippingFields[K]) => void;
+  form: UseFormReturn<ShippingFormData>;
 }
 
-export default function ShippingForm({ fields, errors, onChange }: ShippingFormProps) {
+export default function ShippingForm({ form }: ShippingFormProps) {
+  const {
+    register,
+    control,
+    formState: { errors },
+  } = form;
+
   const inputBase =
     'w-full bg-[#05140d]/90 border rounded-xl px-5 py-4 text-sm font-medium text-[#e5efe3] focus:border-[#00ff87] focus:bg-[#081e13] focus:shadow-[0_0_20px_rgba(0,255,135,0.15)] focus:outline-none transition-all duration-300 placeholder:text-[#dae6d8]/20 shadow-inner';
   const borderOk = 'border-[#dae6d8]/15 hover:border-[#dae6d8]/30';
@@ -38,13 +43,12 @@ export default function ShippingForm({ fields, errors, onChange }: ShippingFormP
           </label>
           <input
             type="text"
-            value={fields.fullName}
-            onChange={(e) => onChange('fullName', e.target.value)}
+            {...register('fullName')}
             className={`${inputBase} ${errors.fullName ? borderErr : borderOk}`}
             placeholder="Julian Obsidian"
           />
-          {errors.fullName && (
-            <span className="text-red-500 text-[10px] mt-1 block">{errors.fullName}</span>
+          {errors.fullName?.message && (
+            <span className="text-red-500 text-[10px] mt-1 block">{errors.fullName.message}</span>
           )}
         </div>
 
@@ -55,37 +59,47 @@ export default function ShippingForm({ fields, errors, onChange }: ShippingFormP
           </label>
           <input
             type="email"
-            value={fields.email}
-            onChange={(e) => onChange('email', e.target.value)}
+            {...register('email')}
             className={`${inputBase} ${errors.email ? borderErr : borderOk}`}
             placeholder="concierge@obsidian.com"
           />
-          {errors.email && (
-            <span className="text-red-500 text-[10px] mt-1 block">{errors.email}</span>
+          {errors.email?.message && (
+            <span className="text-red-500 text-[10px] mt-1 block">{errors.email.message}</span>
           )}
         </div>
 
         {/* Phone */}
         <div>
           <label className="block text-[9px] uppercase tracking-widest text-[#dae6d8]/40 mb-2 font-bold">
-            Phone Number
+            Phone Number <span className="text-[#dae6d8]/20 font-normal lowercase">(optional)</span>
           </label>
           <input
             type="tel"
-            value={fields.phoneNumber}
-            onChange={(e) => onChange('phoneNumber', e.target.value)}
-            className={`${inputBase} ${borderOk}`}
+            {...register('phoneNumber')}
+            className={`${inputBase} ${errors.phoneNumber ? borderErr : borderOk}`}
             placeholder="+1 (555) 0199"
           />
+          {errors.phoneNumber?.message && (
+            <span className="text-red-500 text-[10px] mt-1 block">{errors.phoneNumber.message}</span>
+          )}
         </div>
 
         {/* Country */}
         <div>
-          <CountrySelect
-            label="Country"
-            value={fields.countryName}
-            onChange={(v) => onChange('countryName', v)}
+          <Controller
+            name="countryName"
+            control={control}
+            render={({ field }) => (
+              <CountrySelect
+                label="Country"
+                value={field.value}
+                onChange={field.onChange}
+              />
+            )}
           />
+          {errors.countryName?.message && (
+            <span className="text-red-500 text-[10px] mt-1 block">{errors.countryName.message}</span>
+          )}
         </div>
 
         {/* Address — full width */}
@@ -95,13 +109,12 @@ export default function ShippingForm({ fields, errors, onChange }: ShippingFormP
           </label>
           <input
             type="text"
-            value={fields.address}
-            onChange={(e) => onChange('address', e.target.value)}
+            {...register('address')}
             className={`${inputBase} ${errors.address ? borderErr : borderOk}`}
             placeholder="128 Kinetic Way, Beverly Hills, CA"
           />
-          {errors.address && (
-            <span className="text-red-500 text-[10px] mt-1 block">{errors.address}</span>
+          {errors.address?.message && (
+            <span className="text-red-500 text-[10px] mt-1 block">{errors.address.message}</span>
           )}
         </div>
 
@@ -112,13 +125,12 @@ export default function ShippingForm({ fields, errors, onChange }: ShippingFormP
           </label>
           <input
             type="text"
-            value={fields.city}
-            onChange={(e) => onChange('city', e.target.value)}
+            {...register('city')}
             className={`${inputBase} ${errors.city ? borderErr : borderOk}`}
             placeholder="Los Angeles"
           />
-          {errors.city && (
-            <span className="text-red-500 text-[10px] mt-1 block">{errors.city}</span>
+          {errors.city?.message && (
+            <span className="text-red-500 text-[10px] mt-1 block">{errors.city.message}</span>
           )}
         </div>
 
@@ -126,15 +138,17 @@ export default function ShippingForm({ fields, errors, onChange }: ShippingFormP
         <div className="grid grid-cols-2 gap-4">
           <div>
             <label className="block text-[9px] uppercase tracking-widest text-[#dae6d8]/40 mb-2 font-bold">
-              State / Region
+              State / Region <span className="text-[#dae6d8]/20 font-normal lowercase">(optional)</span>
             </label>
             <input
               type="text"
-              value={fields.stateName}
-              onChange={(e) => onChange('stateName', e.target.value)}
-              className={`${inputBase} ${borderOk}`}
+              {...register('stateName')}
+              className={`${inputBase} ${errors.stateName ? borderErr : borderOk}`}
               placeholder="CA"
             />
+            {errors.stateName?.message && (
+              <span className="text-red-500 text-[10px] mt-1 block">{errors.stateName.message}</span>
+            )}
           </div>
           <div>
             <label className="block text-[9px] uppercase tracking-widest text-[#dae6d8]/40 mb-2 font-bold">
@@ -142,13 +156,12 @@ export default function ShippingForm({ fields, errors, onChange }: ShippingFormP
             </label>
             <input
               type="text"
-              value={fields.postalCode}
-              onChange={(e) => onChange('postalCode', e.target.value)}
+              {...register('postalCode')}
               className={`${inputBase} ${errors.postalCode ? borderErr : borderOk}`}
               placeholder="90210"
             />
-            {errors.postalCode && (
-              <span className="text-red-500 text-[10px] mt-1 block">{errors.postalCode}</span>
+            {errors.postalCode?.message && (
+              <span className="text-red-500 text-[10px] mt-1 block">{errors.postalCode.message}</span>
             )}
           </div>
         </div>

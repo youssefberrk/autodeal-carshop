@@ -1,14 +1,14 @@
 import React from 'react';
+import { UseFormReturn } from 'react-hook-form';
 import ShippingForm from './ShippingForm';
 import PaymentMethod from './PaymentMethod';
-import { ShippingFields } from '../_hooks/useCheckout';
+import { ShippingFormData } from '../_schemas/checkoutSchema';
 
 interface CheckoutFormProps {
-  shipping: ShippingFields;
-  setField: <K extends keyof ShippingFields>(key: K, value: ShippingFields[K]) => void;
+  form: UseFormReturn<ShippingFormData>;
   paymentMethod: 'credit_card' | 'wire_transfer';
   setPaymentMethod: (m: 'credit_card' | 'wire_transfer') => void;
-  errors: Record<string, string>;
+  stripeError?: string;
   isSubmitting: boolean;
   depositRequired: number;
   useMock: boolean;
@@ -17,35 +17,32 @@ interface CheckoutFormProps {
 }
 
 export default function CheckoutForm({
-  shipping,
-  setField,
+  form,
   paymentMethod,
   setPaymentMethod,
-  errors,
+  stripeError,
   isSubmitting,
   depositRequired,
   useMock,
   onExitMock,
   handleSubmit,
 }: CheckoutFormProps) {
+  const fullName = form.watch('fullName') || '';
+
   return (
     <div className="lg:col-span-7 lg:pl-12 lg:border-l border-[#00ff87]/15">
       <div className="bg-[#081a11]/40 backdrop-blur-xl border border-[#dae6d8]/10 p-8 md:p-12 rounded-3xl shadow-[0_20px_50px_-15px_rgba(0,0,0,0.5)]">
-        <form onSubmit={handleSubmit} className="space-y-12">
-          <ShippingForm
-            fields={shipping}
-            errors={errors}
-            onChange={setField}
-          />
+        <form onSubmit={handleSubmit} className="space-y-12" noValidate>
+          <ShippingForm form={form} />
           <PaymentMethod
             method={paymentMethod}
             onMethodChange={setPaymentMethod}
             depositRequired={depositRequired}
-            stripeError={errors.stripe}
+            stripeError={stripeError}
             isSubmitting={isSubmitting}
             useMock={useMock}
             onExitMock={onExitMock}
-            fullName={shipping.fullName}
+            fullName={fullName}
           />
         </form>
       </div>

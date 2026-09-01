@@ -14,16 +14,16 @@ import OrderSuccessModal from './_components/OrderSuccessModal';
 const CheckoutPage = () => {
   const router = useRouter();
   const {
+    form,
+    watchedShipping,
     activeCars,
     isGarageEmpty,
     pricing,
     displayCars,
     displayTotal,
-    shipping,
-    setField,
     paymentMethod,
     setPaymentMethod,
-    errors,
+    stripeError,
     isSubmitting,
     isSuccessModalOpen,
     setIsSuccessModalOpen,
@@ -89,11 +89,10 @@ const CheckoutPage = () => {
 
         {/* Right Column: Checkout Form */}
         <CheckoutForm
-          shipping={shipping}
-          setField={setField}
+          form={form}
           paymentMethod={paymentMethod}
           setPaymentMethod={setPaymentMethod}
-          errors={errors}
+          stripeError={stripeError}
           isSubmitting={isSubmitting}
           depositRequired={pricing.depositRequired}
           useMock={useMock}
@@ -115,11 +114,11 @@ const CheckoutPage = () => {
       <OrderSuccessModal
         isOpen={isSuccessModalOpen}
         createdOrderId={createdOrderId}
-        fullName={shipping.fullName}
-        email={shipping.email}
+        fullName={watchedShipping.fullName || ''}
+        email={watchedShipping.email || ''}
         displayCars={displayCars}
-        city={shipping.city}
-        stateName={shipping.stateName}
+        city={watchedShipping.city || ''}
+        stateName={watchedShipping.stateName || ''}
         displayTotal={displayTotal}
         onClose={() => setIsSuccessModalOpen(false)}
         onViewOrderHistory={() => router.push('/orders')}

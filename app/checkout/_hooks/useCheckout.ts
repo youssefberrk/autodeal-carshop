@@ -1,34 +1,15 @@
 import { useState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useCarStore } from '@/store/useCarStore';
 import { carsData } from '@/public/cars/CarsData';
 import { Car } from '@/types/Order';
+import { shippingSchema, ShippingFormData } from '../_schemas/checkoutSchema';
 
-// ── Types ─────────────────────────────────────────────────────────────────────
-
-export interface ShippingFields {
-  fullName: string;
-  email: string;
-  address: string;
-  city: string;
-  postalCode: string;
-  stateName: string;
-  phoneNumber: string;
-  countryName: string;
-}
-
-export interface CheckoutState {
-  shipping: ShippingFields;
-  paymentMethod: 'credit_card' | 'wire_transfer';
-  errors: Record<string, string>;
-  isSubmitting: boolean;
-  isSuccessModalOpen: boolean;
-  createdOrderId: string;
-  purchasedCarsList: Car[];
-  successTotalAllocation: number;
-  useMock: boolean;
-}
+// Re-export for compatibility
+export type { ShippingFormData as ShippingFields };
 
 // ── Mock car used when the garage is empty (preview mode) ─────────────────────
 
@@ -67,20 +48,21 @@ export function useCheckout() {
   // ── Mock toggle ───────────────────────────────────────────────────────────
   const [useMock, setUseMock] = useState(false);
 
-  // ── Shipping form state ───────────────────────────────────────────────────
-  const [shipping, setShipping] = useState<ShippingFields>({
-    fullName: '',
-    email: '',
-    address: '',
-    city: '',
-    postalCode: '',
-    stateName: '',
-    phoneNumber: '',
-    countryName: 'United States',
+  // ── React Hook Form + Zod ────────────────────────────────────────────────
+  const form = useForm<ShippingFormData>({
+    resolver: zodResolver(shippingSchema),
+    defaultValues: {
+      fullName: '',
+      email: '',
+      address: '',
+      city: '',
+      postalCode: '',
+      stateName: '',
+      phoneNumber: '',
+      countryName: 'United States',
+    },
+    mode: 'onTouched',
   });
-
-  const setField = <K extends keyof ShippingFields>(key: K, value: ShippingFields[K]) =>
-    setShipping((prev) => ({ ...prev, [key]: value }));
 
   // ── Payment method ────────────────────────────────────────────────────────
   const [paymentMethod, setPaymentMethod] = useState<'credit_card' | 'wire_transfer'>(
@@ -88,7 +70,7 @@ export function useCheckout() {
   );
 
   // ── UI state ──────────────────────────────────────────────────────────────
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [stripeError, setStripeError] = useState<string | undefined>(undefined);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
   const [createdOrderId, setCreatedOrderId] = useState('');
@@ -98,13 +80,14 @@ export function useCheckout() {
   // ── Pre-fill session user data ────────────────────────────────────────────
   useEffect(() => {
     if (session?.user) {
-      setShipping((prev) => ({
-        ...prev,
-        fullName: session.user?.name || '',
-        email: session.user?.email || '',
-      }));
+      if (session.user.name && !form.getValues('fullName')) {
+        form.setValue('fullName', session.user.name, { shouldValidate: true });
+      }
+      if (session.user.email && !form.getValues('email')) {
+        form.setValue('email', session.user.email, { shouldValidate: true });
+      }
     }
-  }, [session]);
+  }, [session, form]);
 
   // ── Handle Stripe redirect query params on mount ──────────────────────────
   useEffect(() => {
@@ -116,7 +99,7 @@ export function useCheckout() {
     if (success === 'true' && sessionId) {
       handleStripeSuccess(sessionId);
     } else if (canceled === 'true') {
-      setErrors({ stripe: 'Stripe payment process was canceled.' });
+      setStripeError('Stripe payment process was canceled.');
       router.replace('/checkout');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -128,20 +111,9 @@ export function useCheckout() {
   const pricing = calcPricing(activeCars);
   const displayCars = purchasedCarsList.length > 0 ? purchasedCarsList : activeCars;
   const displayTotal = successTotalAllocation || pricing.totalAllocation;
+  const watchedShipping = form.watch();
 
-  // ── Helpers ───────────────────────────────────────────────────────────────
-
-  function validate(): boolean {
-    const { fullName, email, address, city, postalCode } = shipping;
-    const errs: Record<string, string> = {};
-    if (!fullName.trim()) errs.fullName = 'Full name is required';
-    if (!email.trim() || !/\S+@\S+\.\S+/.test(email)) errs.email = 'Valid email is required';
-    if (!address.trim()) errs.address = 'Destination address is required';
-    if (!city.trim()) errs.city = 'City is required';
-    if (!postalCode.trim()) errs.postalCode = 'Postal code is required';
-    setErrors(errs);
-    return Object.keys(errs).length === 0;
-  }
+  // ── Stripe Success Handler ────────────────────────────────────────────────
 
   async function handleStripeSuccess(sessionId: string) {
     setIsSubmitting(true);
@@ -172,15 +144,15 @@ export function useCheckout() {
         });
 
         // Reconstruct shipping fields from Stripe metadata
-        setShipping({
-          fullName: metadata.fullName,
-          email: metadata.email,
-          address: metadata.address,
-          city: metadata.city,
-          postalCode: metadata.zipCode,
-          stateName: metadata.state,
-          phoneNumber: metadata.phone,
-          countryName: metadata.country,
+        form.reset({
+          fullName: metadata.fullName || '',
+          email: metadata.email || '',
+          address: metadata.address || '',
+          city: metadata.city || '',
+          postalCode: metadata.zipCode || '',
+          stateName: metadata.state || '',
+          phoneNumber: metadata.phone || '',
+          countryName: metadata.country || 'United States',
         });
 
         cars.forEach((car: Car) => addToPurchased(car));
@@ -232,23 +204,22 @@ export function useCheckout() {
 
         router.replace('/checkout');
       } else {
-        setErrors({ stripe: 'Stripe payment was not completed.' });
+        setStripeError('Stripe payment was not completed.');
       }
     } catch (err) {
       console.error('Error verifying Stripe session:', err);
       const error = err as Error;
-      setErrors({ stripe: error.message || 'Failed to verify payment session. Please contact support.' });
+      setStripeError(error.message || 'Failed to verify payment session. Please contact support.');
     } finally {
       setIsSubmitting(false);
     }
   }
 
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    if (!validate()) return;
+  // ── Form Submission (Validated by Zod via React Hook Form) ────────────────
 
+  const onSubmit = async (data: ShippingFormData) => {
     setIsSubmitting(true);
-    setErrors({});
+    setStripeError(undefined);
 
     if (paymentMethod === 'credit_card') {
       try {
@@ -259,22 +230,22 @@ export function useCheckout() {
             // Only IDs and quantities — never client-supplied prices, totals, or discounts
             carIds: activeCars.map((car) => car.id),
             quantities: Object.fromEntries(activeCars.map((car) => [car.id, car.quantity ?? 1])),
-            ...shipping,
+            ...data,
           }),
         });
 
-        const data = await response.json();
-        if (!response.ok) throw new Error(data.error || 'Failed to create checkout session');
+        const resData = await response.json();
+        if (!response.ok) throw new Error(resData.error || 'Failed to create checkout session');
 
-        if (data.url) {
-          window.location.href = data.url;
+        if (resData.url) {
+          window.location.href = resData.url;
         } else {
           throw new Error('No checkout URL returned from server');
         }
       } catch (err) {
         console.error('Stripe redirect error:', err);
         const error = err as Error;
-        setErrors({ stripe: error.message || 'Payment initiation failed. Please try again.' });
+        setStripeError(error.message || 'Payment initiation failed. Please try again.');
         setIsSubmitting(false);
       }
       return;
@@ -294,14 +265,14 @@ export function useCheckout() {
         paymentStatus: 'paid',
         orderStatus: 'processing',
         shippingAddress: {
-          fullName: shipping.fullName,
-          email: shipping.email,
-          phone: shipping.phoneNumber || 'Not provided',
-          address: shipping.address,
-          city: shipping.city,
-          state: shipping.stateName || 'Not provided',
-          zipCode: shipping.postalCode,
-          country: shipping.countryName,
+          fullName: data.fullName,
+          email: data.email,
+          phone: data.phoneNumber || 'Not provided',
+          address: data.address,
+          city: data.city,
+          state: data.stateName || 'Not provided',
+          zipCode: data.postalCode,
+          country: data.countryName,
         },
         createdAt: new Date().toISOString().split('T')[0],
       });
@@ -316,8 +287,8 @@ export function useCheckout() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          email: shipping.email,
-          fullName: shipping.fullName,
+          email: data.email,
+          fullName: data.fullName,
           orderId,
           totalAmount: totalAllocation,
           cars: activeCars,
@@ -327,23 +298,23 @@ export function useCheckout() {
       setIsSubmitting(false);
       setIsSuccessModalOpen(true);
     }, 2500);
-  }
+  };
 
   return {
+    // React Hook Form
+    form,
+    watchedShipping,
     // Derived data
     activeCars,
     isGarageEmpty,
     pricing,
     displayCars,
     displayTotal,
-    // Shipping form
-    shipping,
-    setField,
     // Payment
     paymentMethod,
     setPaymentMethod,
+    stripeError,
     // UI state
-    errors,
     isSubmitting,
     isSuccessModalOpen,
     setIsSuccessModalOpen,
@@ -352,7 +323,7 @@ export function useCheckout() {
     useMock,
     setUseMock,
     // Actions
-    handleSubmit,
+    handleSubmit: form.handleSubmit(onSubmit),
     removeFromAllocation,
   };
 }
