@@ -9,7 +9,13 @@ export const shippingSchema = z.object({
     .string()
     .min(1, { message: 'Email address is required' })
     .email({ message: 'Please enter a valid email address' }),
-  phoneNumber: z.string(),
+  phoneNumber: z
+    .string()
+    .regex(/^[+\d\s().-]+$/, {
+      message: 'Please enter a valid phone number',
+    })
+    .optional()
+    .or(z.literal('')),
   countryName: z.string().min(1, { message: 'Please select a country' }),
   address: z
     .string()
@@ -19,7 +25,7 @@ export const shippingSchema = z.object({
     .string()
     .min(2, { message: 'City must be at least 2 characters' })
     .max(100, { message: 'City is too long' }),
-  stateName: z.string(),
+  stateName: z.string().optional().or(z.literal('')),
   postalCode: z
     .string()
     .min(3, { message: 'Postal code must be at least 3 characters' })
@@ -27,3 +33,12 @@ export const shippingSchema = z.object({
 });
 
 export type ShippingFormData = z.infer<typeof shippingSchema>;
+
+export const checkoutRequestSchema = shippingSchema.extend({
+  carIds: z
+    .array(z.number().int().positive({ message: 'Invalid vehicle ID' }))
+    .min(1, { message: 'At least one vehicle must be selected' }),
+  quantities: z.record(z.string(), z.number().int().positive()).optional(),
+});
+
+export type CheckoutRequestData = z.infer<typeof checkoutRequestSchema>;

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { carsData } from '@/public/cars/CarsData';
+import { checkoutRequestSchema } from '@/app/checkout/_schemas/checkoutSchema';
 
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 if (!stripeSecretKey) {
@@ -16,9 +17,22 @@ const stripe = new Stripe(stripeSecretKey || '');
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
+
+    // ── Server-side Zod Validation ──────────────────────────────────────────
+    const validationResult = checkoutRequestSchema.safeParse(body);
+    if (!validationResult.success) {
+      const fieldErrors = validationResult.error.flatten().fieldErrors;
+      const firstErrorMessage =
+        Object.values(fieldErrors)[0]?.[0] || 'Invalid request payload';
+      return NextResponse.json(
+        { error: firstErrorMessage, details: fieldErrors },
+        { status: 400 }
+      );
+    }
+
     const {
-      carIds,        // number[]  – the only car data trusted from the client
-      quantities,    // Record<number, number>  – carId → quantity chosen by the user
+      carIds,
+      quantities,
       fullName,
       email,
       address,
@@ -27,15 +41,7 @@ export async function POST(request: NextRequest) {
       stateName,
       countryName,
       phoneNumber,
-    } = body;
-
-    // ── Validate shape ────────────────────────────────────────────────────────
-    if (!carIds || !Array.isArray(carIds) || carIds.length === 0) {
-      return NextResponse.json({ error: 'carIds are required' }, { status: 400 });
-    }
-    if (!fullName || !email || !address || !city || !postalCode) {
-      return NextResponse.json({ error: 'Missing required delivery details' }, { status: 400 });
-    }
+    } = validationResult.data;
 
     // ── Resolve each car from the authoritative server-side catalog ───────────
     const resolvedCars: Array<{
