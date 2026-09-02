@@ -5,9 +5,9 @@ export interface Car {
 	price: number;
 	image: string;
 	color?: {
-	id: string;
-	hex: string;
-};
+		id: string;
+		hex: string;
+	};
 	badge?: string;
 	bodySilhouette?: string;
 	specs?: string;
@@ -36,15 +36,15 @@ export interface ShippingAddress {
 }
 
 export interface Notification {
-  id: string;
-  message: string;
-  type: "add" | "remove";
+	id: string;
+	message: string;
+	type: "add" | "remove";
 }
 
 export interface CarStore {
 	allocatedCars: Car[];
 	purchasedCars: Car[];
-	whishListCars: Car[];
+	wishlistCars: Car[];
 	notifications: Notification[];
 	isPopUp: boolean;
 	isPurchasedPopUp: boolean;
@@ -54,8 +54,8 @@ export interface CarStore {
 	addToAllocation: (car: Car) => void;
 	removeFromAllocation: (carId: number) => void;
 	addToPurchased: (car: Car) => void;
-	addToWhishList: (car: Car) => void;
-	removeFromWhishList: (car: Car) => void;
+	addToWishlist: (car: Car) => void;
+	removeFromWishlist: (car: Car) => void;
 	addNotification: (message: string, type: "add" | "remove") => void;
 	removeNotification: (id: string) => void;
 	quantityChosen: (quantity: number, carId?: number) => void;

@@ -5,17 +5,17 @@ import { Car } from "@/types/Order";
 import Link from "next/link";
 import { getValidImageSrc } from "@/lib/utils";
 
-interface WhishListCarsCardProps {
+interface WishlistCarsCardProps {
 	car: Car;
-	onRemoveFromWhishList: (car: Car) => void;
+	onRemoveFromWishlist: (car: Car) => void;
 	variant?: "compact" | "detailed";
 }
 
-const WhishListCarsCard = ({
+const WishlistCarsCard = ({
 	car,
-	onRemoveFromWhishList,
+	onRemoveFromWishlist,
 	variant = "compact",
-}: WhishListCarsCardProps) => {
+}: WishlistCarsCardProps) => {
 	const isDetailed = variant === "detailed";
 	const imageSrc = getValidImageSrc(car?.image, car?.id);
 
@@ -29,6 +29,11 @@ const WhishListCarsCard = ({
 						src={imageSrc}
 						alt={car?.model || "Car"}
 						fill
+						sizes={
+							isDetailed
+								? "(max-width: 640px) 100vw, 40vw"
+								: "(max-width: 640px) 100vw, 33vw"
+						}
 						className="object-cover group-hover:scale-105 transition-transform duration-500"
 					/>
 				</div>
@@ -94,7 +99,7 @@ const WhishListCarsCard = ({
 					)}
 
 					<button
-						onClick={() => onRemoveFromWhishList(car)}
+						onClick={() => onRemoveFromWishlist(car)}
 						className={`${isDetailed ? "p-2.5" : "absolute bottom-3 right-3 p-2"} rounded-lg bg-black/40 hover:bg-red-500/20 text-gray-400 hover:text-red-400 border border-gray-700/50 hover:border-red-500/30 transition-all duration-200 cursor-pointer`}
 						title="Remove from wishlist">
 						<Trash2 size={16} />
@@ -111,4 +116,4 @@ const WhishListCarsCard = ({
 	);
 };
 
-export default WhishListCarsCard;
+export default WishlistCarsCard;

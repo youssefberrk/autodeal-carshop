@@ -4,7 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCarStore } from "@/store/useCarStore";
-import CarDropDown from "./CarDropDown";
+import CarDropdown from "./CarDropdown";
 import { FaSearch, FaBars, FaTimes } from "react-icons/fa";
 import { IoCarSport } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
@@ -149,10 +149,10 @@ const NavBar = () => {
 		};
 	}, [menuOpen]);
 
-	const { allocatedCars, whishListCars, isPopUp, isPurchasedPopUp } =
+	const { allocatedCars, wishlistCars, isPopUp, isPurchasedPopUp } =
 		useCarStore();
 	const carCount = allocatedCars.length;
-	const whishListCount = whishListCars.length;
+	const wishlistCount = wishlistCars.length;
 	const isScrolled = scrollProgress > 0;
 
 	return (
@@ -286,7 +286,7 @@ const NavBar = () => {
 							</button>
 							<AnimatePresence>
 								{carDropdownOpen && (
-									<CarDropDown onClose={() => setCarDropdownOpen(false)} />
+									<CarDropdown onClose={() => setCarDropdownOpen(false)} />
 								)}
 							</AnimatePresence>
 						</div>
@@ -305,7 +305,7 @@ const NavBar = () => {
 									}`}
 								/>
 								<AnimatePresence>
-									{whishListCount > 0 && (
+									{wishlistCount > 0 && (
 										<motion.span
 											key="wishlist-profile-badge"
 											initial={{ scale: 0, opacity: 0, y: -2 }}
@@ -321,7 +321,7 @@ const NavBar = () => {
 												<span className="absolute -inset-0.5 rounded-full bg-rose-500/60 animate-ping" />
 											)}
 											<span className="relative z-10">
-												{whishListCount > 99 ? "99+" : whishListCount}
+												{wishlistCount > 99 ? "99+" : wishlistCount}
 											</span>
 										</motion.span>
 									)}
@@ -392,7 +392,7 @@ const NavBar = () => {
 															onClick={() => {
 																setProfileOpen(false);
 															}}
-															href="/whishlist"
+															href="/wishlist"
 															className="flex items-center justify-between px-3 py-2 text-slate-300 hover:text-[#00ff87] hover:bg-[#00ff87]/5 rounded-lg transition-all duration-200 text-sm group/item active:scale-[0.97]">
 															<div className="flex items-center gap-3">
 																<Heart
@@ -401,9 +401,9 @@ const NavBar = () => {
 																/>
 																<span>Wishlist</span>
 															</div>
-															{whishListCount > 0 && (
+															{wishlistCount > 0 && (
 																<span className="bg-gradient-to-r from-rose-500 via-red-500 to-rose-600 text-white text-[10px] font-bold font-mono py-0.5 px-2 rounded-full shadow-[0_0_10px_rgba(244,63,94,0.5)] border border-rose-300/30">
-																	{whishListCount}
+																		{wishlistCount}
 																</span>
 															)}
 														</Link>
@@ -548,7 +548,7 @@ const NavBar = () => {
 											</span>
 										</Link>
 										<Link
-											href="/whishlist"
+														href="/wishlist"
 											onClick={() => setMenuOpen(false)}
 											className="flex items-center justify-between gap-2.5 px-3 py-2.5 text-xs text-slate-300 hover:text-[#00ff87] hover:bg-[#00ff87]/5 border border-transparent hover:border-[#00ff87]/10 rounded-xl transition-all duration-200 active:scale-[0.97]">
 											<div className="flex items-center gap-2.5">
@@ -559,9 +559,9 @@ const NavBar = () => {
 													Wishlist
 												</span>
 											</div>
-											{whishListCount > 0 && (
+														{wishlistCount > 0 && (
 												<span className="bg-gradient-to-r from-rose-500 via-red-500 to-rose-600 text-white text-[9px] font-bold font-mono py-0.5 px-2 rounded-full shadow-[0_0_10px_rgba(244,63,94,0.5)] border border-rose-300/30">
-													{whishListCount}
+																{wishlistCount}
 												</span>
 											)}
 										</Link>

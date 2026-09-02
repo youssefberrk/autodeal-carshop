@@ -1,12 +1,11 @@
-
 export type Showroom = {
-    id: number;
+	id: number;
 	city: string;
-	adress: string;
+	address: string;
 	phone: string;
 	timing: {
 		weekdays: string;
 		weekends: string;
 	};
-    mapUrl: string;
+	mapUrl: string;
 };

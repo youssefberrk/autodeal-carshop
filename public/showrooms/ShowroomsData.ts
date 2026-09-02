@@ -4,7 +4,7 @@ export const showroomsData: Showroom[] = [
 	{
 		id: 1,
 		city: "London",
-		adress: "12 Savile Row,Mayfair London W1S 3PQ, United Kingdom",
+		address: "12 Savile Row,Mayfair London W1S 3PQ, United Kingdom",
 		phone: "+44 20 7946 0128",
 		timing: {
 			weekdays: "Mon - Sat: 10:00 - 18:00",
@@ -16,7 +16,7 @@ export const showroomsData: Showroom[] = [
 	{
 		id: 2,
 		city: "Dubai",
-		adress: "Sheikh Zayed Road, Al Quoz 1 Dubai, United Arab Emirates",
+		address: "Sheikh Zayed Road, Al Quoz 1 Dubai, United Arab Emirates",
 		phone: "+971 4 321 0987",
 		timing: {
 			weekdays: "Sun - Thu: 09:00 - 21:00",
@@ -28,7 +28,7 @@ export const showroomsData: Showroom[] = [
 	{
 		id: 3,
 		city: "New York",
-		adress: "520 W 28th St, Chelsea New York, NY 10001, USA",
+		address: "520 W 28th St, Chelsea New York, NY 10001, USA",
 		phone: "+1 212 555 0198",
 		timing: {
 			weekdays: "Mon - Fri: 09:00 - 19:00",

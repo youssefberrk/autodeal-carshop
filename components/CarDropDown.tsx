@@ -8,11 +8,11 @@ import { useCarStore } from "@/store/useCarStore";
 import { motion } from "framer-motion";
 import { getValidImageSrc } from "@/lib/utils";
 
-interface CarDropDownProps {
+interface CarDropdownProps {
 	onClose: () => void;
 }
 
-export default function CarDropDown({ onClose }: CarDropDownProps) {
+export default function CarDropdown({ onClose }: CarDropdownProps) {
 	const { allocatedCars, removeFromAllocation } = useCarStore();
 	const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -32,7 +32,10 @@ export default function CarDropDown({ onClose }: CarDropDownProps) {
 		};
 	}, [onClose]);
 
-	const totalPrice = allocatedCars.reduce((sum, car) => sum + car.price * (car.quantity || 1), 0);
+	const totalPrice = allocatedCars.reduce(
+		(sum, car) => sum + car.price * (car.quantity || 1),
+		0,
+	);
 
 	return (
 		<motion.div
@@ -47,12 +50,14 @@ export default function CarDropDown({ onClose }: CarDropDownProps) {
 			}}>
 			{/* Header */}
 			<div className="flex justify-between items-center mb-4 pb-2.5 border-b border-emerald-500/10">
-				<h3 className="text-white font-bold flex items-center gap-2 text-sm uppercase tracking-wider" style={{ fontFamily: 'Orbitron, sans-serif' }}>
+				<h3
+					className="text-white font-bold flex items-center gap-2 text-sm uppercase tracking-wider"
+					style={{ fontFamily: "Orbitron, sans-serif" }}>
 					<ShoppingCart size={16} className="text-emerald-400 animate-pulse" />
 					My Garage
 				</h3>
-				<button 
-					onClick={onClose} 
+				<button
+					onClick={onClose}
 					className="text-slate-400 hover:text-white transition-colors duration-200 p-1 hover:bg-white/5 rounded-lg active:scale-95"
 					aria-label="Close garage">
 					<X size={16} />
@@ -65,19 +70,25 @@ export default function CarDropDown({ onClose }: CarDropDownProps) {
 					<div className="w-16 h-16 rounded-full bg-emerald-500/5 border border-emerald-500/15 flex items-center justify-center mb-4 text-emerald-400 shadow-[0_0_20px_rgba(0,255,135,0.05)]">
 						<ShoppingCart size={28} className="stroke-[1.5]" />
 					</div>
-					<h4 className="text-white text-xs font-semibold mb-1" style={{ fontFamily: 'Orbitron, sans-serif' }}>
+					<h4
+						className="text-white text-xs font-semibold mb-1"
+						style={{ fontFamily: "Orbitron, sans-serif" }}>
 						GARAGE IS EMPTY
 					</h4>
 					<p className="text-slate-400 text-xs max-w-[200px] mb-5 leading-normal">
-						Your virtual showroom is waiting for its first high-performance addition.
+						Your virtual showroom is waiting for its first high-performance
+						addition.
 					</p>
 					<Link
 						href="/shop"
 						className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#00ff87]/5 hover:bg-[#00ff87]/15 text-[#00ff87] border border-[#00ff87]/10 hover:border-[#00ff87]/35 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all duration-300 active:scale-[0.97] group"
-						style={{ fontFamily: 'Orbitron, sans-serif' }}
+						style={{ fontFamily: "Orbitron, sans-serif" }}
 						onClick={onClose}>
 						Browse Showroom
-						<ArrowRight size={12} className="transition-transform duration-200 group-hover:translate-x-1" />
+						<ArrowRight
+							size={12}
+							className="transition-transform duration-200 group-hover:translate-x-1"
+						/>
 					</Link>
 				</div>
 			) : (
@@ -88,9 +99,11 @@ export default function CarDropDown({ onClose }: CarDropDownProps) {
 							<div
 								key={car.id}
 								className="flex items-center justify-between gap-3 p-3 bg-[#07130c]/30 border border-white/[0.04] hover:border-[#00ff87]/20 hover:shadow-[0_0_15px_rgba(0,255,135,0.02)] rounded-xl transition-all duration-200 group/item">
-								
 								{/* Left/Middle: Image, Model & Metadata */}
-								<Link href={`/details/${car.id}`} onClick={onClose} className="flex items-center gap-3.5 flex-1 min-w-0">
+								<Link
+									href={`/details/${car.id}`}
+									onClick={onClose}
+									className="flex items-center gap-3.5 flex-1 min-w-0">
 									{/* Image */}
 									<div className="w-16 h-12 relative rounded-lg overflow-hidden border border-white/10 ring-1 ring-white/5 flex-shrink-0">
 										<Image
@@ -101,23 +114,26 @@ export default function CarDropDown({ onClose }: CarDropDownProps) {
 											className="object-cover transition-transform duration-300 group-hover/item:scale-105"
 										/>
 									</div>
-									
+
 									{/* Info */}
 									<div className="flex-1 min-w-0">
 										<p className="text-white text-xs font-semibold truncate group-hover/item:text-emerald-400 transition-colors duration-200">
 											{car.model}
 										</p>
-										
+
 										{/* Metadata Row */}
 										<div className="flex items-center gap-2 mt-1 flex-wrap">
-											<span className="text-slate-400 text-[9px] uppercase tracking-wider font-semibold" style={{ fontFamily: 'Orbitron, sans-serif' }}>
+											<span
+												className="text-slate-400 text-[9px] uppercase tracking-wider font-semibold"
+												style={{ fontFamily: "Orbitron, sans-serif" }}>
 												{car.brand}
 											</span>
 											<span className="w-1 h-1 rounded-full bg-white/20 flex-shrink-0" />
 											{/* Color Dot */}
-											<span className="h-3 w-3 rounded-full ring-1 ring-[#00ff87]/30 flex-shrink-0" 
-												style={{ backgroundColor: car.color?.hex || '#ffffff' }}
-												title={car.color?.id} 
+											<span
+												className="h-3 w-3 rounded-full ring-1 ring-[#00ff87]/30 flex-shrink-0"
+												style={{ backgroundColor: car.color?.hex || "#ffffff" }}
+												title={car.color?.id}
 											/>
 											<span className="w-1 h-1 rounded-full bg-white/20 flex-shrink-0" />
 											{/* Qty */}
@@ -147,7 +163,11 @@ export default function CarDropDown({ onClose }: CarDropDownProps) {
 					{/* Total & Checkout */}
 					<div className="mt-5 pt-4 border-t border-emerald-500/10">
 						<div className="flex justify-between items-center mb-4">
-							<span className="text-slate-400 text-xs font-medium uppercase tracking-wider" style={{ fontFamily: 'Orbitron, sans-serif' }}>Total:</span>
+							<span
+								className="text-slate-400 text-xs font-medium uppercase tracking-wider"
+								style={{ fontFamily: "Orbitron, sans-serif" }}>
+								Total:
+							</span>
 							<span className="text-white text-lg font-bold font-mono shadow-sm">
 								${totalPrice.toLocaleString()}
 							</span>
@@ -156,9 +176,12 @@ export default function CarDropDown({ onClose }: CarDropDownProps) {
 							href="/checkout"
 							onClick={onClose}
 							className="w-full flex items-center justify-center gap-2 py-3 bg-emerald-500 hover:bg-[#00ff87] text-[#020503] text-xs font-bold uppercase tracking-wider rounded-xl transition-all duration-200 shadow-[0_4px_20px_rgba(0,255,135,0.25)] hover:shadow-[0_4px_30px_rgba(0,255,135,0.4)] active:scale-[0.98] group"
-							style={{ fontFamily: 'Orbitron, sans-serif' }}>
+							style={{ fontFamily: "Orbitron, sans-serif" }}>
 							Confirm Purchase
-							<ArrowRight size={14} className="transition-transform duration-200 group-hover:translate-x-1" />
+							<ArrowRight
+								size={14}
+								className="transition-transform duration-200 group-hover:translate-x-1"
+							/>
 						</Link>
 					</div>
 				</>

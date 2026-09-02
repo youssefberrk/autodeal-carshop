@@ -7,7 +7,7 @@ export const useCarStore = create<CarStore>()(
 		(set) => ({
 			allocatedCars: [],
 			purchasedCars: [],
-			whishListCars: [],
+			wishlistCars: [],
 			notifications: [],
 			quant: 1,
 			currentOrder: [],
@@ -15,36 +15,34 @@ export const useCarStore = create<CarStore>()(
 			isPurchasedPopUp: false,
 
 			addToAllocation: (car: Car) => {
-    let wasAdded = false;
+				let wasAdded = false;
 
-    set((state) => {
-        const exists = state.allocatedCars.some(
-            (c) => c.id === car.id
-        );
+				set((state) => {
+					const exists = state.allocatedCars.some((c) => c.id === car.id);
 
-        if (exists) return state;
+					if (exists) return state;
 
-        wasAdded = true;
+					wasAdded = true;
 
-        return {
-            isPurchasedPopUp: true,
-            allocatedCars: [
-                ...state.allocatedCars,
-                {
-                    ...car,
-                    quantity: car.quantity || 1,
-                    color: car.color,
-                },
-            ],
-        };
-    });
+					return {
+						isPurchasedPopUp: true,
+						allocatedCars: [
+							...state.allocatedCars,
+							{
+								...car,
+								quantity: car.quantity || 1,
+								color: car.color,
+							},
+						],
+					};
+				});
 
-    if (wasAdded) {
-        setTimeout(() => {
-            set({ isPurchasedPopUp: false });
-        }, 2000);
-    }
-},
+				if (wasAdded) {
+					setTimeout(() => {
+						set({ isPurchasedPopUp: false });
+					}, 2000);
+				}
+			},
 
 			removeFromAllocation: (carId: number) =>
 				set((state) => ({
@@ -56,14 +54,14 @@ export const useCarStore = create<CarStore>()(
 					purchasedCars: [...state.purchasedCars, car],
 				})),
 
-			addToWhishList: (car: Car) => {
+			addToWishlist: (car: Car) => {
 				let exists = false;
 				set((state) => {
-					exists = state.whishListCars.some((c) => c.id === car.id);
+					exists = state.wishlistCars.some((c) => c.id === car.id);
 					if (exists) return state;
 
 					return {
-						whishListCars: [...state.whishListCars, car],
+						wishlistCars: [...state.wishlistCars, car],
 						isPopUp: true,
 						notifications: [
 							...state.notifications,
@@ -83,9 +81,9 @@ export const useCarStore = create<CarStore>()(
 				}
 			},
 
-			removeFromWhishList: (car: Car) =>
+			removeFromWishlist: (car: Car) =>
 				set((state) => ({
-					whishListCars: state.whishListCars.filter((c) => c.id !== car.id),
+					wishlistCars: state.wishlistCars.filter((c) => c.id !== car.id),
 					notifications: [
 						...state.notifications,
 						{
@@ -114,8 +112,8 @@ export const useCarStore = create<CarStore>()(
 					const currentOrders = Array.isArray(state.currentOrder)
 						? state.currentOrder
 						: state.currentOrder
-						? [state.currentOrder as unknown as Order]
-						: [];
+							? [state.currentOrder as unknown as Order]
+							: [];
 					const exists = currentOrders.some((o) => o.id === order.id);
 					if (exists) return state;
 					return {
@@ -129,11 +127,12 @@ export const useCarStore = create<CarStore>()(
 				})),
 			quantityChosen: (quantity: number, carId?: number) =>
 				set((state) => {
-					const updatedAllocatedCars = carId !== undefined
-						? state.allocatedCars.map((c) =>
-								c.id === carId ? { ...c, quantity } : c,
-						  )
-						: state.allocatedCars;
+					const updatedAllocatedCars =
+						carId !== undefined
+							? state.allocatedCars.map((c) =>
+									c.id === carId ? { ...c, quantity } : c,
+								)
+							: state.allocatedCars;
 					return {
 						quant: quantity,
 						allocatedCars: updatedAllocatedCars,
@@ -148,7 +147,7 @@ export const useCarStore = create<CarStore>()(
 			partialize: (state) => ({
 				allocatedCars: state.allocatedCars,
 				purchasedCars: state.purchasedCars,
-				whishListCars: state.whishListCars,
+				wishlistCars: state.wishlistCars,
 				quant: state.quant,
 				currentOrder: state.currentOrder,
 			}),

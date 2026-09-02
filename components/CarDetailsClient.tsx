@@ -80,12 +80,12 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
 		removeFromAllocation,
 		allocatedCars,
 		quantityChosen,
-		addToWhishList,
-		removeFromWhishList,
-		whishListCars,
+		addToWishlist,
+		removeFromWishlist,
+		wishlistCars,
 	} = useCarStore();
 
-	const isFavorite = whishListCars?.some((c) => c.id === car.id) || false;
+	const isFavorite = wishlistCars?.some((c) => c.id === car.id) || false;
 
 	// Check if this car is already allocated
 	const isAllocated = allocatedCars.some((c) => c.id === car.id);
@@ -182,9 +182,9 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
 
 	const handleAddToWishList = () => {
 		if (isFavorite) {
-			removeFromWhishList({ id: car.id! } as Car);
+			removeFromWishlist({ id: car.id! } as Car);
 		} else {
-			addToWhishList({
+			addToWishlist({
 				id: car.id!,
 				brand: car.brand,
 				model: car.model || "",
