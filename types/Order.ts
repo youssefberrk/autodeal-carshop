@@ -59,6 +59,8 @@ export interface CarStore {
 	addNotification: (message: string, type: "add" | "remove") => void;
 	removeNotification: (id: string) => void;
 	quantityChosen: (quantity: number, carId?: number) => void;
+	updateCarColor: (carId: number, color: { id: string; hex: string }) => void;
 	setCurrentOrder: (order: Order) => void;
+	removeOrder: (orderId: string) => void;
 	clearAllocation: () => void;
 }

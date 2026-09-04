@@ -121,6 +121,18 @@ export const useCarStore = create<CarStore>()(
 					};
 				}),
 
+			removeOrder: (orderId: string) =>
+				set((state) => {
+					const currentOrders = Array.isArray(state.currentOrder)
+						? state.currentOrder
+						: state.currentOrder
+							? [state.currentOrder as unknown as Order]
+							: [];
+					return {
+						currentOrder: currentOrders.filter((o) => o.id !== orderId),
+					};
+				}),
+
 			clearAllocation: () =>
 				set(() => ({
 					allocatedCars: [],
@@ -138,6 +150,12 @@ export const useCarStore = create<CarStore>()(
 						allocatedCars: updatedAllocatedCars,
 					};
 				}),
+			updateCarColor: (carId: number, color: { id: string; hex: string }) =>
+				set((state) => ({
+					allocatedCars: state.allocatedCars.map((c) =>
+						c.id === carId ? { ...c, color } : c,
+					),
+				})),
 		}),
 
 		// PERSIST CONFIGURATION - saves to localStorage
