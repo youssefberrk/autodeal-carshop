@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import {
-  Package,
   Truck,
   CreditCard,
   Calendar,
@@ -29,7 +28,6 @@ export default function OrderCard({
   onViewDetails,
   onRemoveOrder,
 }: OrderCardProps) {
-  const userEmail = order.shippingAddress?.email;
   const city = order.shippingAddress?.city;
   const country = order.shippingAddress?.country;
 

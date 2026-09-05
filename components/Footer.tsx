@@ -4,8 +4,11 @@ import Link from "next/link";
 import { ArrowRight, Check, Loader2 } from "lucide-react";
 import { FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
 import { useState, FormEvent } from "react";
+import { usePathname } from "next/navigation";
 
 const Footer = () => {
+	const pathname = usePathname();
+	const isAuthPage = pathname === "/login";
 	const [email, setEmail] = useState("");
 	const [status, setStatus] = useState<
 		"idle" | "loading" | "success" | "error"
@@ -33,7 +36,10 @@ const Footer = () => {
 	};
 
 	return (
-		<footer className="relative text-white pt-20 pb-12 border-t border-[rgba(34,197,94,0.12)] mt-32">
+		<footer
+			className={`relative text-white pt-20 pb-12 border-t border-[rgba(34,197,94,0.12)] ${
+				isAuthPage ? "mt-0" : "mt-24 lg:mt-32"
+			}`}>
 			{/* Subtle top glow */}
 			<div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-px bg-gradient-to-r from-transparent via-[#00ff87]/30 to-transparent" />
 

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useSession } from "next-auth/react";
 import { redirect, useRouter } from "next/navigation";
-import { Package, Sparkles, ArrowRight, ShieldCheck, Car } from "lucide-react";
+import { Sparkles, ArrowRight, ShieldCheck, Car } from "lucide-react";
 import { useCarStore } from "@/store/useCarStore";
 import CarWheelLoader from "@/components/ui/CarWheelLoader";
 import { Order } from "@/types/Order";
