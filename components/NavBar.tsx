@@ -70,6 +70,7 @@ const NavBar = () => {
 	const [carDropdownOpen, setCarDropdownOpen] = useState(false);
 	const [isSearchOpen, setIsSearchOpen] = useState(false);
 	const pathname = usePathname();
+	const isAuthPage = pathname === "/login";
 
 	const { data: session } = useSession();
 	const dropdownRef = useRef<HTMLDivElement>(null);
@@ -77,6 +78,7 @@ const NavBar = () => {
 
 	// Global search keyboard shortcuts: "/" or "Ctrl+K"
 	useEffect(() => {
+		if (isAuthPage) return;
 		const handleKeyDown = (e: KeyboardEvent) => {
 			const activeEl = document.activeElement;
 			const isInputActive =

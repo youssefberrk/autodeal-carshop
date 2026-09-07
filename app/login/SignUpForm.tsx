@@ -23,12 +23,12 @@ export const SignUpForm = ({ onSuccess }: SignUpFormProps) => {
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: -16 }}
       transition={{ duration: 0.25, ease: [0.23, 1, 0.32, 1] }}
-      className="space-y-3.5"
+      className="space-y-3 sm:space-y-3.5"
     >
       {/* Full Name */}
       <div>
         <label
-          className="block text-[9px] uppercase tracking-[0.3em] text-[#dae6d8]/75 mb-1 font-bold"
+          className="block text-[9px] uppercase tracking-[0.3em] text-[#dae6d8]/75 mb-0.5 font-bold"
           style={{
             color: nameFocused ? "#00ff87" : undefined,
             transition: "color 0.2s",
@@ -44,7 +44,7 @@ export const SignUpForm = ({ onSuccess }: SignUpFormProps) => {
             onFocus={() => setNameFocused(true)}
             onBlur={() => setNameFocused(false)}
             placeholder="Julian Rossi"
-            className="w-full bg-transparent border-0 border-b px-0 py-2 pr-8 text-sm focus:outline-none placeholder:text-[#dae6d8]/20 text-[#dae6d8]"
+            className="w-full bg-transparent border-0 border-b px-0 py-1.5 sm:py-2 pr-8 text-sm focus:outline-none placeholder:text-[#dae6d8]/20 text-[#dae6d8]"
             style={{
               borderBottomColor: nameFocused
                 ? "rgba(0,255,135,0.8)"
@@ -68,7 +68,7 @@ export const SignUpForm = ({ onSuccess }: SignUpFormProps) => {
       {/* Email */}
       <div>
         <label
-          className="block text-[9px] uppercase tracking-[0.3em] text-[#dae6d8]/75 mb-1 font-bold"
+          className="block text-[9px] uppercase tracking-[0.3em] text-[#dae6d8]/75 mb-0.5 font-bold"
           style={{
             color: emailFocused ? "#00ff87" : undefined,
             transition: "color 0.2s",
@@ -84,7 +84,7 @@ export const SignUpForm = ({ onSuccess }: SignUpFormProps) => {
             onFocus={() => setEmailFocused(true)}
             onBlur={() => setEmailFocused(false)}
             placeholder="concierge@autodeal.com"
-            className="w-full bg-transparent border-0 border-b px-0 py-2 pr-8 text-sm focus:outline-none placeholder:text-[#dae6d8]/20 text-[#dae6d8]"
+            className="w-full bg-transparent border-0 border-b px-0 py-1.5 sm:py-2 pr-8 text-sm focus:outline-none placeholder:text-[#dae6d8]/20 text-[#dae6d8]"
             style={{
               borderBottomColor: emailFocused
                 ? "rgba(0,255,135,0.8)"
@@ -108,7 +108,7 @@ export const SignUpForm = ({ onSuccess }: SignUpFormProps) => {
       {/* Password */}
       <div>
         <label
-          className="block text-[9px] uppercase tracking-[0.3em] text-[#dae6d8]/75 mb-1 font-bold"
+          className="block text-[9px] uppercase tracking-[0.3em] text-[#dae6d8]/75 mb-0.5 font-bold"
           style={{
             color: passwordFocused ? "#00ff87" : undefined,
             transition: "color 0.2s",
@@ -124,7 +124,7 @@ export const SignUpForm = ({ onSuccess }: SignUpFormProps) => {
             onFocus={() => setPasswordFocused(true)}
             onBlur={() => setPasswordFocused(false)}
             placeholder="••••••••••••"
-            className="w-full bg-transparent border-0 border-b px-0 py-2 pr-8 text-sm focus:outline-none placeholder:text-[#dae6d8]/20 text-[#dae6d8]"
+            className="w-full bg-transparent border-0 border-b px-0 py-1.5 sm:py-2 pr-8 text-sm focus:outline-none placeholder:text-[#dae6d8]/20 text-[#dae6d8]"
             style={{
               borderBottomColor: passwordFocused
                 ? "rgba(0,255,135,0.8)"
@@ -146,11 +146,11 @@ export const SignUpForm = ({ onSuccess }: SignUpFormProps) => {
       </div>
 
       {/* CTA */}
-      <div className="pt-2 space-y-2.5">
+      <div className="pt-1.5 space-y-2">
         <button
           type="button"
           onClick={onSuccess}
-          className="w-full relative overflow-hidden group py-2.5 sm:py-3 text-[10px] uppercase tracking-[0.25em] font-bold transition-all active:scale-[0.98] duration-200"
+          className="w-full relative overflow-hidden group py-2.5 text-[10px] uppercase tracking-[0.25em] font-bold transition-all active:scale-[0.98] duration-200 cursor-pointer"
           style={{ background: "#00ff87", color: "#050e0a" }}
         >
           <span className="relative z-10 flex items-center justify-center gap-3">
@@ -168,10 +168,10 @@ export const SignUpForm = ({ onSuccess }: SignUpFormProps) => {
           <span className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
         </button>
         <button
-          className="w-full flex items-center justify-center gap-3 py-2.5 text-[10px] uppercase tracking-[0.2em] font-bold transition-all hover:bg-[#dae6d8]/5 active:scale-[0.98] duration-200"
+          className="w-full flex items-center justify-center gap-3 py-2 text-[10px] uppercase tracking-[0.2em] font-bold transition-all hover:bg-[#dae6d8]/5 active:scale-[0.98] duration-200 cursor-pointer"
           style={{
             border: "1px solid rgba(218,230,216,0.1)",
-            color: "rgba(218,230,216,0.6)",
+            color: "rgba(218,230,216,0.7)",
           }}
           onClick={() => signIn("google", { callbackUrl: "/profile" })}
         >

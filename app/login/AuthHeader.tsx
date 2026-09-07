@@ -8,8 +8,8 @@ interface AuthHeaderProps {
 
 export const AuthHeader = ({ mode }: AuthHeaderProps) => {
   return (
-    <header className=" overflow-hidden">
-      <div className="flex items-center gap-2 mb-6">
+    <header className="overflow-hidden">
+      <div className="flex items-center gap-2 mb-2 sm:mb-2.5">
         <div className="w-1.5 h-1.5 rounded-full bg-[#00ff87]" />
         <span className="text-[10px] sm:text-xs uppercase tracking-[0.25em] font-bold text-[#00ff87]">
           {mode === "login" ? "Member Access" : "Membership Enrollment"}
@@ -25,7 +25,7 @@ export const AuthHeader = ({ mode }: AuthHeaderProps) => {
           transition={{ duration: 0.25, ease: [0.23, 1, 0.32, 1] }}
         >
           <h1
-            className="text-3xl sm:text-4xl font-bold leading-tight tracking-tight mb-1.5"
+            className="text-2xl sm:text-3xl font-bold leading-tight tracking-tight mb-1"
             style={{
               fontFamily: "'Newsreader', serif",
               fontStyle: "italic",
