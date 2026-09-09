@@ -97,7 +97,7 @@ const NavBar = () => {
 		};
 		window.addEventListener("keydown", handleKeyDown);
 		return () => window.removeEventListener("keydown", handleKeyDown);
-	}, []);
+	}, [isAuthPage]);
 
 	useEffect(() => {
 		const handleScroll = () => {

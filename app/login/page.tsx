@@ -1,13 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import bgImage from "@/public/cars/login-bg/bg.webp";
 import Image from "next/image";
 import { AnimatePresence } from "framer-motion";
-import { AuthHeader } from "./AuthHeader";
-import { LoginForm } from "./LoginForm";
-import { SignUpForm } from "./SignUpForm";
+import { AuthHeader } from "./_components/AuthHeader";
+import { LoginForm } from "./_components/LoginForm";
+import { SignUpForm } from "./_components/SignUpForm";
 
 const Login = () => {
   const [mode, setMode] = useState<"login" | "signup">("login");
