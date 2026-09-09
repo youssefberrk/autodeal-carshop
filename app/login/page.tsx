@@ -15,7 +15,7 @@ const Login = () => {
   const [accessKey, setAccessKey] = useState("");
 
   return (
-    <div className="relative w-full min-h-[calc(100dvh-64px)] sm:min-h-[calc(100dvh-68px)] md:h-[calc(100dvh-43px)] flex text-[#E2E8F0] font-['Manrope'] overflow-hidden select-none">
+    <div className="relative w-full min-h-screen h-screen flex shrink text-[#E2E8F0] font-['Manrope'] select-none ">
       {/* ─── Full-bleed background image behind everything ─── */}
       <Image
         src={bgImage}
@@ -31,12 +31,12 @@ const Login = () => {
       <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-[#050e0a]/50 to-[#050e0a]/85 z-0 pointer-events-none" />
 
       {/* ─── Visual Side (Left) ─── */}
-      <div className="hidden md:flex flex-1 flex-col justify-between p-8 lg:p-10 xl:p-14 relative overflow-hidden z-10 pointer-events-none">
+      <div className="hidden md:flex flex-1 flex-col justify-between pl-4 relative overflow-hidden z-10 pointer-events-none">
         {/* Bottom gradient for stat legibility */}
         <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-black/80 to-transparent z-10" />
 
         {/* Top-left subtle tag */}
-        <div className="z-20 flex items-center gap-3">
+        <div className="z-20 pt-8 pl-4 flex items-center gap-3">
           <div className="w-px h-6 bg-[#2E5BFF]" />
           <span className="text-[9px] uppercase tracking-[0.35em] text-[#E2E8F0]/60 font-bold">
             Prestige Concierge
@@ -44,7 +44,7 @@ const Login = () => {
         </div>
 
         {/* Vertical side label */}
-        <div className="absolute left-8 lg:left-10 top-1/2 -translate-y-1/2 z-20 flex flex-col items-center gap-3">
+        <div className="absolute left-8  top-1/2 -translate-y-1/2 z-20 flex flex-col items-center pb-48 gap-3">
           <div className="w-px h-12 bg-[#E2E8F0]/15" />
           <span
             className="text-[8px] uppercase tracking-[0.3em] text-[#E2E8F0]/30 font-bold"
@@ -56,7 +56,7 @@ const Login = () => {
         </div>
 
         {/* Car stats bottom-left */}
-        <div className="z-20 relative pl-4 pb-2">
+        <div className="z-20 relative pl-4 mb-26">
           {/* Scan line accent */}
           <div className="flex items-center gap-3 mb-2">
             <div className="w-5 h-px bg-[#2E5BFF]" />
@@ -118,78 +118,141 @@ const Login = () => {
         </div>
       </div>
 
-      {/* ─── Auth Side (Right) ─── */}
-      <div
-        className="w-full md:w-[400px] xl:w-[440px] md:ml-auto flex flex-col shrink-1 relative z-10 h-full overflow-hidden"
+      {/* ── Auth Side (Right) ── */}
+      <aside
+        aria-label="Authentication Panel"
+        className="w-full md:w-[420px] lg:w-[460px] xl:w-[480px] md:ml-auto flex flex-col shrink-0 relative z-10
+   h-full border-t md:border-t-0 md:border-l border-white/[0.08] shadow-2xl
+  "
         style={{
-          background: "rgba(10, 15, 20, 0.85)",
-          backdropFilter: "blur(24px) saturate(1.2)",
-          WebkitBackdropFilter: "blur(24px) saturate(1.2)",
-          borderLeft: "1px solid rgba(255,255,255,0.15)",
+          background:
+            "linear-gradient(180deg, rgba(12, 17, 24, 0.94) 0%, rgba(8, 12, 18, 0.96) 100%)",
+          backdropFilter: "blur(28px) saturate(1.3)",
+          WebkitBackdropFilter: "blur(28px) saturate(1.3)",
         }}
       >
-        {/* Subtle grid texture */}
+        {/* Ambient Top Glow Aura */}
         <div
-          className="absolute inset-0 opacity-[0.015] pointer-events-none"
+          aria-hidden="true"
+          className="absolute -top-24 right-0 w-80 h-80 bg-blue-600/10 rounded-full blur-[90px] pointer-events-none"
+        />
+        {/* Ambient Bottom Accent Aura */}
+        <div
+          aria-hidden="true"
+          className="absolute -bottom-20 -left-20 w-72 h-72 bg-[#2E5BFF]/10 rounded-full blur-[80px] pointer-events-none"
+        />
+
+        {/* Precision Left Edge Specular Highlight Line */}
+        <div
+          aria-hidden="true"
+          className="hidden md:block absolute inset-y-0 left-0 w-[1px] bg-gradient-to-b from-transparent via-blue-500/30 to-        
+  transparent pointer-events-none"
+        />
+
+        {/* Faded Matrix / Grid Texture */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 opacity-[0.03] pointer-events-none"
           style={{
             backgroundImage:
-              "radial-gradient(circle, #E2E8F0 1px, transparent 1px)",
-            backgroundSize: "24px 24px",
+              "radial-gradient(circle, #E2E8F0 1.2px, transparent 1.2px)",
+            backgroundSize: "20px 20px",
+            maskImage:
+              "radial-gradient(ellipse at center, black 40%, transparent 85%)",
+            WebkitMaskImage:
+              "radial-gradient(ellipse at center, black 40%, transparent 85%)",
           }}
         />
 
-        {/* Form Container */}
-        <div className="flex-1 min-h-0 overflow-y-auto flex flex-col justify-center py-4 sm:py-6 px-5 sm:px-8 md:px-6 relative z-10">
-          <div className="max-w-sm w-full mx-auto flex gap-4">
-            {/* Precision Rail - The visual anchor */}
-            <div className="hidden sm:block w-px bg-gradient-to-b from-transparent via-[#2E5BFF] to-transparent" />
-
-            <div className="flex-1 space-y-3.5 sm:space-y-4">
-              <AuthHeader mode={mode} />
-
-              <div>
-                <AnimatePresence mode="wait">
-                  {mode === "login" ? (
-                    <LoginForm
-                      key="login"
-                      email={email}
-                      setEmail={setEmail}
-                      accessKey={accessKey}
-                      setAccessKey={setAccessKey}
-                    />
-                  ) : (
-                    <SignUpForm
-                      key="signup"
-                      onSuccess={() => setMode("login")}
-                    />
-                  )}
-                </AnimatePresence>
-              </div>
-            </div>
+        {/* Top Status Bar / Security Indicator — sticky so it's always visible */}
+        <div
+          className="sticky top-0 z-30 w-full px-6 sm:px-8 pt-5 pb-2 flex items-center justify-between text-[11px] font-mono
+  tracking-wider text-slate-400/70 border-b border-white/[0.04]"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(12, 17, 24, 0.97) 0%, rgba(8, 12, 18, 0.94) 100%)",
+            backdropFilter: "blur(20px)",
+            WebkitBackdropFilter: "blur(20px)",
+          }}
+        >
+          <div className="flex items-center gap-2">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+            </span>
+            <span className="uppercase text-[10px] tracking-widest text-slate-300/80">
+              Kinetic Auth 2.0
+            </span>
           </div>
+          <span className="text-[10px] tracking-widest uppercase text-slate-500/80 flex items-center gap-1">
+            <svg
+              className="w-3 h-3 text-slate-400/80"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+              />
+            </svg>
+            256-Bit SSL
+          </span>
         </div>
 
-        {/* Auth Footer */}
-        <footer className="flex-shrink-0 w-full px-5 sm:px-8 md:px-6 py-2.5 sm:py-3 border-t border-[#E2E8F0]/10 bg-black/30 space-y-1 z-10 fixed bottom-2  md:sticky inset-x-6 md:bottom-20">
-          <div className="flex items-center justify-center gap-2 text-[9px] uppercase tracking-widest text-[#E2E8F0]/40 font-mono">
-            <span className="select-none">
-              {mode === "login" ? "No account?" : "Already a member?"}
-            </span>
-            <button
-              type="button"
-              onClick={() => setMode(mode === "login" ? "signup" : "login")}
-              className="text-[#2E5BFF] hover:text-[#2E5BFF]/80 hover:underline font-bold transition-colors cursor-pointer py-0.5"
-            >
-              {mode === "login" ? "Sign Up" : "Sign In"}
-            </button>
-          </div>
+        {/* Main Form Area */}
+        <main className="relative z-20 flex-1 flex flex-col justify-start  px-5 sm:px-8  md:px-10 w-full">
+          <div className="w-full max-w-[360px] mx-auto  pt-24 md:pt-5 md:space-y-2 space-y-12">
+            {/* Visual Header */}
+            <AuthHeader mode={mode} />
 
-          {/* Copyright notice */}
-          <div className="text-[8px] uppercase tracking-[0.3em] text-[#E2E8F0]/20 text-center select-none font-mono">
-            © 2026 AutoDeal Kinetic Prestige
+            {/* Quick Segmented Mode Switcher */}
+            <div className="p-1 my-6 rounded-xl bg-black/40 border border-white/[0.06] backdrop-blur-md tracking-[0.1em] flex items-center relative">
+              <button
+                type="button"
+                onClick={() => setMode("login")}
+                className={`flex-1 py-2.5 text-[10px] uppercase font-bold rounded-lg transition-all duration-300 cursor-pointer text-center relative z-10 tracking-widest ${
+                  mode === "login"
+                    ? "text-white shadow-md bg-white/[0.10] border border-white/[0.12]"
+                    : "text-slate-200/50 hover:text-slate-200"
+                }`}
+              >
+                Sign In
+              </button>
+              <button
+                type="button"
+                onClick={() => setMode("signup")}
+                className={`flex-1 py-2.5 text-[10px] uppercase font-bold rounded-lg transition-all duration-300 cursor-pointer text-center relative z-10 tracking-widest ${
+                  mode === "signup"
+                    ? "text-white shadow-md bg-white/[0.10] border border-white/[0.12]"
+                    : "text-slate-200/50 hover:text-slate-200"
+                }`}
+              >
+                Create Account
+              </button>
+            </div>
+
+            {/* Animated Form Container */}
+            <div className="w-full relative pt-6 md:p-0">
+              <AnimatePresence mode="wait">
+                {mode === "login" ? (
+                  <LoginForm
+                    key="login"
+                    email={email}
+                    setEmail={setEmail}
+                    accessKey={accessKey}
+                    setAccessKey={setAccessKey}
+                  />
+                ) : (
+                  <SignUpForm key="signup" onSuccess={() => setMode("login")} />
+                )}
+              </AnimatePresence>
+            </div>
           </div>
-        </footer>
-      </div>
+        </main>
+      </aside>
     </div>
   );
 };

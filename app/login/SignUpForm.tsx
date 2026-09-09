@@ -23,7 +23,7 @@ export const SignUpForm = ({ onSuccess }: SignUpFormProps) => {
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: -16 }}
       transition={{ duration: 0.25, ease: [0.23, 1, 0.32, 1] }}
-      className="space-y-3 sm:space-y-3.5"
+      className="space-y-6 "
     >
       {/* Full Name */}
       <div>
@@ -150,7 +150,7 @@ export const SignUpForm = ({ onSuccess }: SignUpFormProps) => {
         <button
           type="button"
           onClick={onSuccess}
-          className="w-full relative overflow-hidden group py-2.5 text-[10px] uppercase tracking-[0.25em] font-bold transition-all active:scale-[0.98] duration-200 cursor-pointer"
+          className="w-full relative overflow-hidden group py-2.5 text-[14px] uppercase tracking-[0.15em] font-bold transition-all active:scale-[0.98] duration-200 cursor-pointer"
           style={{ background: "#00ff87", color: "#050e0a" }}
         >
           <span className="relative z-10 flex items-center justify-center gap-3">

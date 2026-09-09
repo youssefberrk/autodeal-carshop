@@ -25,12 +25,12 @@ export const LoginForm = ({
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: -16 }}
       transition={{ duration: 0.25, ease: [0.23, 1, 0.32, 1] }}
-      className="space-y-3 sm:space-y-3.5"
+      className="space-y-8 "
     >
       {/* Email */}
       <div>
         <label
-          className="block text-[9px] uppercase tracking-[0.3em] text-[#dae6d8]/75 mb-0.5 font-bold"
+          className="block text-xs uppercase tracking-[0.2em] text-[#dae6d8]/75 mb-0.5 font-bold leading-snug"
           style={{
             color: emailFocused ? "#00ff87" : undefined,
             transition: "color 0.2s",
@@ -118,7 +118,7 @@ export const LoginForm = ({
       {/* CTA */}
       <div className="pt-1.5 space-y-2">
         <button
-          className="w-full relative overflow-hidden group py-2.5 text-[10px] uppercase tracking-[0.25em] font-bold transition-all active:scale-[0.98] duration-200 cursor-pointer"
+          className="w-full relative overflow-hidden group py-2.5 text-[14px] uppercase tracking-[0.15em] font-bold transition-all active:scale-[0.98] duration-200 cursor-pointer"
           style={{ background: "#00ff87", color: "#050e0a" }}
         >
           <span className="relative z-10 flex items-center justify-center gap-3">

@@ -9,9 +9,9 @@ interface AuthHeaderProps {
 export const AuthHeader = ({ mode }: AuthHeaderProps) => {
   return (
     <header className="overflow-hidden">
-      <div className="flex items-center gap-2 mb-2 sm:mb-2.5">
+      <div className="flex items-center gap-4 md:pb-4 md:pt-4  pb-10">
         <div className="w-1.5 h-1.5 rounded-full bg-[#00ff87]" />
-        <span className="text-[10px] sm:text-xs uppercase tracking-[0.25em] font-bold text-[#00ff87]">
+        <span className="text-[16px] sm:text-[18px] uppercase tracking-[0.18em] font-semibold text-[#00ff87]">
           {mode === "login" ? "Member Access" : "Membership Enrollment"}
         </span>
       </div>
@@ -24,13 +24,7 @@ export const AuthHeader = ({ mode }: AuthHeaderProps) => {
           exit={{ opacity: 0, y: -8 }}
           transition={{ duration: 0.25, ease: [0.23, 1, 0.32, 1] }}
         >
-          <h1
-            className="text-2xl sm:text-3xl font-bold leading-tight tracking-tight mb-1"
-            style={{
-              fontFamily: "'Newsreader', serif",
-              fontStyle: "italic",
-            }}
-          >
+          <h1 className="text-4xl sm:text-5xl font-bold leading-[1.1] tracking-tight mb-6 newsreader">
             {mode === "login" ? (
               <>
                 Welcome <span className="text-[#dae6d8]/35">Back.</span>
@@ -41,7 +35,7 @@ export const AuthHeader = ({ mode }: AuthHeaderProps) => {
               </>
             )}
           </h1>
-          <p className="text-xs text-[#dae6d8]/75 leading-relaxed max-w-xs">
+          <p className="text-[13px] text-[#dae6d8]/60 leading-relaxed newsreader italic tracking-[0.08em] ">
             {mode === "login"
               ? "Access your private concierge dashboard and curated inventory."
               : "Begin your journey with AutoDeal. Apply for access to our exclusive fleet."}
