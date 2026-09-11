@@ -67,7 +67,7 @@ const OrdersPage = () => {
       {/* Studio Background Ambient Glow */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 h-[500px] w-[800px] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(0,255,135,0.06)_0%,transparent_70%)] blur-3xl"
+        className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 h-125 w-200 rounded-full bg-[radial-gradient(ellipse_at_center,rgba(0,255,135,0.06)_0%,transparent_70%)] blur-3xl"
       />
 
       <div className="max-w-6xl mx-auto space-y-8 relative z-10">
@@ -94,7 +94,7 @@ const OrdersPage = () => {
 
         {/* Orders List or Empty Showroom State */}
         {orders.length === 0 ? (
-          <div className="relative overflow-hidden rounded-3xl border border-[#dae6d8]/10 bg-gradient-to-b from-[#091b12]/95 via-[#06140d]/90 to-[#030b07]/95 p-12 sm:p-16 text-center shadow-[0_20px_50px_-15px_rgba(0,0,0,0.8)] backdrop-blur-xl">
+          <div className="relative overflow-hidden rounded-3xl border border-[#dae6d8]/10 bg-linear-to-b from-[#091b12]/95 via-[#06140d]/90 to-[#030b07]/95 p-12 sm:p-16 text-center shadow-[0_20px_50px_-15px_rgba(0,0,0,0.8)] backdrop-blur-xl">
             <div
               aria-hidden="true"
               className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,255,135,0.05)_0%,transparent_70%)]"

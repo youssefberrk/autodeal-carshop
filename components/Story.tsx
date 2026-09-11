@@ -60,9 +60,9 @@ const images: Array<{
 ];
 
 const stats = [
-  { target: 2024, label: "founded", suffix: "" },
-  { target: 3, label: "curator teams", suffix: "" },
-  { target: 48, label: "source review", suffix: "h" },
+  { target: 2024, label: "founded", suffix: "", delay: 0, duration: 1200 },
+  { target: 3, label: "curator teams", suffix: "", delay: 200, duration: 2200 },
+  { target: 48, label: "source review", suffix: "h", delay: 400, duration: 1500 },
 ];
 
 const useInView = (options?: IntersectionObserverInit) => {
@@ -344,24 +344,50 @@ const Story = () => {
     threshold: 0.15,
     rootMargin: "0px 0px -40px 0px",
   });
+  const [metricsRef, metricsInView] = useInView({
+    threshold: 0.25,
+    rootMargin: "0px 0px -20px 0px",
+  });
 
   const [displayStats, setDisplayStats] = useState<number[]>(() =>
     stats.map(() => 0),
   );
 
   useEffect(() => {
-    if (!contentInView) return;
+    if (!metricsInView) return;
 
     let animationFrameId = 0;
     const startTime = performance.now();
-    const duration = 1200;
 
-    const animate = (time: number) => {
-      const progress = Math.min((time - startTime) / duration, 1);
+    const animate = (now: number) => {
+      const elapsed = now - startTime;
+      let isAllCompleted = true;
 
-      setDisplayStats(stats.map(({ target }) => Math.round(target * progress)));
+      const updated = stats.map((stat) => {
+        const statElapsed = elapsed - stat.delay;
+        if (statElapsed <= 0) {
+          isAllCompleted = false;
+          return 0;
+        }
 
-      if (progress < 1) {
+        const progress = Math.min(statElapsed / stat.duration, 1);
+        if (progress < 1) {
+          isAllCompleted = false;
+        }
+
+        if (stat.target <= 10) {
+          // Small targets (e.g. 3 in curator teams) step evenly and significantly slower
+          return Math.min(stat.target, Math.floor(progress * (stat.target + 1)));
+        }
+
+        // Larger targets (e.g. 48, 2024) use smooth cubic ease-out count sweep
+        const easedProgress = 1 - Math.pow(1 - progress, 3);
+        return Math.round(stat.target * easedProgress);
+      });
+
+      setDisplayStats(updated);
+
+      if (!isAllCompleted) {
         animationFrameId = requestAnimationFrame(animate);
       }
     };
@@ -369,7 +395,7 @@ const Story = () => {
     animationFrameId = requestAnimationFrame(animate);
 
     return () => cancelAnimationFrame(animationFrameId);
-  }, [contentInView]);
+  }, [metricsInView]);
 
   useEffect(() => {
     return () => {
@@ -560,29 +586,45 @@ const Story = () => {
             </div>
 
             {/* Verified Metrics Grid */}
-            <div className="grid gap-3 sm:grid-cols-3 sm:gap-4 border-t border-white/10 pt-8">
-              {stats.map(({ label, suffix }, index) => (
-                <div
-                  key={label}
-                  style={{ transitionDelay: `${index * 120}ms` }}
-                  className={`group relative overflow-hidden rounded-2xl border border-[#00ff87]/15 bg-[linear-gradient(135deg,rgba(0,255,135,0.03),rgba(8,16,12,0.85))] p-4 sm:p-5 shadow-[0_16px_50px_rgba(0,0,0,0.4)] backdrop-blur-sm transition duration-700 ease-out hover:border-[#00ff87]/40 hover:shadow-[0_20px_60px_rgba(0,255,135,0.08)] ${
-                    contentInView
-                      ? "translate-y-0 opacity-100"
-                      : "translate-y-4 opacity-0"
-                  }`}
-                >
-                  <div className="pointer-events-none absolute top-0 right-0 h-3.5 w-3.5 border-t border-r border-[#00ff87]/30 transition-colors group-hover:border-[#00ff87]/60" />
-                  <p className="[font-family:Orbitron,sans-serif] text-xl font-bold text-[#00ff87] sm:text-2xl drop-shadow-[0_0_12px_rgba(0,255,135,0.2)]">
-                    {displayStats[index]}
-                    <span className="ml-1 text-sm font-medium text-[#dae6d8]/85">
-                      {suffix}
-                    </span>
-                  </p>
-                  <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.2em] text-[#dae6d8]/50">
-                    {label}
-                  </p>
-                </div>
-              ))}
+            <div
+              ref={metricsRef}
+              className="grid gap-3 sm:grid-cols-3 sm:gap-4 border-t border-white/10 pt-8"
+            >
+              {stats.map(({ label, suffix, target, delay }, index) => {
+                const isCompleted = displayStats[index] === target && metricsInView;
+                return (
+                  <div
+                    key={label}
+                    style={{ transitionDelay: `${delay}ms` }}
+                    className={`group relative overflow-hidden rounded-2xl border bg-[linear-gradient(135deg,rgba(0,255,135,0.03),rgba(8,16,12,0.85))] p-4 sm:p-5 shadow-[0_16px_50px_rgba(0,0,0,0.4)] backdrop-blur-sm transition-all duration-700 ease-out hover:border-[#00ff87]/40 hover:shadow-[0_20px_60px_rgba(0,255,135,0.08)] ${
+                      metricsInView
+                        ? "translate-y-0 opacity-100 scale-100 border-[#00ff87]/20"
+                        : "translate-y-6 opacity-0 scale-95 border-[#00ff87]/0"
+                    }`}
+                  >
+                    <div className="pointer-events-none absolute top-0 right-0 h-3.5 w-3.5 border-t border-r border-[#00ff87]/30 transition-colors group-hover:border-[#00ff87]/60" />
+                    <div className="pointer-events-none absolute bottom-0 left-0 h-3.5 w-3.5 border-b border-l border-[#00ff87]/20 transition-colors group-hover:border-[#00ff87]/50" />
+                    <p className="[font-family:Orbitron,sans-serif] text-xl font-bold text-[#00ff87] sm:text-2xl drop-shadow-[0_0_12px_rgba(0,255,135,0.2)]">
+                      {displayStats[index]}
+                      <span className="ml-1 text-sm font-medium text-[#dae6d8]/85">
+                        {suffix}
+                      </span>
+                    </p>
+                    <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.2em] text-[#dae6d8]/50 flex items-center justify-between">
+                      <span>{label}</span>
+                      <span
+                        className={`h-1.5 w-1.5 rounded-full transition-all duration-500 ${
+                          isCompleted
+                            ? "bg-[#00ff87] shadow-[0_0_8px_#00ff87]"
+                            : metricsInView
+                            ? "bg-[#00ff87]/40 animate-pulse"
+                            : "bg-white/10"
+                        }`}
+                      />
+                    </p>
+                  </div>
+                );
+              })}
             </div>
           </div>
 
