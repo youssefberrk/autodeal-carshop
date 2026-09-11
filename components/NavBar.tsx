@@ -249,7 +249,7 @@ const NavBar = () => {
             <button
               onClick={() => setIsSearchOpen(true)}
               aria-label="Search"
-              className="grid size-9 place-items-center rounded-full border border-transparent transition-all duration-200 hover:border-[#00ff87]/20 hover:bg-[#00ff87]/10 hover:text-[#00ff87] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#00ff87]/70 active:scale-90 sm:size-10"
+              className="grid size-11 place-items-center rounded-full border border-transparent transition-all duration-200 hover:border-[#00ff87]/20 hover:bg-[#00ff87]/10 hover:text-[#00ff87] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#00ff87]/70 active:scale-90 sm:size-10"
             >
               <FaSearch
                 className={`transition-all duration-300 ${
@@ -265,7 +265,7 @@ const NavBar = () => {
               <button
                 onClick={() => setCarDropdownOpen(!carDropdownOpen)}
                 aria-label="My Cars"
-                className="relative grid size-9 place-items-center rounded-full border border-transparent text-slate-300 transition-all duration-200 hover:border-[#00ff87]/20 hover:bg-[#00ff87]/10 hover:text-[#00ff87] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#00ff87]/70 active:scale-90 sm:size-10"
+                className="relative grid size-11 place-items-center rounded-full border border-transparent text-slate-300 transition-all duration-200 hover:border-[#00ff87]/20 hover:bg-[#00ff87]/10 hover:text-[#00ff87] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#00ff87]/70 active:scale-90 sm:size-10"
               >
                 <IoCarSport
                   className={`transition-all duration-300 ${
@@ -314,7 +314,7 @@ const NavBar = () => {
               <button
                 onClick={() => setProfileOpen(!profileOpen)}
                 aria-label="Profile"
-                className="relative grid size-9 place-items-center rounded-full border border-transparent text-slate-300 transition-all duration-200 hover:border-[#00ff87]/20 hover:bg-[#00ff87]/10 hover:text-[#00ff87] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#00ff87]/70 active:scale-90 sm:size-10"
+                className="relative grid size-11 place-items-center rounded-full border border-transparent text-slate-300 transition-all duration-200 hover:border-[#00ff87]/20 hover:bg-[#00ff87]/10 hover:text-[#00ff87] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#00ff87]/70 active:scale-90 sm:size-10"
               >
                 <CgProfile
                   className={`transition-all duration-300 ${
@@ -515,7 +515,7 @@ const NavBar = () => {
             {/* Mobile Menu Button */}
             <button
               aria-label={menuOpen ? "Close menu" : "Open menu"}
-              className={`grid size-9 place-items-center rounded-full border border-transparent text-slate-300 transition-all duration-200 hover:border-[#00ff87]/20 hover:bg-[#00ff87]/10 hover:text-[#00ff87] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#00ff87]/70 active:scale-90 sm:size-10 lg:hidden ${
+              className={`grid size-11 place-items-center rounded-full border border-transparent text-slate-300 transition-all duration-200 hover:border-[#00ff87]/20 hover:bg-[#00ff87]/10 hover:text-[#00ff87] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#00ff87]/70 active:scale-90 sm:size-10 lg:hidden ${
                 isScrolled ? "text-sm sm:text-base" : "text-base sm:text-lg"
               }`}
               onClick={() => setMenuOpen(!menuOpen)}

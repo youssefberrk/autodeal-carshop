@@ -317,7 +317,7 @@ export default function Logo({ shrink = false }: { shrink?: boolean }) {
     >
       <div
         className={`relative grid shrink-0 place-items-center rounded-full bg-[radial-gradient(circle_at_35%_25%,rgba(218,230,216,0.13),rgba(0,255,135,0.04)_42%,rgba(5,10,7,0.9)_74%)] ring-1 ring-[color-mix(in_oklch,var(--brand)_42%,transparent)] shadow-[inset_0_0_18px_rgba(218,230,216,0.06),0_0_26px_rgba(0,255,135,0.12)] transition-all duration-300 group-hover:shadow-[inset_0_0_18px_rgba(218,230,216,0.08),0_0_34px_rgba(0,255,135,0.2)] ${
-          shrink ? "size-9 md:size-12" : "size-10 sm:size-12"
+          shrink ? "size-11 md:size-12" : "size-10 sm:size-12"
         }`}
       >
         <div className="will-change-transform transition-transform duration-[850ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-0.5">

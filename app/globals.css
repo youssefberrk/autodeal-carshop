@@ -611,22 +611,21 @@ button,
 
 .marketplace-layout {
   display: grid;
-  grid-template-columns: 280px 1fr;
+  grid-template-columns: 1fr;
   gap: 3rem;
   align-items: start;
 }
 
-@media (max-width: 1024px) {
+@media (min-width: 1024px) {
   .marketplace-layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: 280px 1fr;
   }
 }
 
 /* ===== Glassmorphism Filters ===== */
 .filters-panel {
-  position: sticky;
-  top: 100px;
-  max-height: calc(100vh - 140px);
+  position: static;
+  max-height: none;
   overflow-y: auto;
   overscroll-behavior: contain;
   scrollbar-width: thin;
@@ -640,10 +639,11 @@ button,
   transition: border-color 0.3s ease;
 }
 
-@media (max-width: 1024px) {
+@media (min-width: 1024px) {
   .filters-panel {
-    position: static;
-    max-height: none;
+    position: sticky;
+    top: 100px;
+    max-height: calc(100vh - 140px);
   }
 }
 
@@ -709,13 +709,13 @@ button,
 /* ===== Cars Grid ===== */
 .cars-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: 1fr;
   gap: 1.5rem;
 }
 
-@media (max-width: 480px) {
+@media (min-width: 480px) {
   .cars-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   }
 }
 
@@ -825,6 +825,8 @@ button,
 
 .cars-card {
   position: relative;
+  container-type: inline-size;
+  container-name: car-card;
   background: linear-gradient(
     165deg,
     oklch(0.16 0.02 160 / 98%),
@@ -1139,7 +1141,7 @@ button,
 }
 
 /* Responsive */
-@media (max-width: 480px) {
+@container car-card (max-width: 350px) {
   .card-content {
     padding: 1.25rem;
   }

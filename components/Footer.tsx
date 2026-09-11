@@ -163,7 +163,7 @@ const Footer = () => {
 								<button
 									type="submit"
 									disabled={status === "loading" || status === "success"}
-									className="absolute right-1.5 top-1/2 -translate-y-1/2 size-9 flex items-center justify-center rounded-md bg-[#00ff87]/10 text-[#00ff87] hover:bg-[#00ff87] hover:text-black transition-all duration-200 active:scale-90 disabled:hover:bg-[#00ff87]/10 disabled:hover:text-[#00ff87] disabled:active:scale-100">
+									className="absolute right-1.5 top-1/2 -translate-y-1/2 size-11 flex items-center justify-center rounded-md bg-[#00ff87]/10 text-[#00ff87] hover:bg-[#00ff87] hover:text-black transition-all duration-200 active:scale-90 disabled:hover:bg-[#00ff87]/10 disabled:hover:text-[#00ff87] disabled:active:scale-100">
 									{status === "loading" ? (
 										<Loader2 size={14} className="animate-spin" />
 									) : status === "success" ? (
