@@ -32,7 +32,9 @@ const DiscoverShowrooms = () => {
 	}, []);
 
 	return (
-		<section ref={sectionRef} className="py-20 overflow-x-hidden">
+		<section
+			ref={sectionRef}
+			className="py-20 overflow-x-hidden bg-gradient-to-l from-[#0f100e] via-[#000000] to-[#1b1d1a]">
 			<div className="text-center mb-16">
 				<span
 					style={{ transitionDelay: "0ms" }}

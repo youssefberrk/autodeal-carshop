@@ -42,7 +42,7 @@ export default function OrderCard({
   };
 
   return (
-    <article className="group relative overflow-hidden rounded-3xl border border-[#dae6d8]/10 bg-gradient-to-b from-[#091b12]/95 via-[#06140d]/90 to-[#030b07]/95 p-6 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05),0_15px_40px_-10px_rgba(0,0,0,0.7)] backdrop-blur-xl transition-all duration-300 hover:border-[#00ff87]/30 hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.8),0_0_30px_rgba(0,255,135,0.1)]">
+    <article className="group relative overflow-hidden rounded-3xl border border-[#dae6d8]/10  p-6 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05),0_15px_40px_-10px_rgba(0,0,0,0.7)] backdrop-blur-xl transition-all duration-300 hover:border-[#00ff87]/30 hover:shadow-[0_20px_50px_-12px_rgba(0,0,0,0.8),0_0_30px_rgba(0,255,135,0.1)]">
       {/* Ambient Glow */}
       <div
         aria-hidden="true"

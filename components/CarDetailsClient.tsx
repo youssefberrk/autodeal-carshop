@@ -200,7 +200,7 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
 	};
 
 	return (
-		<div className="relative min-h-screen overflow-hidden bg-[#050e0a] text-[#e5efe3] font-['Manrope']">
+		<div className="relative min-h-screen overflow-hidden bg-gradient-to-l from-[#161616] via-[#000000] to-[#1f1e1e] text-[#e5efe3] font-['Manrope']">
 			<div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_12%,rgba(0,255,135,0.18),transparent_38%),radial-gradient(circle_at_82%_0%,rgba(148,163,184,0.14),transparent_32%),linear-gradient(to_bottom,rgba(9, 26, 17,0.85),rgba(5, 14, 10,0.98))]" />
 			<div className="pointer-events-none absolute inset-0 opacity-[0.06] [background-image:linear-gradient(to_right,rgba(229,239,227,0.25)_1px,transparent_1px),linear-gradient(to_bottom,rgba(229,239,227,0.2)_1px,transparent_1px)] [background-size:56px_56px]" />
 			<div className="relative mx-auto w-full max-w-[1400px] px-6 pb-24 pt-10 sm:px-10 lg:px-16">
@@ -488,6 +488,7 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
 			</div>
 
 			<Lightbox
+				key="car-lightbox"
 				images={thumbnails}
 				currentIndex={activeImage}
 				isOpen={isLightboxOpen}

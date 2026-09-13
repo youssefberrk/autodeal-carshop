@@ -44,9 +44,9 @@ export default function CarDropdown({ onClose }: CarDropdownProps) {
 			animate={{ opacity: 1, scale: 1, y: 0 }}
 			exit={{ opacity: 0, scale: 0.95, y: -10 }}
 			transition={{ duration: 0.2, ease: [0.23, 1, 0.32, 1] }}
-			className="absolute right-0 mt-3 w-[calc(100vw-2rem)] max-w-xs sm:w-80 md:w-[26rem] rounded-2xl p-5 backdrop-blur-2xl z-50 origin-top-right border border-[#00ff87]/15 shadow-[0_25px_60px_rgba(0,0,0,0.65)]"
+			className="absolute right-0 mt-3 w-[calc(100vw-2rem)] bg-gradient-to-l from-[#0f0f0f] via-[#000000] to-[#171717] max-w-xs sm:w-80 md:w-[26rem] rounded-2xl p-5 backdrop-blur-2xl z-50 origin-top-right border border-[#2c2e2d] shadow-[0_25px_60px_rgba(0,0,0,0.65)]"
 			style={{
-				background: "rgba(5, 13, 8, 0.95)",
+				
 			}}>
 			{/* Header */}
 			<div className="flex justify-between items-center mb-4 pb-2.5 border-b border-emerald-500/10">

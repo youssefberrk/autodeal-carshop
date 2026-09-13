@@ -1,169 +1,135 @@
 "use client";
-import { useState, useEffect, useRef, useCallback } from "react";
+
+import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, CircleDot, Circle } from "lucide-react";
+import { motion } from "framer-motion";
 
 interface ImageSliderProps {
-	album: string[];
-	activeImage?: number;
-	onImageChange?: (index: number) => void;
+  album: string[];
+  activeImage?: number;
+  onImageChange?: (index: number) => void;
 }
 
 const ImageSlider = ({
-	album,
-	activeImage = 0,
-	onImageChange,
+  album,
+  activeImage = 0,
+  onImageChange,
 }: ImageSliderProps) => {
-	const [index, setIndex] = useState<number>(activeImage + 1);
-	const [isTransitioning, setIsTransitioning] = useState<boolean>(true);
-	const lastPropIndex = useRef<number>(activeImage);
+  const [internalIndex, setInternalIndex] = useState<number>(activeImage);
 
-	// Sync from external prop
-	useEffect(() => {
-		if (activeImage !== lastPropIndex.current) {
-			const timer = setTimeout(() => {
-				setIsTransitioning(true);
-				setIndex(activeImage + 1);
-				lastPropIndex.current = activeImage;
-			}, 0);
-			return () => clearTimeout(timer);
-		}
-	}, [activeImage]);
+  useEffect(() => {
+    setInternalIndex(activeImage);
+  }, [activeImage]);
 
-	// Handle internal index changes
-	useEffect(() => {
-		if (album.length <= 1) return;
+  const currentIndex = onImageChange ? activeImage : internalIndex;
 
-		// 1. Handle Infinite Loop Wraparound
-		if (index >= album.length + 1) {
-			const timer = setTimeout(() => {
-				setIsTransitioning(false);
-				setIndex(1);
-			}, 500);
-			return () => clearTimeout(timer);
-		}
-		if (index <= 0) {
-			const timer = setTimeout(() => {
-				setIsTransitioning(false);
-				setIndex(album.length);
-			}, 500);
-			return () => clearTimeout(timer);
-		}
+  const moveToImage = useCallback(
+    (nextIndex: number) => {
+      const boundedIndex = (nextIndex + album.length) % album.length;
+      setInternalIndex(boundedIndex);
+      onImageChange?.(boundedIndex);
+    },
+    [album.length, onImageChange],
+  );
 
-		// 2. Notify parent if the change was internal (manual slide)
-		const realIndex = (index - 1 + album.length) % album.length;
-		if (realIndex !== activeImage) {
-			lastPropIndex.current = realIndex;
-			onImageChange?.(realIndex);
-		}
-	}, [index, album.length, activeImage, onImageChange]);
+  const nextImg = useCallback(() => {
+    if (album.length <= 1) return;
+    moveToImage(currentIndex + 1);
+  }, [album.length, currentIndex, moveToImage]);
 
-	const nextImg = useCallback(() => {
-		if (album.length <= 1 || index > album.length) return;
-		setIsTransitioning(true);
-		setIndex((prev) => prev + 1);
-	}, [album.length, index]);
+  const prevImg = useCallback(() => {
+    if (album.length <= 1) return;
+    moveToImage(currentIndex - 1);
+  }, [album.length, currentIndex, moveToImage]);
 
-	const prevImg = useCallback(() => {
-		if (album.length <= 1 || index < 1) return;
-		setIsTransitioning(true);
-		setIndex((prev) => prev - 1);
-	}, [album.length, index]);
+  if (!album || album.length === 0) return null;
 
-	if (!album || album.length === 0) return null;
+  return (
+    <div className="relative h-full w-full overflow-hidden group">
+      <motion.div
+        className="flex h-full w-full"
+        animate={{ x: `-${currentIndex * 100}%` }}
+        transition={{ ease: [0.23, 1, 0.32, 1], duration: 0.5 }}
+        drag="x"
+        dragConstraints={{ left: 0, right: 0 }}
+        onDragEnd={(_event, { offset, velocity }) => {
+          const swipeThreshold = 50;
+          if (offset.x < -swipeThreshold || velocity.x < -500) {
+            nextImg();
+          } else if (offset.x > swipeThreshold || velocity.x > 500) {
+            prevImg();
+          }
+        }}
+      >
+        {album.map((photo, i) => (
+          <div key={`${photo}-${i}`} className="relative h-full w-full shrink-0">
+            <Image
+              src={photo}
+              alt="car"
+              fill
+              sizes="(max-width: 768px) 100vw, 800px"
+              className="object-cover"
+              loading="eager"
+              priority={i === currentIndex}
+              unoptimized={photo.startsWith("http")}
+            />
+          </div>
+        ))}
+      </motion.div>
 
-	return (
-		<div className="relative overflow-hidden w-full h-full group">
-			<div
-				className={`flex h-full w-full ${
-					isTransitioning
-						? "transition-transform duration-500 cubic-bezier(0.23, 1, 0.32, 1)"
-						: ""
-				}`}
-				style={{
-					transform: `translateX(-${index * 100}%)`,
-				}}>
-				{album.length > 1 ? (
-					[album[album.length - 1], ...album, album[0]].map((photo, i) => (
-						<div key={i} className="relative w-full h-full flex-shrink-0">
-							<Image
-								src={photo}
-								alt="car"
-								fill
-								sizes="(max-width: 768px) 100vw, 800px"
-								className="object-cover"
-								loading="eager"
-								priority={i === 1}
-								unoptimized={photo.startsWith("http")}
-							/>
-						</div>
-					))
-				) : (
-					<div className="relative w-full h-full flex-shrink-0">
-						<Image
-							src={album[0]}
-							alt="car"
-							fill
-							sizes="(max-width: 768px) 100vw, 800px"
-							className="object-cover"
-							loading="eager"
-							priority
-							unoptimized={album[0].startsWith("http")}
-						/>
-					</div>
-				)}
-			</div>
+      {album.length > 1 && (
+        <>
+          <div className="absolute bottom-3 left-1/2 z-20 flex -translate-x-1/2 gap-2 opacity-0 transition-opacity duration-300 pointer-events-none group-hover:pointer-events-auto group-hover:opacity-100">
+            {album.map((_, i) => (
+              <button
+                key={i}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  moveToImage(i);
+                }}
+                className="cursor-pointer transition-transform active:scale-75"
+              >
+                {i === currentIndex ? (
+                  <CircleDot
+                    strokeWidth={3}
+                    size={17}
+                    className="text-white drop-shadow-md"
+                  />
+                ) : (
+                  <Circle
+                    strokeWidth={3}
+                    size={8}
+                    className="text-white/60 drop-shadow-md transition-colors hover:text-white"
+                  />
+                )}
+              </button>
+            ))}
+          </div>
 
-			{album.length > 1 && (
-				<>
-					<div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none group-hover:pointer-events-auto z-20">
-						{album.map((_, i) => (
-							<button
-								onClick={(e) => {
-									e.stopPropagation();
-									setIsTransitioning(true);
-									setIndex(i + 1);
-								}}
-								key={i}
-								className="transition-transform active:scale-75 cursor-pointer">
-								{i === (index - 1 + album.length) % album.length ? (
-									<CircleDot
-										strokeWidth={3}
-										size={17}
-										className="text-white drop-shadow-md"
-									/>
-								) : (
-									<Circle
-										strokeWidth={3}
-										size={8}
-										className="text-white/60 drop-shadow-md hover:text-white transition-colors"
-									/>
-								)}
-							</button>
-						))}
-					</div>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              prevImg();
+            }}
+            className="absolute left-0 top-0 z-20 h-full bg-black/10 p-2 text-white opacity-0 transition-opacity duration-300 hover:bg-black/20 group-hover:opacity-100 cursor-pointer"
+          >
+            <ChevronLeft size={32} />
+          </button>
 
-					<button
-						onClick={(e) => {
-							e.stopPropagation();
-							prevImg();
-						}}
-						className="absolute h-full left-0 top-0 bg-black/10 hover:bg-black/20 text-white cursor-pointer p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
-						<ChevronLeft size={32} />
-					</button>
-
-					<button
-						onClick={(e) => {
-							e.stopPropagation();
-							nextImg();
-						}}
-						className="absolute h-full right-0 top-0 bg-black/10 hover:bg-black/20 text-white cursor-pointer p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
-						<ChevronRight size={32} />
-					</button>
-				</>
-			)}
-		</div>
-	);
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              nextImg();
+            }}
+            className="absolute right-0 top-0 z-20 h-full bg-black/10 p-2 text-white opacity-0 transition-opacity duration-300 hover:bg-black/20 group-hover:opacity-100 cursor-pointer"
+          >
+            <ChevronRight size={32} />
+          </button>
+        </>
+      )}
+    </div>
+  );
 };
 
 export default ImageSlider;

@@ -90,7 +90,7 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
 	];
 
 	return (
-		<div className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-black/80 backdrop-blur-md p-4 overflow-y-auto">
+		<div className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-black/20 backdrop-blur-xl p-4 overflow-y-auto">
 			{/* Background click to close */}
 			<div className="absolute inset-0 -z-10" onClick={onClose} />
 
@@ -99,7 +99,11 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
 				animate={{ opacity: 1, scale: 1, y: 0 }}
 				exit={{ opacity: 0, scale: 0.95, y: -20 }}
 				transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
-				className="w-full max-w-3xl bg-[#050e0a]/90 border border-[#00ff87]/20 rounded-3xl p-6 md:p-8 shadow-[0_0_50px_rgba(0,255,135,0.15)] flex flex-col gap-6">
+				className="w-full max-w-3xl border border-white/15 rounded-3xl p-6 md:p-8 shadow-[0_0_50px_rgba(0,255,135,0.15)] flex flex-col gap-6 backdrop-blur-2xl"
+				style={{
+					background:
+						"linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(15,15,15,0.56) 35%, rgba(0,0,0,0.7) 100%)",
+				}}>
 				{/* Search Header */}
 				<div className="flex items-center justify-between border-b border-[#00ff87]/15 pb-4">
 					<h2
@@ -202,16 +206,16 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
 													</div>
 													<div className="flex-1 min-w-0">
 														<div className="flex items-center justify-between">
-															<h4 className="text-sm font-bold text-white uppercase truncate">
+															<h4 className="text-sm font-bold text-[#f3f5f1] uppercase truncate">
 																{car.brand} {car.model}
 															</h4>
-															<span className="text-xs font-semibold text-[#00ff87]">
+															<span className="text-xs font-semibold text-[#b9f7d7]">
 																{typeof car.price === "number"
 																	? `$${car.price.toLocaleString()}`
 																	: car.price}
 															</span>
 														</div>
-														<p className="text-[11px] text-slate-400 truncate mt-0.5">
+														<p className="text-[11px] text-[#cbd4d0] truncate mt-0.5">
 															{car.specs}
 														</p>
 													</div>
@@ -242,14 +246,14 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
 														onClose();
 													}}
 													className="flex items-center gap-4 p-2.5 rounded-xl bg-[#00ff87]/5 border border-white/5 hover:border-[#00ff87]/30 hover:bg-[#00ff87]/10 transition-all cursor-pointer group">
-													<div className="w-10 h-10 rounded-lg bg-[#00ff87]/10 border border-[#00ff87]/20 flex items-center justify-center text-[#00ff87] shrink-0">
+													<div className="w-10 h-10 rounded-lg bg-[#d9fbe7]/10 border border-[#d9fbe7]/20 flex items-center justify-center text-[#d9fbe7] shrink-0">
 														<MapPin size={18} />
 													</div>
 													<div className="flex-1 min-w-0">
-														<h4 className="text-sm font-bold text-white uppercase truncate">
+														<h4 className="text-sm font-bold text-[#f3f5f1] uppercase truncate">
 															{showroom.city} Showroom
 														</h4>
-														<p className="text-[11px] text-slate-400 truncate mt-0.5">
+														<p className="text-[11px] text-[#cbd4d0] truncate mt-0.5">
 															{showroom.address}
 														</p>
 													</div>

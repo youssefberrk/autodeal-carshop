@@ -26,7 +26,7 @@ const OrdersPage = () => {
   // Loading state while checking session
   if (status === "loading") {
     return (
-      <div className="min-h-screen bg-[#050e0a] text-[#dae6d8] flex items-center justify-center font-['Manrope']">
+      <div className="min-h-screen  text-[#dae6d8] flex items-center justify-center font-['Manrope']">
         <CarWheelLoader text="Retrieving order history..." size={72} />
       </div>
     );
@@ -63,7 +63,7 @@ const OrdersPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#050e0a] text-[#e5efe3] font-['Manrope'] py-10 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <div className="min-h-screen  text-[#e5efe3] font-['Manrope'] py-10 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       {/* Studio Background Ambient Glow */}
       <div
         aria-hidden="true"
@@ -94,7 +94,7 @@ const OrdersPage = () => {
 
         {/* Orders List or Empty Showroom State */}
         {orders.length === 0 ? (
-          <div className="relative overflow-hidden rounded-3xl border border-[#dae6d8]/10 bg-linear-to-b from-[#091b12]/95 via-[#06140d]/90 to-[#030b07]/95 p-12 sm:p-16 text-center shadow-[0_20px_50px_-15px_rgba(0,0,0,0.8)] backdrop-blur-xl">
+          <div className="relative overflow-hidden rounded-3xl border border-[#dae6d8]/10 bg-linear-to-b linear-gradient(to left, #161616, #000000, #1f1e1e);p-12 sm:p-16 text-center shadow-[0_20px_50px_-15px_rgba(0,0,0,0.8)] backdrop-blur-xl">
             <div
               aria-hidden="true"
               className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,255,135,0.05)_0%,transparent_70%)]"
