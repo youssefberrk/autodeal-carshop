@@ -55,7 +55,7 @@ const CarsCard = ({
 	};
 
 	return (
-		<div
+		<article
 			className="relative cars-card"
 			onMouseEnter={() => setIsHovered(true)}
 			onMouseLeave={() => setIsHovered(false)}>
@@ -155,7 +155,7 @@ const CarsCard = ({
 					</button>
 				</div>
 			</div>
-		</div>
+		</article>
 	);
 };
 

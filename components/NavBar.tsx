@@ -158,9 +158,10 @@ const NavBar = () => {
   const isScrolled = scrollProgress > 0;
 
   return (
-    <>
+    <header className="contents">
       <nav
         ref={navRef}
+        aria-label="Main Navigation"
         className={`sticky z-50 transition-all duration-300 backdrop-blur-md
 		${
       isScrolled
@@ -701,7 +702,7 @@ const NavBar = () => {
           />
         )}
       </AnimatePresence>
-    </>
+    </header>
   );
 };
 

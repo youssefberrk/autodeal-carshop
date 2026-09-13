@@ -7,6 +7,11 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
+export function getCarById(id: string | number) {
+  const numericId = typeof id === "string" ? Number(id) : id;
+  return carsData.find((c) => c.id === numericId);
+}
+
 export function getValidImageSrc(
   img: string | StaticImageData | null | undefined,
   carId?: number,

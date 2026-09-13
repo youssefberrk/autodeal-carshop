@@ -8,7 +8,7 @@ const FeaturedCard = ({ album, model, info, price }: featuredCars) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div
+    <article
       className="featured-card"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -242,7 +242,7 @@ const FeaturedCard = ({ album, model, info, price }: featuredCars) => {
 					}
 				}
 			`}</style>
-    </div>
+    </article>
   );
 };
 

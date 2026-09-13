@@ -296,6 +296,7 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
 											fill
 											sizes="(max-width: 768px) 25vw, 150px"
 											className="object-cover"
+											loading="eager"
 										/>
 									</button>
 								))}
@@ -453,7 +454,7 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
 						{features.map((feature, idx: number) => {
 							const Icon = iconMap[feature.icon] || Settings2;
 							return (
-								<div
+								<article
 									key={idx}
 									className="group rounded-xl border border-[#e5efe3]/8 bg-[linear-gradient(180deg,rgba(9, 26, 17,0.95),rgba(5, 14, 10,0.62))] p-8 transition-[transform,border-color,box-shadow] duration-300 [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] hover:-translate-y-0.5 hover:border-[#00ff87]/35 hover:shadow-[0_24px_52px_-40px_rgba(0,255,135,0.55)] sm:p-10">
 									<div className="mb-8 text-[#00ff87] transition-transform duration-300 [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] group-hover:-translate-y-0.5">
@@ -465,7 +466,7 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
 									<p className="text-sm leading-relaxed text-[#e5efe3]/55 transition-colors duration-200 [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] group-hover:text-[#e5efe3]/74">
 										{feature.description}
 									</p>
-								</div>
+								</article>
 							);
 						})}
 					</div>

@@ -92,6 +92,7 @@ const ImageSlider = ({
 								fill
 								sizes="(max-width: 768px) 100vw, 800px"
 								className="object-cover"
+								loading="eager"
 								priority={i === 1}
 								unoptimized={photo.startsWith("http")}
 							/>
@@ -105,6 +106,7 @@ const ImageSlider = ({
 							fill
 							sizes="(max-width: 768px) 100vw, 800px"
 							className="object-cover"
+							loading="eager"
 							priority
 							unoptimized={album[0].startsWith("http")}
 						/>
