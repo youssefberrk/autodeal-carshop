@@ -11,9 +11,11 @@ import ManufacturerDropdown from "@/components/filters/ManufacturerDropdown";
 import BodySilhouette from "@/components/filters/BodySilhouette";
 import PriceCeiling from "@/components/filters/PriceCeiling";
 import { motion, AnimatePresence } from "framer-motion";
-import { SlidersHorizontal, X, Check, RotateCcw, Compass } from "lucide-react";
+import { SlidersHorizontal, X, Check, RotateCcw, Compass, Sparkles } from "lucide-react";
+import { useConcierge } from "@/components/ConciergeProvider";
 
 const ShopPage = () => {
+	const { openConcierge } = useConcierge();
 	const carBrands = [
 		...new Set(carsData.map((car) => car.brand)),
 		"ALL BRANDS",
@@ -129,6 +131,30 @@ const ShopPage = () => {
 							/>
 						</div>
 					))}
+				</div>
+			</section>
+
+			{/* AI Concierge CTA */}
+			<section className="py-12 px-5 max-w-4xl mx-auto text-center">
+				<div className="p-8 rounded-3xl bg-gradient-to-br from-[#091a11] to-[#050e0a] border border-[#00ff87]/20 backdrop-blur-sm shadow-[0_0_40px_rgba(0,0,0,0.3)] flex flex-col items-center gap-6">
+					<div className="w-12 h-12 rounded-full bg-[#00ff87]/10 border border-[#00ff87]/30 flex items-center justify-center text-[#00ff87] animate-pulse">
+						<Sparkles size={24} />
+					</div>
+					<div className="max-w-md">
+						<h2 className="text-2xl font-bold text-white mb-3 uppercase tracking-wide" style={{ fontFamily: "Orbitron, sans-serif" }}>
+							Not sure what you&apos;re looking for?
+						</h2>
+						<p className="text-slate-400 text-sm leading-relaxed mb-6">
+							Our AI Concierge can help you discover the perfect vehicle based on your budget, performance needs, and style preferences.
+						</p>
+						<button
+							onClick={() => openConcierge()}
+							className="inline-flex items-center gap-2 px-8 py-3 bg-[#00ff87] text-[#050e0a] hover:bg-emerald-300 rounded-xl text-xs font-bold uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(0,255,135,0.25)] active:scale-[0.98] cursor-pointer"
+						>
+							<Sparkles size={16} />
+							<span>Ask AI Concierge</span>
+						</button>
+					</div>
 				</div>
 			</section>
 
@@ -398,11 +424,11 @@ const ShopPage = () => {
 								</button>
 							</div>
 						</motion.div>
-					</div>
-				)}
-			</AnimatePresence>
-		</div>
-	);
-};
+						</div>
+					)}
+				</AnimatePresence>
+			</div>
+		);
+	};
 
-export default ShopPage;
+	export default ShopPage;

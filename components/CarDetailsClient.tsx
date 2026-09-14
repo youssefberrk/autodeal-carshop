@@ -21,6 +21,7 @@ import {
 	CircleOff,
 	type LucideIcon,
 	OctagonMinus,
+	Sparkles,
 } from "lucide-react";
 import { Cars } from "@/types/Cars";
 import ImageSlider from "./ui/ImageSlider";
@@ -30,6 +31,7 @@ import Link from "next/link";
 import { carsData } from "@/public/cars/CarsData";
 import CarsCard from "./CarsCard";
 import Lightbox from "./ui/Lightbox";
+import { useConcierge } from "@/components/ConciergeProvider";
 
 interface FeatureItem {
 	icon: string;
@@ -84,6 +86,7 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
 		removeFromWishlist,
 		wishlistCars,
 	} = useCarStore();
+	const { openConcierge } = useConcierge();
 
 	const isFavorite = wishlistCars?.some((c) => c.id === car.id) || false;
 
@@ -328,8 +331,6 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
 									track performance and road-going luxury.
 								</p>
 
-								{/* Quantity and CTA */}
-
 								{/* Specs Grid */}
 								<div className="mb-12 grid grid-cols-2 gap-x-6 gap-y-6 sm:gap-x-8">
 									{specs.map((spec, idx) => {
@@ -398,6 +399,19 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
 											) : (
 												<OctagonMinus size={16} />
 											)}
+										</button>
+									</div>
+
+									{/* AI Concierge Assistant */}
+									<div className="flex-1 min-w-[200px] mb-3">
+										<button
+											className="flex w-full h-[52px] flex-col items-center justify-center gap-1 cursor-pointer rounded-lg border border-[#00ff87]/30 bg-transparent text-[#00ff87] hover:bg-[#00ff87]/10 transition-all duration-200 [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] active:scale-[0.97]"
+											onClick={() => openConcierge(car.id)}
+										>
+											<span className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.18em]">
+												<Sparkles size={14} />
+												Ask Concierge
+											</span>
 										</button>
 									</div>
 
