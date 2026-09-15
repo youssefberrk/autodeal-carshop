@@ -237,7 +237,7 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
 						</p>
 
 						{/* Brand + Model — single line */}
-						<h1 className="flex flex-wrap items-baseline gap-x-6 leading-none">
+						<h1 className="flex flex-wrap items-baseline gap-x-6  pb-2 leading-none">
 							<span
 								className="text-[clamp(1.8rem,4.5vw,3.8rem)] font-black uppercase tracking-[-0.03em] text-transparent select-none"
 								style={{
@@ -247,7 +247,7 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
 								{car.brand}
 							</span>
 							<span
-								className="text-[clamp(2rem,5.5vw,4.5rem)] font-medium italic tracking-[-0.01em] bg-gradient-to-br from-[#f1f3f5] via-[#c8ccd1] to-[#eef1f4] bg-clip-text text-transparent"
+								className="text-[clamp(1rem,5.5vw,4.5rem)] font-medium  tracking-[-0.01em] bg-gradient-to-br from-[#f1f3f5] via-[#c8ccd1] to-[#eef1f4] bg-clip-text text-transparent pb-2"
 								style={{ fontFamily: "Newsreader, Georgia, serif" }}>
 								{car.model}
 							</span>
@@ -403,14 +403,22 @@ const CarDetailsClient = ({ car }: CarDetailsClientProps) => {
 									</div>
 
 									{/* AI Concierge Assistant */}
-									<div className="flex-1 min-w-[200px] mb-3">
+									<div className="flex-1 min-w-[220px] mb-3">
 										<button
-											className="flex w-full h-[52px] flex-col items-center justify-center gap-1 cursor-pointer rounded-lg border border-[#00ff87]/30 bg-transparent text-[#00ff87] hover:bg-[#00ff87]/10 transition-all duration-200 [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] active:scale-[0.97]"
+											type="button"
+											className="group flex w-full h-[52px] items-center gap-3 cursor-pointer rounded-lg border border-[#00ff87]/35 bg-[#00ff87]/[0.04] px-4 text-left text-[#00ff87] transition-all duration-200 [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] hover:border-[#00ff87]/70 hover:bg-[#00ff87]/10 active:scale-[0.97]"
 											onClick={() => openConcierge(car.id)}
 										>
-											<span className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.18em]">
+											<span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#00ff87]/30 bg-[#00ff87]/10 shadow-[0_0_18px_rgba(0,255,135,0.12)]">
 												<Sparkles size={14} />
-												Ask Concierge
+											</span>
+											<span className="flex min-w-0 flex-col justify-center">
+												<span className="text-[10px] font-bold uppercase tracking-[0.18em]">
+													Concierge Briefing
+												</span>
+												<span className="truncate text-[9px] uppercase tracking-[0.14em] text-[#dae6d8]/45">
+													Model-aware guidance
+												</span>
 											</span>
 										</button>
 									</div>

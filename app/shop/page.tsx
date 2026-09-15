@@ -135,25 +135,50 @@ const ShopPage = () => {
 			</section>
 
 			{/* AI Concierge CTA */}
-			<section className="py-12 px-5 max-w-4xl mx-auto text-center">
-				<div className="p-8 rounded-3xl bg-gradient-to-br from-[#091a11] to-[#050e0a] border border-[#00ff87]/20 backdrop-blur-sm shadow-[0_0_40px_rgba(0,0,0,0.3)] flex flex-col items-center gap-6">
-					<div className="w-12 h-12 rounded-full bg-[#00ff87]/10 border border-[#00ff87]/30 flex items-center justify-center text-[#00ff87] animate-pulse">
-						<Sparkles size={24} />
-					</div>
-					<div className="max-w-md">
-						<h2 className="text-2xl font-bold text-white mb-3 uppercase tracking-wide" style={{ fontFamily: "Orbitron, sans-serif" }}>
-							Not sure what you&apos;re looking for?
+			<section className="concierge-cta-section">
+				<div className="concierge-cta-panel">
+					<div className="concierge-cta-copy">
+						<span className="concierge-cta-eyebrow">
+							<Sparkles size={14} />
+							Private Concierge Desk
+						</span>
+						<h2 className="concierge-cta-title">
+							Not sure what belongs in your garage?
 						</h2>
-						<p className="text-slate-400 text-sm leading-relaxed mb-6">
-							Our AI Concierge can help you discover the perfect vehicle based on your budget, performance needs, and style preferences.
+						<p className="concierge-cta-text">
+							Let the AutoDeal Concierge curate a shortlist from the live catalog based on budget, performance intent, body style, and acquisition readiness.
 						</p>
-						<button
-							onClick={() => openConcierge()}
-							className="inline-flex items-center gap-2 px-8 py-3 bg-[#00ff87] text-[#050e0a] hover:bg-emerald-300 rounded-xl text-xs font-bold uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(0,255,135,0.25)] active:scale-[0.98] cursor-pointer"
-						>
-							<Sparkles size={16} />
-							<span>Ask AI Concierge</span>
-						</button>
+						<div className="concierge-cta-actions">
+							<button
+								type="button"
+								onClick={() => openConcierge()}
+								className="concierge-cta-primary"
+							>
+								<Sparkles size={15} />
+								<span>Begin a Private Briefing</span>
+							</button>
+							<span className="concierge-cta-note">Catalog-grounded • No pressure • 24/7</span>
+						</div>
+					</div>
+
+					<div className="concierge-cta-aside" aria-label="Example concierge requests">
+						<span className="concierge-cta-aside-label">Try asking</span>
+						<div className="concierge-cta-prompts">
+							{[
+								"A grand tourer under $100k",
+								"Something electric, but still special",
+								"Track capability with road manners",
+							].map((prompt) => (
+								<button
+									key={prompt}
+									type="button"
+									onClick={() => openConcierge(undefined, prompt)}
+									className="concierge-cta-prompt"
+								>
+									{prompt}
+								</button>
+							))}
+						</div>
 					</div>
 				</div>
 			</section>

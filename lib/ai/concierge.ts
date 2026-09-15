@@ -1,4 +1,4 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import { GoogleGenerativeAI, SchemaType, type Tool } from "@google/generative-ai";
 import { CONCIERGE_SYSTEM_PROMPT } from "./prompts";
 import { searchCars } from "./tools/searchCars";
 import {
@@ -12,36 +12,36 @@ const getGeminiClient = () =>
 	new GoogleGenerativeAI(process.env.GOOGLE_GENERATIVE_AI_API_KEY || "");
 
 // Define tools for Gemini
-const tools = [
+const tools: Tool[] = [
 	{
 		functionDeclarations: [
 			{
 				name: "searchCars",
 				description:
-					"Search the AutoDeal car catalog based on specific filters like brand, budget, and performance.",
+					"Search the AutoDeal collection by brand, budget, silhouette, power, and availability. Returns grounded catalogue facts including badge, specs, features, colours, and stock.",
 				parameters: {
-					type: "OBJECT",
+					type: SchemaType.OBJECT,
 					properties: {
 						brand: {
-							type: "STRING",
+							type: SchemaType.STRING,
 							description: "The car brand (e.g., 'Porsche', 'Ferrari')",
 						},
 						bodySilhouette: {
-							type: "STRING",
+							type: SchemaType.STRING,
 							description: "The body type (e.g., 'Coupe', 'SUV', 'Electric')",
 						},
-						minPrice: { type: "NUMBER", description: "Minimum price in USD" },
-						maxPrice: { type: "NUMBER", description: "Maximum price in USD" },
+						minPrice: { type: SchemaType.NUMBER, description: "Minimum price in USD" },
+						maxPrice: { type: SchemaType.NUMBER, description: "Maximum price in USD" },
 						minHorsepower: {
-							type: "NUMBER",
+							type: SchemaType.NUMBER,
 							description: "Minimum horsepower",
 						},
 						electricOnly: {
-							type: "BOOLEAN",
+							type: SchemaType.BOOLEAN,
 							description: "Whether to only return electric vehicles",
 						},
 						availableOnly: {
-							type: "BOOLEAN",
+							type: SchemaType.BOOLEAN,
 							description: "Whether to only return available vehicles",
 						},
 					},
@@ -50,22 +50,23 @@ const tools = [
 			{
 				name: "recommendCars",
 				description:
-					"Officially recommend one or more cars from the search results.",
+					"Present curated vehicles to the client. Call this whenever you name, describe, or recommend a specific vehicle so the client sees the matching card. Never present cars only in text.",
 				parameters: {
-					type: "OBJECT",
+					type: SchemaType.OBJECT,
 					properties: {
 						recommendations: {
-							type: "ARRAY",
+							type: SchemaType.ARRAY,
 							items: {
-								type: "OBJECT",
+								type: SchemaType.OBJECT,
 								properties: {
 									carId: {
-										type: "NUMBER",
+										type: SchemaType.NUMBER,
 										description: "The ID of the car from the catalog",
 									},
 									reason: {
-										type: "STRING",
-										description: "The reason why this car is recommended",
+										type: SchemaType.STRING,
+										description:
+											"One vivid sentence (max 20 words) pairing a concrete catalogue fact with this car's character or ownership benefit. Vary openings; no generic praise, markdown, or bullet points.",
 									},
 								},
 								required: ["carId", "reason"],
@@ -80,6 +81,27 @@ const tools = [
 	},
 ];
 
+/**
+ * Convert model output into clean, client-facing plain text.
+ * The concierge UI renders text as-is, so markdown and list syntax
+ * must never reach the client.
+ */
+const toPlainText = (value: string) =>
+	value
+		.replace(/```[\s\S]*?```/g, "")
+		.replace(/`([^`]+)`/g, "$1")
+		.replace(/\*\*(.*?)\*\*/g, "$1")
+		.replace(/__(.*?)__/g, "$1")
+		.replace(/\*(.*?)\*/g, "$1")
+		.replace(/^#{1,6}\s+/gm, "")
+		.replace(/^\s*[-*•]\s+/gm, "")
+		.replace(/^\s*\d+[.)]\s+/gm, "")
+		.replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/gu, "")
+		.replace(/[ \t]+$/gm, "")
+		.replace(/\n{3,}/g, "\n\n")
+		.replace(/([^\n])\n([^\n])/g, "$1 $2")
+		.trim();
+
 export async function getConciergeResponse(
 	messages: ConciergeMessage[],
 ): Promise<ConciergeResponse> {
@@ -87,7 +109,10 @@ export async function getConciergeResponse(
 	const model = client.getGenerativeModel({
 		model: "gemini-3.1-flash-lite",
 		systemInstruction: CONCIERGE_SYSTEM_PROMPT,
-		tools: tools as any,
+		tools,
+		generationConfig: {
+			temperature: 0.8,
+		},
 	});
 
 	// Map OpenAI-style messages to Gemini-style history
@@ -157,10 +182,37 @@ export async function getConciergeResponse(
 		response = nextResult.response;
 	}
 
-	const finalMessage = response.text();
+	let finalMessage = "";
+	try {
+		finalMessage = toPlainText(response.text() || "");
+	} catch {
+		finalMessage = "";
+	}
+
+	const normalizedRecommendations = Array.from(
+		new Map(
+			recommendations
+				.filter(
+					(rec) =>
+						rec &&
+						typeof rec.carId === "number" &&
+						typeof rec.reason === "string",
+				)
+				.map((rec) => [
+					rec.carId,
+					{ carId: rec.carId, reason: toPlainText(rec.reason) },
+				] as const),
+		).values(),
+	);
+
+	const fallbackMessage =
+		normalizedRecommendations.length > 0
+			? "I've assembled a shortlist that matches the brief. Tell me which direction appeals — sharper, quieter, or more theatrical — and I'll refine it."
+			: "I'm sorry, I couldn't process that request. Would you like to try a different budget, brand, or body style?";
 
 	return {
-		message: finalMessage || "I'm sorry, I couldn't process your request.",
-		recommendations: recommendations.length > 0 ? recommendations : undefined,
+		message: finalMessage || fallbackMessage,
+		recommendations:
+			normalizedRecommendations.length > 0 ? normalizedRecommendations : undefined,
 	};
 }

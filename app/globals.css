@@ -1724,3 +1724,855 @@ button,
     padding: 0.6rem;
     font-size: 0.6rem;
 }
+/* ============================================================
+   AI Concierge — Premium Showroom System
+   Overrides the earlier generic chatbot styles.
+   ============================================================ */
+
+.concierge-shell {
+    pointer-events: none;
+}
+
+.concierge-backdrop {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    cursor: pointer;
+    pointer-events: auto;
+    background:
+        radial-gradient(120% 90% at 100% 0%, rgba(0, 255, 135, 0.06), transparent 55%),
+        rgba(3, 8, 6, 0.72);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    animation: conciergeBackdropIn 320ms var(--ease-out) both;
+}
+
+.concierge-panel-wrap {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: stretch;
+    padding: 1.25rem;
+    pointer-events: none;
+}
+
+.car-concierge-container {
+    pointer-events: auto;
+    width: min(470px, calc(100vw - 2.5rem));
+    height: min(780px, calc(100vh - 2.5rem));
+    max-width: 470px;
+    max-height: none;
+    margin-left: auto;
+    border-radius: 1.75rem;
+    border: 1px solid rgba(218, 230, 216, 0.1);
+    background:
+        radial-gradient(140% 100% at 100% 0%, rgba(0, 255, 135, 0.07), transparent 52%),
+        linear-gradient(168deg, rgba(9, 26, 17, 0.96), rgba(5, 14, 10, 0.99));
+    box-shadow:
+        0 40px 90px -30px rgba(0, 0, 0, 0.92),
+        0 0 0 1px rgba(0, 0, 0, 0.35),
+        0 0 70px -40px rgba(0, 255, 135, 0.35);
+    animation: conciergePanelIn 420ms var(--ease-out) both;
+}
+
+.concierge-header {
+    padding: 1.15rem 1.35rem;
+    border-bottom: 1px solid rgba(218, 230, 216, 0.07);
+    background: linear-gradient(180deg, rgba(218, 230, 216, 0.04), transparent);
+}
+
+.header-left {
+    gap: 0.85rem;
+}
+
+.concierge-mark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 255, 135, 0.24);
+    background: radial-gradient(120% 120% at 30% 20%, rgba(0, 255, 135, 0.2), rgba(0, 255, 135, 0.04));
+    color: var(--color-accent);
+    box-shadow: 0 0 24px -8px rgba(0, 255, 135, 0.5);
+}
+
+.header-titles {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.header-eyebrow {
+    font-family: "Orbitron", sans-serif;
+    font-size: 0.5rem;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: rgba(218, 230, 216, 0.38);
+}
+
+.header-title {
+    font-family: "Newsreader", serif;
+    font-style: italic;
+    font-size: 1.35rem;
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: var(--color-text);
+}
+
+.header-actions {
+    gap: 0.5rem;
+}
+
+.btn-clear,
+.btn-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 34px;
+    padding: 0.4rem 0.75rem;
+    border-radius: 10px;
+    border: 1px solid rgba(218, 230, 216, 0.09);
+    background: rgba(218, 230, 216, 0.03);
+    color: rgba(218, 230, 216, 0.6);
+    font-family: "Orbitron", sans-serif;
+    font-size: 0.55rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    transition: color var(--duration-fast) var(--ease-out), border-color var(--duration-fast) var(--ease-out),
+        background-color var(--duration-fast) var(--ease-out);
+}
+
+.btn-close {
+    width: 34px;
+    padding: 0;
+}
+
+.btn-clear:hover,
+.btn-close:hover {
+    color: var(--color-text);
+    border-color: rgba(0, 255, 135, 0.45);
+    background: rgba(0, 255, 135, 0.08);
+}
+
+.btn-clear:focus-visible,
+.btn-close:focus-visible,
+.starter-prompt-btn:focus-visible,
+.concierge-send-btn:focus-visible,
+.btn-details:focus-visible,
+.concierge-cta-primary:focus-visible,
+.concierge-cta-prompt:focus-visible {
+    outline: 2px solid rgba(0, 255, 135, 0.55);
+    outline-offset: 2px;
+}
+
+.concierge-context-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.65rem 1.35rem;
+    border-bottom: 1px solid rgba(218, 230, 216, 0.06);
+    background: rgba(0, 255, 135, 0.025);
+}
+
+.context-indicator {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    box-shadow: 0 0 10px rgba(0, 255, 135, 0.85);
+    animation: conciergePulse 2.6s ease-in-out infinite;
+}
+
+.context-label {
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(218, 230, 216, 0.72);
+}
+
+.context-status {
+    margin-left: auto;
+    font-family: "Orbitron", sans-serif;
+    font-size: 0.5rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    opacity: 0.75;
+}
+
+.concierge-request-bar {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    padding: 0.65rem 1.35rem;
+    border-bottom: 1px solid rgba(218, 230, 216, 0.06);
+    background: rgba(0, 255, 135, 0.02);
+}
+
+.request-label {
+    flex-shrink: 0;
+    font-family: "Orbitron", sans-serif;
+    font-size: 0.48rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    opacity: 0.8;
+}
+
+.request-text {
+    font-size: 0.75rem;
+    line-height: 1.45;
+    color: rgba(218, 230, 216, 0.72);
+}
+
+.concierge-body {
+    padding: 1.35rem;
+    gap: 1.15rem;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 255, 135, 0.25) transparent;
+}
+
+.concierge-empty {
+    align-items: flex-start;
+    justify-content: flex-start;
+    text-align: left;
+    gap: 0.9rem;
+    padding: 0.5rem 0 0.25rem;
+}
+
+.empty-eyebrow {
+    font-family: "Orbitron", sans-serif;
+    font-size: 0.5rem;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    opacity: 0.9;
+}
+
+.empty-text {
+    max-width: 34ch;
+    font-family: "Newsreader", serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    line-height: 1.55;
+    color: rgba(218, 230, 216, 0.78);
+}
+
+.starter-prompts {
+    justify-content: flex-start;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+.starter-prompt-btn {
+    text-align: left;
+    padding: 0.65rem 0.9rem;
+    border-radius: 12px;
+    border: 1px solid rgba(218, 230, 216, 0.08);
+    background: rgba(218, 230, 216, 0.035);
+    color: rgba(218, 230, 216, 0.74);
+    font-size: 0.72rem;
+    line-height: 1.35;
+    transition: color var(--duration-fast) var(--ease-out), border-color var(--duration-fast) var(--ease-out),
+        background-color var(--duration-fast) var(--ease-out), transform var(--duration-fast) var(--ease-out);
+}
+
+.starter-prompt-btn:hover {
+    color: var(--color-text);
+    border-color: rgba(0, 255, 135, 0.4);
+    background: rgba(0, 255, 135, 0.07);
+    transform: translateX(2px);
+}
+
+.message-wrap {
+    align-items: flex-start;
+    gap: 0.7rem;
+    max-width: 100%;
+    animation: fadeInUp 260ms var(--ease-out) both;
+}
+
+.message-wrap.user {
+    max-width: 88%;
+}
+
+.message-wrap.has-attachments .message-content {
+    flex: 1;
+    min-width: 0;
+    padding: 0.9rem;
+}
+
+.message-wrap.has-attachments .message-text {
+    margin-bottom: 0;
+}
+
+.message-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 10px;
+    font-size: 0.6rem;
+}
+
+.assistant .message-avatar {
+    border: 1px solid rgba(0, 255, 135, 0.22);
+    background: rgba(0, 255, 135, 0.08);
+    color: var(--color-accent);
+}
+
+.user .message-avatar {
+    border: 1px solid rgba(218, 230, 216, 0.1);
+    background: rgba(218, 230, 216, 0.06);
+    color: rgba(218, 230, 216, 0.72);
+}
+
+.avatar-monogram {
+    font-family: "Orbitron", sans-serif;
+    font-size: 0.52rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+}
+
+.message-content {
+    padding: 0.75rem 0.9rem;
+    border-radius: 14px;
+    border: 1px solid transparent;
+}
+
+.assistant .message-content {
+    border-color: rgba(218, 230, 216, 0.07);
+    border-top-left-radius: 4px;
+    background: rgba(218, 230, 216, 0.035);
+    color: var(--color-text);
+}
+
+.user .message-content {
+    border-color: rgba(0, 255, 135, 0.14);
+    border-top-right-radius: 4px;
+    background: rgba(0, 255, 135, 0.07);
+    color: var(--color-text);
+}
+
+.message-meta {
+    margin-bottom: 0.35rem;
+    font-family: "Orbitron", sans-serif;
+    font-size: 0.48rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(218, 230, 216, 0.34);
+}
+
+.user .message-meta {
+    text-align: right;
+}
+
+.message-text {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    color: rgba(218, 230, 216, 0.88);
+}
+.concierge-error {
+    align-items: flex-start;
+    text-align: left;
+    gap: 0.65rem;
+    padding: 0.9rem;
+    border-radius: 14px;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    background: rgba(239, 68, 68, 0.06);
+}
+
+.error-eyebrow {
+    font-family: "Orbitron", sans-serif;
+    font-size: 0.48rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #ef4444;
+}
+
+.concierge-error p {
+    font-size: 0.82rem;
+    line-height: 1.55;
+    color: rgba(248, 113, 113, 0.92);
+}
+
+.btn-retry {
+    align-self: flex-start;
+    padding: 0.5rem 0.85rem;
+    border-radius: 10px;
+    border: 1px solid rgba(239, 68, 68, 0.35);
+    color: #f87171;
+    font-family: "Orbitron", sans-serif;
+    font-size: 0.52rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: background-color var(--duration-fast) var(--ease-out), color var(--duration-fast) var(--ease-out);
+}
+
+.btn-retry:hover {
+    background: rgba(239, 68, 68, 0.12);
+    color: #fecaca;
+}
+
+.recommendations-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 0.9rem;
+    padding-top: 0.9rem;
+    border-top: 1px solid rgba(218, 230, 216, 0.07);
+}
+
+.recommendations-grid {
+    margin-top: 0;
+    gap: 0.75rem;
+}
+
+.recommendations-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.recommendations-eyebrow,
+.recommendations-count {
+    font-family: "Orbitron", sans-serif;
+    font-size: 0.5rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+}
+
+.recommendations-eyebrow {
+    color: rgba(218, 230, 216, 0.42);
+}
+
+.recommendations-count {
+    color: var(--color-accent);
+    opacity: 0.75;
+}
+
+.typing-indicator {
+    padding: 0.35rem 0 0.2rem;
+}
+
+.concierge-footer {
+    padding: 1rem 1.35rem 1.1rem;
+    border-top: 1px solid rgba(218, 230, 216, 0.07);
+    background: linear-gradient(0deg, rgba(218, 230, 216, 0.035), transparent);
+}
+
+.concierge-input-wrap {
+    gap: 0.5rem;
+}
+
+.concierge-input {
+    border-radius: 12px;
+    border-color: rgba(218, 230, 216, 0.1);
+    background: rgba(5, 14, 10, 0.65);
+    padding: 0.8rem 1rem;
+    font-size: 0.82rem;
+    transition: border-color var(--duration-fast) var(--ease-out), box-shadow var(--duration-fast) var(--ease-out);
+}
+
+.concierge-input:focus {
+    border-color: rgba(0, 255, 135, 0.55);
+    box-shadow: 0 0 0 3px rgba(0, 255, 135, 0.08);
+}
+
+.concierge-send-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: var(--color-accent);
+    color: #050e0a;
+    transition: transform var(--duration-fast) var(--ease-out), box-shadow var(--duration-fast) var(--ease-out);
+}
+
+.concierge-send-btn:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 0 22px -6px rgba(0, 255, 135, 0.65);
+}
+
+.concierge-footnote {
+    margin-top: 0.6rem;
+    font-size: 0.58rem;
+    line-height: 1.5;
+    letter-spacing: 0.04em;
+    color: rgba(218, 230, 216, 0.3);
+}
+
+/* Recommendation cards */
+
+.ai-recommendation-card {
+    border-radius: 16px;
+    border-color: rgba(218, 230, 216, 0.08);
+    background: linear-gradient(168deg, rgba(218, 230, 216, 0.045), rgba(5, 14, 10, 0.6));
+    transition: transform var(--duration-normal) var(--ease-out), border-color var(--duration-normal) var(--ease-out),
+        box-shadow var(--duration-normal) var(--ease-out);
+}
+
+.ai-recommendation-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(0, 255, 135, 0.4);
+    box-shadow: 0 24px 48px -32px rgba(0, 0, 0, 0.9);
+}
+
+.rec-card-image-wrap {
+    aspect-ratio: 16 / 8;
+}
+
+.rec-card-badge {
+    position: absolute;
+    top: 0.65rem;
+    left: 0.65rem;
+    z-index: 2;
+    padding: 0.3rem 0.55rem;
+    border-radius: 999px;
+    border: 1px solid rgba(0, 255, 135, 0.3);
+    background: rgba(5, 14, 10, 0.74);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: var(--color-accent);
+    font-family: "Orbitron", sans-serif;
+    font-size: 0.46rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.rec-card-content {
+    padding: 0.9rem;
+}
+
+.rec-card-header {
+    align-items: flex-start;
+    margin-bottom: 0.7rem;
+}
+
+.rec-card-price {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.15rem;
+}
+
+.rec-card-price-label {
+    font-family: "Orbitron", sans-serif;
+    font-size: 0.44rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(218, 230, 216, 0.34);
+}
+
+.rec-card-model {
+    font-size: 1.05rem;
+}
+
+.rec-card-price-val {
+    font-size: 1rem;
+}
+
+.rec-card-details {
+    margin-bottom: 0.85rem;
+}
+
+.rec-card-reason-label {
+    font-family: "Orbitron", sans-serif;
+    font-size: 0.48rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.rec-card-reason {
+    font-size: 0.78rem;
+    line-height: 1.5;
+}
+
+.ai-recommendation-card .btn-details {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.65rem;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 255, 135, 0.25);
+    background: transparent;
+    color: var(--color-accent);
+    font-family: "Orbitron", sans-serif;
+    font-size: 0.52rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    transition: background-color var(--duration-fast) var(--ease-out), border-color var(--duration-fast) var(--ease-out);
+}
+
+.ai-recommendation-card .btn-details:hover {
+    border-color: rgba(0, 255, 135, 0.55);
+    background: rgba(0, 255, 135, 0.08);
+}
+
+@keyframes conciergeBackdropIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes conciergePanelIn {
+    from {
+        opacity: 0;
+        transform: translateX(20px) scale(0.985);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+@keyframes conciergePulse {
+    0%, 100% { opacity: 0.55; transform: scale(0.9); }
+    50% { opacity: 1; transform: scale(1); }
+}
+
+@media (max-width: 640px) {
+    .concierge-panel-wrap {
+        padding: 0.75rem;
+    }
+
+    .car-concierge-container {
+        width: 100%;
+        height: calc(100vh - 1.5rem);
+        border-radius: 1.5rem;
+    }
+
+    .concierge-body {
+        padding: 1.1rem;
+    }
+
+    .concierge-header,
+    .concierge-context-bar,
+    .concierge-request-bar,
+    .concierge-footer {
+        padding-left: 1.1rem;
+        padding-right: 1.1rem;
+    }
+
+    .concierge-request-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.2rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .concierge-backdrop,
+    .car-concierge-container,
+    .context-indicator,
+    .message-wrap {
+        animation: none !important;
+    }
+
+    .starter-prompt-btn:hover,
+    .ai-recommendation-card:hover,
+    .concierge-send-btn:hover:not(:disabled) {
+        transform: none;
+    }
+}
+
+/* ============================================================
+   Shop Concierge Desk CTA
+   ============================================================ */
+
+.concierge-cta-section {
+    padding: 4.5rem 5% 5.5rem;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.concierge-cta-panel {
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.85fr);
+    gap: 2.5rem;
+    align-items: center;
+    padding: 2.6rem;
+    border: 1px solid rgba(218, 230, 216, 0.08);
+    border-radius: 1.75rem;
+    background:
+        radial-gradient(120% 140% at 0% 0%, rgba(0, 255, 135, 0.08), transparent 55%),
+        linear-gradient(165deg, rgba(9, 26, 17, 0.9), rgba(5, 14, 10, 0.98));
+    box-shadow: 0 34px 70px -46px rgba(0, 0, 0, 0.95);
+}
+
+.concierge-cta-panel::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 135, 0.45), transparent);
+    opacity: 0.55;
+}
+
+.concierge-cta-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: "Orbitron", sans-serif;
+    font-size: 0.55rem;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+}
+
+.concierge-cta-title {
+    margin-top: 1rem;
+    max-width: 17ch;
+    font-family: "Newsreader", serif;
+    font-style: italic;
+    font-size: clamp(1.7rem, 3.4vw, 2.6rem);
+    font-weight: 500;
+    line-height: 1.08;
+    letter-spacing: -0.015em;
+    color: var(--color-text);
+}
+
+.concierge-cta-text {
+    margin-top: 1rem;
+    max-width: 58ch;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: rgba(218, 230, 216, 0.6);
+}
+
+.concierge-cta-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1.75rem;
+}
+
+.concierge-cta-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.9rem 1.4rem;
+    border: 1px solid rgba(0, 255, 135, 0.6);
+    border-radius: 12px;
+    background: var(--color-accent);
+    color: #050e0a;
+    font-family: "Orbitron", sans-serif;
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    box-shadow: 0 0 30px -12px rgba(0, 255, 135, 0.7);
+    transition: transform var(--duration-fast) var(--ease-out), background-color var(--duration-fast) var(--ease-out),
+        box-shadow var(--duration-fast) var(--ease-out);
+}
+
+.concierge-cta-primary:hover {
+    background: var(--brand-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 0 36px -10px rgba(0, 255, 135, 0.8);
+}
+
+.concierge-cta-primary:active {
+    transform: scale(0.98);
+}
+
+.concierge-cta-note {
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(218, 230, 216, 0.38);
+}
+
+.concierge-cta-aside {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    padding-left: 2rem;
+    border-left: 1px solid rgba(218, 230, 216, 0.08);
+}
+
+.concierge-cta-aside-label {
+    font-family: "Orbitron", sans-serif;
+    font-size: 0.5rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(218, 230, 216, 0.4);
+}
+
+.concierge-cta-prompts {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+}
+
+.concierge-cta-prompt {
+    padding: 0.7rem 0.85rem;
+    border: 1px solid rgba(218, 230, 216, 0.08);
+    border-radius: 10px;
+    background: rgba(218, 230, 216, 0.03);
+    color: rgba(218, 230, 216, 0.72);
+    font-size: 0.75rem;
+    line-height: 1.4;
+    text-align: left;
+    transition: color var(--duration-fast) var(--ease-out), border-color var(--duration-fast) var(--ease-out),
+        background-color var(--duration-fast) var(--ease-out), transform var(--duration-fast) var(--ease-out);
+}
+
+.concierge-cta-prompt:hover {
+    color: var(--color-text);
+    border-color: rgba(0, 255, 135, 0.38);
+    background: rgba(0, 255, 135, 0.07);
+    transform: translateX(2px);
+}
+
+@media (max-width: 900px) {
+    .concierge-cta-section {
+        padding: 3.5rem 5% 4.5rem;
+    }
+
+    .concierge-cta-panel {
+        grid-template-columns: 1fr;
+        gap: 1.75rem;
+        padding: 1.85rem;
+    }
+
+    .concierge-cta-aside {
+        padding-top: 1.5rem;
+        padding-left: 0;
+        border-top: 1px solid rgba(218, 230, 216, 0.08);
+        border-left: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .concierge-cta-primary:hover,
+    .concierge-cta-prompt:hover {
+        transform: none !important;
+    }
+}

@@ -69,9 +69,12 @@ export function searchCars(filters: CarSearchFilters) {
     id: car.id,
     brand: car.brand,
     model: car.model,
+    badge: car.badge,
     price: car.price,
     specs: car.specs,
     bodySilhouette: car.bodySilhouette,
     availability: car.availability,
+    features: car.features?.map((feature) => `${feature.title}: ${feature.description}`) ?? [],
+    colors: car.colors?.map((color) => color.id) ?? [],
   }));
 }
