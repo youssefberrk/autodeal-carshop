@@ -1,6 +1,7 @@
 import { GoogleGenerativeAI, SchemaType, type Tool } from "@google/generative-ai";
 import { CONCIERGE_SYSTEM_PROMPT } from "./prompts";
 import { searchCars } from "./tools/searchCars";
+import { searchWebForCarDetails } from "./tools/searchWebForCarDetails";
 import {
 	ConciergeMessage,
 	ConciergeResponse,
@@ -45,6 +46,27 @@ const tools: Tool[] = [
 							description: "Whether to only return available vehicles",
 						},
 					},
+				},
+			},
+			{
+				name: "searchWebForCarDetails",
+				description:
+					"Search the web and automotive databases for in-depth real-world information about a specific car model. Use this when the client asks for more details, deep dive specifications, real-world 0-60/top speed tests, fuel economy/range, reliability and maintenance history, expert reviews (e.g. Car and Driver, MotorTrend, Top Gear), common mechanical issues, owner feedback, or comparison benchmarks beyond the basic showroom catalogue.",
+				parameters: {
+					type: SchemaType.OBJECT,
+					properties: {
+						carModelOrQuery: {
+							type: SchemaType.STRING,
+							description:
+								"The car model or search query (e.g. 'Porsche 911 Turbo S 992 specs reliability 0-60', 'Ferrari Roma common issues maintenance costs')",
+						},
+						topic: {
+							type: SchemaType.STRING,
+							description:
+								"Specific aspect to investigate: 'specs', 'reliability_issues', 'performance_tests', 'expert_reviews', 'ownership_costs', or 'general'",
+						},
+					},
+					required: ["carModelOrQuery"],
 				},
 			},
 			{
@@ -159,6 +181,21 @@ export async function getConciergeResponse(
 					functionResponse: {
 						name: "searchCars",
 						response: { content: searchResults },
+					},
+				});
+			} else if (name === "searchWebForCarDetails") {
+				const { carModelOrQuery, topic } = (args || {}) as {
+					carModelOrQuery: string;
+					topic?: string;
+				};
+				const webDossier = await searchWebForCarDetails({
+					carModelOrQuery: carModelOrQuery || lastUserMessage,
+					topic,
+				});
+				functionResponses.push({
+					functionResponse: {
+						name: "searchWebForCarDetails",
+						response: { content: webDossier },
 					},
 				});
 			} else if (name === "recommendCars") {

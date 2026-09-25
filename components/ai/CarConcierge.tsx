@@ -6,7 +6,9 @@ import ConciergeMessageComponent from "./ConciergeMessage";
 import ConciergeInput from "./ConciergeInput";
 import CarRecommendationCard from "./CarRecommendationCard";
 import { carsData } from "@/public/cars/CarsData";
-import { X, Sparkles } from "lucide-react";
+import { X, Sparkles, Globe, Zap, ShieldCheck, DollarSign, Scale, RotateCcw } from "lucide-react";
+
+const CONCIERGE_MESSAGES_STORAGE_KEY = "autodeal_concierge_chat_v1";
 
 interface CarConciergeProps {
   carId?: number;
@@ -18,26 +20,67 @@ type ConciergeChatMessage = ConciergeMessage & {
   recommendations?: CarRecommendation[];
 };
 
-const STARTER_PROMPTS = [
-  "Curate a grand tourer under $100k",
-  "I want something electric with presence",
-  "Show me track-focused performance",
-  "Compare two vehicles for me",
-  "What suits long-distance luxury?",
-];
+export interface SuggestedPrompt {
+  label: string;
+  query: string;
+  tag: string;
+  icon?: string;
+}
 
-const getDynamicPrompts = (carId?: number) => {
-  if (!carId) return STARTER_PROMPTS;
+export const getCarSuggestedPrompts = (car?: { brand: string; model?: string; specs?: string }): SuggestedPrompt[] => {
+  if (!car) {
+    return [
+      {
+        label: "Curate grand tourer under $100k",
+        query: "Curate a grand tourer under $100k with exceptional comfort and long-distance pedigree.",
+        tag: "Curation",
+      },
+      {
+        label: "Electric vehicles with presence",
+        query: "I want something electric with distinctive design and effortless performance.",
+        tag: "EV",
+      },
+      {
+        label: "Track-focused performance",
+        query: "Show me track-focused performance vehicles with razor-sharp handling.",
+        tag: "Track",
+      },
+      {
+        label: "Compare flagship sports cars",
+        query: "Compare top luxury sports cars in our collection in terms of character and power.",
+        tag: "Compare",
+      },
+    ];
+  }
 
-  const car = carsData.find((c) => c.id === carId);
-  if (!car) return STARTER_PROMPTS;
+  const carName = car.model ? `${car.brand} ${car.model}` : car.brand;
 
   return [
-    `Walk me through the ${car.model} specifications.`,
-    `How does the ${car.model} compare with its closest rivals?`,
-    `What makes the ${car.model} worth considering?`,
-    `Is the ${car.model} available for immediate acquisition?`,
-    `Show me comparable alternatives below this price point.`,
+    {
+      label: "More Details (Web Specs & Reviews)",
+      query: `Search the web for more details, real-world tests, and expert reviews of the ${carName}.`,
+      tag: "Web Deep Dive",
+    },
+    {
+      label: "Real-World 0-60 & Track Tests",
+      query: `How does the ${carName} perform in real-world 0-60 mph, quarter-mile, and handling tests?`,
+      tag: "Performance",
+    },
+    {
+      label: "Reliability & Common Issues",
+      query: `Search the web for known reliability records, common mechanical issues, and maintenance notes on the ${carName}.`,
+      tag: "Reliability",
+    },
+    {
+      label: "Ownership & Running Costs",
+      query: `What are the estimated annual ownership costs, maintenance intervals, and depreciation profile for the ${carName}?`,
+      tag: "Ownership",
+    },
+    {
+      label: "Benchmark Against Top Rivals",
+      query: `Benchmark the ${carName} against its closest competitors in power, driving feel, and prestige.`,
+      tag: "Comparison",
+    },
   ];
 };
 
@@ -49,6 +92,7 @@ const getScrollBehavior = (): ScrollBehavior =>
 
 const CarConcierge = ({ carId, initialPrompt, onClose }: CarConciergeProps) => {
   const [messages, setMessages] = useState<ConciergeChatMessage[]>([]);
+  const [isHydrated, setIsHydrated] = useState(false);
   const [isLoading, setIsLoading] = useState<boolean>(Boolean(initialPrompt));
   const [error, setError] = useState<string | null>(null);
   const [activeRequest, setActiveRequest] = useState<string | undefined>(initialPrompt);
@@ -57,6 +101,7 @@ const CarConcierge = ({ carId, initialPrompt, onClose }: CarConciergeProps) => {
   const consumedPromptRef = useRef<string | undefined>(undefined);
 
   const activeCar = carId ? carsData.find((c) => c.id === carId) : undefined;
+  const suggestedPrompts = getCarSuggestedPrompts(activeCar);
 
   const handleScroll = () => {
     const el = scrollRef.current;
@@ -66,6 +111,56 @@ const CarConcierge = ({ carId, initialPrompt, onClose }: CarConciergeProps) => {
     isNearBottomRef.current = distanceFromBottom < 80;
   };
 
+  // Restore messages from localStorage on initial mount
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem(CONCIERGE_MESSAGES_STORAGE_KEY);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          setMessages(parsed);
+          setIsHydrated(true);
+          return;
+        }
+      }
+    } catch (e) {
+      console.error("Failed to restore concierge chat messages:", e);
+    }
+
+    // Default intro dossier if no saved messages
+    const car = carId ? carsData.find((c) => c.id === carId) : undefined;
+    if (car) {
+      setMessages([
+        {
+          role: "assistant",
+          content: `I've opened the dossier for the ${car.brand} ${car.model}. I can conduct a live web search for deep-dive instrumented tests, evaluate reliability and ownership history, or compare it against rivals on the showroom floor. How would you like to proceed?`,
+          recommendations: [
+            {
+              carId: car.id,
+              reason: "Currently in view — the benchmark for this briefing.",
+            },
+          ],
+        },
+      ]);
+    }
+    setIsHydrated(true);
+  }, []);
+
+  // Sync messages to localStorage whenever they change
+  useEffect(() => {
+    if (!isHydrated) return;
+    try {
+      if (messages.length > 0) {
+        localStorage.setItem(CONCIERGE_MESSAGES_STORAGE_KEY, JSON.stringify(messages));
+      } else {
+        localStorage.removeItem(CONCIERGE_MESSAGES_STORAGE_KEY);
+      }
+    } catch (e) {
+      console.error("Failed to persist concierge messages:", e);
+    }
+  }, [messages, isHydrated]);
+
+  // Scroll effect
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
@@ -73,14 +168,12 @@ const CarConcierge = ({ carId, initialPrompt, onClose }: CarConciergeProps) => {
     const lastMessage = messages[messages.length - 1];
     const isUserMessage = lastMessage?.role === "user";
 
-    // Keep the user's own message and the typing indicator in view.
     if (isLoading || isUserMessage) {
       isNearBottomRef.current = true;
       el.scrollTo({ top: el.scrollHeight, behavior: getScrollBehavior() });
       return;
     }
 
-    // If the user scrolled up to read earlier messages, don't yank them back.
     if (!isNearBottomRef.current) return;
 
     const messageNodes = el.querySelectorAll<HTMLElement>("[data-concierge-message]");
@@ -92,7 +185,6 @@ const CarConcierge = ({ carId, initialPrompt, onClose }: CarConciergeProps) => {
       return;
     }
 
-    // Reveal the start of the new reply instead of jumping past long card stacks.
     const maxScrollTop = el.scrollHeight - el.clientHeight;
     const desiredTop =
       lastNode.getBoundingClientRect().top - el.getBoundingClientRect().top + el.scrollTop - 12;
@@ -103,28 +195,28 @@ const CarConcierge = ({ carId, initialPrompt, onClose }: CarConciergeProps) => {
     });
   }, [messages, isLoading]);
 
+  // If carId changes while messages are empty, load car introduction
   useEffect(() => {
+    if (!isHydrated) return;
     const car = carId ? carsData.find((c) => c.id === carId) : undefined;
 
-    if (!car) {
-      setMessages([]);
-      return;
-    }
+    if (!car) return;
 
-    setMessages([
-      {
-        role: "assistant",
-        content: `I've opened the dossier for the ${car.brand} ${car.model}. I can walk you through its specifications, benchmark it against rivals, or check acquisition readiness. How would you like to proceed?`,
-        recommendations: [
-          {
-            carId: car.id,
-            reason: "Currently in view — the benchmark for this briefing.",
-          },
-        ],
-      },
-    ]);
-    setError(null);
-  }, [carId]);
+    if (messages.length === 0) {
+      setMessages([
+        {
+          role: "assistant",
+          content: `I've opened the dossier for the ${car.brand} ${car.model}. I can conduct a live web search for deep-dive instrumented tests, evaluate reliability and ownership history, or compare it against rivals on the showroom floor. How would you like to proceed?`,
+          recommendations: [
+            {
+              carId: car.id,
+              reason: "Currently in view — the benchmark for this briefing.",
+            },
+          ],
+        },
+      ]);
+    }
+  }, [carId, isHydrated]);
 
   const handleSend = useCallback(async (content: string) => {
     const userMessage: ConciergeMessage = { role: "user", content };
@@ -166,8 +258,9 @@ const CarConcierge = ({ carId, initialPrompt, onClose }: CarConciergeProps) => {
     }
   }, [messages]);
 
-  const handleStarterPrompt = (prompt: string) => {
-    handleSend(prompt);
+  const handlePromptClick = (query: string) => {
+    if (isLoading) return;
+    void handleSend(query);
   };
 
   const clearConversation = () => {
@@ -175,6 +268,11 @@ const CarConcierge = ({ carId, initialPrompt, onClose }: CarConciergeProps) => {
     setActiveRequest(undefined);
     setError(null);
     isNearBottomRef.current = true;
+    try {
+      localStorage.removeItem(CONCIERGE_MESSAGES_STORAGE_KEY);
+    } catch (e) {
+      console.error("Failed to clear concierge storage:", e);
+    }
   };
 
   useEffect(() => {
@@ -186,7 +284,7 @@ const CarConcierge = ({ carId, initialPrompt, onClose }: CarConciergeProps) => {
   }, [initialPrompt, handleSend]);
 
   return (
-    <div className="car-concierge-container" aria-labelledby="concierge-title">
+    <div className="car-concierge-container flex flex-col h-full" aria-labelledby="concierge-title">
       <header className="concierge-header">
         <div className="header-left">
           <div className="concierge-mark" aria-hidden="true">
@@ -195,13 +293,19 @@ const CarConcierge = ({ carId, initialPrompt, onClose }: CarConciergeProps) => {
           <div className="header-titles">
             <span className="header-eyebrow">AutoDeal Private Client</span>
             <h3 className="header-title" id="concierge-title">
-              Concierge
+              AI Marque Concierge
             </h3>
           </div>
         </div>
         <div className="header-actions">
-          <button type="button" onClick={clearConversation} className="btn-clear">
-            Reset
+          <button
+            type="button"
+            onClick={clearConversation}
+            className="btn-clear flex items-center gap-1.5"
+            title="Reset conversation history"
+          >
+            <RotateCcw size={11} />
+            <span>Reset</span>
           </button>
           {onClose && (
             <button type="button" onClick={onClose} className="btn-close" aria-label="Close AI Concierge">
@@ -211,12 +315,17 @@ const CarConcierge = ({ carId, initialPrompt, onClose }: CarConciergeProps) => {
         </div>
       </header>
 
-      <div className="concierge-context-bar">
-        <span className="context-indicator" aria-hidden="true" />
-        <span className="context-label">
-          {activeCar ? `${activeCar.brand} ${activeCar.model} in focus` : "Full catalog access"}
+      <div className="concierge-context-bar flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <span className="context-indicator" aria-hidden="true" />
+          <span className="context-label">
+            {activeCar ? `${activeCar.brand} ${activeCar.model} in focus` : "Full catalog access"}
+          </span>
+        </div>
+        <span className="context-status flex items-center gap-1">
+          <Globe size={11} className="text-[#00ff87]/80" />
+          Live Web Grounding
         </span>
-        <span className="context-status">Live inventory</span>
       </div>
 
       {activeRequest && (
@@ -226,22 +335,25 @@ const CarConcierge = ({ carId, initialPrompt, onClose }: CarConciergeProps) => {
         </div>
       )}
 
-      <div className="concierge-body" ref={scrollRef} onScroll={handleScroll}>
+      <div className="concierge-body flex-1 overflow-y-auto" ref={scrollRef} onScroll={handleScroll}>
         {messages.length === 0 && !error && !isLoading && (
           <div className="concierge-empty">
             <span className="empty-eyebrow">Private briefing</span>
             <p className="empty-text">
               Tell me how you intend to drive, and I&apos;ll curate the shortlist from the live AutoDeal inventory.
             </p>
-            <div className="starter-prompts" aria-label="Suggested concierge requests">
-              {getDynamicPrompts(carId).map((prompt) => (
+            <div className="starter-prompts flex flex-col gap-2 w-full mt-3" aria-label="Suggested concierge requests">
+              {suggestedPrompts.map((prompt, idx) => (
                 <button
                   type="button"
-                  key={prompt}
-                  onClick={() => handleStarterPrompt(prompt)}
-                  className="starter-prompt-btn"
+                  key={idx}
+                  onClick={() => handlePromptClick(prompt.query)}
+                  className="starter-prompt-btn flex items-center justify-between group"
                 >
-                  {prompt}
+                  <span>{prompt.label}</span>
+                  <span className="text-[9px] uppercase tracking-wider text-[#00ff87]/70 font-mono">
+                    {prompt.tag}
+                  </span>
                 </button>
               ))}
             </div>
@@ -292,18 +404,42 @@ const CarConcierge = ({ carId, initialPrompt, onClose }: CarConciergeProps) => {
               <span className="avatar-monogram">AD</span>
             </div>
             <div className="message-content">
-              <div className="message-meta">
+              <div className="message-meta flex items-center gap-2">
                 <span>AutoDeal Concierge</span>
+                <span className="text-[8px] font-mono text-[#00ff87]/60 flex items-center gap-1">
+                  <Globe size={9} /> Consulting Web & Catalog
+                </span>
               </div>
-              <div className="typing-indicator" aria-label="Concierge is reviewing the catalog">
+              <div className="typing-indicator" aria-label="Concierge is researching and synthesizing response">
                 <span></span><span></span><span></span>
               </div>
             </div>
           </div>
         )}
-
-
       </div>
+
+      {/* Suggested Inquiries Quick Bar */}
+      {suggestedPrompts.length > 0 && (
+        <div className="px-4 py-2 border-t border-[rgba(218,230,216,0.06)] bg-[rgba(5,14,10,0.65)] backdrop-blur-md">
+          <div className="flex items-center gap-1.5 mb-1.5 text-[9px] font-mono uppercase tracking-wider text-[#dae6d8]/45">
+            <Sparkles size={10} className="text-[#00ff87]" />
+            <span>Suggested Inquiries:</span>
+          </div>
+          <div className="flex gap-1.5 overflow-x-auto pb-1 scrollbar-none">
+            {suggestedPrompts.map((item, idx) => (
+              <button
+                key={idx}
+                type="button"
+                disabled={isLoading}
+                onClick={() => handlePromptClick(item.query)}
+                className="shrink-0 text-[11px] px-2.5 py-1 rounded-full border border-[#e5efe3]/10 bg-[#091a11]/80 text-[#e5efe3]/75 hover:border-[#00ff87]/50 hover:bg-[#00ff87]/10 hover:text-[#00ff87] active:scale-95 transition-all duration-150 cursor-pointer disabled:opacity-40 disabled:pointer-events-none"
+              >
+                {item.label}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
 
       <footer className="concierge-footer">
         <ConciergeInput
@@ -311,8 +447,9 @@ const CarConcierge = ({ carId, initialPrompt, onClose }: CarConciergeProps) => {
           isLoading={isLoading}
           disabled={!!error}
         />
-        <p className="concierge-footnote">
-          Grounded in live AutoDeal inventory. Recommendations are curated from catalog data.
+        <p className="concierge-footnote flex items-center justify-between">
+          <span>Grounded in live showroom data &amp; web intelligence.</span>
+          <span className="text-[#00ff87]/60 font-mono">Gemini AI</span>
         </p>
       </footer>
     </div>
