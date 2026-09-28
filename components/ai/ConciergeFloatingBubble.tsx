@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Sparkles, X, ChevronDown, MessageSquareText, Radio } from "lucide-react";
+import { Sparkles, X, ChevronDown, Radio } from "lucide-react";
 
 interface ConciergeFloatingBubbleProps {
 	isOpen: boolean;

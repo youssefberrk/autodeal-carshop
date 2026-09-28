@@ -22,7 +22,6 @@ import {
   type LucideIcon,
   OctagonMinus,
   Sparkles,
-  Globe,
 } from "lucide-react";
 import { Cars } from "@/types/Cars";
 import ImageSlider from "./ui/ImageSlider";

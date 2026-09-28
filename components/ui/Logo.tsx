@@ -325,22 +325,20 @@ export default function Logo({ shrink = false }: { shrink?: boolean }) {
         </div>
       </div>
 
-      <div className="flex flex-col leading-none">
+      <div
+        className={`flex flex-col leading-none overflow-hidden transition-all duration-300 ${
+          shrink ? "w-0 opacity-0 pointer-events-none" : "w-auto opacity-100"
+        }`}
+      >
         <div
-          className={`font-black leading-tight tracking-tight uppercase transition-all duration-300 ${
-            shrink
-              ? "text-[1.2rem] md:text-2xl lg:text-[1.75rem]"
-              : "text-[1.15rem] sm:text-[1.55rem] md:text-3xl"
-          }`}
+          className="font-black leading-tight tracking-tight uppercase text-[1.15rem] sm:text-[1.55rem] md:text-3xl whitespace-nowrap"
           style={{ fontFamily: "'Orbitron', sans-serif" }}
         >
           <span className="text-foreground">Auto</span>
           <span className="text-primary">Deal</span>
         </div>
 
-        <div
-          className={`mt-1 items-center gap-2 transition-all duration-300 ${shrink ? "hidden md:flex" : "hidden sm:flex"}`}
-        >
+        <div className="mt-1 hidden items-center gap-2 sm:flex">
           <div className="h-px w-10 bg-primary/80 shadow-[0_0_10px_rgba(0,255,135,0.45)] transition-all duration-300 group-hover:w-14" />
           <span
             className="text-[0.42rem] font-semibold tracking-[0.32em] text-primary/70 sm:text-[0.46rem]"
