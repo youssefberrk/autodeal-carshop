@@ -8,7 +8,7 @@ function WheelMark({ size = 48 }: { size?: number }) {
       height={size}
       viewBox="0 0 100 100"
       fill="none"
-      className="drop-shadow-[0_0_18px_color-mix(in_oklch,var(--brand)_32%,transparent)]"
+      className=""
       aria-hidden="true"
     >
       <defs>
@@ -316,7 +316,7 @@ export default function Logo({ shrink = false }: { shrink?: boolean }) {
       aria-label="AutoDeal Premium Automotive"
     >
       <div
-        className={`relative grid shrink-0 place-items-center rounded-full bg-[radial-gradient(circle_at_35%_25%,rgba(218,230,216,0.13),rgba(0,255,135,0.04)_42%,rgba(5,10,7,0.9)_74%)] ring-1 ring-[color-mix(in_oklch,var(--brand)_42%,transparent)] shadow-[inset_0_0_18px_rgba(218,230,216,0.06),0_0_26px_rgba(0,255,135,0.12)] transition-all duration-300 group-hover:shadow-[inset_0_0_18px_rgba(218,230,216,0.08),0_0_34px_rgba(0,255,135,0.2)] ${
+        className={`relative grid shrink-0 place-items-center rounded-full  ring-1 ring-[color-mix(in_oklch,var(--brand)_42%,transparent)]  transition-all duration-300 group-hover:shadow-[inset_0_0_18px_rgba(218,230,216,0.08),0_0_34px_rgba(0,255,135,0.2)] ${
           shrink ? "size-11 md:size-12" : "size-10 sm:size-12"
         }`}
       >

@@ -166,13 +166,13 @@ const NavBar = () => {
 		${
 			isScrolled
 				? "top-2 sm:top-3 w-[calc(100%-1.5rem)] max-w-6xl mx-auto rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.08)] pb-1"
-				: "top-0 w-full"
+				: "top-0 py-1.5 w-full"
 		}
 `}
 				style={{
 					background: isScrolled
 						? "linear-gradient(135deg, rgba(16,16,16,0.28) 0%, rgba(0,0,0,0.38) 48%, rgba(21,21,21,0.26) 100%)"
-						: "transparent",
+						: "radial-gradient(circle,rgba(10, 18, 23, 1) 0%, rgba(11, 2, 1, 0) 92%, rgba(35, 35, 41, 1) 98%)",
 					border: isScrolled ? "0.5px solid rgba(255, 255, 255, 0.18)" : "none",
 					borderBottom: isScrolled
 						? "1px solid rgba(255, 255, 255, 0.14)"
@@ -205,9 +205,9 @@ const NavBar = () => {
 					</div>
 
 					{/* Desktop Links (Centered In The Open Lane) */}
-					<nav className="hidden min-w-0 items-center justify-center justify-self-center px-2 py-1.5 uppercase text-slate-300  logo lg:flex">
+					<nav className="hidden min-w-0 md:w-full items-center justify-center  py-1.5   lg:flex">
 						<div
-							className={`flex items-center justify-center gap-8 ${isScrolled ? "md:gap-10 pt-1" : "md:gap-24"} px-2 text-[10px] tracking-[0.2em]`}>
+							className={`flex items-center justify-center gap-8 ${isScrolled ? "md:gap-28 md:ml-19  md:w-full pt-1" : "md:gap-24 text-[12px]"} px-2 text-[10px]`}>
 							{navLinks.map(({ href, label }) => {
 								const isActive = pathname === href;
 
@@ -215,10 +215,10 @@ const NavBar = () => {
 									<Link
 										key={href}
 										href={href}
-										className={`group relative px-1.5 py-1.5 transition-colors duration-300 ${
+										className={`group relative px-1.5 py-1.5 font-['Orbitron'] uppercase tracking-[0.13em] transition-colors  duration-300 ${
 											isActive
 												? "text-[#00ff87]"
-												: "text-slate-300 hover:text-[#00ff87]"
+												: "text-emerald-50 hover:text-[#00ff87]"
 										}`}>
 										{label}
 										<span
