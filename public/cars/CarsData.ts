@@ -22,7 +22,7 @@ export const featCars: featuredCars[] = [
 		},
 		model: "Porsche 911 Carrera GTS ",
 		info: "a revolutionary 'T-Hybrid' system, combining a new 3.6L flat-six engine with electric turbocharging to produce 532 hp and 449 lb-ft of torque",
-		price: "315K",
+		price: 315,
 	},
 	{
 		id: 3,
@@ -33,7 +33,7 @@ export const featCars: featuredCars[] = [
 		},
 		model: "aston martin db11",
 		info: "a high-performance grand tourer available as a V8 or V12 coupe and Performance (Volante)",
-		price: "150K",
+		price: 150,
 	},
 ];
 

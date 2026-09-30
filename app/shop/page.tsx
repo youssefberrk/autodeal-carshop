@@ -11,7 +11,14 @@ import ManufacturerDropdown from "@/components/filters/ManufacturerDropdown";
 import BodySilhouette from "@/components/filters/BodySilhouette";
 import PriceCeiling from "@/components/filters/PriceCeiling";
 import { motion, AnimatePresence } from "framer-motion";
-import { SlidersHorizontal, X, Check, RotateCcw, Compass, Sparkles } from "lucide-react";
+import {
+	SlidersHorizontal,
+	X,
+	Check,
+	RotateCcw,
+	Compass,
+	Sparkles,
+} from "lucide-react";
 import { useConcierge } from "@/components/ConciergeProvider";
 
 const ShopPage = () => {
@@ -103,7 +110,7 @@ const ShopPage = () => {
 				<div className="hero-overlay" />
 				<div className="hero-content">
 					<h1 className="hero-title">Luxury Cars</h1>
-					<p className="hero-subtitle">
+					<p className="hero-subtitle text-[#e5efe3]/96">
 						Explore 100+ luxury cars, supercars and exotic cars for sale
 						worldwide in one simple search
 					</p>
@@ -146,22 +153,27 @@ const ShopPage = () => {
 							Not sure what belongs in your garage?
 						</h2>
 						<p className="concierge-cta-text">
-							Let the AutoDeal Concierge curate a shortlist from the live catalog based on budget, performance intent, body style, and acquisition readiness.
+							Let the AutoDeal Concierge curate a shortlist from the live
+							catalog based on budget, performance intent, body style, and
+							acquisition readiness.
 						</p>
 						<div className="concierge-cta-actions">
 							<button
 								type="button"
 								onClick={() => openConcierge()}
-								className="concierge-cta-primary"
-							>
+								className="concierge-cta-primary">
 								<Sparkles size={15} />
 								<span>Begin a Private Briefing</span>
 							</button>
-							<span className="concierge-cta-note">Catalog-grounded • No pressure • 24/7</span>
+							<span className="concierge-cta-note">
+								Catalog-grounded • No pressure • 24/7
+							</span>
 						</div>
 					</div>
 
-					<div className="concierge-cta-aside" aria-label="Example concierge requests">
+					<div
+						className="concierge-cta-aside"
+						aria-label="Example concierge requests">
 						<span className="concierge-cta-aside-label">Try asking</span>
 						<div className="concierge-cta-prompts">
 							{[
@@ -173,8 +185,7 @@ const ShopPage = () => {
 									key={prompt}
 									type="button"
 									onClick={() => openConcierge(undefined, prompt)}
-									className="concierge-cta-prompt"
-								>
+									className="concierge-cta-prompt">
 									{prompt}
 								</button>
 							))}
@@ -449,11 +460,11 @@ const ShopPage = () => {
 								</button>
 							</div>
 						</motion.div>
-						</div>
-					)}
-				</AnimatePresence>
-			</div>
-		);
-	};
+					</div>
+				)}
+			</AnimatePresence>
+		</div>
+	);
+};
 
-	export default ShopPage;
+export default ShopPage;
