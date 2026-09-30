@@ -165,7 +165,7 @@ button,
 		@apply border-border outline-ring/50;
 	}
 	body {
-		background: linear-gradient(90deg, #020d02 5%, #032f36 29%, #0f0101 68%);
+		background: #050806;
 		background-attachment: fixed;
 		/* color: var(--foreground); */
 		min-height: 100vh;
@@ -611,7 +611,7 @@ button,
 .featured-grid {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-	gap: 8rem;
+	gap: clamp(1.25rem, 3vw, 2.5rem);
 	justify-items: center;
 }
 
@@ -621,6 +621,290 @@ button,
 	opacity: 0;
 	transform: translateY(30px);
 	animation: fadeInUp 0.8s var(--ease-out-expo) forwards;
+}
+
+
+/* ============================================================
+   AutoDeal Shop — Editorial Showroom Layer
+   ============================================================ */
+.shop-page {
+	--shop-canvas: #050806;
+	--shop-surface: #0a110d;
+	--shop-surface-raised: #0d1712;
+	--shop-ivory: #e9e7de;
+	--shop-muted: #9ba99f;
+	--shop-line: rgba(233, 231, 222, 0.09);
+	--shop-green: #b8d8c2;
+}
+
+.shop-editorial-section {
+	width: min(1400px, 90%);
+	margin: 0 auto;
+	padding: clamp(4.5rem, 8vw, 7rem) 0;
+}
+
+.shop-section-intro {
+	display: flex;
+	align-items: end;
+	justify-content: space-between;
+	gap: 3rem;
+	margin-bottom: 2.25rem;
+}
+
+.shop-eyebrow {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.55rem;
+	font-family: "Orbitron", sans-serif;
+	font-size: 0.54rem;
+	font-weight: 600;
+	letter-spacing: 0.22em;
+	text-transform: uppercase;
+	color: var(--shop-green);
+}
+
+.shop-eyebrow::before {
+	content: "";
+	width: 22px;
+	height: 1px;
+	background: currentColor;
+	opacity: 0.7;
+}
+
+.shop-display-title {
+	margin-top: 0.7rem;
+	font-family: "Newsreader", serif;
+	font-size: clamp(2rem, 4vw, 3.6rem);
+	font-weight: 400;
+	font-style: italic;
+	line-height: 0.98;
+	letter-spacing: -0.025em;
+	color: var(--shop-ivory);
+}
+
+.shop-section-description {
+	max-width: 34rem;
+	font-size: 0.78rem;
+	line-height: 1.75;
+	color: rgba(233, 231, 222, 0.5);
+}
+
+.brand-atelier-list {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	border-top: 1px solid var(--shop-line);
+}
+
+.brand-atelier-item {
+	display: grid;
+	grid-template-columns: 2rem 1fr auto;
+	align-items: center;
+	gap: 0.7rem;
+	min-height: 5.25rem;
+	padding: 0 1rem;
+	border: 0;
+	border-bottom: 1px solid var(--shop-line);
+	background: transparent;
+	color: var(--shop-ivory);
+	text-align: left;
+	cursor: pointer;
+	transition: background-color 220ms ease, color 220ms ease, padding 220ms ease;
+}
+
+.brand-atelier-item:hover {
+	padding-left: 1.35rem;
+	background: rgba(184, 216, 194, 0.035);
+	color: var(--shop-green);
+}
+
+.brand-atelier-index {
+	font-family: "Orbitron", sans-serif;
+	font-size: 0.48rem;
+	letter-spacing: 0.1em;
+	color: rgba(233, 231, 222, 0.25);
+}
+
+.brand-atelier-name {
+	font-family: "Newsreader", serif;
+	font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+	font-style: italic;
+}
+
+.brand-atelier-item svg {
+	opacity: 0;
+	transform: translate(-4px, 4px);
+	transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.brand-atelier-item:hover svg {
+	opacity: 1;
+	transform: translate(0, 0);
+}
+
+.drive-category-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 0.9rem;
+}
+
+.drive-category-card {
+	position: relative;
+	min-height: clamp(250px, 31vw, 430px);
+	overflow: hidden;
+	border: 1px solid var(--shop-line);
+	border-radius: 14px;
+	background: var(--shop-surface);
+	text-align: left;
+	cursor: pointer;
+}
+
+.drive-category-card img {
+	object-fit: cover;
+	transition: transform 700ms cubic-bezier(0.16, 1, 0.3, 1), filter 500ms ease;
+	filter: saturate(0.78);
+}
+
+.drive-category-card:hover img {
+	transform: scale(1.045);
+	filter: saturate(1);
+}
+
+.drive-category-overlay {
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(180deg, rgba(2, 6, 4, 0.04) 25%, rgba(2, 6, 4, 0.9) 100%);
+}
+
+.drive-category-copy {
+	position: absolute;
+	inset: auto 1.5rem 1.35rem;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 0.55rem;
+}
+
+.drive-category-kicker,
+.drive-category-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4rem;
+	font-family: "Orbitron", sans-serif;
+	font-size: 0.48rem;
+	font-weight: 600;
+	letter-spacing: 0.15em;
+	text-transform: uppercase;
+}
+
+.drive-category-kicker { color: rgba(233, 231, 222, 0.6); }
+.drive-category-title {
+	font-family: "Newsreader", serif;
+	font-size: clamp(1.8rem, 3.5vw, 3rem);
+	font-style: italic;
+	font-weight: 400;
+	line-height: 1;
+	color: var(--shop-ivory);
+}
+.drive-category-link { color: var(--shop-green); margin-top: 0.2rem; }
+
+.editorial-spotlight-section {
+	width: min(1600px, 94%);
+	margin: 0 auto;
+	padding: 2rem 0 clamp(4.5rem, 8vw, 7rem);
+}
+
+.editorial-spotlight {
+	position: relative;
+	min-height: clamp(430px, 54vw, 690px);
+	overflow: hidden;
+	border: 1px solid var(--shop-line);
+	border-radius: 16px;
+	background: #080d0a;
+}
+
+.editorial-spotlight-image { object-fit: cover; object-position: center 58%; }
+.editorial-spotlight-gradient {
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(90deg, rgba(2, 6, 4, 0.9) 0%, rgba(2, 6, 4, 0.48) 38%, rgba(2, 6, 4, 0.04) 75%), linear-gradient(0deg, rgba(2, 6, 4, 0.5), transparent 45%);
+}
+
+.editorial-spotlight-copy {
+	position: absolute;
+	left: clamp(1.5rem, 6vw, 5rem);
+	bottom: clamp(1.75rem, 6vw, 5rem);
+	max-width: 31rem;
+}
+
+.editorial-spotlight-copy h2 {
+	margin-top: 0.8rem;
+	font-family: "Newsreader", serif;
+	font-size: clamp(2.4rem, 5.5vw, 5.2rem);
+	font-weight: 400;
+	font-style: italic;
+	line-height: 0.94;
+	letter-spacing: -0.035em;
+	color: var(--shop-ivory);
+}
+
+.editorial-spotlight-copy p {
+	margin-top: 1rem;
+	font-family: "Orbitron", sans-serif;
+	font-size: 0.55rem;
+	letter-spacing: 0.18em;
+	color: rgba(233, 231, 222, 0.58);
+}
+
+.editorial-spotlight-copy button {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.6rem;
+	margin-top: 1.5rem;
+	padding: 0.78rem 1rem;
+	border: 1px solid rgba(233, 231, 222, 0.18);
+	border-radius: 8px;
+	background: rgba(5, 8, 6, 0.34);
+	color: var(--shop-ivory);
+	font-family: "Orbitron", sans-serif;
+	font-size: 0.52rem;
+	font-weight: 600;
+	letter-spacing: 0.13em;
+	text-transform: uppercase;
+	backdrop-filter: blur(8px);
+	transition: background-color 200ms ease, border-color 200ms ease, transform 200ms ease;
+}
+
+.editorial-spotlight-copy button:hover {
+	border-color: rgba(184, 216, 194, 0.45);
+	background: rgba(22, 59, 42, 0.65);
+	transform: translateY(-1px);
+}
+
+.shop-editorial-header { margin-bottom: 2.75rem; }
+.shop-editorial-header .section-count { margin-top: 0.8rem; }
+
+@media (max-width: 900px) {
+	.shop-section-intro { align-items: flex-start; flex-direction: column; gap: 1rem; }
+	.brand-atelier-list { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+	.shop-editorial-section { width: 90%; padding: 3.75rem 0; }
+	.brand-atelier-list { grid-template-columns: 1fr; }
+	.brand-atelier-item { min-height: 4.5rem; }
+	.drive-category-grid { grid-template-columns: 1fr; }
+	.drive-category-card { min-height: 310px; }
+	.editorial-spotlight-section { width: 92%; }
+	.editorial-spotlight { min-height: 470px; border-radius: 12px; }
+	.editorial-spotlight-gradient { background: linear-gradient(180deg, rgba(2, 6, 4, 0.05) 25%, rgba(2, 6, 4, 0.94) 90%); }
+	.editorial-spotlight-copy { left: 1.35rem; right: 1.35rem; bottom: 1.5rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.brand-atelier-item,
+	.brand-atelier-item svg,
+	.drive-category-card img,
+	.editorial-spotlight-copy button { transition: none; }
 }
 
 /* ===== Marketplace Section ===== */
