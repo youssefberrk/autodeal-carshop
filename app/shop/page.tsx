@@ -3,10 +3,13 @@
 import Image from "next/image";
 import Gclass from "@/public/cars/shop-featured/g1.jpg";
 import { featCars, carsData } from "@/public/cars/CarsData";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef } from "react";
 import FeaturedCard from "@/components/FeaturedCard";
 import CarsCard from "@/components/CarsCard";
 import ManufacturerDropdown from "@/components/filters/ManufacturerDropdown";
+import BrandAtelier from "@/components/shop/BrandAtelier";
+import DriveCategories from "@/components/shop/DriveCategories";
+import EditorialSpotlight from "@/components/shop/EditorialSpotlight";
 
 import BodySilhouette from "@/components/filters/BodySilhouette";
 import PriceCeiling from "@/components/filters/PriceCeiling";
@@ -96,7 +99,7 @@ const ShopPage = () => {
 	};
 
 	return (
-		<div className="  ">
+		<div className="shop-page">
 			{/* Hero Section */}
 			<section className="hero-section">
 				<Image
@@ -117,11 +120,42 @@ const ShopPage = () => {
 				</div>
 			</section>
 
-			{/* Featured Section */}
+			{/* Curated Marques */}
+			<BrandAtelier brands={carBrands.filter((brand) => brand !== "ALL BRANDS")} onSelectBrand={(brand) => {
+				setSelectedBrand(brand);
+				setBodySilhouette("");
+				setPriceRange(minPrice);
+				scrollToMarketplace();
+			}} />
+
+			{/* Drive Categories */}
+			<DriveCategories
+				onSelectCategory={(bodyType) => {
+					setSelectedBrand("ALL BRANDS");
+					setBodySilhouette(bodyType);
+					setPriceRange(minPrice);
+					scrollToMarketplace();
+				}}
+			/>
+
+			{/* Editorial Spotlight */}
+			<EditorialSpotlight
+				onExplore={() => {
+					setSelectedBrand("Porsche");
+					setBodySilhouette("Coupe");
+					setPriceRange(minPrice);
+					scrollToMarketplace();
+				}}
+			/>
+
+			{/* Signature Selection */}
 			<section className="featured-section">
-				<div className="section-header">
-					<span className="section-label">Curated Selection</span>
-					<h2 className="section-title uppercase">Featured</h2>
+				<div className="section-header shop-editorial-header">
+					<span className="section-label">Signature Selection</span>
+					<h2 className="section-title uppercase">Exceptional Automobiles</h2>
+					<p className="section-count">
+						A considered collection of exceptional automobiles.
+					</p>
 				</div>
 				<div className="featured-grid">
 					{featCars.map((car, index) => (
@@ -195,7 +229,7 @@ const ShopPage = () => {
 			</section>
 
 			{/* Marketplace Section */}
-			<section className="marketplace-section">
+			<section ref={marketplaceRef} className="marketplace-section">
 				<div className="section-header">
 					<span className="section-label">Browse Inventory</span>
 					<h2 className="section-title uppercase">Your Shop</h2>
@@ -276,7 +310,7 @@ const ShopPage = () => {
 						</div>
 
 						<div className="filter-group">
-							<label className="filter-label">Price Range</label>
+							<label className="filter-label">Price Floor</label>
 							<PriceCeiling
 								onPriceChange={setPriceRange}
 								min={minPrice}
