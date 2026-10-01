@@ -37,6 +37,18 @@ const ShopPage = () => {
 	const maxPrice = Math.max(...carsData.map((c) => Number(c.price)));
 	const [priceRange, setPriceRange] = useState<number>(minPrice);
 
+	// Shared scroll target for curated sections that apply a filter and jump to inventory.
+	const marketplaceRef = useRef<HTMLElement>(null);
+
+	const scrollToMarketplace = () => {
+		requestAnimationFrame(() => {
+			marketplaceRef.current?.scrollIntoView({
+				behavior: "smooth",
+				block: "start",
+			});
+		});
+	};
+
 	// Mobile filter drawer state & draft filter values
 	const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
 	const [draftBrand, setDraftBrand] = useState<string>("ALL BRANDS");
