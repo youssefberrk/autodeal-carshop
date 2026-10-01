@@ -124,7 +124,7 @@ const ShopPage = () => {
 				/>
 				<div className="hero-overlay" />
 				<div className="hero-content">
-					<h1 className="hero-title italic tracking-[6px]">
+					<h1 className="hero-title italic pl-2 tracking-[6px]">
 						Luxury
 						<br />
 						<span className="pl-7 font-bold tracking-tight text-8xl  not-italic">
@@ -138,6 +138,27 @@ const ShopPage = () => {
 				</div>
 			</section>
 
+			{/* Section Intro Divider */}
+			<motion.div
+				className="shop-section-divider"
+				initial={{ opacity: 0, y: 30 }}
+				whileInView={{ opacity: 1, y: 0 }}
+				viewport={{ once: true, margin: "-40px" }}
+				transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
+				<span className="shop-divider-rule-left" />
+				<div className="shop-divider-center">
+					<span className="shop-divider-eyebrow">The Collection</span>
+					<h2 className="shop-divider-heading">
+						Curated for the&nbsp;
+						<em>discerning</em>
+					</h2>
+					<p className="shop-divider-sub">
+						Every vehicle handpicked for performance, provenance, and presence.
+					</p>
+				</div>
+				<span className="shop-divider-rule-right" />
+			</motion.div>
+
 			{/* Curated Marques */}
 			<BrandAtelier
 				brands={carBrands.filter((brand) => brand !== "ALL BRANDS")}
@@ -150,6 +171,7 @@ const ShopPage = () => {
 			/>
 
 			{/* Drive Categories */}
+
 			<DriveCategories
 				onSelectCategory={(bodyType) => {
 					setSelectedBrand("ALL BRANDS");
