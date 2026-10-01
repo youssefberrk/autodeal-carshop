@@ -119,26 +119,35 @@ const ShopPage = () => {
 					alt="G-class"
 					fill
 					sizes="100vw"
-					className="hero-image object-cover"
+					className="hero-image"
 					priority
 				/>
 				<div className="hero-overlay" />
 				<div className="hero-content">
-					<h1 className="hero-title">Luxury Cars</h1>
+					<h1 className="hero-title italic tracking-[6px]">
+						Luxury
+						<br />
+						<span className="pl-7 font-bold tracking-tight text-8xl  not-italic">
+							Cars
+						</span>
+					</h1>
 					<p className="hero-subtitle text-[#e5efe3]/96">
-						Explore 100+ luxury cars, supercars and exotic cars for sale
+						Explore 100+ luxury cars : supercars and exotic cars for sale
 						worldwide in one simple search
 					</p>
 				</div>
 			</section>
 
 			{/* Curated Marques */}
-			<BrandAtelier brands={carBrands.filter((brand) => brand !== "ALL BRANDS")} onSelectBrand={(brand) => {
-				setSelectedBrand(brand);
-				setBodySilhouette("");
-				setPriceRange(minPrice);
-				scrollToMarketplace();
-			}} />
+			<BrandAtelier
+				brands={carBrands.filter((brand) => brand !== "ALL BRANDS")}
+				onSelectBrand={(brand) => {
+					setSelectedBrand(brand);
+					setBodySilhouette("");
+					setPriceRange(minPrice);
+					scrollToMarketplace();
+				}}
+			/>
 
 			{/* Drive Categories */}
 			<DriveCategories
