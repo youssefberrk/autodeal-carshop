@@ -21,6 +21,10 @@ import {
 	RotateCcw,
 	Compass,
 	Sparkles,
+	ArrowDown,
+	Gauge,
+	ShieldCheck,
+	Globe,
 } from "lucide-react";
 import { useConcierge } from "@/components/ConciergeProvider";
 
@@ -113,51 +117,119 @@ const ShopPage = () => {
 	return (
 		<div className="shop-page">
 			{/* Hero Section */}
-			<section className="hero-section">
+			<section className="shop-hero-section">
 				<Image
 					src={Gclass}
-					alt="G-class"
+					alt="Curated Luxury Automobiles"
 					fill
 					sizes="100vw"
-					className="hero-image"
+					className="shop-hero-bg-image"
 					priority
 				/>
-				<div className="hero-overlay" />
-				<div className="hero-content">
-					<h1 className="hero-title italic pl-2 tracking-[6px]">
-						Luxury
-						<br />
-						<span className="pl-7 font-bold tracking-tight text-8xl  not-italic">
-							Cars
-						</span>
-					</h1>
-					<p className="hero-subtitle text-[#e5efe3]/96">
-						Explore 100+ luxury cars : supercars and exotic cars for sale
-						worldwide in one simple search
-					</p>
+				<div className="shop-hero-gradient-overlay" />
+
+				<div className="shop-hero-container">
+					<motion.div
+						className="shop-hero-inner"
+						initial={{ opacity: 0, y: 30 }}
+						animate={{ opacity: 1, y: 0 }}
+						transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}>
+						
+						
+
+						{/* Main Headline */}
+						<h1 className="shop-hero-headline">
+							<span className="shop-hero-headline-eyebrow">The Curated</span>
+							<span className="shop-hero-headline-title">
+								Collection
+							</span>
+						</h1>
+
+						
+
+						{/* Actions */}
+						<div className="shop-hero-footer">
+							<button
+								type="button"
+								onClick={scrollToMarketplace}
+								className="shop-hero-cta group">
+								<span>Browse Inventory</span>
+								<ArrowDown size={14} className="transition-transform duration-300 group-hover:translate-y-0.5" />
+							</button>
+						</div>
+					</motion.div>
 				</div>
 			</section>
 
-			{/* Section Intro Divider */}
-			<motion.div
-				className="shop-section-divider"
-				initial={{ opacity: 0, y: 30 }}
-				whileInView={{ opacity: 1, y: 0 }}
-				viewport={{ once: true, margin: "-40px" }}
-				transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
-				<span className="shop-divider-rule-left" />
-				<div className="shop-divider-center">
-					<span className="shop-divider-eyebrow">The Collection</span>
-					<h2 className="shop-divider-heading">
-						Curated for the&nbsp;
-						<em>discerning</em>
-					</h2>
-					<p className="shop-divider-sub">
-						Every vehicle handpicked for performance, provenance, and presence.
-					</p>
+			{/* Luxury Highlights / Trust Metrics Ribbon */}
+			<section className="shop-trust-bar">
+				<div className="shop-trust-container">
+					<div className="shop-trust-grid">
+						{/* Item 1 */}
+						<motion.div 
+							className="shop-trust-card group"
+							initial={{ opacity: 0, y: 20 }}
+							whileInView={{ opacity: 1, y: 0 }}
+							viewport={{ once: true }}
+							transition={{ duration: 0.6, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}>
+							<div className="shop-trust-icon-box">
+								<Gauge size={28} className="shop-trust-icon" />
+							</div>
+							<div className="shop-trust-text">
+								<div className="shop-trust-val-row">
+									<span className="shop-trust-val">100+</span>
+									<span className="shop-trust-title">Exotics & Supercars</span>
+								</div>
+								<p className="shop-trust-desc">
+									Curated selection of high-performance & luxury marques from world-renowned ateliers.
+								</p>
+							</div>
+						</motion.div>
+
+						{/* Item 2 */}
+						<motion.div 
+							className="shop-trust-card group"
+							initial={{ opacity: 0, y: 20 }}
+							whileInView={{ opacity: 1, y: 0 }}
+							viewport={{ once: true }}
+							transition={{ duration: 0.6, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}>
+							<div className="shop-trust-icon-box">
+								<ShieldCheck size={28} className="shop-trust-icon" />
+							</div>
+							<div className="shop-trust-text">
+								<div className="shop-trust-val-row">
+									<span className="shop-trust-val">100%</span>
+									<span className="shop-trust-title">Verified Provenance</span>
+								</div>
+								<p className="shop-trust-desc">
+									Multi-point mechanical certification, authentic service history & ownership lineage.
+								</p>
+							</div>
+						</motion.div>
+
+						{/* Item 3 */}
+						<motion.div 
+							className="shop-trust-card group"
+							initial={{ opacity: 0, y: 20 }}
+							whileInView={{ opacity: 1, y: 0 }}
+							viewport={{ once: true }}
+							transition={{ duration: 0.6, delay: 0.19, ease: [0.16, 1, 0.3, 1] }}>
+							<div className="shop-trust-icon-box">
+								<Globe size={28} className="shop-trust-icon" />
+							</div>
+							<div className="shop-trust-text">
+								<div className="shop-trust-val-row">
+									<span className="shop-trust-val">Tier-1</span>
+									<span className="shop-trust-title">Global Logistics</span>
+								</div>
+								<p className="shop-trust-desc">
+									White-glove, enclosed door-to-door worldwide delivery with full transit protection.
+								</p>
+							</div>
+						</motion.div>
+					</div>
 				</div>
-				<span className="shop-divider-rule-right" />
-			</motion.div>
+			</section>
 
 			{/* Curated Marques */}
 			<BrandAtelier
@@ -171,7 +243,6 @@ const ShopPage = () => {
 			/>
 
 			{/* Drive Categories */}
-
 			<DriveCategories
 				onSelectCategory={(bodyType) => {
 					setSelectedBrand("ALL BRANDS");
@@ -193,19 +264,29 @@ const ShopPage = () => {
 
 			{/* Signature Selection */}
 			<section className="featured-section">
-				<div className="section-header shop-editorial-header">
-					<span className="section-label">Signature Selection</span>
-					<h2 className="section-title uppercase">Exceptional Automobiles</h2>
-					<p className="section-count">
-						A considered collection of exceptional automobiles.
+				<motion.div 
+					className="shop-section-intro"
+					initial={{ opacity: 0, y: 20 }}
+					whileInView={{ opacity: 1, y: 0 }}
+					viewport={{ once: true }}
+					transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+				>
+					<span className="shop-eyebrow">Signature Selection</span>
+					<h2 className="shop-display-title">Exceptional Automobiles</h2>
+					<p className="shop-section-description">
+						A rare ensemble of limited-production icons and showroom centerpieces available for immediate allocation.
 					</p>
-				</div>
+				</motion.div>
+
 				<div className="featured-grid">
 					{featCars.map((car, index) => (
-						<div
+						<motion.div
 							key={car.id}
 							className="featured-item"
-							style={{ animationDelay: `${index * 80}ms` }}>
+							initial={{ opacity: 0, y: 20 }}
+							whileInView={{ opacity: 1, y: 0 }}
+							viewport={{ once: true }}
+							transition={{ duration: 0.6, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}>
 							<FeaturedCard
 								id={car.id}
 								album={car.album}
@@ -213,37 +294,43 @@ const ShopPage = () => {
 								info={car.info}
 								price={car.price}
 							/>
-						</div>
+						</motion.div>
 					))}
 				</div>
 			</section>
 
 			{/* AI Concierge CTA */}
 			<section className="concierge-cta-section">
-				<div className="concierge-cta-panel">
+				<motion.div 
+					className="concierge-cta-panel"
+					initial={{ opacity: 0, y: 30 }}
+					whileInView={{ opacity: 1, y: 0 }}
+					viewport={{ once: true, margin: "-40px" }}
+					transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}>
+					<div className="concierge-cta-ambient" />
 					<div className="concierge-cta-copy">
 						<span className="concierge-cta-eyebrow">
-							<Sparkles size={14} />
+							<span className="w-1.5 h-1.5 rounded-full bg-[#00ff87] animate-pulse" />
+							<Sparkles size={13} className="text-[#00ff87]" />
 							Private Concierge Desk
 						</span>
 						<h2 className="concierge-cta-title">
-							Not sure what belongs in your garage?
+							Seeking something <em>extraordinary?</em>
 						</h2>
 						<p className="concierge-cta-text">
-							Let the AutoDeal Concierge curate a shortlist from the live
-							catalog based on budget, performance intent, body style, and
-							acquisition readiness.
+							Let our AI Concierge curate a tailored shortlist from the live
+							catalog based on your performance intent, design aesthetic, and acquisition timeline.
 						</p>
 						<div className="concierge-cta-actions">
 							<button
 								type="button"
 								onClick={() => openConcierge()}
-								className="concierge-cta-primary">
-								<Sparkles size={15} />
-								<span>Begin a Private Briefing</span>
+								className="concierge-cta-primary group">
+								<Sparkles size={15} className="transition-transform duration-300 group-hover:rotate-12" />
+								<span>Begin Private Consultation</span>
 							</button>
 							<span className="concierge-cta-note">
-								Catalog-grounded • No pressure • 24/7
+								Catalog-grounded • Discreet • 24/7 Availability
 							</span>
 						</div>
 					</div>
@@ -251,12 +338,12 @@ const ShopPage = () => {
 					<div
 						className="concierge-cta-aside"
 						aria-label="Example concierge requests">
-						<span className="concierge-cta-aside-label">Try asking</span>
+						<span className="concierge-cta-aside-label">Curated Inquiries</span>
 						<div className="concierge-cta-prompts">
 							{[
-								"A grand tourer under $100k",
-								"Something electric, but still special",
-								"Track capability with road manners",
+								"A bespoke grand tourer under $120k",
+								"Silent electric luxury with supercar agility",
+								"Pure naturally aspirated track character",
 							].map((prompt) => (
 								<button
 									key={prompt}
@@ -268,7 +355,7 @@ const ShopPage = () => {
 							))}
 						</div>
 					</div>
-				</div>
+				</motion.div>
 			</section>
 
 			{/* Marketplace Section */}

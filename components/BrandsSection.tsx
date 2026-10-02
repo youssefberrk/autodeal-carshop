@@ -4,8 +4,12 @@ import { useEffect, useRef } from "react";
 import { Brand, BrandItemProps } from "@/types/brandItem";
 import Image from "next/image";
 
-const brands: Brand[] = [
-	{ name: "Audi", logo: "https://cdn.worldvectorlogo.com/logos/audi-2.svg" },
+export const brands: Brand[] = [
+	{
+		name: "Audi",
+		logo: "https://cdn.worldvectorlogo.com/logos/audi-new-logo.svg",
+	},
+
 	{ name: "BMW", logo: "https://cdn.worldvectorlogo.com/logos/bmw-2.svg" },
 	{
 		name: "Mercedes",
@@ -40,7 +44,9 @@ const BrandItem = ({ brand }: BrandItemProps) => (
 			alt={brand.name}
 			width={25}
 			height={25}
-			className="h-20 w-auto opacity-70  group-hover:opacity-100  transition-all duration-300 ease-out"
+			className={`h-20 w-auto opacity-70  group-hover:opacity-100  transition-all duration-300 ease-outw-auto ${
+				brand.name === "Audi" ? "brightness-0 invert" : ""
+			}`}
 		/>
 		<span className="text-gray-300 text-xs uppercase font-semibold tracking-wider group-hover:text-[#00C853] transition-colors duration-300">
 			{brand.name}

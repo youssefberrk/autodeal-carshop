@@ -3,7 +3,6 @@
 import { featuredCars } from "@/types/CarsTypes";
 import ImageSlider from "@/components/ui/ImageSlider";
 import { useState } from "react";
-import { number } from "zod";
 
 const FeaturedCard = ({ album, model, info, price }: featuredCars) => {
 	const [isHovered, setIsHovered] = useState(false);
