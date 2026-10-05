@@ -75,7 +75,7 @@ const HeroSection: React.FC = () => {
 						initial={{ opacity: 0, y: 24, filter: "blur(4px)" }}
 						animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
 						transition={{ duration: 0.8, delay: 0.65, ease: easeCustom }}
-						className="font-mono  leading-relaxed  text-[#dae6d8]/80 max-w-lg tracking-wide">
+						className="font-mono  leading-relaxed tracking-wide  text-[#dae6d8]/80 max-w-lg ">
 						Experience the pinnacle of automotive engineering. Curated luxury
 						and high performance, delivered with concierge precision.
 					</motion.p>
