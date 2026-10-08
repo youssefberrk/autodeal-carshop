@@ -130,7 +130,7 @@ const ShopPage = () => {
         <div className="shop-hero-spotlight" />
 
         <div className="shop-hero-container">
-          <div className="shop-hero-content-wrapper">
+          <div className="shop-hero-content-wrapper -translate-x-2 md:-translate-x-0">
             <motion.div
               className="shop-hero-inner"
               initial={{ opacity: 0, y: 30 }}
@@ -172,7 +172,7 @@ const ShopPage = () => {
                 >
                   <span className="shop-hero-cta-text">Browse Inventory</span>
 
-                  <ArrowDown size={16} className="shop-hero-cta-arrow" />
+                  <ArrowDown size={19} className="shop-hero-cta-arrow" />
                 </button>
 
                 <button
@@ -191,7 +191,9 @@ const ShopPage = () => {
                   >
                     <Sparkles size={22} className="shop-hero-secondary-icon" />
                   </span>
-                  <span className="shop-hero-cta-text">Private Advisory</span>
+                  <span className="shop-hero-cta-text-secondary">
+                    Private Advisory
+                  </span>
                 </button>
               </div>
             </motion.div>
@@ -213,7 +215,7 @@ const ShopPage = () => {
                 }}
               >
                 <div className="shop-trust-icon-box">
-                  <Gauge size={26} className="shop-trust-icon" />
+                  <Gauge size={36} className="shop-trust-icon" />
                 </div>
                 <div className="shop-trust-text">
                   <div className="shop-trust-val-row">

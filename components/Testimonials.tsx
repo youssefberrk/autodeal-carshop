@@ -139,54 +139,19 @@ const Testimonials = () => {
 	return (
 		<section
 			ref={sectionRef}
-			className="relative isolate overflow-hidden bg-[#020503] py-24 sm:py-32 border-t border-b border-[#00ff87]/10 text-white">
-			{/* Darker Gradient Overlay - ensures stars in starBg pop with crisp contrast */}
-			<div className="absolute inset-0 -z-30 bg-gradient-to-b from-[#020503] via-[#07130d] to-[#020503] opacity-95" />
-
-			{/* Fixed starBg Background Image Layer - using starBg.src to ensure URL validity */}
-			<div
-				className="absolute inset-0 -z-20 bg-cover bg-center bg-no-repeat opacity-50 mix-blend-screen pointer-events-none transition-opacity duration-1000"
-				style={{ backgroundImage: `url(${starBg.src})` }}
-			/>
-
-			{/* Radial Dark Vignette Mask for depth and focus */}
-			<div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,transparent_20%,#020503_85%)] pointer-events-none" />
-
-			{/* Ambient Glowing Emerald Light Orb */}
-			<div className="absolute left-1/2 top-1/2 -z-10 h-[650px] w-[650px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#00ff87]/8 blur-[140px] pointer-events-none" />
-
-			{/* Subtle Decorative Star Sparkles */}
-			<div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
-				<div className="absolute top-1/4 left-1/6 h-1 w-1 rounded-full bg-[#00ff87] shadow-[0_0_12px_#00ff87] animate-pulse" />
-				<div
-					className="absolute top-1/3 right-1/5 h-1.5 w-1.5 rounded-full bg-white shadow-[0_0_10px_#ffffff] animate-ping"
-					style={{ animationDuration: "4s" }}
-				/>
-				<div
-					className="absolute bottom-1/3 left-1/4 h-1 w-1 rounded-full bg-[#00ff87]/80 shadow-[0_0_8px_#00ff87] animate-pulse"
-					style={{ animationDuration: "3s" }}
-				/>
-				<div
-					className="absolute top-2/3 right-1/3 h-1 w-1 rounded-full bg-amber-300 shadow-[0_0_6px_#fcd34d] animate-pulse"
-					style={{ animationDuration: "5s" }}
-				/>
-			</div>
-
+			className="relative isolate overflow-hidden bg-background py-24 sm:py-32 border-t border-b border-[#00ff87]/10 text-white">
 			<div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 				{/* Section Header */}
 				<div className="mx-auto max-w-3xl text-center">
-					<div
+					<p
 						style={{ transitionDelay: "0ms" }}
-						className={`inline-flex items-center gap-2 rounded-full border border-[#00ff87]/30 bg-[#00ff87]/10 px-4 py-1.5 backdrop-blur-md shadow-[0_0_20px_rgba(0,255,135,0.15)] transition duration-700 ease-out ${
+						className={`font-mono text-xs uppercase tracking-[0.3em] text-[#00ff87] transition duration-700 ease-out ${
 							isVisible
 								? "translate-y-0 opacity-100"
 								: "translate-y-6 opacity-0"
 						}`}>
-						<Sparkles className="h-3.5 w-3.5 text-[#00ff87]" />
-						<span className="font-mono text-xs uppercase tracking-[0.3em] text-[#00ff87]">
-							Client Testimonials
-						</span>
-					</div>
+						Client Testimonials
+					</p>
 
 					<div
 						style={{ transitionDelay: "60ms" }}

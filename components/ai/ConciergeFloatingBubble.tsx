@@ -72,10 +72,6 @@ export default function ConciergeFloatingBubble({
 							: "border-[#00ff87]/50 bg-gradient-to-br from-[#091a11]/95 via-[#050e0a]/98 to-[#020705] text-[#00ff87] shadow-[0_0_25px_rgba(0,255,135,0.3)] hover:border-[#00ff87] hover:shadow-[0_0_35px_rgba(0,255,135,0.55)]"
 					}`}
 				>
-					{/* Radar Ping Animation when closed */}
-					{!isOpen && (
-						<span className="pointer-events-none absolute -inset-1 rounded-2xl border border-[#00ff87]/30 opacity-75 animate-ping" />
-					)}
 
 					{/* Icon Switcher */}
 					{isOpen ? (

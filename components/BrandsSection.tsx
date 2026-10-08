@@ -76,10 +76,8 @@ const BrandsSection: React.FC = () => {
 		};
 	}, []);
 	return (
-		<section className="flex flex-col  border-y border-border py-20 bg-gradient-to-l from-[#2e3428] via-[#000000] to-[#2e3428]  overflow-hidden  gap-17 relative">
-			<div className="absolute inset-0 bg-brand/5 blur-[100px] pointer-events-none" />
-
-			<div className="text-center -mt-6 space-y-2 relative z-10">
+		<section className="flex flex-col border-y border-border/40 py-16 bg-background overflow-hidden gap-12 relative">
+			<div className="text-center space-y-2 relative z-10">
 				<p className="text-foreground opacity-60 text-s  font-light uppercase tracking-[0.3em]">
 					Engineering Partners
 				</p>
