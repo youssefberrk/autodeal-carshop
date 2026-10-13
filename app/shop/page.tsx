@@ -13,6 +13,7 @@ import EditorialSpotlight from "@/components/shop/EditorialSpotlight";
 
 import BodySilhouette from "@/components/filters/BodySilhouette";
 import PriceCeiling from "@/components/filters/PriceCeiling";
+import "./shop-hero.css";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   SlidersHorizontal,
@@ -145,12 +146,27 @@ const ShopPage = () => {
 
               {/* Main Headline */}
               <h1 className="shop-hero-headline">
-                <span className="shop-hero-headline-eyebrow">The Curated</span>
-                <span className="shop-hero-headline-title">Collection</span>
+                <span className="shop-hero-headline-eyebrow mb-2">
+                  The Curated
+                </span>
+                <span
+                  className="text-[clamp(1.8rem,5.4vw,4.9rem)] font-black uppercase tracking-[0.04em] text-transparent select-none mt-2"
+                  style={{
+                    fontFamily: "Orbitron",
+                    background: "linear-gradient(90deg, #ff6ec7, #00ffb3)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    WebkitTextStroke: "1px rgba(255,255,255,0.3)",
+                    textShadow:
+                      "0 0 5px rgba(255,110,199,0.6), 0 0 10px rgba(0,255,179,0.4)",
+                  }}
+                >
+                  Collection
+                </span>
               </h1>
 
               {/* Editorial Description */}
-              <p className="shop-hero-description">
+              <p className="shop-hero-description italic">
                 An extraordinary portfolio of hand-selected cars and certified
                 heritage — <br />
                 ready for global acquisition.
@@ -169,10 +185,14 @@ const ShopPage = () => {
                   type="button"
                   onClick={scrollToMarketplace}
                   className="shop-hero-cta group"
+                  aria-label="Browse vehicle inventory in the showroom"
                 >
                   <span className="shop-hero-cta-text">Browse Inventory</span>
-
-                  <ArrowDown size={19} className="shop-hero-cta-arrow" />
+                  <ArrowDown
+                    size={18}
+                    className="shop-hero-cta-arrow"
+                    aria-hidden="true"
+                  />
                 </button>
 
                 <button
@@ -184,15 +204,16 @@ const ShopPage = () => {
                     )
                   }
                   className="shop-hero-cta-secondary group"
+                  aria-label="Open AI Private Advisory Concierge"
                 >
+                  <span className="shop-hero-cta-text-secondary">
+                    Private Advisory
+                  </span>
                   <span
                     className="shop-hero-secondary-icon-box"
                     aria-hidden="true"
                   >
-                    <Sparkles size={22} className="shop-hero-secondary-icon" />
-                  </span>
-                  <span className="shop-hero-cta-text-secondary">
-                    Private Advisory
+                    <Sparkles size={21} className="shop-hero-secondary-icon" />
                   </span>
                 </button>
               </div>
@@ -215,7 +236,7 @@ const ShopPage = () => {
                 }}
               >
                 <div className="shop-trust-icon-box">
-                  <Gauge size={36} className="shop-trust-icon" />
+                  <Gauge size={55} className="shop-trust-icon" />
                 </div>
                 <div className="shop-trust-text">
                   <div className="shop-trust-val-row">
@@ -240,7 +261,7 @@ const ShopPage = () => {
                 }}
               >
                 <div className="shop-trust-icon-box">
-                  <ShieldCheck size={26} className="shop-trust-icon" />
+                  <ShieldCheck size={55} className="shop-trust-icon" />
                 </div>
                 <div className="shop-trust-text">
                   <div className="shop-trust-val-row">
@@ -265,7 +286,7 @@ const ShopPage = () => {
                 }}
               >
                 <div className="shop-trust-icon-box">
-                  <Globe size={26} className="shop-trust-icon" />
+                  <Globe size={55} className="shop-trust-icon" />
                 </div>
                 <div className="shop-trust-text">
                   <div className="shop-trust-val-row">

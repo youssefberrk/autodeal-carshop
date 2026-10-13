@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import "./globals.css"; // root global styles
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 import { ClientSessionProvider } from "@/components/ClientSessionProvider";
