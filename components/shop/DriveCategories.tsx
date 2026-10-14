@@ -50,6 +50,9 @@ const DriveCategories = ({ onSelectCategory }: DriveCategoriesProps) => (
 				>
 					<Image src={image} alt={title} fill sizes="(max-width: 768px) 100vw, 50vw" />
 					<span className="drive-category-overlay" />
+					<span className="drive-category-index">
+						{String(index + 1).padStart(2, "0")}
+					</span>
 					<span className="drive-category-copy">
 						<span className="drive-category-kicker"><Icon size={13} /> {kicker}</span>
 						<span className="drive-category-title">{title}</span>

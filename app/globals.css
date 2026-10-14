@@ -670,101 +670,167 @@ button,
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 52px;
-  gap: 0.75rem;
-  padding: 0 1.65rem;
-  border-radius: 0.75rem;
+  height: 58px;
+  gap: 0.85rem;
+  padding: 0 1.85rem;
+  border-radius: 1rem;
   cursor: pointer;
   overflow: hidden;
   user-select: none;
 
-  background: linear-gradient(180deg, #14221a 0%, #0c1712 40%, #050a07 100%);
-  border: 1px solid rgba(0, 255, 135, 0.28);
+  /* 3D Machined Metallic Core - Exotic Hypercar Cockpit Material */
+  background: linear-gradient(
+    180deg,
+    rgba(22, 56, 36, 0.96) 0%,
+    rgba(10, 28, 18, 0.98) 38%,
+    rgba(3, 14, 9, 1) 75%,
+    rgba(1, 8, 5, 1) 100%
+  );
+  border: 1px solid rgba(0, 255, 135, 0.42);
 
+  /* Multi-Tiered 3D Extrusion Lip, Specular Chamfers & Ground Shadow */
   box-shadow:
-    0 3px 0 0 #020905,
-    0 4px 0 0 #010503,
-    0 8px 16px -2px rgba(0, 0, 0, 0.75),
-    0 2px 4px 0 rgba(0, 0, 0, 0.5),
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.2),
-    inset 0 -1px 2px 0 rgba(0, 0, 0, 0.7);
+    0 4px 0 0 #021a0f,
+    0 5px 0 0 #010d07,
+    0 8px 18px -2px rgba(0, 0, 0, 0.85),
+    0 16px 32px -4px rgba(0, 0, 0, 0.75),
+    0 0 22px -2px rgba(0, 255, 135, 0.22),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.45),
+    inset 0 2px 4px 0 rgba(0, 255, 135, 0.25),
+    inset 0 -2px 4px 0 rgba(0, 0, 0, 0.85);
 
   transition:
-    transform 180ms cubic-bezier(0.23, 1, 0.32, 1),
-    box-shadow 180ms cubic-bezier(0.23, 1, 0.32, 1),
-    border-color 180ms ease,
-    background 180ms ease;
+    transform 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.22s ease,
+    background 0.22s ease;
 }
 
+/* Exotic Diagonal Light Reflection Sheen */
 .shop-hero-cta::before {
   content: "";
   position: absolute;
   inset: 0;
   border-radius: inherit;
   background: linear-gradient(
-    145deg,
-    rgba(255, 255, 255, 0.08) 0%,
-    rgba(255, 255, 255, 0.02) 25%,
-    transparent 60%
+    135deg,
+    rgba(255, 255, 255, 0.16) 0%,
+    rgba(0, 255, 135, 0.1) 22%,
+    transparent 50%
   );
   pointer-events: none;
   z-index: 1;
+  transition: opacity 0.3s ease;
 }
 
 .shop-hero-cta:hover {
   transform: translateY(-2px);
-  border-color: rgba(0, 255, 135, 0.6);
-  background: linear-gradient(180deg, #182a20 0%, #0f1d16 40%, #070d09 100%);
+  border-color: rgba(0, 255, 135, 0.8);
+  background: linear-gradient(
+    180deg,
+    rgba(30, 72, 46, 0.96) 0%,
+    rgba(14, 38, 24, 0.98) 38%,
+    rgba(4, 18, 11, 1) 75%,
+    rgba(2, 10, 6, 1) 100%
+  );
   box-shadow:
-    0 5px 0 0 #020905,
-    0 6px 0 0 #010503,
-    0 12px 22px -3px rgba(0, 0, 0, 0.82),
-    0 3px 6px 0 rgba(0, 0, 0, 0.5),
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.3),
-    inset 0 -1px 2px 0 rgba(0, 0, 0, 0.7);
+    0 6px 0 0 #021a0f,
+    0 7px 0 0 #010d07,
+    0 12px 24px -2px rgba(0, 0, 0, 0.9),
+    0 24px 44px -4px rgba(0, 0, 0, 0.8),
+    0 0 34px 2px rgba(0, 255, 135, 0.38),
+    inset 0 1px 2px 0 rgba(255, 255, 255, 0.65),
+    inset 0 2px 6px 0 rgba(0, 255, 135, 0.35),
+    inset 0 -2px 4px 0 rgba(0, 0, 0, 0.85);
 }
 
+.shop-hero-cta:hover::before {
+  opacity: 1;
+}
+
+/* Mechanical 3D Switch Travel on Press */
 .shop-hero-cta:active {
-  transform: translateY(3px);
+  transform: translateY(4px);
   box-shadow:
-    0 0 0 0 #020905,
-    0 1px 2px 0 rgba(0, 0, 0, 0.85),
-    inset 0 2px 3px 0 rgba(0, 0, 0, 0.8),
-    inset 0 1px 1px 0 rgba(0, 0, 0, 0.5);
-  transition-duration: 60ms;
+    0 0 0 0 #021a0f,
+    0 2px 6px 0 rgba(0, 0, 0, 0.95),
+    0 0 16px rgba(0, 255, 135, 0.25),
+    inset 0 2px 4px 0 rgba(0, 0, 0, 0.9),
+    inset 0 1px 1px 0 rgba(0, 0, 0, 0.7);
+  transition-duration: 0.08s;
 }
 
 .shop-hero-cta:focus-visible {
   outline: 2px solid #00ff87;
-  outline-offset: 3px;
+  outline-offset: 4px;
 }
 
 .shop-hero-cta-text {
   position: relative;
   z-index: 2;
   font-family: "Orbitron";
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: #f0f7f3;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.9);
-  transition: color 180ms ease;
+  color: #eafaf0;
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.95),
+    0 0 12px rgba(0, 255, 135, 0.45);
+  transition:
+    color 0.2s ease,
+    text-shadow 0.2s ease;
 }
 
 .shop-hero-cta:hover .shop-hero-cta-text {
   color: #ffffff;
+  text-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.95),
+    0 0 18px rgba(0, 255, 135, 0.75);
+}
+
+/* Machined Arrow Indicator Housing */
+.shop-hero-cta-arrow-box {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(
+    180deg,
+    rgba(4, 28, 16, 0.95) 0%,
+    rgba(1, 12, 7, 0.98) 100%
+  );
+  border: 1px solid rgba(0, 255, 135, 0.35);
+  box-shadow:
+    inset 0 1px 2px rgba(0, 0, 0, 0.8),
+    0 1px 0 rgba(255, 255, 255, 0.15);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.shop-hero-cta:hover .shop-hero-cta-arrow-box {
+  background: rgba(0, 255, 135, 0.18);
+  border-color: rgba(0, 255, 135, 0.8);
+  box-shadow:
+    inset 0 1px 2px rgba(0, 0, 0, 0.6),
+    0 0 14px rgba(0, 255, 135, 0.5);
 }
 
 .shop-hero-cta-arrow {
-  position: relative;
-  z-index: 2;
   color: #00ff87;
-  transition: transform 220ms cubic-bezier(0.23, 1, 0.32, 1);
+  filter: drop-shadow(0 0 5px rgba(0, 255, 135, 0.6));
+  transition:
+    transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1),
+    color 0.2s ease;
 }
 
 .shop-hero-cta:hover .shop-hero-cta-arrow {
   transform: translateY(2px);
+  color: #ffffff;
+  filter: drop-shadow(0 0 8px rgba(0, 255, 135, 0.95));
 }
 
 @keyframes borderGlowRotate {
@@ -781,20 +847,20 @@ button,
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 52px;
+  height: 58px;
   gap: 0.75rem;
   padding: 0 1.65rem;
-  border-radius: 0.75rem;
+  border-radius: 1rem;
   background: transparent;
   border: 1px solid transparent;
   cursor: pointer;
   overflow: hidden;
   user-select: none;
   z-index: 1;
-  box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.7);
-  transition:
-    transform 180ms cubic-bezier(0.23, 1, 0.32, 1),
-    box-shadow 180ms ease;
+  box-shadow:
+    0 0 24px -2px rgba(0, 255, 135, 0.35),
+    0 4px 18px rgba(0, 0, 0, 0.6);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .shop-hero-cta-secondary::before {
@@ -807,34 +873,37 @@ button,
   background: conic-gradient(
     from 0deg at 50% 50%,
     transparent 0deg,
-    rgba(0, 255, 135, 0.18) 60deg,
+    rgba(0, 255, 135, 0.25) 45deg,
     #00ff87 180deg,
-    rgba(0, 255, 135, 0.18) 300deg,
+    rgba(56, 239, 125, 0.9) 240deg,
+    rgba(0, 255, 135, 0.25) 315deg,
     transparent 360deg
   );
-  animation: borderGlowRotate 4.5s linear infinite;
+  animation: borderGlowRotate 4s linear infinite;
   z-index: -2;
 }
 
 .shop-hero-cta-secondary::after {
   content: "";
   position: absolute;
-  inset: 1.25px;
-  border-radius: calc(0.75rem - 1.25px);
-  background: #07100b;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  inset: 1.5px;
+  border-radius: calc(1rem - 1.5px);
+  background: rgba(6, 20, 14, 0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   z-index: -1;
-  transition: background 180ms ease;
+  transition: background 0.3s ease;
 }
 
 .shop-hero-cta-secondary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px -2px rgba(0, 0, 0, 0.85);
+  box-shadow:
+    0 0 34px rgba(0, 255, 135, 0.55),
+    0 6px 24px rgba(0, 0, 0, 0.7);
 }
 
 .shop-hero-cta-secondary:hover::after {
-  background: #0b1711;
+  background: rgba(9, 32, 21, 0.96);
 }
 
 .shop-hero-cta-secondary:active {
@@ -843,24 +912,31 @@ button,
 
 .shop-hero-cta-secondary:focus-visible {
   outline: 2px solid #00ff87;
-  outline-offset: 3px;
+  outline-offset: 4px;
 }
 
 .shop-hero-cta-text-secondary {
   position: relative;
   z-index: 2;
-  font-family: "Orbitron";
+  font-family: "Orbitron", sans-serif;
   font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
+  font-weight: 800;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: #e5efe8;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.9);
-  transition: color 180ms ease;
+  color: #e5f7ed;
+  text-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.8),
+    0 0 10px rgba(0, 255, 135, 0.35);
+  transition:
+    color 0.2s ease,
+    text-shadow 0.2s ease;
 }
 
 .shop-hero-cta-secondary:hover .shop-hero-cta-text-secondary {
   color: #ffffff;
+  text-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.9),
+    0 0 14px rgba(0, 255, 135, 0.65);
 }
 
 .shop-hero-secondary-icon-box {
@@ -871,26 +947,30 @@ button,
   justify-content: center;
   width: 26px;
   height: 26px;
-  padding: 1px;
   border-radius: 50%;
-  background: rgba(0, 255, 135, 0.08);
-  border: 1px solid rgba(0, 255, 135, 0.2);
-  transition: all 180ms ease;
+  background: rgba(0, 255, 135, 0.12);
+  border: 1px solid rgba(0, 255, 135, 0.25);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
 }
 
 .shop-hero-cta-secondary:hover .shop-hero-secondary-icon-box {
-  background: rgba(0, 255, 135, 0.15);
-  border-color: rgba(0, 255, 135, 0.4);
+  background: rgba(0, 255, 135, 0.22);
+  border-color: rgba(0, 255, 135, 0.6);
+  box-shadow: 0 0 10px rgba(0, 255, 135, 0.4);
 }
 
 .shop-hero-secondary-icon {
   color: #00ff87;
-  padding: 1px 2px;
-  transition: transform 250ms cubic-bezier(0.23, 1, 0.32, 1);
+  filter: drop-shadow(0 0 6px rgba(0, 255, 135, 0.7));
+  transition:
+    transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    filter 0.3s ease;
 }
 
 .shop-hero-cta-secondary:hover .shop-hero-secondary-icon {
-  transform: rotate(15deg) scale(1.1);
+  transform: rotate(20deg) scale(1.15);
+  filter: drop-shadow(0 0 10px rgba(0, 255, 135, 0.95));
 }
 
 .shop-hero-stat-pill {
@@ -1177,7 +1257,13 @@ button,
   --shop-ivory: #e9e7de;
   --shop-muted: #9ba99f;
   --shop-line: rgba(233, 231, 222, 0.09);
+  --shop-line-strong: rgba(233, 231, 222, 0.16);
   --shop-green: #b8d8c2;
+  --shop-green-soft: rgba(184, 216, 194, 0.12);
+  --shop-green-line: rgba(184, 216, 194, 0.3);
+  --shop-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  /* Clips full-bleed backdrops without creating a scroll container. */
+  overflow-x: clip;
 }
 
 /* ===== Shop Section Divider ===== */
@@ -1265,6 +1351,41 @@ button,
   padding-bottom: clamp(3rem, 6vw, 4.5rem);
 }
 
+/* Full-bleed atmospheric backdrop — fades up from the canvas so the
+   section feels grounded rather than floating in blank space. */
+.brand-atelier-section {
+  position: relative;
+  isolation: isolate;
+}
+
+.brand-atelier-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  z-index: -1;
+  width: 100vw;
+  transform: translateX(-50%);
+  pointer-events: none;
+  background-image:
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(184, 216, 194, 0.18) 50%,
+      transparent 100%
+    ),
+    radial-gradient(
+      110% 60% at 50% -10%,
+      rgba(184, 216, 194, 0.07) 0%,
+      transparent 68%
+    ),
+    linear-gradient(180deg, #020604 0%, #050806 100%);
+  background-repeat: no-repeat;
+  background-size: 100% 1px, 100% 100%, 100% 100%;
+  background-position: top center, center, center;
+}
+
 .shop-section-intro {
   display: flex;
   flex-direction: column;
@@ -1314,54 +1435,149 @@ button,
   margin-top: 0.2rem;
 }
 
+.brand-atelier-section .shop-section-intro {
+  position: relative;
+  perspective: 1000px;
+  perspective-origin: 50% 50%;
+  transform-style: preserve-3d;
+}
+
+/* Cursor-tracked spotlight behind the raised headline. */
+.brand-atelier-heading-glow {
+  position: absolute;
+  inset: -24% -10%;
+  z-index: -1;
+  opacity: 0.45;
+  pointer-events: none;
+  transition: opacity 420ms ease;
+}
+
+.brand-atelier-section .shop-section-intro:hover .brand-atelier-heading-glow,
+.brand-atelier-section
+  .shop-section-intro:focus-within
+  .brand-atelier-heading-glow {
+  opacity: 0.9;
+}
+
 .brand-atelier-list {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   border-top: 1px solid var(--shop-line);
+  transform-style: preserve-3d;
+}
+
+/* Per-card perspective scene so each button tilts around its own centre. */
+.brand-atelier-item-scene {
+  perspective: 1200px;
+  transform-style: preserve-3d;
 }
 
 .brand-atelier-item {
+  position: relative;
+  z-index: 0;
   display: grid;
-  grid-template-columns: 1.5rem 2.4rem 1fr auto;
+  width: 100%;
+  /* minmax(0, 1fr) prevents text from blowing the grid column wider than
+     its share — critical for long brand names like "Aston Martin". */
+  grid-template-columns: 1.5rem 3rem minmax(0, 1fr) auto;
   align-items: center;
   gap: 0.75rem;
   min-height: 5.5rem;
-  padding: 0 1.2rem;
+  padding: 0 0.75rem;
   border: 0;
   border-bottom: 1px solid var(--shop-line);
   background: transparent;
   color: var(--shop-ivory);
   text-align: left;
   cursor: pointer;
+  transform-origin: 50% 50%;
+  transform-style: preserve-3d;
+  will-change: transform;
   transition:
     background-color 220ms ease,
-    color 220ms ease,
-    padding 220ms ease;
+    color 220ms ease;
 }
 
-.brand-atelier-item:hover {
-  padding-left: 1.4rem;
+.brand-atelier-item:hover,
+.brand-atelier-item:focus-visible {
+  z-index: 2;
   background: rgba(184, 216, 194, 0.04);
   color: var(--shop-green);
 }
 
+.brand-atelier-item:active {
+  background: rgba(184, 216, 194, 0.07);
+  color: var(--shop-green);
+}
+
+/* Left-edge accent bar: grows from zero on hover to signal selection. */
+.brand-atelier-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 2px;
+  height: 0;
+  background: var(--shop-green);
+  transform: translateY(-50%);
+  border-radius: 0 1px 1px 0;
+  transition: height 280ms ease;
+}
+
+.brand-atelier-item:hover::before,
+.brand-atelier-item:focus-visible::before {
+  height: 44%;
+}
+
+/* Cursor-tracked glare; sits above the background but below content.
+   z-index: 1 requires the parent to form a stacking context (z-index: 0). */
+.brand-atelier-glare {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 320ms ease;
+}
+
+.brand-atelier-item:hover .brand-atelier-glare,
+.brand-atelier-item:focus-visible .brand-atelier-glare {
+  opacity: 1;
+}
+
 .brand-atelier-index {
+  position: relative;
+  z-index: 2;
   font-family: "Orbitron", sans-serif;
   font-size: 0.48rem;
   letter-spacing: 0.1em;
   color: rgba(233, 231, 222, 0.25);
+  transition: color 220ms ease;
+}
+
+.brand-atelier-item:hover .brand-atelier-index,
+.brand-atelier-item:focus-visible .brand-atelier-index {
+  color: var(--shop-green);
 }
 
 .brand-atelier-logo-container {
+  position: relative;
+  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2.35rem;
-  height: 2.35rem;
-  border-radius: 0.6rem;
+  flex-shrink: 0;
+  /* Square container — logos are not squashed. */
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 0.55rem;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 0.35rem;
+  padding: 0.45rem;
+  overflow: hidden;
+  /* Floats above card plane for parallax depth against the flat text. */
+  transform: translateZ(30px);
   transition:
     background-color 220ms ease,
     border-color 220ms ease,
@@ -1372,7 +1588,7 @@ button,
 .brand-atelier-item:hover .brand-atelier-logo-container {
   background: rgba(255, 255, 255, 0.1);
   border-color: rgba(0, 255, 135, 0.4);
-  transform: scale(1.08);
+  transform: translateZ(54px) scale(1.06);
   box-shadow: 0 0 15px rgba(0, 255, 135, 0.15);
 }
 
@@ -1381,9 +1597,7 @@ button,
   height: 100%;
   object-fit: contain;
   opacity: 0.85;
-  transition:
-    opacity 220ms ease,
-    transform 220ms ease;
+  transition: opacity 220ms ease;
 }
 
 .brand-atelier-item:hover .brand-atelier-logo {
@@ -1391,12 +1605,27 @@ button,
 }
 
 .brand-atelier-name {
+  position: relative;
+  z-index: 2;
   font-family: "Newsreader", serif;
   font-size: clamp(1.05rem, 1.8vw, 1.35rem);
   font-style: italic;
+  /* Clamp text within its grid column — prevents overflow on long names. */
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: transform 220ms ease;
+}
+
+.brand-atelier-item:hover .brand-atelier-name {
+  transform: translateX(0.2rem);
 }
 
 .brand-atelier-item svg {
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
   opacity: 0;
   transform: translate(-4px, 4px);
   transition:
@@ -1407,6 +1636,13 @@ button,
 .brand-atelier-item:hover svg {
   opacity: 1;
   transform: translate(0, 0);
+}
+
+/* Keyboard focus ring — matches shop-page accent, visible in both
+   mouse and keyboard navigation contexts. */
+.brand-atelier-item:focus-visible {
+  outline: 2px solid var(--shop-green);
+  outline-offset: -2px;
 }
 
 .drive-category-grid {
@@ -1626,9 +1862,20 @@ button,
 @media (prefers-reduced-motion: reduce) {
   .brand-atelier-item,
   .brand-atelier-item svg,
+  .brand-atelier-glare,
+  .brand-atelier-heading-glow,
+  .brand-atelier-logo-container,
+  .brand-atelier-logo,
+  .brand-atelier-name,
   .drive-category-card img,
   .editorial-spotlight-copy button {
     transition: none;
+  }
+  .brand-atelier-item:hover .brand-atelier-logo-container {
+    transform: translateZ(30px);
+  }
+  .brand-atelier-item:hover .brand-atelier-name {
+    transform: none;
   }
 }
 

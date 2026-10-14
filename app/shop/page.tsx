@@ -13,7 +13,6 @@ import EditorialSpotlight from "@/components/shop/EditorialSpotlight";
 
 import BodySilhouette from "@/components/filters/BodySilhouette";
 import PriceCeiling from "@/components/filters/PriceCeiling";
-import "./shop-hero.css";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   SlidersHorizontal,
@@ -341,7 +340,7 @@ const ShopPage = () => {
           transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
         >
           <span className="shop-eyebrow">Signature Selection</span>
-          <h2 className="shop-display-title">Exceptional Automobiles</h2>
+          <h2 className="shop-display-title">Exceptional automobiles</h2>
           <p className="shop-section-description">
             A rare ensemble of limited-production icons and showroom
             centerpieces available for immediate allocation.
@@ -386,8 +385,8 @@ const ShopPage = () => {
           <div className="concierge-cta-ambient" />
           <div className="concierge-cta-copy">
             <span className="concierge-cta-eyebrow">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#00ff87] animate-pulse" />
-              <Sparkles size={13} className="text-[#00ff87]" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#b8d8c2] animate-pulse" />
+              <Sparkles size={13} className="text-[#b8d8c2]" />
               Private Concierge Desk
             </span>
             <h2 className="concierge-cta-title">

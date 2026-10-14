@@ -18,6 +18,7 @@ const EditorialSpotlight = ({ onExplore }: EditorialSpotlightProps) => (
 				className="editorial-spotlight-image"
 			/>
 			<div className="editorial-spotlight-gradient" />
+			<span className="editorial-spotlight-index">Featured · 01</span>
 			<div className="editorial-spotlight-copy">
 				<span className="shop-eyebrow">The Art of Performance</span>
 				<h2>Porsche 911 Carrera GTS</h2>

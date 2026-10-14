@@ -35,6 +35,10 @@ export const brands: Brand[] = [
 		name: "Bentley",
 		logo: "https://cdn.worldvectorlogo.com/logos/bentley.svg",
 	},
+	{
+		name: "Aston Martin",
+		logo: "https://cdn.worldvectorlogo.com/logos/aston-martin-1.svg",
+	},
 ];
 
 const BrandItem = ({ brand }: BrandItemProps) => (

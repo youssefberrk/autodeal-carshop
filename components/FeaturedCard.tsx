@@ -23,9 +23,9 @@ const FeaturedCard = ({ album, model, info, price }: featuredCars) => {
 					<span className="card-badge">Featured</span>
 				</div>
 
-				<div className="card-body ">
-					<h3 className="card-model uppercase ">{model}</h3>
-					<p className="card-info flex-1 py-5 my-3 font-mono uppercase text-xs leading-relaxed tracking-wide text-[#e5efe3]/96">
+				<div className="card-body">
+					<h3 className="card-model uppercase">{model}</h3>
+					<p className="card-info">
 						<span>&ndash;</span> {info}
 					</p>
 				</div>
