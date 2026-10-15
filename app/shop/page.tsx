@@ -152,12 +152,8 @@ const ShopPage = () => {
                   className="text-[clamp(1.8rem,5.4vw,4.9rem)] font-black uppercase tracking-[0.04em] text-transparent select-none mt-2"
                   style={{
                     fontFamily: "Orbitron",
-                    background: "linear-gradient(90deg, #ff6ec7, #00ffb3)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    WebkitTextStroke: "1px rgba(255,255,255,0.3)",
-                    textShadow:
-                      "0 0 5px rgba(255,110,199,0.6), 0 0 10px rgba(0,255,179,0.4)",
+                    color: "#f4f5f2",
+                    textShadow: "0 2px 24px rgba(0,0,0,0.38)",
                   }}
                 >
                   Collection
