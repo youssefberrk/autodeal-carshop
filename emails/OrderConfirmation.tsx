@@ -41,10 +41,10 @@ export const OrderConfirmationEmail = ({
 					theme: {
 						extend: {
 							colors: {
-								brand: "#00ff87",
-								bgDark: "#050e0a",
-								bgCard: "#091a11",
-								textLight: "#e5efe3",
+								brand: "#39ff14",
+								bgDark: "#050606",
+								bgCard: "#111314",
+								textLight: "#f4f5f2",
 							},
 						},
 					},
