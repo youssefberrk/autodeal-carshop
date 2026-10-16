@@ -32,10 +32,10 @@ const PriceCeilingSlider: React.FC<PriceCeilingSliderProps> = ({
 	return (
 		<div className="w-full max-w-xs font-['Manrope']">
 			<div className="flex justify-between items-end mb-4">
-				<label className="text-[10px] uppercase tracking-[0.2em] text-[#dae6d8]/60 font-bold">
+				<label className="text-[10px] uppercase tracking-[0.2em] text-[#f4f5f2]/60 font-bold">
 					Price Ceiling
 				</label>
-				<span className="text-xs font-bold text-[#00ff87] tracking-widest">
+				<span className="text-xs font-bold text-[#39ff14] tracking-widest">
 					{currency}
 					{Math.round(currentValue).toLocaleString()}
 				</span>
@@ -43,11 +43,11 @@ const PriceCeilingSlider: React.FC<PriceCeilingSliderProps> = ({
 
 			<div className="relative h-6 flex items-center">
 				{/* Track Background */}
-				<div className="absolute w-full h-0.5 bg-[#dae6d8]/10 rounded-full" />
+				<div className="absolute w-full h-0.5 bg-[#f4f5f2]/10 rounded-full" />
 
 				{/* Active Track Highlight */}
 				<div
-					className="absolute h-0.5 bg-[#00ff87] rounded-full shadow-[0_0_8px_rgba(0,255,135,0.4)]"
+					className="absolute h-0.5 bg-[#39ff14] rounded-full shadow-[0_0_8px_rgba(57,255,20,0.4)]"
 					style={{ width: `${percentage}%` }}
 				/>
 
@@ -68,8 +68,8 @@ const PriceCeilingSlider: React.FC<PriceCeilingSliderProps> = ({
             [&::-webkit-slider-thumb]:w-4 
             [&::-webkit-slider-thumb]:h-4 
             [&::-webkit-slider-thumb]:rounded-full 
-            [&::-webkit-slider-thumb]:bg-[#00ff87]
-            [&::-webkit-slider-thumb]:shadow-[0_0_12px_rgba(0,255,135,0.6)]
+            [&::-webkit-slider-thumb]:bg-[#39ff14]
+            [&::-webkit-slider-thumb]:shadow-[0_0_12px_rgba(57,255,20,0.6)]
             [&::-webkit-slider-thumb]:transition-transform
             [&::-webkit-slider-thumb]:duration-200
             [&::-webkit-slider-thumb]:hover:scale-125
@@ -77,17 +77,17 @@ const PriceCeilingSlider: React.FC<PriceCeilingSliderProps> = ({
             [&::-moz-range-thumb]:h-4
             [&::-moz-range-thumb]:border-none
             [&::-moz-range-thumb]:rounded-full
-            [&::-moz-range-thumb]:bg-[#00ff87]
-            [&::-moz-range-thumb]:shadow-[0_0_12px_rgba(0,255,135,0.6)]"
+            [&::-moz-range-thumb]:bg-[#39ff14]
+            [&::-moz-range-thumb]:shadow-[0_0_12px_rgba(57,255,20,0.6)]"
 				/>
 			</div>
 
 			<div className="flex justify-between mt-3">
-				<span className="text-[9px] uppercase tracking-widest text-[#dae6d8]/40 font-medium">
+				<span className="text-[9px] uppercase tracking-widest text-[#f4f5f2]/40 font-medium">
 					{currency}
 					{Math.round(min).toLocaleString()}
 				</span>
-				<span className="text-[9px] uppercase tracking-widest text-[#dae6d8]/40 font-medium">
+				<span className="text-[9px] uppercase tracking-widest text-[#f4f5f2]/40 font-medium">
 					{currency}
 					{Math.round(max).toLocaleString()}+
 				</span>
