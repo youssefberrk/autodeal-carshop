@@ -139,13 +139,13 @@ const Testimonials = () => {
 	return (
 		<section
 			ref={sectionRef}
-			className="relative isolate overflow-hidden bg-background py-24 sm:py-32 border-t border-b border-[#00ff87]/10 text-white">
+			className="relative isolate overflow-hidden bg-background py-24 sm:py-32 border-t border-b border-[#39ff14]/10 text-white">
 			<div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 				{/* Section Header */}
 				<div className="mx-auto max-w-3xl text-center">
 					<p
 						style={{ transitionDelay: "0ms" }}
-						className={`font-mono text-xs uppercase tracking-[0.3em] text-[#00ff87] transition duration-700 ease-out ${
+						className={`font-mono text-xs uppercase tracking-[0.3em] text-[#39ff14] transition duration-700 ease-out ${
 							isVisible
 								? "translate-y-0 opacity-100"
 								: "translate-y-6 opacity-0"
@@ -177,7 +177,7 @@ const Testimonials = () => {
 								: "translate-y-6 opacity-0"
 						}`}>
 						Curating{" "}
-						<span className="bg-gradient-to-r from-emerald-400 via-[#00ff87] to-teal-300 bg-clip-text text-transparent">
+						<span className="text-foreground">
 							Excellence
 						</span>{" "}
 						Together
@@ -185,7 +185,7 @@ const Testimonials = () => {
 
 					<p
 						style={{ transitionDelay: "240ms" }}
-						className={`mt-4 text-base leading-relaxed italic tracking-wide text-[#dae6d8]/70 sm:text-lg transition duration-700 ease-out ${
+						className={`mt-4 text-base leading-relaxed italic tracking-wide text-[#f4f5f2]/70 sm:text-lg transition duration-700 ease-out ${
 							isVisible
 								? "translate-y-0 opacity-100"
 								: "translate-y-6 opacity-0"
@@ -197,7 +197,7 @@ const Testimonials = () => {
 
 					<div
 						style={{ transitionDelay: "360ms" }}
-						className={`mx-auto mt-6 h-[2px] w-28 bg-gradient-to-r from-transparent via-[#00ff87] to-transparent transition duration-700 ease-out ${
+						className={`mx-auto mt-6 h-[2px] w-28 bg-gradient-to-r from-transparent via-[#39ff14] to-transparent transition duration-700 ease-out ${
 							isVisible ? "opacity-100" : "opacity-0"
 						}`}
 					/>
@@ -215,8 +215,8 @@ const Testimonials = () => {
 							onClick={() => setActiveCategory(cat)}
 							className={`rounded-full px-5 py-2 text-xs uppercase tracking-wider transition-all duration-300 font-mono ${
 								activeCategory === cat
-									? "border border-[#00ff87]/50 bg-[#00ff87]/20 text-[#00ff87] shadow-[0_0_15px_rgba(0,255,135,0.2)]"
-									: "border border-white/10 bg-white/[0.03] text-gray-400 hover:border-[#00ff87]/30 hover:text-white"
+									? "border border-[#39ff14]/50 bg-[#39ff14]/20 text-[#39ff14] shadow-[0_0_15px_rgba(57,255,20,0.2)]"
+									: "border border-white/10 bg-white/[0.03] text-gray-400 hover:border-[#39ff14]/30 hover:text-white"
 							}`}>
 							{cat}
 						</button>
@@ -229,38 +229,38 @@ const Testimonials = () => {
 						<div
 							key={item.id}
 							style={{ transitionDelay: `${600 + index * 150}ms` }}
-							className={`group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-[#00ff87]/15 bg-gradient-to-b from-[#091610]/80 via-[#050c08]/90 to-[#020503]/95 p-8 backdrop-blur-md transition-all duration-700 ease-out hover:border-[#00ff87]/40 hover:shadow-[0_20px_50px_rgba(0,255,135,0.12)] hover:-translate-y-1.5 ${
+							className={`group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-[#39ff14]/15 bg-gradient-to-b from-[#091610]/80 via-[#050c08]/90 to-[#020503]/95 p-8 backdrop-blur-md transition-all duration-700 ease-out hover:border-[#39ff14]/40 hover:shadow-[0_20px_50px_rgba(57,255,20,0.12)] hover:-translate-y-1.5 ${
 								isVisible
 									? "translate-y-0 opacity-100"
 									: "translate-y-6 opacity-0"
 							}`}>
 							{/* Top Glowing Edge Accent Line */}
-							<div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#00ff87]/40 to-transparent transition-opacity duration-500 group-hover:via-[#00ff87]/80" />
+							<div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#39ff14]/40 to-transparent transition-opacity duration-500 group-hover:via-[#39ff14]/80" />
 
 							{/* Ambient Hover Light Effect */}
-							<div className="pointer-events-none absolute -right-16 -top-16 h-36 w-36 rounded-full bg-[#00ff87]/5 blur-2xl transition duration-500 group-hover:bg-[#00ff87]/15" />
+							<div className="pointer-events-none absolute -right-16 -top-16 h-36 w-36 rounded-full bg-[#39ff14]/5 blur-2xl transition duration-500 group-hover:bg-[#39ff14]/15" />
 
 							<div>
 								{/* Card Header: Quote Icon & Verification Badge */}
 								<div className="flex items-center justify-between">
-									<div className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#00ff87]/20 bg-[#00ff87]/10 text-[#00ff87] shadow-[0_0_15px_rgba(0,255,135,0.15)]">
+									<div className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#39ff14]/20 bg-[#39ff14]/10 text-[#39ff14] shadow-[0_0_15px_rgba(57,255,20,0.15)]">
 										<Quote className="h-5 w-5" />
 									</div>
 
 									<div className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/20 bg-emerald-950/40 px-3 py-1 text-[11px] font-medium text-emerald-400 backdrop-blur-sm">
-										<CheckCircle2 className="h-3.5 w-3.5 text-[#00ff87]" />
+										<CheckCircle2 className="h-3.5 w-3.5 text-[#39ff14]" />
 										<span>{item.verifiedStatus}</span>
 									</div>
 								</div>
 
 								{/* Quote Body */}
-								<p className="mt-6 leading-relaxed text-xl tracking-wide text-[#dae6d8] italic">
+								<p className="mt-6 leading-relaxed text-xl tracking-wide text-[#f4f5f2] italic">
 									&ldquo; {item.quote}&rdquo;
 								</p>
 
 								{/* Vehicle Badge */}
-								<div className="mt-5 inline-flex items-center gap-2 rounded-md border border-white/5 bg-white/[0.03] px-3 py-1.5 font-mono text-xs text-[#00ff87]/90">
-									<Award className="h-3.5 w-3.5 text-[#00ff87]" />
+								<div className="mt-5 inline-flex items-center gap-2 rounded-md border border-white/5 bg-white/[0.03] px-3 py-1.5 font-mono text-xs text-[#39ff14]/90">
+									<Award className="h-3.5 w-3.5 text-[#39ff14]" />
 									<span>
 										Acquired:{" "}
 										<strong className="text-white font-medium">
@@ -277,7 +277,7 @@ const Testimonials = () => {
 								{/* Author & Rating Section */}
 								<div className="flex items-center justify-between gap-4">
 									<div className="flex items-center gap-3.5">
-										<div className="relative h-12 w-12 overflow-hidden rounded-full ring-2 ring-[#00ff87]/30 transition-all duration-300 group-hover:ring-[#00ff87]/70 group-hover:scale-105">
+										<div className="relative h-12 w-12 overflow-hidden rounded-full ring-2 ring-[#39ff14]/30 transition-all duration-300 group-hover:ring-[#39ff14]/70 group-hover:scale-105">
 											<Image
 												src={item.avatar}
 												fill
@@ -291,7 +291,7 @@ const Testimonials = () => {
 												{item.name}
 											</h3>
 											<p className="text-xs text-gray-400">{item.title}</p>
-											<p className="text-[11px] text-[#00ff87]/70 font-mono">
+											<p className="text-[11px] text-[#39ff14]/70 font-mono">
 												{item.location}
 											</p>
 										</div>
@@ -313,19 +313,19 @@ const Testimonials = () => {
 				{/* Bottom Trust Banner & Action */}
 				<div
 					style={{ transitionDelay: "1050ms" }}
-					className={`mt-16 rounded-2xl border border-[#00ff87]/20 bg-gradient-to-r from-[#05110b]/90 via-[#0a1c13]/80 to-[#05110b]/90 p-8 shadow-[0_20px_60px_rgba(0,0,0,0.5)] backdrop-blur-md transition duration-700 ease-out ${
+					className={`mt-16 rounded-2xl border border-[#39ff14]/20 bg-gradient-to-r from-[#05110b]/90 via-[#0a1c13]/80 to-[#05110b]/90 p-8 shadow-[0_20px_60px_rgba(0,0,0,0.5)] backdrop-blur-md transition duration-700 ease-out ${
 						isVisible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
 					}`}>
 					<div className="flex flex-col items-center justify-between gap-6 md:flex-row">
 						<div className="flex items-center gap-4 text-left">
-							<div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#00ff87]/30 bg-[#00ff87]/10 text-[#00ff87]">
+							<div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#39ff14]/30 bg-[#39ff14]/10 text-[#39ff14]">
 								<ShieldCheck className="h-6 w-6" />
 							</div>
 							<div>
 								<h4 className="font-semibold text-white text-lg">
 									Guaranteed Provenance & White-Glove Handover
 								</h4>
-								<p className="text-sm text-[#dae6d8]/70">
+								<p className="text-sm text-[#f4f5f2]/70">
 									Every acquisition includes 150-point mechanical inspection &
 									direct curator matching.
 								</p>
@@ -333,7 +333,7 @@ const Testimonials = () => {
 						</div>
 
 						<button
-							className="group inline-flex items-center gap-2.5 rounded-full border border-[#00ff87] bg-[#00ff87] px-6 py-3 font-mono text-xs font-bold uppercase tracking-wider text-black transition-all duration-300 hover:bg-[#20ff97] hover:shadow-[0_0_30px_rgba(0,255,135,0.4)] cursor-pointer"
+							className="group inline-flex items-center gap-2.5 rounded-full border border-[#39ff14] bg-[#39ff14] px-6 py-3 font-mono text-xs font-bold uppercase tracking-wider text-black transition-all duration-300 hover:bg-[#20ff97] hover:shadow-[0_0_30px_rgba(57,255,20,0.4)] cursor-pointer"
 							onClick={() => router.push("/contact")}>
 							<span>Request Concierge Access</span>
 							<ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
