@@ -67,7 +67,7 @@ export default function CarDropdown({ onClose }: CarDropdownProps) {
 			{/* Empty State */}
 			{allocatedCars.length === 0 ? (
 				<div className="flex flex-col items-center justify-center py-10 px-4 text-center">
-					<div className="w-16 h-16 rounded-full bg-emerald-500/5 border border-emerald-500/15 flex items-center justify-center mb-4 text-emerald-400 shadow-[0_0_20px_rgba(0,255,135,0.05)]">
+					<div className="w-16 h-16 rounded-full bg-emerald-500/5 border border-emerald-500/15 flex items-center justify-center mb-4 text-emerald-400 shadow-[0_0_20px_rgba(57,255,20,0.05)]">
 						<ShoppingCart size={28} className="stroke-[1.5]" />
 					</div>
 					<h4
@@ -81,7 +81,7 @@ export default function CarDropdown({ onClose }: CarDropdownProps) {
 					</p>
 					<Link
 						href="/shop"
-						className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#00ff87]/5 hover:bg-[#00ff87]/15 text-[#00ff87] border border-[#00ff87]/10 hover:border-[#00ff87]/35 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all duration-300 active:scale-[0.97] group"
+						className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#39ff14]/5 hover:bg-[#39ff14]/15 text-[#39ff14] border border-[#39ff14]/10 hover:border-[#39ff14]/35 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all duration-300 active:scale-[0.97] group"
 						style={{ fontFamily: "Orbitron, sans-serif" }}
 						onClick={onClose}>
 						Browse Showroom
@@ -94,11 +94,11 @@ export default function CarDropdown({ onClose }: CarDropdownProps) {
 			) : (
 				<>
 					{/* Cars List */}
-					<div className="space-y-2.5 max-h-64 overflow-y-auto pr-1.5 [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-track]:bg-white/[0.01] [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#00ff87]/20 [&::-webkit-scrollbar-thumb:hover]:bg-[#00ff87]/50 [&::-webkit-scrollbar-thumb:active]:bg-[#00ff87]/85 [&::-webkit-scrollbar-thumb]:rounded-full">
+					<div className="space-y-2.5 max-h-64 overflow-y-auto pr-1.5 [&::-webkit-scrollbar]:w-1 [&::-webkit-scrollbar-track]:bg-white/[0.01] [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#39ff14]/20 [&::-webkit-scrollbar-thumb:hover]:bg-[#39ff14]/50 [&::-webkit-scrollbar-thumb:active]:bg-[#39ff14]/85 [&::-webkit-scrollbar-thumb]:rounded-full">
 						{allocatedCars.map((car) => (
 							<div
 								key={car.id}
-								className="flex items-center justify-between gap-3 p-3 bg-[#07130c]/30 border border-white/[0.04] hover:border-[#00ff87]/20 hover:shadow-[0_0_15px_rgba(0,255,135,0.02)] rounded-xl transition-all duration-200 group/item">
+								className="flex items-center justify-between gap-3 p-3 bg-[#07130c]/30 border border-white/[0.04] hover:border-[#39ff14]/20 hover:shadow-[0_0_15px_rgba(57,255,20,0.02)] rounded-xl transition-all duration-200 group/item">
 								{/* Left/Middle: Image, Model & Metadata */}
 								<Link
 									href={`/details/${car.id}`}
@@ -131,7 +131,7 @@ export default function CarDropdown({ onClose }: CarDropdownProps) {
 											<span className="w-1 h-1 rounded-full bg-white/20 flex-shrink-0" />
 											{/* Color Dot */}
 											<span
-												className="h-3 w-3 rounded-full ring-1 ring-[#00ff87]/30 flex-shrink-0"
+												className="h-3 w-3 rounded-full ring-1 ring-[#39ff14]/30 flex-shrink-0"
 												style={{ backgroundColor: car.color?.hex || "#ffffff" }}
 												title={car.color?.id}
 											/>
@@ -175,7 +175,7 @@ export default function CarDropdown({ onClose }: CarDropdownProps) {
 						<Link
 							href="/checkout"
 							onClick={onClose}
-							className="w-full flex items-center justify-center gap-2 py-3 bg-emerald-500 hover:bg-[#00ff87] text-[#020503] text-xs font-bold uppercase tracking-wider rounded-xl transition-all duration-200 shadow-[0_4px_20px_rgba(0,255,135,0.25)] hover:shadow-[0_4px_30px_rgba(0,255,135,0.4)] active:scale-[0.98] group"
+							className="w-full flex items-center justify-center gap-2 py-3 bg-emerald-500 hover:bg-[#39ff14] text-[#020503] text-xs font-bold uppercase tracking-wider rounded-xl transition-all duration-200 shadow-[0_4px_20px_rgba(57,255,20,0.25)] hover:shadow-[0_4px_30px_rgba(57,255,20,0.4)] active:scale-[0.98] group"
 							style={{ fontFamily: "Orbitron, sans-serif" }}>
 							Confirm Purchase
 							<ArrowRight
