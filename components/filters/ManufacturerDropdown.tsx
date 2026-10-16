@@ -78,13 +78,13 @@ const ManufacturerDropdown = ({ brands, selectedBrand, onBrandChange }: Manufact
 					background: rgba(9, 26, 17, 0.8);
 					border: 1px solid rgba(218, 230, 216, 0.1);
 					border-radius: 0.75rem;
-					color: #dae6d8;
+					color: #f4f5f2;
 					cursor: pointer;
 					transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 				}
 
 				.dropdown-trigger:hover {
-					border-color: rgba(0, 255, 135, 0.3);
+					border-color: rgba(57, 255, 20, 0.3);
 					background: rgba(9, 26, 17, 1);
 				}
 
@@ -102,7 +102,7 @@ const ManufacturerDropdown = ({ brands, selectedBrand, onBrandChange }: Manufact
 				}
 
 				.dropdown-icon.is-open {
-					color: #00ff87;
+					color: #39ff14;
 					transform: rotate(180deg);
 				}
 
@@ -166,12 +166,12 @@ const ManufacturerDropdown = ({ brands, selectedBrand, onBrandChange }: Manufact
 
 				.dropdown-item:hover {
 					background: rgba(218, 230, 216, 0.05);
-					color: #dae6d8;
+					color: #f4f5f2;
 				}
 
 				.dropdown-item.is-selected {
-					background: rgba(0, 255, 135, 0.08);
-					color: #00ff87;
+					background: rgba(57, 255, 20, 0.08);
+					color: #39ff14;
 				}
 
 				.dropdown-item-text {
