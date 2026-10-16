@@ -32,7 +32,7 @@ const ToastItem = ({ notification }: { notification: Notification }) => {
 		<div className={`fav-notif ${visible ? "show" : ""}`}>
 			<div className={`fav-notif-icon ${notification.type}`}>
 				{notification.type === "add" ? (
-					<Heart className="w-3.5 h-3.5 fill-[#00ff87] text-[#00ff87]" />
+					<Heart className="w-3.5 h-3.5 fill-[#39ff14] text-[#39ff14]" />
 				) : (
 					<CircleOff className="w-3.5 h-3.5" />
 				)}
