@@ -29,14 +29,14 @@ export default function PaymentMethod({
 		<section>
 			{/* Section header */}
 			<div className="flex items-center gap-4 mb-8">
-				<div className="w-12 h-12 bg-[#00ff87]/10 flex items-center justify-center text-[#00ff87] border border-[#00ff87]/25 rounded-xl shadow-[0_0_15px_rgba(0,255,135,0.1)]">
+				<div className="w-12 h-12 bg-[#39ff14]/10 flex items-center justify-center text-[#39ff14] border border-[#39ff14]/25 rounded-xl shadow-[0_0_15px_rgba(57,255,20,0.1)]">
 					<ShieldCheck size={22} />
 				</div>
 				<div>
-					<h3 className="text-2xl md:text-3xl font-['Newsreader'] italic font-bold text-[#e5efe3]">
+					<h3 className="text-2xl md:text-3xl font-['Newsreader'] italic font-bold text-[#f4f5f2]">
 						Secure Payment
 					</h3>
-					<p className="text-[10px] text-[#dae6d8]/50 uppercase tracking-[0.2em] mt-0.5 font-semibold">
+					<p className="text-[10px] text-[#f4f5f2]/50 uppercase tracking-[0.2em] mt-0.5 font-semibold">
 						Encrypting mechanical acquisitions
 					</p>
 				</div>
@@ -51,25 +51,25 @@ export default function PaymentMethod({
 						onClick={() => onMethodChange(m)}
 						className={`flex-1 flex flex-col items-center justify-center gap-3 py-6 rounded-2xl border transition-all duration-300 cursor-pointer ${
 							method === m
-								? "bg-[#00ff87]/10 border-[#00ff87] shadow-[0_0_25px_rgba(0,255,135,0.15)]"
-								: "bg-[#05140d]/40 border-[#dae6d8]/10 hover:border-[#dae6d8]/30 hover:bg-[#05140d]/80"
+								? "bg-[#39ff14]/10 border-[#39ff14] shadow-[0_0_25px_rgba(57,255,20,0.15)]"
+								: "bg-[#05140d]/40 border-[#f4f5f2]/10 hover:border-[#f4f5f2]/30 hover:bg-[#05140d]/80"
 						}`}>
 						{m === "credit_card" ? (
 							<CreditCard
 								size={20}
 								className={
-									method === m ? "text-[#00ff87]" : "text-[#dae6d8]/40"
+									method === m ? "text-[#39ff14]" : "text-[#f4f5f2]/40"
 								}
 							/>
 						) : (
 							<Building2
 								size={20}
 								className={
-									method === m ? "text-[#00ff87]" : "text-[#dae6d8]/40"
+									method === m ? "text-[#39ff14]" : "text-[#f4f5f2]/40"
 								}
 							/>
 						)}
-						<span className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#e5efe3]">
+						<span className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#f4f5f2]">
 							{m === "credit_card" ? "Credit Card" : "Wire Transfer"}
 						</span>
 					</button>
@@ -86,45 +86,45 @@ export default function PaymentMethod({
 
 			{/* Method-specific panel */}
 			{method === "credit_card" ? (
-				<div className="bg-[#05160d]/90 p-7 border border-[#00ff87]/30 rounded-2xl space-y-4 shadow-[0_15px_30px_rgba(0,0,0,0.4),0_0_20px_rgba(0,255,135,0.04)] backdrop-blur-xl">
-					<div className="flex justify-between items-center border-b border-[#dae6d8]/10 pb-4">
-						<h4 className="text-xs uppercase tracking-widest font-bold text-[#e5efe3]">
+				<div className="bg-[#05160d]/90 p-7 border border-[#39ff14]/30 rounded-2xl space-y-4 shadow-[0_15px_30px_rgba(0,0,0,0.4),0_0_20px_rgba(57,255,20,0.04)] backdrop-blur-xl">
+					<div className="flex justify-between items-center border-b border-[#f4f5f2]/10 pb-4">
+						<h4 className="text-xs uppercase tracking-widest font-bold text-[#f4f5f2]">
 							Stripe Secure Payment
 						</h4>
-						<span className="text-[9px] bg-[#00ff87]/15 text-[#00ff87] border border-[#00ff87]/30 px-3 py-1 rounded-full uppercase tracking-widest font-bold shadow-[0_0_10px_rgba(0,255,135,0.2)]">
+						<span className="text-[9px] bg-[#39ff14]/15 text-[#39ff14] border border-[#39ff14]/30 px-3 py-1 rounded-full uppercase tracking-widest font-bold shadow-[0_0_10px_rgba(57,255,20,0.2)]">
 							Test Mode
 						</span>
 					</div>
-					<p className="text-[11px] text-[#dae6d8]/70 leading-relaxed">
+					<p className="text-[11px] text-[#f4f5f2]/70 leading-relaxed">
 						You will be securely redirected to Stripe Test Checkout to complete
 						your payment. You can use standard Stripe test cards (e.g.{" "}
-						<code className="text-[#00ff87] bg-black/40 border border-[#00ff87]/20 px-2 py-0.5 rounded font-mono">
+						<code className="text-[#39ff14] bg-black/40 border border-[#39ff14]/20 px-2 py-0.5 rounded font-mono">
 							4242 4242 4242 4242
 						</code>
 						) on the checkout page.
 					</p>
 					<div className="grid grid-cols-2 gap-4 text-xs pt-2">
 						<div>
-							<span className="text-[#dae6d8]/50 block text-[9px] uppercase tracking-widest font-semibold">
+							<span className="text-[#f4f5f2]/50 block text-[9px] uppercase tracking-widest font-semibold">
 								Transaction Type
 							</span>
-							<span className="font-bold text-[#e5efe3]">
+							<span className="font-bold text-[#f4f5f2]">
 								Reservation Deposit
 							</span>
 						</div>
 						<div>
-							<span className="text-[#dae6d8]/50 block text-[9px] uppercase tracking-widest font-semibold">
+							<span className="text-[#f4f5f2]/50 block text-[9px] uppercase tracking-widest font-semibold">
 								Immediate Charge
 							</span>
-							<span className="font-bold text-[#00ff87] text-base">
+							<span className="font-bold text-[#39ff14] text-base">
 								${depositRequired.toLocaleString()}
 							</span>
 						</div>
 					</div>
 				</div>
 			) : (
-				<div className="bg-[#05160d]/90 p-7 border border-[#dae6d8]/15 rounded-2xl space-y-4 shadow-xl backdrop-blur-xl">
-					<h4 className="text-xs uppercase tracking-widest font-bold text-[#e5efe3]">
+				<div className="bg-[#05160d]/90 p-7 border border-[#f4f5f2]/15 rounded-2xl space-y-4 shadow-xl backdrop-blur-xl">
+					<h4 className="text-xs uppercase tracking-widest font-bold text-[#f4f5f2]">
 						Obsidian Wire Instructions
 					</h4>
 					<div className="grid grid-cols-2 gap-4 text-xs">
@@ -138,17 +138,17 @@ export default function PaymentMethod({
 							],
 						].map(([label, value]) => (
 							<div key={label}>
-								<span className="text-[#dae6d8]/50 block text-[9px] uppercase tracking-widest font-semibold">
+								<span className="text-[#f4f5f2]/50 block text-[9px] uppercase tracking-widest font-semibold">
 									{label}
 								</span>
 								<span
-									className={`font-bold ${label === "Reference Code" ? "text-[#00ff87]" : "text-[#e5efe3]"}`}>
+									className={`font-bold ${label === "Reference Code" ? "text-[#39ff14]" : "text-[#f4f5f2]"}`}>
 									{value}
 								</span>
 							</div>
 						))}
 					</div>
-					<p className="text-[10px] text-[#dae6d8]/50 leading-relaxed pt-2 border-t border-[#dae6d8]/10">
+					<p className="text-[10px] text-[#f4f5f2]/50 leading-relaxed pt-2 border-t border-[#f4f5f2]/10">
 						Please trigger the transfer within 24 hours. Your allocation slot is
 						temporarily locked pending confirmation.
 					</p>
@@ -156,9 +156,9 @@ export default function PaymentMethod({
 			)}
 
 			{/* Legal note */}
-			<div className="bg-[#00ff87]/5 border-l-2 border-[#00ff87] border-y border-r border-y-[#00ff87]/10 border-r-[#00ff87]/10 p-6 flex gap-4 mt-8 rounded-r-2xl backdrop-blur-md">
-				<Info size={20} className="text-[#00ff87] shrink-0 mt-0.5" />
-				<p className="text-[11px] text-[#dae6d8]/70 leading-relaxed">
+			<div className="bg-[#39ff14]/5 border-l-2 border-[#39ff14] border-y border-r border-y-[#39ff14]/10 border-r-[#39ff14]/10 p-6 flex gap-4 mt-8 rounded-r-2xl backdrop-blur-md">
+				<Info size={20} className="text-[#39ff14] shrink-0 mt-0.5" />
+				<p className="text-[11px] text-[#f4f5f2]/70 leading-relaxed">
 					By selecting &apos;Secure Allocation&apos;, you agree to our terms of
 					premium delivery and vehicle reservation. A $
 					{depositRequired.toLocaleString()} non-refundable deposit will be
@@ -171,10 +171,10 @@ export default function PaymentMethod({
 				<button
 					type="submit"
 					disabled={isSubmitting}
-					className="flex-1 bg-gradient-to-r from-[#00ff87] to-[#00df76] text-[#050e0a] py-5 rounded-xl flex items-center justify-center gap-3 text-xs uppercase tracking-[0.3em] font-bold hover:brightness-110 active:scale-[0.99] transition-all duration-300 shadow-[0_0_35px_rgba(0,255,135,0.25)] hover:shadow-[0_0_50px_rgba(0,255,135,0.4)] disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer">
+					className="flex-1 bg-gradient-to-r from-[#39ff14] to-[#00df76] text-[#050606] py-5 rounded-xl flex items-center justify-center gap-3 text-xs uppercase tracking-[0.3em] font-bold hover:brightness-110 active:scale-[0.99] transition-all duration-300 shadow-[0_0_35px_rgba(57,255,20,0.25)] hover:shadow-[0_0_50px_rgba(57,255,20,0.4)] disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer">
 					{isSubmitting ? (
 						<>
-							<CarWheelLoader size={16} color="#050e0a" />
+							<CarWheelLoader size={16} color="#050606" />
 							Locking Slot Allocation...
 						</>
 					) : (
