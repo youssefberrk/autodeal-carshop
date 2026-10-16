@@ -12,7 +12,7 @@ const easeCustom = [0.16, 1, 0.3, 1] as const;
 
 const HeroSection: React.FC = () => {
   return (
-    <section className="relative min-h-screen flex items-center lg:pb-16 bg-gradient-to-r from-[#020d02] via-[#032f36] to-[#0f0101] from-[5%] via-[29%] to-[68%] overflow-hidden border-b border-[#00ff87]/10">
+    <section className="relative min-h-screen flex items-center lg:pb-16 bg-gradient-to-r from-[#080909] via-[#111314] to-[#050606] from-[5%] via-[29%] to-[68%] overflow-hidden border-b border-[#39ff14]/10">
       <div className="container relative z-10  pr-11  py-12 lg:py-16 flex flex-col md:flex-row items-center justify-between gap-12 md:gap-8">
         {/* Left Side - Car Image with Reveal */}
         <motion.div
@@ -40,7 +40,7 @@ const HeroSection: React.FC = () => {
             initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ duration: 0.7, delay: 0.35, ease: easeCustom }}
-            className="font-['Newsreader'] italic text-2xl md:text-3xl font-light text-[#00ff87] tracking-tight block"
+            className="font-['Newsreader'] italic text-2xl md:text-3xl font-light text-[#39ff14] tracking-tight block"
           >
             Exclusivity Defined
           </motion.span>
@@ -53,7 +53,7 @@ const HeroSection: React.FC = () => {
             className="font-['Orbitron'] text-4xl md:text-7xl font-black tracking-tight leading-[1.05] text-white"
           >
             Drive Your{" "}
-            <span className="bg-gradient-to-r from-[#00ff87] via-[#38ef7d] to-emerald-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#39ff14] via-[#38ef7d] to-emerald-400 bg-clip-text text-transparent">
               Dream Machine
             </span>
           </motion.h1>
@@ -63,7 +63,7 @@ const HeroSection: React.FC = () => {
             initial={{ opacity: 0, y: 24, filter: "blur(4px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{ duration: 0.8, delay: 0.65, ease: easeCustom }}
-            className="font-mono  leading-relaxed tracking-wide italic text-sm  text-[#dae6d8]/80 max-w-lg "
+            className="font-mono  leading-relaxed tracking-wide italic text-sm  text-[#f4f5f2]/80 max-w-lg "
           >
             Experience the pinnacle of automotive engineering. Curated luxury
             and high performance, delivered with concierge precision.
@@ -80,7 +80,7 @@ const HeroSection: React.FC = () => {
               <Link href="/shop" passHref className="w-full sm:w-auto">
                 <Button
                   size="lg"
-                  className="w-full sm:w-[210px] h-[74px]  text-[18px] md:text-[20px] font-['Orbitron'] tracking-tight font-bold rounded-full bg-[#00ff87] text-[#02130a] hover:bg-[#00ff87]/90  transition-all duration-300 group"
+                  className="w-full sm:w-[210px] h-[74px]  text-[18px] md:text-[20px] font-['Orbitron'] tracking-tight font-bold rounded-full bg-[#39ff14] text-[#02130a] hover:bg-[#39ff14]/90  transition-all duration-300 group"
                 >
                   <span>Explore Collection</span>
                   <ArrowRight className="w-4 h-4  transition-transform duration-300 group-hover:translate-x-1" />
@@ -98,7 +98,7 @@ const HeroSection: React.FC = () => {
                 <Button
                   variant="outline"
                   size="lg"
-                  className="w-full sm:w-[190px] h-[74px] text-[18px] font-['Orbitron'] font-bold tracking-wide rounded-full border-[#00ff87]/30 text-white hover:border-[#00ff87] hover:bg-[#00ff87]/10 transition-all duration-300"
+                  className="w-full sm:w-[190px] h-[74px] text-[18px] font-['Orbitron'] font-bold tracking-wide rounded-full border-[#39ff14]/30 text-white hover:border-[#39ff14] hover:bg-[#39ff14]/10 transition-all duration-300"
                 >
                   Contact Us
                 </Button>
