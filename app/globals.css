@@ -158,7 +158,7 @@ button,
   --background: #080909;
   --foreground: #f4f5f2;
 }
-/* border-[#e5efe3]/22 bg-gradient-to-l from-[#070707]  to-[#1f1e1e] */
+/* border-[#f4f5f2]/22 bg-gradient-to-l from-[#070707]  to-[#1f1e1e] */
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -243,12 +243,12 @@ button,
 @keyframes glowPulse {
   0%,
   100% {
-    text-shadow: 0 0 5px rgba(0, 200, 83, 0.4);
+    text-shadow: 0 0 5px rgba(57, 255, 20, 0.4);
   }
   50% {
     text-shadow:
-      0 0 10px rgba(0, 200, 83, 0.8),
-      0 0 20px rgba(0, 200, 83, 0.3);
+      0 0 10px rgba(57, 255, 20, 0.8),
+      0 0 20px rgba(57, 255, 20, 0.3);
   }
 }
 
@@ -290,7 +290,7 @@ button,
   border: 1px solid rgba(57, 255, 20, 0.2);
   border-radius: 12px;
   padding: 0px 18px;
-  color: #e5efe3;
+  color: #f4f5f2;
   font-family: "Manrope", sans-serif;
   font-size: 0.875rem;
   font-weight: 500;
@@ -589,7 +589,7 @@ button,
   font-size: clamp(0.62rem, 0.7vw, 0.72rem);
   font-weight: 600;
   letter-spacing: 0.22em;
-  color: #dae6d8;
+  color: #f4f5f2;
   text-transform: uppercase;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
@@ -870,7 +870,7 @@ button,
     transparent 0deg,
     rgba(57, 255, 20, 0.25) 45deg,
     #39ff14 180deg,
-    rgba(56, 239, 125, 0.9) 240deg,
+    rgba(57, 255, 20, 0.9) 240deg,
     rgba(57, 255, 20, 0.25) 315deg,
     transparent 360deg
   );
@@ -2781,7 +2781,7 @@ button,
   font-weight: 800;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #dae6d8;
+  color: #f4f5f2;
   background: transparent;
   border: 1px solid rgba(218, 230, 216, 0.15);
   padding: 0.625rem 2rem;
@@ -2795,7 +2795,7 @@ button,
 }
 
 .card-cta:hover {
-  color: #050e0a;
+  color: #050606;
   background: #39ff14;
   border-color: #39ff14;
   box-shadow: 0 0 20px rgba(57, 255, 20, 0.3);
@@ -3736,7 +3736,7 @@ button,
   height: 42px;
   border-radius: 12px;
   background: var(--color-accent);
-  color: #050e0a;
+  color: #050606;
   transition:
     transform var(--duration-fast) var(--ease-out),
     box-shadow var(--duration-fast) var(--ease-out);
@@ -4053,7 +4053,7 @@ button,
   border: 1px solid rgba(57, 255, 20, 0.6);
   border-radius: 12px;
   background: var(--color-accent);
-  color: #050e0a;
+  color: #050606;
   font-family: "Orbitron", sans-serif;
   font-size: 0.6rem;
   font-weight: 700;
