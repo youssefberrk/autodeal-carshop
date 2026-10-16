@@ -99,22 +99,22 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
 				animate={{ opacity: 1, scale: 1, y: 0 }}
 				exit={{ opacity: 0, scale: 0.95, y: -20 }}
 				transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
-				className="w-full max-w-3xl border border-white/15 rounded-3xl p-6 md:p-8 shadow-[0_0_50px_rgba(0,255,135,0.15)] flex flex-col gap-6 backdrop-blur-2xl"
+				className="w-full max-w-3xl border border-white/15 rounded-3xl p-6 md:p-8 shadow-[0_0_50px_rgba(57,255,20,0.15)] flex flex-col gap-6 backdrop-blur-2xl"
 				style={{
 					background:
 						"linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(15,15,15,0.56) 35%, rgba(0,0,0,0.7) 100%)",
 				}}>
 				{/* Search Header */}
-				<div className="flex items-center justify-between border-b border-[#00ff87]/15 pb-4">
+				<div className="flex items-center justify-between border-b border-[#39ff14]/15 pb-4">
 					<h2
 						className="text-lg md:text-xl font-bold text-white tracking-widest uppercase flex items-center gap-2.5"
 						style={{ fontFamily: "Orbitron, sans-serif" }}>
-						<FaSearch className="text-[#00ff87]" />
+						<FaSearch className="text-[#39ff14]" />
 						Search Showroom
 					</h2>
 					<button
 						onClick={onClose}
-						className="p-2 hover:text-[#00ff87] text-slate-400 transition-colors rounded-full hover:bg-white/5 active:scale-95"
+						className="p-2 hover:text-[#39ff14] text-slate-400 transition-colors rounded-full hover:bg-white/5 active:scale-95"
 						aria-label="Close search">
 						<FaTimes size={20} />
 					</button>
@@ -130,7 +130,7 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
 						value={query}
 						onChange={(e) => setQuery(e.target.value)}
 						placeholder="Type brand, model, specs or showroom..."
-						className="w-full bg-transparent border-b-2 border-slate-700 focus:border-[#00ff87] outline-none text-white text-lg md:text-xl pb-3 pr-10 transition-all font-manrope placeholder-slate-500"
+						className="w-full bg-transparent border-b-2 border-slate-700 focus:border-[#39ff14] outline-none text-white text-lg md:text-xl pb-3 pr-10 transition-all font-manrope placeholder-slate-500"
 					/>
 					{query && (
 						<button
@@ -146,7 +146,7 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
 				{!query && (
 					<div className="flex flex-col gap-3">
 						<span
-							className="text-[10px] uppercase tracking-widest text-[#00ff87]/75 font-semibold"
+							className="text-[10px] uppercase tracking-widest text-[#39ff14]/75 font-semibold"
 							style={{ fontFamily: "Orbitron, sans-serif" }}>
 							Popular Suggestions
 						</span>
@@ -155,7 +155,7 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
 								<button
 									key={suggestion}
 									onClick={() => handleSuggestionClick(suggestion)}
-									className="px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-[#00ff87]/5 border border-[#00ff87]/10 hover:border-[#00ff87]/40 hover:bg-[#00ff87]/10 text-slate-300 hover:text-white transition-all cursor-pointer">
+									className="px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-[#39ff14]/5 border border-[#39ff14]/10 hover:border-[#39ff14]/40 hover:bg-[#39ff14]/10 text-slate-300 hover:text-white transition-all cursor-pointer">
 									{suggestion}
 								</button>
 							))}
@@ -170,7 +170,7 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
 						searchResults.showrooms.length === 0 ? (
 							<div className="py-8 text-center text-slate-400 font-manrope">
 								No instant matches found for &quot;
-								<span className="text-[#00ff87] font-semibold">{query}</span>
+								<span className="text-[#39ff14] font-semibold">{query}</span>
 								&quot;.
 								<p className="text-xs text-slate-500 mt-1">
 									Press Enter to search more broadly.
@@ -182,7 +182,7 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
 								{searchResults.cars.length > 0 && (
 									<div className="flex flex-col gap-3">
 										<span
-											className="text-[10px] uppercase tracking-widest text-[#00ff87]/75 font-semibold border-b border-[#00ff87]/10 pb-1"
+											className="text-[10px] uppercase tracking-widest text-[#39ff14]/75 font-semibold border-b border-[#39ff14]/10 pb-1"
 											style={{ fontFamily: "Orbitron, sans-serif" }}>
 											Matching Vehicles ({searchResults.cars.length})
 										</span>
@@ -194,7 +194,7 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
 														router.push(`/details/${car.id}`);
 														onClose();
 													}}
-													className="flex items-center gap-4 p-2.5 rounded-xl bg-[#00ff87]/5 border border-white/5 hover:border-[#00ff87]/30 hover:bg-[#00ff87]/10 transition-all cursor-pointer group">
+													className="flex items-center gap-4 p-2.5 rounded-xl bg-[#39ff14]/5 border border-white/5 hover:border-[#39ff14]/30 hover:bg-[#39ff14]/10 transition-all cursor-pointer group">
 													<div className="relative w-16 h-10 rounded-lg overflow-hidden shrink-0 bg-slate-900 border border-white/5">
 														<Image
 															src={car.carAlbum.photo1}
@@ -221,7 +221,7 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
 													</div>
 													<ArrowRight
 														size={16}
-														className="text-slate-500 group-hover:text-[#00ff87] group-hover:translate-x-1 transition-all shrink-0"
+														className="text-slate-500 group-hover:text-[#39ff14] group-hover:translate-x-1 transition-all shrink-0"
 													/>
 												</div>
 											))}
@@ -233,7 +233,7 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
 								{searchResults.showrooms.length > 0 && (
 									<div className="flex flex-col gap-3">
 										<span
-											className="text-[10px] uppercase tracking-widest text-[#00ff87]/75 font-semibold border-b border-[#00ff87]/10 pb-1"
+											className="text-[10px] uppercase tracking-widest text-[#39ff14]/75 font-semibold border-b border-[#39ff14]/10 pb-1"
 											style={{ fontFamily: "Orbitron, sans-serif" }}>
 											Showrooms ({searchResults.showrooms.length})
 										</span>
@@ -245,7 +245,7 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
 														router.push(`/contact`);
 														onClose();
 													}}
-													className="flex items-center gap-4 p-2.5 rounded-xl bg-[#00ff87]/5 border border-white/5 hover:border-[#00ff87]/30 hover:bg-[#00ff87]/10 transition-all cursor-pointer group">
+													className="flex items-center gap-4 p-2.5 rounded-xl bg-[#39ff14]/5 border border-white/5 hover:border-[#39ff14]/30 hover:bg-[#39ff14]/10 transition-all cursor-pointer group">
 													<div className="w-10 h-10 rounded-lg bg-[#d9fbe7]/10 border border-[#d9fbe7]/20 flex items-center justify-center text-[#d9fbe7] shrink-0">
 														<MapPin size={18} />
 													</div>
@@ -259,7 +259,7 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
 													</div>
 													<ArrowRight
 														size={16}
-														className="text-slate-500 group-hover:text-[#00ff87] group-hover:translate-x-1 transition-all shrink-0"
+														className="text-slate-500 group-hover:text-[#39ff14] group-hover:translate-x-1 transition-all shrink-0"
 													/>
 												</div>
 											))}
@@ -272,7 +272,7 @@ const SearchOverlay = ({ isOpen, onClose }: SearchOverlayProps) => {
 						{/* View All Button */}
 						<button
 							onClick={() => handleSearchSubmit()}
-							className="mt-2 flex items-center justify-center gap-2 py-3 rounded-xl bg-gradient-to-r from-[#00ff87]/20 to-emerald-500/10 border border-[#00ff87]/30 hover:border-[#00ff87]/60 text-white font-semibold text-sm transition-all hover:shadow-[0_0_20px_rgba(0,255,135,0.1)] active:scale-[0.98] cursor-pointer">
+							className="mt-2 flex items-center justify-center gap-2 py-3 rounded-xl bg-gradient-to-r from-[#39ff14]/20 to-emerald-500/10 border border-[#39ff14]/30 hover:border-[#39ff14]/60 text-white font-semibold text-sm transition-all hover:shadow-[0_0_20px_rgba(57,255,20,0.1)] active:scale-[0.98] cursor-pointer">
 							<span>See all results for &quot;{query}&quot;</span>
 							<ArrowRight size={16} />
 						</button>
