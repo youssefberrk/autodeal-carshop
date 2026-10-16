@@ -37,7 +37,7 @@ export default function CookiesPage() {
           You can control cookies through your browser settings. Disabling certain cookies may affect site functionality. Most browsers allow you to block or delete cookies via their preferences menu.
         </p>
         <p className="text-sm text-gray-500 mt-8">
-          For more information, review our <a href="/privacy" className="text-[#00ff87] hover:underline">Privacy Policy</a>.
+          For more information, review our <a href="/privacy" className="text-[#39ff14] hover:underline">Privacy Policy</a>.
         </p>
       </div>
     </main>
