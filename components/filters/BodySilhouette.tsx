@@ -20,7 +20,7 @@ const BodySilhouette = ({
 	return (
 		<div className="py-6 mx-4 w-full">
 			<div className="flex flex-col items-start gap-4">
-				<p className="text-[10px] uppercase tracking-[0.2em] text-[#dae6d8]/60 font-bold mb-2">
+				<p className="text-[10px] uppercase tracking-[0.2em] text-[#f4f5f2]/60 font-bold mb-2">
 					Body Silhouette
 				</p>
 				<div className="flex flex-col gap-3 w-full">
@@ -31,8 +31,8 @@ const BodySilhouette = ({
 								bodySilhouette === s.name ||
 								(s.name === "All" &&
 									(bodySilhouette === "" || bodySilhouette === "All"))
-									? "text-[#00ff87]"
-									: "text-[#dae6d8]/60 hover:text-[#dae6d8]"
+									? "text-[#39ff14]"
+									: "text-[#f4f5f2]/60 hover:text-[#f4f5f2]"
 							}`}
 							onClick={() => onBsChange(s.name)}>
 							<div
@@ -40,7 +40,7 @@ const BodySilhouette = ({
 									bodySilhouette === s.name ||
 									(s.name === "All" &&
 										(bodySilhouette === "" || bodySilhouette === "All"))
-										? "bg-[#00ff87]/10"
+										? "bg-[#39ff14]/10"
 										: ""
 								}`}>
 								{s.icon || (
