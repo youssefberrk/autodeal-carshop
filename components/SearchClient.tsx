@@ -72,12 +72,12 @@ const SearchClient = ({ initialQuery }: SearchClientProps) => {
 	const totalResults = filteredData.cars.length + filteredData.showrooms.length;
 
 	return (
-		<div className="min-h-screen bg-[#050e0a] text-white pt-28 pb-20 px-6 font-manrope">
+		<div className="min-h-screen bg-[#050606] text-white pt-28 pb-20 px-6 font-manrope">
 			<div className="max-w-7xl mx-auto flex flex-col gap-12">
 				{/* Page Header */}
 				<div className="flex flex-col gap-4 text-center md:text-left">
 					<span
-						className="text-xs uppercase tracking-widest text-[#00ff87] font-semibold"
+						className="text-xs uppercase tracking-widest text-[#39ff14] font-semibold"
 						style={{ fontFamily: "Orbitron, sans-serif" }}>
 						Search Results
 					</span>
@@ -87,7 +87,7 @@ const SearchClient = ({ initialQuery }: SearchClientProps) => {
 						{searchTerm.trim() ? (
 							<>
 								Showing results for &quot;
-								<span className="text-[#00ff87]">{searchTerm}</span>&quot;
+								<span className="text-[#39ff14]">{searchTerm}</span>&quot;
 							</>
 						) : (
 							"Explore Inventory"
@@ -115,7 +115,7 @@ const SearchClient = ({ initialQuery }: SearchClientProps) => {
 							value={searchTerm}
 							onChange={(e) => setSearchTerm(e.target.value)}
 							placeholder="Search by brand, model, silhouette, location..."
-							className="w-full py-4 pl-12 pr-12 rounded-2xl bg-[#0d1f1a]/55 border border-[#00ff87]/20 focus:border-[#00ff87] outline-none text-white text-base md:text-lg transition-all shadow-[0_0_20px_rgba(0,255,135,0.02)] focus:shadow-[0_0_30px_rgba(0,255,135,0.08)] placeholder-slate-500 font-manrope"
+							className="w-full py-4 pl-12 pr-12 rounded-2xl bg-[#111314]/55 border border-[#39ff14]/20 focus:border-[#39ff14] outline-none text-white text-base md:text-lg transition-all shadow-[0_0_20px_rgba(57,255,20,0.02)] focus:shadow-[0_0_30px_rgba(57,255,20,0.08)] placeholder-slate-500 font-manrope"
 						/>
 						<FaSearch className="absolute left-4 text-slate-400 text-lg pointer-events-none" />
 						{searchTerm && (
@@ -134,7 +134,7 @@ const SearchClient = ({ initialQuery }: SearchClientProps) => {
 					{/* Quick suggestions below search bar */}
 					<div className="flex items-center gap-3 mt-4 flex-wrap">
 						<span
-							className="text-[10px] uppercase tracking-widest text-[#00ff87]/65 font-bold"
+							className="text-[10px] uppercase tracking-widest text-[#39ff14]/65 font-bold"
 							style={{ fontFamily: "Orbitron, sans-serif" }}>
 							Suggested:
 						</span>
@@ -142,7 +142,7 @@ const SearchClient = ({ initialQuery }: SearchClientProps) => {
 							<button
 								key={tag}
 								onClick={() => handleSuggestionClick(tag)}
-								className="px-3 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider bg-[#00ff87]/5 border border-[#00ff87]/15 hover:border-[#00ff87]/40 hover:bg-[#00ff87]/10 text-slate-300 hover:text-white transition-all cursor-pointer">
+								className="px-3 py-1 rounded-full text-[10px] font-semibold uppercase tracking-wider bg-[#39ff14]/5 border border-[#39ff14]/15 hover:border-[#39ff14]/40 hover:bg-[#39ff14]/10 text-slate-300 hover:text-white transition-all cursor-pointer">
 								{tag}
 							</button>
 						))}
@@ -161,7 +161,7 @@ const SearchClient = ({ initialQuery }: SearchClientProps) => {
 							{/* Vehicles Results */}
 							{filteredData.cars.length > 0 && (
 								<div className="flex flex-col gap-6">
-									<div className="flex items-center justify-between border-b border-[#00ff87]/10 pb-3">
+									<div className="flex items-center justify-between border-b border-[#39ff14]/10 pb-3">
 										<h2
 											className="text-lg md:text-2xl font-bold tracking-widest uppercase text-white"
 											style={{ fontFamily: "Orbitron, sans-serif" }}>
@@ -197,7 +197,7 @@ const SearchClient = ({ initialQuery }: SearchClientProps) => {
 							{/* Showrooms Results */}
 							{filteredData.showrooms.length > 0 && (
 								<div className="flex flex-col gap-6">
-									<div className="flex items-center justify-between border-b border-[#00ff87]/10 pb-3">
+									<div className="flex items-center justify-between border-b border-[#39ff14]/10 pb-3">
 										<h2
 											className="text-lg md:text-2xl font-bold tracking-widest uppercase text-white"
 											style={{ fontFamily: "Orbitron, sans-serif" }}>
@@ -214,7 +214,7 @@ const SearchClient = ({ initialQuery }: SearchClientProps) => {
 												initial={{ opacity: 0, y: 20 }}
 												animate={{ opacity: 1, y: 0 }}
 												transition={{ delay: index * 0.08 }}
-												className="border border-[#00ff87]/10 bg-gradient-to-br from-[#0d1f1a]/40 to-[#0a0f0d]/60 p-6 rounded-2xl backdrop-blur-sm transition-all duration-300 hover:border-[#00ff87]/30 hover:shadow-[0_0_30px_rgba(0,255,135,0.06)] flex flex-col justify-between">
+												className="border border-[#39ff14]/10 bg-gradient-to-br from-[#111314]/40 to-[#0a0f0d]/60 p-6 rounded-2xl backdrop-blur-sm transition-all duration-300 hover:border-[#39ff14]/30 hover:shadow-[0_0_30px_rgba(57,255,20,0.06)] flex flex-col justify-between">
 												<div>
 													<div className="mb-4 aspect-video rounded-xl overflow-hidden border border-white/5 relative">
 														<iframe
@@ -232,7 +232,7 @@ const SearchClient = ({ initialQuery }: SearchClientProps) => {
 														<div className="flex items-start gap-2.5">
 															<MapPin
 																size={16}
-																className="text-[#00ff87] shrink-0 mt-0.5"
+																className="text-[#39ff14] shrink-0 mt-0.5"
 															/>
 															<p className="leading-relaxed">
 																{showroom.address}
@@ -241,18 +241,18 @@ const SearchClient = ({ initialQuery }: SearchClientProps) => {
 														<div className="flex items-center gap-2.5">
 															<Phone
 																size={16}
-																className="text-[#00ff87] shrink-0"
+																className="text-[#39ff14] shrink-0"
 															/>
 															<p>{showroom.phone}</p>
 														</div>
 														<div className="flex items-start gap-2.5">
 															<Clock
 																size={16}
-																className="text-[#00ff87] shrink-0 mt-0.5"
+																className="text-[#39ff14] shrink-0 mt-0.5"
 															/>
 															<div>
 																<p>{showroom.timing.weekdays}</p>
-																<p className="text-[#00ff87] text-xs font-semibold mt-0.5">
+																<p className="text-[#39ff14] text-xs font-semibold mt-0.5">
 																	{showroom.timing.weekends}
 																</p>
 															</div>
@@ -261,7 +261,7 @@ const SearchClient = ({ initialQuery }: SearchClientProps) => {
 												</div>
 												<button
 													onClick={() => router.push("/contact")}
-													className="mt-6 w-full py-2.5 rounded-xl bg-white/5 border border-white/10 hover:border-[#00ff87]/30 hover:bg-[#00ff87]/10 text-white text-xs font-bold uppercase tracking-wider transition-all cursor-pointer">
+													className="mt-6 w-full py-2.5 rounded-xl bg-white/5 border border-white/10 hover:border-[#39ff14]/30 hover:bg-[#39ff14]/10 text-white text-xs font-bold uppercase tracking-wider transition-all cursor-pointer">
 													Contact Showroom
 												</button>
 											</motion.div>
@@ -276,8 +276,8 @@ const SearchClient = ({ initialQuery }: SearchClientProps) => {
 							initial={{ opacity: 0, scale: 0.98 }}
 							animate={{ opacity: 1, scale: 1 }}
 							exit={{ opacity: 0, scale: 0.98 }}
-							className="flex flex-col items-center justify-center py-20 text-center border border-[#00ff87]/10 rounded-3xl bg-[#00ff87]/2 p-8 max-w-2xl mx-auto mt-8 shadow-[0_0_40px_rgba(0,0,0,0.2)]">
-							<div className="w-16 h-16 rounded-full bg-[#00ff87]/10 border border-[#00ff87]/20 flex items-center justify-center text-[#00ff87] mb-6 animate-pulse">
+							className="flex flex-col items-center justify-center py-20 text-center border border-[#39ff14]/10 rounded-3xl bg-[#39ff14]/2 p-8 max-w-2xl mx-auto mt-8 shadow-[0_0_40px_rgba(0,0,0,0.2)]">
+							<div className="w-16 h-16 rounded-full bg-[#39ff14]/10 border border-[#39ff14]/20 flex items-center justify-center text-[#39ff14] mb-6 animate-pulse">
 								<Compass size={32} />
 							</div>
 							<h3
@@ -315,7 +315,7 @@ const SearchClient = ({ initialQuery }: SearchClientProps) => {
 										<button
 											key={term}
 											onClick={() => handleSuggestionClick(term)}
-											className="px-4 py-2 rounded-full text-xs font-semibold bg-white/5 border border-white/10 hover:border-[#00ff87]/30 hover:bg-[#00ff87]/5 text-slate-300 hover:text-white transition-all cursor-pointer">
+											className="px-4 py-2 rounded-full text-xs font-semibold bg-white/5 border border-white/10 hover:border-[#39ff14]/30 hover:bg-[#39ff14]/5 text-slate-300 hover:text-white transition-all cursor-pointer">
 											{term}
 										</button>
 									))}

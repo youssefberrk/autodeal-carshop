@@ -243,7 +243,7 @@ function WheelMark({ size = 48 }: { size?: number }) {
           cx="50"
           cy="50"
           r="4.4"
-          fill="#050e0a"
+          fill="#050606"
           stroke="var(--brand)"
           strokeWidth="1.2"
         />
@@ -262,14 +262,14 @@ function WheelMark({ size = 48 }: { size?: number }) {
         ))}
       </g>
 
-      <g filter="drop-shadow(0 0 4px rgba(0, 255, 135, 0.28))">
+      <g filter="drop-shadow(0 0 4px rgba(57, 255, 20, 0.28))">
         <path
           d="M 14 35 C 18 22 31 12 48 10 L 57 18 L 52 29 C 40 29 29 37 24 49 L 16 47 C 14 43 13 39 14 35 Z"
           fill="url(#logoBrakeCaliper)"
         />
         <path
           d="M 24 36 C 30 27 39 22 49 21 L 46 27 C 38 28 32 33 28 41 Z"
-          fill="#050e0a"
+          fill="#050606"
           opacity="0.62"
         />
         <path
@@ -316,7 +316,7 @@ export default function Logo({ shrink = false }: { shrink?: boolean }) {
       aria-label="AutoDeal Premium Automotive"
     >
       <div
-        className={`relative grid shrink-0 place-items-center rounded-full  ring-1 ring-[color-mix(in_oklch,var(--brand)_42%,transparent)]  transition-all duration-300 group-hover:shadow-[inset_0_0_18px_rgba(218,230,216,0.08),0_0_34px_rgba(0,255,135,0.2)] ${
+        className={`relative grid shrink-0 place-items-center rounded-full  ring-1 ring-[color-mix(in_oklch,var(--brand)_42%,transparent)]  transition-all duration-300 group-hover:shadow-[inset_0_0_18px_rgba(218,230,216,0.08),0_0_34px_rgba(57,255,20,0.2)] ${
           shrink ? "size-11 md:size-12" : "size-10 sm:size-12"
         }`}
       >
@@ -339,7 +339,7 @@ export default function Logo({ shrink = false }: { shrink?: boolean }) {
         </div>
 
         <div className="mt-1 hidden items-center gap-2 sm:flex">
-          <div className="h-px w-10 bg-primary/80 shadow-[0_0_10px_rgba(0,255,135,0.45)] transition-all duration-300 group-hover:w-14" />
+          <div className="h-px w-10 bg-primary/80 shadow-[0_0_10px_rgba(57,255,20,0.45)] transition-all duration-300 group-hover:w-14" />
           <span
             className="text-[0.42rem] font-semibold tracking-[0.32em] text-primary/70 sm:text-[0.46rem]"
             style={{ fontFamily: "'Orbitron', sans-serif" }}

@@ -217,12 +217,12 @@ const NavBar = () => {
 										href={href}
 										className={`group relative px-1.5 py-1.5 font-['Orbitron'] uppercase tracking-[0.13em] transition-colors  duration-300 ${
 											isActive
-												? "text-[#00ff87]"
-												: "text-emerald-50 hover:text-[#00ff87]"
+												? "text-[#39ff14]"
+												: "text-emerald-50 hover:text-[#39ff14]"
 										}`}>
 										{label}
 										<span
-											className={`absolute -bottom-1 left-1/2 h-[1.5px] -translate-x-1/2 rounded-full bg-[#00ff87] transition-all duration-300 ease-out ${
+											className={`absolute -bottom-1 left-1/2 h-[1.5px] -translate-x-1/2 rounded-full bg-[#39ff14] transition-all duration-300 ease-out ${
 												isActive ? "w-5" : "w-0 group-hover:w-full"
 											}`}
 										/>
@@ -243,7 +243,7 @@ const NavBar = () => {
 						<button
 							onClick={() => setIsSearchOpen(true)}
 							aria-label="Search"
-							className="grid size-11 place-items-center rounded-full border border-transparent transition-all duration-200 hover:border-[#00ff87]/20 hover:bg-[#00ff87]/10 hover:text-[#00ff87] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#00ff87]/70 active:scale-90 sm:size-10">
+							className="grid size-11 place-items-center rounded-full border border-transparent transition-all duration-200 hover:border-[#39ff14]/20 hover:bg-[#39ff14]/10 hover:text-[#39ff14] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#39ff14]/70 active:scale-90 sm:size-10">
 							<FaSearch
 								className={`transition-all duration-300 ${
 									isScrolled
@@ -258,7 +258,7 @@ const NavBar = () => {
 							<button
 								onClick={() => setCarDropdownOpen(!carDropdownOpen)}
 								aria-label="My Cars"
-								className="relative grid size-11 place-items-center rounded-full border border-transparent text-slate-300 transition-all duration-200 hover:border-[#00ff87]/20 hover:bg-[#00ff87]/10 hover:text-[#00ff87] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#00ff87]/70 active:scale-90 sm:size-10">
+								className="relative grid size-11 place-items-center rounded-full border border-transparent text-slate-300 transition-all duration-200 hover:border-[#39ff14]/20 hover:bg-[#39ff14]/10 hover:text-[#39ff14] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#39ff14]/70 active:scale-90 sm:size-10">
 								<IoCarSport
 									className={`transition-all duration-300 ${
 										isScrolled
@@ -282,9 +282,9 @@ const NavBar = () => {
 												stiffness: 500,
 												damping: 14,
 											}}
-											className="absolute -top-1 -right-1 flex items-center justify-center min-w-[1.25rem] h-5 px-1 text-[10px] sm:text-[11px] font-mono font-black text-[#02130a] bg-gradient-to-r from-[#00ff87] via-emerald-400 to-emerald-500 rounded-full shadow-[0_0_14px_rgba(0,255,135,0.8)] border border-[#a3ffe0]/60 ring-2 ring-[#07170e] z-10 pointer-events-none select-none">
+											className="absolute -top-1 -right-1 flex items-center justify-center min-w-[1.25rem] h-5 px-1 text-[10px] sm:text-[11px] font-mono font-black text-[#02130a] bg-gradient-to-r from-[#39ff14] via-emerald-400 to-emerald-500 rounded-full shadow-[0_0_14px_rgba(57,255,20,0.8)] border border-[#a3ffe0]/60 ring-2 ring-[#07170e] z-10 pointer-events-none select-none">
 											{isPurchasedPopUp && (
-												<span className="absolute -inset-0.5 rounded-full bg-[#00ff87]/60 animate-ping" />
+												<span className="absolute -inset-0.5 rounded-full bg-[#39ff14]/60 animate-ping" />
 											)}
 											<span className="relative z-10">
 												{carCount > 99 ? "99+" : carCount}
@@ -305,7 +305,7 @@ const NavBar = () => {
 							<button
 								onClick={() => setProfileOpen(!profileOpen)}
 								aria-label="Profile"
-								className="relative grid size-11 place-items-center rounded-full border border-transparent text-slate-300 transition-all duration-200 hover:border-[#00ff87]/20 hover:bg-[#00ff87]/10 hover:text-[#00ff87] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#00ff87]/70 active:scale-90 sm:size-10">
+								className="relative grid size-11 place-items-center rounded-full border border-transparent text-slate-300 transition-all duration-200 hover:border-[#39ff14]/20 hover:bg-[#39ff14]/10 hover:text-[#39ff14] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#39ff14]/70 active:scale-90 sm:size-10">
 								<CgProfile
 									className={`transition-all duration-300 ${
 										isScrolled
@@ -350,7 +350,7 @@ const NavBar = () => {
 											animate={{ opacity: 1, scale: 1, y: 0 }}
 											exit={{ opacity: 0, scale: 0.95, y: -10 }}
 											transition={{ duration: 0.2, ease: [0.23, 1, 0.32, 1] }}
-											className="absolute right-0 mt-3 w-56 md:w-64 rounded-2xl p-2.5 backdrop-blur-xl z-50 origin-top-right border border-[#00ff87]/15 shadow-[0_25px_60px_rgba(0,0,0,0.65)]"
+											className="absolute right-0 mt-3 w-56 md:w-64 rounded-2xl p-2.5 backdrop-blur-xl z-50 origin-top-right border border-[#39ff14]/15 shadow-[0_25px_60px_rgba(0,0,0,0.65)]"
 											style={{
 												background:
 													"linear-gradient(90deg, rgba(16, 16, 16, 0.96) 0%, rgba(0, 0, 0, 0.98) 50%, rgba(21, 21, 21, 0.96) 100%)",
@@ -358,7 +358,7 @@ const NavBar = () => {
 											{session ? (
 												<>
 													{/* User Header */}
-													<div className="px-3 py-2.5 border-b border-[#00ff87]/10 mb-2">
+													<div className="px-3 py-2.5 border-b border-[#39ff14]/10 mb-2">
 														<div className="flex items-center gap-2.5">
 															{session.user?.image ? (
 																<Image
@@ -366,10 +366,10 @@ const NavBar = () => {
 																	alt={session.user.name || "User"}
 																	width={36}
 																	height={36}
-																	className="h-9 w-9 rounded-full object-cover ring-2 ring-[#00ff87]/30"
+																	className="h-9 w-9 rounded-full object-cover ring-2 ring-[#39ff14]/30"
 																/>
 															) : (
-																<div className="w-9 h-9 rounded-full bg-[#00ff87]/10 border border-[#00ff87]/30 flex items-center justify-center text-[#00ff87] font-bold text-sm shadow-[0_0_10px_rgba(0,255,135,0.1)]">
+																<div className="w-9 h-9 rounded-full bg-[#39ff14]/10 border border-[#39ff14]/30 flex items-center justify-center text-[#39ff14] font-bold text-sm shadow-[0_0_10px_rgba(57,255,20,0.1)]">
 																	{session.user?.name
 																		? session.user.name.charAt(0).toUpperCase()
 																		: "U"}
@@ -395,10 +395,10 @@ const NavBar = () => {
 														<Link
 															onClick={() => setProfileOpen(false)}
 															href="/profile"
-															className="flex items-center gap-3 px-3 py-2 text-slate-300 hover:text-[#00ff87] hover:bg-[#00ff87]/5 rounded-lg transition-all duration-200 text-sm group/item active:scale-[0.97]">
+															className="flex items-center gap-3 px-3 py-2 text-slate-300 hover:text-[#39ff14] hover:bg-[#39ff14]/5 rounded-lg transition-all duration-200 text-sm group/item active:scale-[0.97]">
 															<User
 																size={16}
-																className="text-slate-400 group-hover/item:text-[#00ff87] transition-colors duration-200"
+																className="text-slate-400 group-hover/item:text-[#39ff14] transition-colors duration-200"
 															/>
 															<span>Profile</span>
 														</Link>
@@ -407,11 +407,11 @@ const NavBar = () => {
 																setProfileOpen(false);
 															}}
 															href="/wishlist"
-															className="flex items-center justify-between px-3 py-2 text-slate-300 hover:text-[#00ff87] hover:bg-[#00ff87]/5 rounded-lg transition-all duration-200 text-sm group/item active:scale-[0.97]">
+															className="flex items-center justify-between px-3 py-2 text-slate-300 hover:text-[#39ff14] hover:bg-[#39ff14]/5 rounded-lg transition-all duration-200 text-sm group/item active:scale-[0.97]">
 															<div className="flex items-center gap-3">
 																<Heart
 																	size={16}
-																	className="text-slate-400 group-hover/item:text-[#00ff87] transition-colors duration-200"
+																	className="text-slate-400 group-hover/item:text-[#39ff14] transition-colors duration-200"
 																/>
 																<span>Wishlist</span>
 															</div>
@@ -424,15 +424,15 @@ const NavBar = () => {
 														<Link
 															onClick={() => setProfileOpen(false)}
 															href="/orders"
-															className="flex items-center gap-3 px-3 py-2 text-slate-300 hover:text-[#00ff87] hover:bg-[#00ff87]/5 rounded-lg transition-all duration-200 text-sm group/item active:scale-[0.97]">
+															className="flex items-center gap-3 px-3 py-2 text-slate-300 hover:text-[#39ff14] hover:bg-[#39ff14]/5 rounded-lg transition-all duration-200 text-sm group/item active:scale-[0.97]">
 															<ShoppingBag
 																size={16}
-																className="text-slate-400 group-hover/item:text-[#00ff87] transition-colors duration-200"
+																className="text-slate-400 group-hover/item:text-[#39ff14] transition-colors duration-200"
 															/>
 															<span>Orders</span>
 														</Link>
 
-														<div className="h-[1px] bg-[#00ff87]/10 my-1" />
+														<div className="h-[1px] bg-[#39ff14]/10 my-1" />
 
 														<button
 															className="w-full flex items-center gap-3 px-3 py-2 text-slate-300 hover:text-red-400 hover:bg-red-500/5 rounded-lg transition-all duration-200 text-sm group/item active:scale-[0.97] text-left"
@@ -451,13 +451,13 @@ const NavBar = () => {
 											) : (
 												<>
 													{/* Logged Out Header */}
-													<div className="px-3 py-2 border-b border-[#00ff87]/10 mb-2">
+													<div className="px-3 py-2 border-b border-[#39ff14]/10 mb-2">
 														<p
 															className="text-[10px] uppercase tracking-[0.15em] text-slate-400 font-medium"
 															style={{ fontFamily: "Orbitron, sans-serif" }}>
 															Welcome to AutoDeal
 														</p>
-														<p className="text-[10px] text-[#00ff87]/80 mt-0.5">
+														<p className="text-[10px] text-[#39ff14]/80 mt-0.5">
 															Explore premium showroom
 														</p>
 													</div>
@@ -467,20 +467,20 @@ const NavBar = () => {
 														<Link
 															onClick={() => setProfileOpen(false)}
 															href="/login"
-															className="flex items-center gap-3 px-3 py-2 text-slate-300 hover:text-[#00ff87] hover:bg-[#00ff87]/5 rounded-lg transition-all duration-200 text-sm group/item active:scale-[0.97]">
+															className="flex items-center gap-3 px-3 py-2 text-slate-300 hover:text-[#39ff14] hover:bg-[#39ff14]/5 rounded-lg transition-all duration-200 text-sm group/item active:scale-[0.97]">
 															<LogIn
 																size={16}
-																className="text-slate-400 group-hover/item:text-[#00ff87] transition-colors duration-200"
+																className="text-slate-400 group-hover/item:text-[#39ff14] transition-colors duration-200"
 															/>
 															<span>Sign In</span>
 														</Link>
 														<Link
 															onClick={() => setProfileOpen(false)}
 															href="/login"
-															className="flex items-center gap-3 px-3 py-2 text-slate-300 hover:text-[#00ff87] hover:bg-[#00ff87]/5 rounded-lg transition-all duration-200 text-sm group/item active:scale-[0.97]">
+															className="flex items-center gap-3 px-3 py-2 text-slate-300 hover:text-[#39ff14] hover:bg-[#39ff14]/5 rounded-lg transition-all duration-200 text-sm group/item active:scale-[0.97]">
 															<UserPlus
 																size={16}
-																className="text-slate-400 group-hover/item:text-[#00ff87] transition-colors duration-200"
+																className="text-slate-400 group-hover/item:text-[#39ff14] transition-colors duration-200"
 															/>
 															<span>Register</span>
 														</Link>
@@ -496,7 +496,7 @@ const NavBar = () => {
 						{/* Mobile Menu Button */}
 						<button
 							aria-label={menuOpen ? "Close menu" : "Open menu"}
-							className={`grid size-11 place-items-center rounded-full border border-transparent text-slate-300 transition-all duration-200 hover:border-[#00ff87]/20 hover:bg-[#00ff87]/10 hover:text-[#00ff87] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#00ff87]/70 active:scale-90 sm:size-10 lg:hidden ${
+							className={`grid size-11 place-items-center rounded-full border border-transparent text-slate-300 transition-all duration-200 hover:border-[#39ff14]/20 hover:bg-[#39ff14]/10 hover:text-[#39ff14] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#39ff14]/70 active:scale-90 sm:size-10 lg:hidden ${
 								isScrolled ? "text-sm sm:text-base" : "text-base sm:text-lg"
 							}`}
 							onClick={() => setMenuOpen(!menuOpen)}>
@@ -519,16 +519,16 @@ const NavBar = () => {
 							style={{
 								background:
 									"linear-gradient(90deg, rgba(16, 16, 16, 0.97) 0%, rgba(0, 0, 0, 0.99) 50%, rgba(21, 21, 21, 0.97) 100%)",
-								borderTop: "1px solid rgba(0, 255, 135, 0.15)",
+								borderTop: "1px solid rgba(57, 255, 20, 0.15)",
 							}}>
 							{navLinks.map(({ href, label }, idx) => (
 								<motion.div key={href} variants={itemVariants}>
 									<Link
 										href={href}
 										onClick={() => setMenuOpen(false)}
-										className="flex items-center gap-3 py-2.5 text-slate-200 hover:text-[#00ff87] transition-all duration-200 font-medium tracking-[0.15em] uppercase text-xs group active:scale-[0.97] w-full"
+										className="flex items-center gap-3 py-2.5 text-slate-200 hover:text-[#39ff14] transition-all duration-200 font-medium tracking-[0.15em] uppercase text-xs group active:scale-[0.97] w-full"
 										style={{ fontFamily: "Orbitron, sans-serif" }}>
-										<span className="font-mono text-[10px] text-[#00ff87]/45 tracking-normal">
+										<span className="font-mono text-[10px] text-[#39ff14]/45 tracking-normal">
 											0{idx + 1} {"//"}
 										</span>
 										<span>{label}</span>
@@ -538,7 +538,7 @@ const NavBar = () => {
 
 							<motion.div
 								variants={itemVariants}
-								className="h-[1px] bg-[#00ff87]/10 my-1"
+								className="h-[1px] bg-[#39ff14]/10 my-1"
 							/>
 
 							{session ? (
@@ -546,7 +546,7 @@ const NavBar = () => {
 									variants={itemVariants}
 									className="flex flex-col gap-1.5">
 									<span
-										className="text-[10px] uppercase tracking-[0.15em] text-[#00ff87]/65 px-1 font-semibold"
+										className="text-[10px] uppercase tracking-[0.15em] text-[#39ff14]/65 px-1 font-semibold"
 										style={{ fontFamily: "Orbitron, sans-serif" }}>
 										My Account
 									</span>
@@ -554,7 +554,7 @@ const NavBar = () => {
 										<Link
 											href="/profile"
 											onClick={() => setMenuOpen(false)}
-											className="flex items-center gap-2.5 px-3 py-2.5 text-xs text-slate-300 hover:text-[#00ff87] hover:bg-[#00ff87]/5 border border-transparent hover:border-[#00ff87]/10 rounded-xl transition-all duration-200 active:scale-[0.97]">
+											className="flex items-center gap-2.5 px-3 py-2.5 text-xs text-slate-300 hover:text-[#39ff14] hover:bg-[#39ff14]/5 border border-transparent hover:border-[#39ff14]/10 rounded-xl transition-all duration-200 active:scale-[0.97]">
 											<User size={14} className="text-slate-400" />
 											<span
 												style={{ fontFamily: "Orbitron, sans-serif" }}
@@ -565,7 +565,7 @@ const NavBar = () => {
 										<Link
 											href="/wishlist"
 											onClick={() => setMenuOpen(false)}
-											className="flex items-center justify-between gap-2.5 px-3 py-2.5 text-xs text-slate-300 hover:text-[#00ff87] hover:bg-[#00ff87]/5 border border-transparent hover:border-[#00ff87]/10 rounded-xl transition-all duration-200 active:scale-[0.97]">
+											className="flex items-center justify-between gap-2.5 px-3 py-2.5 text-xs text-slate-300 hover:text-[#39ff14] hover:bg-[#39ff14]/5 border border-transparent hover:border-[#39ff14]/10 rounded-xl transition-all duration-200 active:scale-[0.97]">
 											<div className="flex items-center gap-2.5">
 												<Heart size={14} className="text-slate-400" />
 												<span
@@ -583,7 +583,7 @@ const NavBar = () => {
 										<Link
 											href="/orders"
 											onClick={() => setMenuOpen(false)}
-											className="flex items-center gap-2.5 px-3 py-2.5 text-xs text-slate-300 hover:text-[#00ff87] hover:bg-[#00ff87]/5 border border-transparent hover:border-[#00ff87]/10 rounded-xl transition-all duration-200 active:scale-[0.97]">
+											className="flex items-center gap-2.5 px-3 py-2.5 text-xs text-slate-300 hover:text-[#39ff14] hover:bg-[#39ff14]/5 border border-transparent hover:border-[#39ff14]/10 rounded-xl transition-all duration-200 active:scale-[0.97]">
 											<ShoppingBag size={14} className="text-slate-400" />
 											<span
 												style={{ fontFamily: "Orbitron, sans-serif" }}
@@ -611,7 +611,7 @@ const NavBar = () => {
 									variants={itemVariants}
 									className="flex flex-col gap-1.5">
 									<span
-										className="text-[10px] uppercase tracking-[0.15em] text-[#00ff87]/65 px-1 font-semibold"
+										className="text-[10px] uppercase tracking-[0.15em] text-[#39ff14]/65 px-1 font-semibold"
 										style={{ fontFamily: "Orbitron, sans-serif" }}>
 										Showroom Entry
 									</span>
@@ -619,7 +619,7 @@ const NavBar = () => {
 										<Link
 											href="/wishlist"
 											onClick={() => setMenuOpen(false)}
-											className="flex items-center justify-between gap-2.5 px-3 py-2.5 text-xs text-slate-300 hover:text-[#00ff87] hover:bg-[#00ff87]/5 border border-transparent hover:border-[#00ff87]/10 rounded-xl transition-all duration-200 active:scale-[0.97]">
+											className="flex items-center justify-between gap-2.5 px-3 py-2.5 text-xs text-slate-300 hover:text-[#39ff14] hover:bg-[#39ff14]/5 border border-transparent hover:border-[#39ff14]/10 rounded-xl transition-all duration-200 active:scale-[0.97]">
 											<div className="flex items-center gap-2.5">
 												<Heart size={14} className="text-slate-400" />
 												<span
@@ -637,7 +637,7 @@ const NavBar = () => {
 										<Link
 											href="/login"
 											onClick={() => setMenuOpen(false)}
-											className="flex items-center justify-center gap-2 px-3 py-2.5 text-xs text-slate-300 hover:text-[#00ff87] hover:bg-[#00ff87]/5 border border-[#00ff87]/15 rounded-xl transition-all duration-200 active:scale-[0.97]">
+											className="flex items-center justify-center gap-2 px-3 py-2.5 text-xs text-slate-300 hover:text-[#39ff14] hover:bg-[#39ff14]/5 border border-[#39ff14]/15 rounded-xl transition-all duration-200 active:scale-[0.97]">
 											<LogIn size={14} />
 											<span
 												style={{ fontFamily: "Orbitron, sans-serif" }}
@@ -648,7 +648,7 @@ const NavBar = () => {
 										<Link
 											href="/login"
 											onClick={() => setMenuOpen(false)}
-											className="flex items-center justify-center gap-2 px-3 py-2.5 text-[#00ff87] bg-[#00ff87]/10 border border-[#00ff87]/35 hover:bg-[#00ff87]/15 rounded-xl transition-all duration-200 active:scale-[0.97]">
+											className="flex items-center justify-center gap-2 px-3 py-2.5 text-[#39ff14] bg-[#39ff14]/10 border border-[#39ff14]/35 hover:bg-[#39ff14]/15 rounded-xl transition-all duration-200 active:scale-[0.97]">
 											<UserPlus size={14} />
 											<span
 												style={{ fontFamily: "Orbitron, sans-serif" }}
@@ -662,7 +662,7 @@ const NavBar = () => {
 
 							<motion.div
 								variants={itemVariants}
-								className="flex items-center justify-between border-t border-[#00ff87]/10 pt-3.5 mt-1 text-[9px] sm:text-[10px] text-slate-500 uppercase tracking-widest"
+								className="flex items-center justify-between border-t border-[#39ff14]/10 pt-3.5 mt-1 text-[9px] sm:text-[10px] text-slate-500 uppercase tracking-widest"
 								style={{ fontFamily: "Orbitron, sans-serif" }}>
 								<span>AutoDeal Showroom</span>
 								<span>Mon - Sat: 9AM - 8PM</span>

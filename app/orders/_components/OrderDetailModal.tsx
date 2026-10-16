@@ -100,20 +100,20 @@ export default function OrderDetailModal({
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto luxury-scrollbar rounded-3xl border border-[#00ff87]/30 bg-gradient-to-b from-[#091f15] via-[#05140c] to-[#020a05] p-6 sm:p-8 text-[#e5efe3] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.95),0_0_40px_rgba(0,255,135,0.15)] transition-all"
+        className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto luxury-scrollbar rounded-3xl border border-[#39ff14]/30 bg-gradient-to-b from-[#091f15] via-[#05140c] to-[#020a05] p-6 sm:p-8 text-[#f4f5f2] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.95),0_0_40px_rgba(57,255,20,0.15)] transition-all"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Ambient Studio Glow */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full bg-[radial-gradient(circle,rgba(0,255,135,0.15)_0%,transparent_70%)] blur-3xl"
+          className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full bg-[radial-gradient(circle,rgba(57,255,20,0.15)_0%,transparent_70%)] blur-3xl"
         />
 
         {/* Header */}
-        <div className="flex items-start justify-between border-b border-[#dae6d8]/10 pb-5 mb-6">
+        <div className="flex items-start justify-between border-b border-[#f4f5f2]/10 pb-5 mb-6">
           <div>
             <div className="flex flex-wrap items-center gap-2.5 mb-2">
-              <span className="inline-flex items-center gap-1.5 rounded-full border border-[#00ff87]/30 bg-[#00ff87]/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-[#00ff87] font-['Orbitron'] shadow-[0_0_12px_rgba(0,255,135,0.15)]">
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-[#39ff14]/30 bg-[#39ff14]/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-[#39ff14] font-['Orbitron'] shadow-[0_0_12px_rgba(57,255,20,0.15)]">
                 <Sparkles size={12} aria-hidden="true" />
                 Dossier #{order.id}
               </span>
@@ -121,7 +121,7 @@ export default function OrderDetailModal({
               <span
                 className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-wider font-['Orbitron'] ${
                   order.paymentStatus === "paid"
-                    ? "border-[#00ff87]/30 bg-[#00ff87]/15 text-[#00ff87]"
+                    ? "border-[#39ff14]/30 bg-[#39ff14]/15 text-[#39ff14]"
                     : "border-amber-500/30 bg-amber-500/15 text-amber-400"
                 }`}
               >
@@ -135,11 +135,11 @@ export default function OrderDetailModal({
               </span>
             </div>
 
-            <h2 className="text-2xl sm:text-3xl font-bold font-['Newsreader'] italic tracking-tight text-[#e5efe3]">
+            <h2 className="text-2xl sm:text-3xl font-bold font-['Newsreader'] italic tracking-tight text-[#f4f5f2]">
               Bespoke Order Specification
             </h2>
-            <p className="text-xs text-[#dae6d8]/60 flex items-center gap-2 mt-1">
-              <Calendar size={13} className="text-[#00ff87]" />
+            <p className="text-xs text-[#f4f5f2]/60 flex items-center gap-2 mt-1">
+              <Calendar size={13} className="text-[#39ff14]" />
               Allocation Date: {order.createdAt}
             </p>
           </div>
@@ -147,7 +147,7 @@ export default function OrderDetailModal({
           <button
             type="button"
             onClick={onClose}
-            className="rounded-full p-2 text-[#dae6d8]/60 hover:bg-white/10 hover:text-white transition-colors cursor-pointer"
+            className="rounded-full p-2 text-[#f4f5f2]/60 hover:bg-white/10 hover:text-white transition-colors cursor-pointer"
             aria-label="Close dossier modal"
           >
             <X size={20} />
@@ -157,7 +157,7 @@ export default function OrderDetailModal({
         <div className="space-y-6">
           {/* Vehicles List */}
           <div className="space-y-3">
-            <h3 className="text-xs uppercase tracking-[0.2em] text-[#00ff87] font-bold font-['Orbitron'] flex items-center gap-2">
+            <h3 className="text-xs uppercase tracking-[0.2em] text-[#39ff14] font-bold font-['Orbitron'] flex items-center gap-2">
               <Package size={14} /> Allocated Vehicles ({order.cars.length})
             </h3>
 
@@ -169,11 +169,11 @@ export default function OrderDetailModal({
                 return (
                   <div
                     key={car.id}
-                    className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-2xl border border-[#dae6d8]/10 bg-[#040e08]/90 p-4 transition-all hover:border-[#00ff87]/30"
+                    className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-2xl border border-[#f4f5f2]/10 bg-[#040e08]/90 p-4 transition-all hover:border-[#39ff14]/30"
                   >
                     <div className="flex items-center gap-4">
                       <Link href={`/details/${car.id}`}>
-                        <div className="relative h-16 w-24 shrink-0 overflow-hidden rounded-xl border border-[#dae6d8]/10 bg-[#020704] p-1">
+                        <div className="relative h-16 w-24 shrink-0 overflow-hidden rounded-xl border border-[#f4f5f2]/10 bg-[#020704] p-1">
                           <Image
                             src={getValidImageSrc(car.image)}
                             alt={`${car.brand} ${car.model}`}
@@ -184,19 +184,19 @@ export default function OrderDetailModal({
                         </div>
 
                         <div>
-                          <p className="text-[10px] uppercase font-bold tracking-widest text-[#00ff87] font-['Orbitron']">
+                          <p className="text-[10px] uppercase font-bold tracking-widest text-[#39ff14] font-['Orbitron']">
                             {car.brand}
                           </p>
-                          <h4 className="text-lg font-bold font-['Newsreader'] italic text-[#e5efe3]">
+                          <h4 className="text-lg font-bold font-['Newsreader'] italic text-[#f4f5f2]">
                             {car.model}
                           </h4>
-                          <div className="flex flex-wrap items-center gap-2 mt-1 text-xs text-[#dae6d8]/70">
-                            <span className="inline-flex items-center gap-1 rounded bg-[#00ff87]/10 px-2 py-0.5 text-[10px] font-bold text-[#00ff87]">
+                          <div className="flex flex-wrap items-center gap-2 mt-1 text-xs text-[#f4f5f2]/70">
+                            <span className="inline-flex items-center gap-1 rounded bg-[#39ff14]/10 px-2 py-0.5 text-[10px] font-bold text-[#39ff14]">
                               Qty: {quantity}
                             </span>
                             {car.bodySilhouette && (
                               <span className="inline-flex items-center gap-1 text-[11px]">
-                                <Gauge size={12} className="text-[#00ff87]" />
+                                <Gauge size={12} className="text-[#39ff14]" />
                                 {car.bodySilhouette}
                               </span>
                             )}
@@ -214,11 +214,11 @@ export default function OrderDetailModal({
                       </Link>
                     </div>
 
-                    <div className="text-right sm:text-right border-t sm:border-t-0 border-[#dae6d8]/10 pt-2 sm:pt-0">
-                      <span className="text-[10px] uppercase tracking-wider text-[#dae6d8]/50 block">
+                    <div className="text-right sm:text-right border-t sm:border-t-0 border-[#f4f5f2]/10 pt-2 sm:pt-0">
+                      <span className="text-[10px] uppercase tracking-wider text-[#f4f5f2]/50 block">
                         Subtotal
                       </span>
-                      <span className="text-base font-bold text-[#00ff87] tabular-nums">
+                      <span className="text-base font-bold text-[#39ff14] tabular-nums">
                         ${lineTotal.toLocaleString()}
                       </span>
                     </div>
@@ -231,31 +231,31 @@ export default function OrderDetailModal({
           {/* Grid layout for Pricing & Address */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Financial Summary */}
-            <div className="rounded-2xl border border-[#dae6d8]/10 bg-[#040e08]/90 p-5 space-y-3">
-              <h3 className="text-xs uppercase tracking-[0.2em] text-[#00ff87] font-bold font-['Orbitron'] flex items-center gap-2">
+            <div className="rounded-2xl border border-[#f4f5f2]/10 bg-[#040e08]/90 p-5 space-y-3">
+              <h3 className="text-xs uppercase tracking-[0.2em] text-[#39ff14] font-bold font-['Orbitron'] flex items-center gap-2">
                 <CreditCard size={14} /> Financial Summary
               </h3>
 
-              <div className="space-y-2 text-xs text-[#dae6d8]/80 border-b border-[#dae6d8]/10 pb-3">
+              <div className="space-y-2 text-xs text-[#f4f5f2]/80 border-b border-[#f4f5f2]/10 pb-3">
                 <div className="flex justify-between">
-                  <span className="text-[#dae6d8]/60">Subtotal MSRP</span>
-                  <span className="font-semibold tabular-nums text-[#e5efe3]">
+                  <span className="text-[#f4f5f2]/60">Subtotal MSRP</span>
+                  <span className="font-semibold tabular-nums text-[#f4f5f2]">
                     ${subtotal.toLocaleString()}
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-[#dae6d8]/60">
+                  <span className="text-[#f4f5f2]/60">
                     Bespoke Custom Config
                   </span>
-                  <span className="font-semibold tabular-nums text-[#e5efe3]">
+                  <span className="font-semibold tabular-nums text-[#f4f5f2]">
                     ${customConfig.toLocaleString()}
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-[#dae6d8]/60">
+                  <span className="text-[#f4f5f2]/60">
                     Global Delivery &amp; Concierge
                   </span>
-                  <span className="font-semibold tabular-nums text-[#e5efe3]">
+                  <span className="font-semibold tabular-nums text-[#f4f5f2]">
                     ${deliveryFee.toLocaleString()}
                   </span>
                 </div>
@@ -263,15 +263,15 @@ export default function OrderDetailModal({
 
               <div className="flex justify-between items-end pt-1">
                 <div>
-                  <span className="text-[9px] uppercase tracking-widest text-[#00ff87] font-bold font-['Orbitron'] block">
+                  <span className="text-[9px] uppercase tracking-widest text-[#39ff14] font-bold font-['Orbitron'] block">
                     Total Paid &amp; Allocated
                   </span>
-                  <span className="text-2xl font-bold font-['Newsreader'] italic text-[#00ff87]">
+                  <span className="text-2xl font-bold font-['Newsreader'] italic text-[#39ff14]">
                     ${order.totalAmount.toLocaleString()}
                   </span>
                 </div>
                 <div className="text-right">
-                  <span className="inline-flex items-center gap-1.5 rounded-full border border-[#00ff87]/30 bg-[#00ff87]/10 px-2.5 py-1 text-[10px] font-bold text-[#00ff87]">
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-[#39ff14]/30 bg-[#39ff14]/10 px-2.5 py-1 text-[10px] font-bold text-[#39ff14]">
                     <ShieldCheck size={12} /> Payment Verified
                   </span>
                 </div>
@@ -279,38 +279,38 @@ export default function OrderDetailModal({
             </div>
 
             {/* Shipping & Recipient Details */}
-            <div className="rounded-2xl border border-[#dae6d8]/10 bg-[#040e08]/90 p-5 space-y-3">
-              <h3 className="text-xs uppercase tracking-[0.2em] text-[#00ff87] font-bold font-['Orbitron'] flex items-center gap-2">
+            <div className="rounded-2xl border border-[#f4f5f2]/10 bg-[#040e08]/90 p-5 space-y-3">
+              <h3 className="text-xs uppercase tracking-[0.2em] text-[#39ff14] font-bold font-['Orbitron'] flex items-center gap-2">
                 <MapPin size={14} /> Delivery &amp; Recipient Info
               </h3>
 
               {order.shippingAddress ? (
-                <div className="space-y-1.5 text-xs text-[#dae6d8]/80 leading-relaxed">
-                  <p className="font-bold text-[#e5efe3] text-sm">
+                <div className="space-y-1.5 text-xs text-[#f4f5f2]/80 leading-relaxed">
+                  <p className="font-bold text-[#f4f5f2] text-sm">
                     {order.shippingAddress.fullName}
                   </p>
-                  <p className="flex items-center gap-2 text-[#dae6d8]/70">
-                    <Mail size={12} className="text-[#00ff87]" />
+                  <p className="flex items-center gap-2 text-[#f4f5f2]/70">
+                    <Mail size={12} className="text-[#39ff14]" />
                     {order.shippingAddress.email}
                   </p>
-                  <p className="flex items-center gap-2 text-[#dae6d8]/70">
-                    <Truck size={12} className="text-[#00ff87]" />
+                  <p className="flex items-center gap-2 text-[#f4f5f2]/70">
+                    <Truck size={12} className="text-[#39ff14]" />
                     {order.shippingAddress.phone}
                   </p>
-                  <div className="pt-2 border-t border-[#dae6d8]/10 text-[#dae6d8]/70">
+                  <div className="pt-2 border-t border-[#f4f5f2]/10 text-[#f4f5f2]/70">
                     <p>{order.shippingAddress.address}</p>
                     <p>
                       {order.shippingAddress.city},{" "}
                       {order.shippingAddress.state}{" "}
                       {order.shippingAddress.zipCode}
                     </p>
-                    <p className="font-semibold text-[#00ff87] mt-0.5">
+                    <p className="font-semibold text-[#39ff14] mt-0.5">
                       {order.shippingAddress.country}
                     </p>
                   </div>
                 </div>
               ) : (
-                <p className="text-xs text-[#dae6d8]/50 italic">
+                <p className="text-xs text-[#f4f5f2]/50 italic">
                   Standard Concierge Delivery Address
                 </p>
               )}
@@ -318,8 +318,8 @@ export default function OrderDetailModal({
           </div>
 
           {/* Timeline Steps */}
-          <div className="rounded-2xl border border-[#dae6d8]/10 bg-[#040e08]/90 p-5 space-y-3">
-            <h3 className="text-xs uppercase tracking-[0.2em] text-[#00ff87] font-bold font-['Orbitron'] flex items-center gap-2">
+          <div className="rounded-2xl border border-[#f4f5f2]/10 bg-[#040e08]/90 p-5 space-y-3">
+            <h3 className="text-xs uppercase tracking-[0.2em] text-[#39ff14] font-bold font-['Orbitron'] flex items-center gap-2">
               <Clock size={14} /> Concierge Status Timeline
             </h3>
 
@@ -329,16 +329,16 @@ export default function OrderDetailModal({
                   key={idx}
                   className={`relative rounded-xl border p-3 text-xs space-y-1 transition-all ${
                     step.completed
-                      ? "border-[#00ff87]/30 bg-[#00ff87]/10 text-[#e5efe3]"
-                      : "border-[#dae6d8]/10 bg-[#020704]/60 text-[#dae6d8]/50"
+                      ? "border-[#39ff14]/30 bg-[#39ff14]/10 text-[#f4f5f2]"
+                      : "border-[#f4f5f2]/10 bg-[#020704]/60 text-[#f4f5f2]/50"
                   }`}
                 >
                   <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-bold font-['Orbitron'] uppercase tracking-wider text-[#00ff87]">
+                    <span className="text-[10px] font-bold font-['Orbitron'] uppercase tracking-wider text-[#39ff14]">
                       Step {idx + 1}
                     </span>
                     {step.completed ? (
-                      <CheckCircle2 size={14} className="text-[#00ff87]" />
+                      <CheckCircle2 size={14} className="text-[#39ff14]" />
                     ) : (
                       <Clock
                         size={14}
@@ -346,10 +346,10 @@ export default function OrderDetailModal({
                       />
                     )}
                   </div>
-                  <p className="font-bold text-xs text-[#e5efe3] leading-snug">
+                  <p className="font-bold text-xs text-[#f4f5f2] leading-snug">
                     {step.title}
                   </p>
-                  <p className="text-[10px] text-[#dae6d8]/60 leading-normal">
+                  <p className="text-[10px] text-[#f4f5f2]/60 leading-normal">
                     {step.desc}
                   </p>
                 </div>
@@ -359,7 +359,7 @@ export default function OrderDetailModal({
         </div>
 
         {/* Footer Actions */}
-        <div className="flex flex-wrap items-center justify-between gap-3 border-t border-[#dae6d8]/10 pt-5 mt-6">
+        <div className="flex flex-wrap items-center justify-between gap-3 border-t border-[#f4f5f2]/10 pt-5 mt-6">
           <button
             type="button"
             onClick={handleRemove}
@@ -372,7 +372,7 @@ export default function OrderDetailModal({
             <button
               type="button"
               onClick={handlePrint}
-              className="flex items-center gap-2 rounded-xl border border-[#dae6d8]/20 bg-[#dae6d8]/5 px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-[#dae6d8] hover:bg-[#dae6d8]/15 transition-colors cursor-pointer"
+              className="flex items-center gap-2 rounded-xl border border-[#f4f5f2]/20 bg-[#f4f5f2]/5 px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-[#f4f5f2] hover:bg-[#f4f5f2]/15 transition-colors cursor-pointer"
             >
               <Printer size={14} /> Print Dossier
             </button>
@@ -380,7 +380,7 @@ export default function OrderDetailModal({
             <button
               type="button"
               onClick={onClose}
-              className="rounded-xl border border-[#00ff87]/40 bg-[#00ff87]/15 px-6 py-2.5 text-xs font-bold uppercase tracking-wider text-[#00ff87] hover:bg-[#00ff87]/25 transition-colors cursor-pointer shadow-[0_0_15px_rgba(0,255,135,0.15)]"
+              className="rounded-xl border border-[#39ff14]/40 bg-[#39ff14]/15 px-6 py-2.5 text-xs font-bold uppercase tracking-wider text-[#39ff14] hover:bg-[#39ff14]/25 transition-colors cursor-pointer shadow-[0_0_15px_rgba(57,255,20,0.15)]"
             >
               Done
             </button>

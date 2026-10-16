@@ -10,8 +10,8 @@ export const AuthHeader = ({ mode }: AuthHeaderProps) => {
   return (
     <header className="overflow-hidden">
       <div className="flex items-center gap-4 md:pb-4 md:pt-4  pb-10">
-        <div className="w-1.5 h-1.5 rounded-full bg-[#00ff87]" />
-        <span className="text-[16px] sm:text-[18px] uppercase tracking-[0.18em] font-semibold text-[#00ff87]">
+        <div className="w-1.5 h-1.5 rounded-full bg-[#39ff14]" />
+        <span className="text-[16px] sm:text-[18px] uppercase tracking-[0.18em] font-semibold text-[#39ff14]">
           {mode === "login" ? "Member Access" : "Membership Enrollment"}
         </span>
       </div>
@@ -27,15 +27,15 @@ export const AuthHeader = ({ mode }: AuthHeaderProps) => {
           <h1 className="text-4xl sm:text-5xl font-bold leading-[1.1] tracking-tight mb-6 newsreader">
             {mode === "login" ? (
               <>
-                Welcome <span className="text-[#dae6d8]/35">Back.</span>
+                Welcome <span className="text-[#f4f5f2]/35">Back.</span>
               </>
             ) : (
               <>
-                Join the <span className="text-[#dae6d8]/35">Elite.</span>
+                Join the <span className="text-[#f4f5f2]/35">Elite.</span>
               </>
             )}
           </h1>
-          <p className="text-[13px] text-[#dae6d8]/60 leading-relaxed newsreader italic tracking-[0.08em] ">
+          <p className="text-[13px] text-[#f4f5f2]/60 leading-relaxed newsreader italic tracking-[0.08em] ">
             {mode === "login"
               ? "Access your private concierge dashboard and curated inventory."
               : "Begin your journey with AutoDeal. Apply for access to our exclusive fleet."}

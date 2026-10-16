@@ -28,12 +28,12 @@ export default function ConciergeFloatingBubble({
 			{/* Optional Tooltip / Preview Pill on Desktop */}
 			<div
 				role="status"
-				className={`hidden sm:flex items-center gap-2 rounded-full border border-[#00ff87]/30 bg-[#050e0a]/90 px-3.5 py-1.5 shadow-[0_10px_30px_rgba(0,0,0,0.6)] backdrop-blur-md transition-all duration-300 pointer-events-none ${
+				className={`hidden sm:flex items-center gap-2 rounded-full border border-[#39ff14]/30 bg-[#050606]/90 px-3.5 py-1.5 shadow-[0_10px_30px_rgba(0,0,0,0.6)] backdrop-blur-md transition-all duration-300 pointer-events-none ${
 					isHovered ? "opacity-100 translate-x-0" : "opacity-0 translate-x-2"
 				}`}
 			>
-				<Radio size={12} className="text-[#00ff87] animate-pulse" />
-				<span className="text-[11px] font-mono font-medium text-[#e5efe3] tracking-wide">
+				<Radio size={12} className="text-[#39ff14] animate-pulse" />
+				<span className="text-[11px] font-mono font-medium text-[#f4f5f2] tracking-wide">
 					{isOpen
 						? "Minimize Concierge"
 						: activeCarName
@@ -53,7 +53,7 @@ export default function ConciergeFloatingBubble({
 					}}
 					aria-label="Remove AI Concierge bubble from page"
 					title="Remove bubble from page"
-					className="absolute -top-1.5 -right-1.5 z-20 flex h-5 w-5 items-center justify-center rounded-full border border-[#dae6d8]/30 bg-[#050e0a] text-[#dae6d8]/70 shadow-md transition-all duration-200 hover:border-[#ef4444] hover:bg-[#ef4444]/20 hover:text-[#ef4444] hover:scale-110 active:scale-90 cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#ef4444]"
+					className="absolute -top-1.5 -right-1.5 z-20 flex h-5 w-5 items-center justify-center rounded-full border border-[#f4f5f2]/30 bg-[#050606] text-[#f4f5f2]/70 shadow-md transition-all duration-200 hover:border-[#ef4444] hover:bg-[#ef4444]/20 hover:text-[#ef4444] hover:scale-110 active:scale-90 cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#ef4444]"
 				>
 					<X size={10} strokeWidth={2.5} />
 				</button>
@@ -66,10 +66,10 @@ export default function ConciergeFloatingBubble({
 					onMouseLeave={() => setIsHovered(false)}
 					aria-label={isOpen ? "Close AI Concierge" : "Open AI Concierge"}
 					aria-expanded={isOpen}
-					className={`relative flex h-14 w-14 items-center justify-center rounded-2xl border backdrop-blur-xl transition-all duration-300 [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] hover:scale-105 active:scale-95 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00ff87] ${
+					className={`relative flex h-14 w-14 items-center justify-center rounded-2xl border backdrop-blur-xl transition-all duration-300 [transition-timing-function:cubic-bezier(0.23,1,0.32,1)] hover:scale-105 active:scale-95 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#39ff14] ${
 						isOpen
-							? "border-[#00ff87] bg-gradient-to-br from-[#091a11] via-[#050e0a] to-[#000000] text-[#00ff87] shadow-[0_0_30px_rgba(0,255,135,0.45)]"
-							: "border-[#00ff87]/50 bg-gradient-to-br from-[#091a11]/95 via-[#050e0a]/98 to-[#020705] text-[#00ff87] shadow-[0_0_25px_rgba(0,255,135,0.3)] hover:border-[#00ff87] hover:shadow-[0_0_35px_rgba(0,255,135,0.55)]"
+							? "border-[#39ff14] bg-gradient-to-br from-[#111314] via-[#050606] to-[#000000] text-[#39ff14] shadow-[0_0_30px_rgba(57,255,20,0.45)]"
+							: "border-[#39ff14]/50 bg-gradient-to-br from-[#111314]/95 via-[#050606]/98 to-[#020705] text-[#39ff14] shadow-[0_0_25px_rgba(57,255,20,0.3)] hover:border-[#39ff14] hover:shadow-[0_0_35px_rgba(57,255,20,0.55)]"
 					}`}
 				>
 
@@ -86,8 +86,8 @@ export default function ConciergeFloatingBubble({
 							className="absolute top-2 left-2 flex h-2.5 w-2.5"
 							aria-label="Active conversation"
 						>
-							<span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00ff87] opacity-75" />
-							<span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#00ff87] shadow-[0_0_8px_#00ff87]" />
+							<span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#39ff14] opacity-75" />
+							<span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#39ff14] shadow-[0_0_8px_#39ff14]" />
 						</span>
 					)}
 				</button>

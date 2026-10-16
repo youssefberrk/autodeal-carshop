@@ -256,35 +256,35 @@ const CountrySelect = ({ value, onChange, label }: CountrySelectProps) => {
 
   return (
     <div className="relative" ref={dropdownRef}>
-      <label className="block text-[9px] uppercase tracking-widest text-[#dae6d8]/40 mb-2 font-bold">{label}</label>
+      <label className="block text-[9px] uppercase tracking-widest text-[#f4f5f2]/40 mb-2 font-bold">{label}</label>
       
       <button
         type="button"
         onClick={() => handleOpenChange(!isOpen)}
-        className={`w-full bg-[#091a11] border ${isOpen ? 'border-[#00ff87]/50' : 'border-[#dae6d8]/10'} rounded-lg px-5 py-4 text-sm flex items-center justify-between transition-all hover:border-[#dae6d8]/30 group`}
+        className={`w-full bg-[#111314] border ${isOpen ? 'border-[#39ff14]/50' : 'border-[#f4f5f2]/10'} rounded-lg px-5 py-4 text-sm flex items-center justify-between transition-all hover:border-[#f4f5f2]/30 group`}
       >
         <div className="flex items-center gap-3">
           <span className="text-xl leading-none">{selectedCountry?.flag}</span>
-          <span className="text-[#e5efe3] font-medium">{selectedCountry?.name}</span>
+          <span className="text-[#f4f5f2] font-medium">{selectedCountry?.name}</span>
         </div>
         <ChevronDown 
           size={16} 
-          className={`text-[#dae6d8]/40 transition-transform duration-300 ${isOpen ? 'rotate-180 text-[#00ff87]' : ''}`} 
+          className={`text-[#f4f5f2]/40 transition-transform duration-300 ${isOpen ? 'rotate-180 text-[#39ff14]' : ''}`} 
         />
       </button>
 
       {/* Dropdown Menu */}
       <div 
-        className={`absolute left-0 right-0 top-[calc(100%+8px)] z-50 bg-[#050e0a] border border-[#dae6d8]/10 rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden transition-all duration-300 origin-top ${
+        className={`absolute left-0 right-0 top-[calc(100%+8px)] z-50 bg-[#050606] border border-[#f4f5f2]/10 rounded-xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden transition-all duration-300 origin-top ${
           isOpen ? 'opacity-100 scale-100 translate-y-0 visible' : 'opacity-0 scale-95 -translate-y-2 invisible'
         }`}
       >
-        <div className="p-4 border-b border-[#dae6d8]/5 flex items-center gap-3 bg-[#091a11]/50">
-          <Search size={14} className="text-[#dae6d8]/30" />
+        <div className="p-4 border-b border-[#f4f5f2]/5 flex items-center gap-3 bg-[#111314]/50">
+          <Search size={14} className="text-[#f4f5f2]/30" />
           <input
             ref={inputRef}
             type="text"
-            className="w-full bg-transparent border-none outline-none text-xs text-[#dae6d8] placeholder:text-[#dae6d8]/20"
+            className="w-full bg-transparent border-none outline-none text-xs text-[#f4f5f2] placeholder:text-[#f4f5f2]/20"
             placeholder="Search country or code..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
@@ -293,7 +293,7 @@ const CountrySelect = ({ value, onChange, label }: CountrySelectProps) => {
             <button 
               type="button" 
               onClick={() => setSearchQuery("")}
-              className="text-[#dae6d8]/30 hover:text-[#dae6d8]"
+              className="text-[#f4f5f2]/30 hover:text-[#f4f5f2]"
             >
               <X size={14} />
             </button>
@@ -307,22 +307,22 @@ const CountrySelect = ({ value, onChange, label }: CountrySelectProps) => {
                 key={country.code}
                 type="button"
                 onClick={() => handleSelect(country.name)}
-                className={`w-full flex items-center justify-between px-5 py-3 hover:bg-[#00ff87]/5 transition-colors text-left ${
-                  value === country.name ? 'bg-[#00ff87]/10' : ''
+                className={`w-full flex items-center justify-between px-5 py-3 hover:bg-[#39ff14]/5 transition-colors text-left ${
+                  value === country.name ? 'bg-[#39ff14]/10' : ''
                 }`}
               >
                 <div className="flex items-center gap-3">
                   <span className="text-lg">{country.flag}</span>
-                  <span className={`text-xs ${value === country.name ? 'text-[#00ff87] font-bold' : 'text-[#dae6d8]/80'}`}>
+                  <span className={`text-xs ${value === country.name ? 'text-[#39ff14] font-bold' : 'text-[#f4f5f2]/80'}`}>
                     {country.name}
                   </span>
                 </div>
-                <span className="text-[10px] text-[#dae6d8]/20 font-mono">{country.code}</span>
+                <span className="text-[10px] text-[#f4f5f2]/20 font-mono">{country.code}</span>
               </button>
             ))
           ) : (
             <div className="px-5 py-10 text-center">
-              <p className="text-xs text-[#dae6d8]/30 italic">No matching countries found</p>
+              <p className="text-xs text-[#f4f5f2]/30 italic">No matching countries found</p>
             </div>
           )}
         </div>
@@ -340,7 +340,7 @@ const CountrySelect = ({ value, onChange, label }: CountrySelectProps) => {
           border-radius: 10px;
         }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-          background: rgba(0, 255, 135, 0.2);
+          background: rgba(57, 255, 20, 0.2);
         }
       `}</style>
     </div>

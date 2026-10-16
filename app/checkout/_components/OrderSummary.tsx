@@ -59,17 +59,17 @@ export default function OrderSummary({
   return (
     <div className="lg:col-span-5 flex flex-col lg:sticky lg:top-24 lg:self-start space-y-6">
       {/* Header */}
-      <header className="flex items-end justify-between border-b border-[#dae6d8]/10 pb-4">
+      <header className="flex items-end justify-between border-b border-[#f4f5f2]/10 pb-4">
         <div>
-          <span className="text-[10px] uppercase tracking-[0.25em] text-[#00ff87] font-bold mb-1.5 flex items-center gap-1.5 font-['Orbitron']">
+          <span className="text-[10px] uppercase tracking-[0.25em] text-[#39ff14] font-bold mb-1.5 flex items-center gap-1.5 font-['Orbitron']">
             <Sparkles size={12} aria-hidden="true" /> Reservation Summary
           </span>
-          <h2 className="text-3xl md:text-4xl font-['Newsreader'] italic font-bold tracking-tight text-[#e5efe3]">
+          <h2 className="text-3xl md:text-4xl font-['Newsreader'] italic font-bold tracking-tight text-[#f4f5f2]">
             Allocated Vehicles
           </h2>
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-[10px] uppercase tracking-widest text-[#00ff87] font-bold bg-[#00ff87]/10 px-3 py-1 rounded-full border border-[#00ff87]/20 font-['Orbitron']">
+          <span className="text-[10px] uppercase tracking-widest text-[#39ff14] font-bold bg-[#39ff14]/10 px-3 py-1 rounded-full border border-[#39ff14]/20 font-['Orbitron']">
             {cars.length} {cars.length === 1 ? "Vehicle" : "Vehicles"}
           </span>
         </div>
@@ -90,46 +90,46 @@ export default function OrderSummary({
       {/* Pricing Summary Card */}
       <div
         ref={priceLockRef}
-        className="bg-[#2a3c34]/85 backdrop-blur-2xl p-6 border border-[#00ff87]/20 rounded-2xl shadow-[0_20px_40px_-15px_rgba(0,0,0,0.6),0_0_25px_rgba(0,255,135,0.04)] space-y-4"
+        className="bg-[#2a3c34]/85 backdrop-blur-2xl p-6 border border-[#39ff14]/20 rounded-2xl shadow-[0_20px_40px_-15px_rgba(0,0,0,0.6),0_0_25px_rgba(57,255,20,0.04)] space-y-4"
       >
         {/* Line items */}
-        <div className="space-y-3 pb-4 border-b border-[#dae6d8]/10 text-xs">
+        <div className="space-y-3 pb-4 border-b border-[#f4f5f2]/10 text-xs">
           {/* Subtotal MSRP — base price dot */}
           <div className="flex justify-between items-center tracking-wide">
-            <span className="flex items-center gap-2 text-[#dae6d8]/60">
+            <span className="flex items-center gap-2 text-[#f4f5f2]/60">
               <span
-                className="h-1.5 w-1.5 rounded-full bg-[#e5efe3]/40 shrink-0"
+                className="h-1.5 w-1.5 rounded-full bg-[#f4f5f2]/40 shrink-0"
                 aria-hidden="true"
               />
               Subtotal MSRP
             </span>
-            <span className="font-bold text-[#e5efe3] tabular-nums">
+            <span className="font-bold text-[#f4f5f2] tabular-nums">
               ${subtotal.toLocaleString()}
             </span>
           </div>
           {/* Custom config — add-on amber dot */}
           <div className="flex justify-between items-center tracking-wide">
-            <span className="flex items-center gap-2 text-[#dae6d8]/60">
+            <span className="flex items-center gap-2 text-[#f4f5f2]/60">
               <span
                 className="h-1.5 w-1.5 rounded-full bg-amber-400/60 shrink-0"
                 aria-hidden="true"
               />
               Bespoke Custom Configuration
             </span>
-            <span className="font-bold text-[#e5efe3] tabular-nums">
+            <span className="font-bold text-[#f4f5f2] tabular-nums">
               ${customConfiguration.toLocaleString()}
             </span>
           </div>
           {/* Delivery — logistics teal dot */}
           <div className="flex justify-between items-center tracking-wide">
-            <span className="flex items-center gap-2 text-[#dae6d8]/60">
+            <span className="flex items-center gap-2 text-[#f4f5f2]/60">
               <span
                 className="h-1.5 w-1.5 rounded-full bg-sky-400/60 shrink-0"
                 aria-hidden="true"
               />
               Global Delivery &amp; Concierge
             </span>
-            <span className="font-bold text-[#e5efe3] tabular-nums">
+            <span className="font-bold text-[#f4f5f2] tabular-nums">
               ${deliveryFee.toLocaleString()}
             </span>
           </div>
@@ -138,7 +138,7 @@ export default function OrderSummary({
         {/* Total row — signature price lock sweep */}
         <div className="flex justify-between items-end pt-1">
           <div>
-            <span className="block text-[9px] uppercase tracking-[0.2em] text-[#00ff87] font-bold mb-1 font-['Orbitron']">
+            <span className="block text-[9px] uppercase tracking-[0.2em] text-[#39ff14] font-bold mb-1 font-['Orbitron']">
               Total Allocation
             </span>
             {/*
@@ -149,9 +149,9 @@ export default function OrderSummary({
             <div className="relative inline-block">
               <span
                 data-price-locked={priceLocked}
-                className={`text-3xl md:text-4xl font-bold font-['Newsreader'] italic tracking-tight text-[#00ff87]
+                className={`text-3xl md:text-4xl font-bold font-['Newsreader'] italic tracking-tight text-[#39ff14]
 									transition-[filter] duration-700 ease-out
-									${priceLocked ? "drop-shadow-[0_0_20px_rgba(0,255,135,0.3)]" : "drop-shadow-[0_0_10px_rgba(0,255,135,0.1)]"}`}
+									${priceLocked ? "drop-shadow-[0_0_20px_rgba(57,255,20,0.3)]" : "drop-shadow-[0_0_10px_rgba(57,255,20,0.1)]"}`}
               >
                 ${totalAllocation.toLocaleString()}
               </span>
@@ -159,7 +159,7 @@ export default function OrderSummary({
               <span
                 aria-hidden="true"
                 className={`pointer-events-none absolute inset-0 rounded-sm
-									bg-[linear-gradient(90deg,transparent_0%,rgba(0,255,135,0.18)_50%,transparent_100%)]
+									bg-[linear-gradient(90deg,transparent_0%,rgba(57,255,20,0.18)_50%,transparent_100%)]
 									transition-[clip-path,opacity] motion-reduce:hidden
 									${
                     priceLocked
@@ -182,7 +182,7 @@ export default function OrderSummary({
 
           {/* Price guaranteed badge */}
           <div
-            className={`flex items-center gap-1.5 text-[9px] uppercase tracking-widest text-[#00ff87] font-bold bg-[#00ff87]/10 px-3 py-1.5 rounded-full border border-[#00ff87]/20 font-['Orbitron']
+            className={`flex items-center gap-1.5 text-[9px] uppercase tracking-widest text-[#39ff14] font-bold bg-[#39ff14]/10 px-3 py-1.5 rounded-full border border-[#39ff14]/20 font-['Orbitron']
 							transition-[opacity,transform] duration-500 ease-out
 							${priceLocked ? "opacity-100 translate-y-0" : "opacity-50 translate-y-1"}`}
           >

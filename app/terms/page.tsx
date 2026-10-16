@@ -37,7 +37,7 @@ export default function TermsPage() {
         </p>
         <h2 className="text-white text-xl font-semibold mt-8">Contact</h2>
         <p>
-          For questions about these terms, contact us at <Link href="/contact" className="text-[#00ff87] hover:underline">legal@autodeal.com</Link>.
+          For questions about these terms, contact us at <Link href="/contact" className="text-[#39ff14] hover:underline">legal@autodeal.com</Link>.
         </p>
       </div>
     </main>

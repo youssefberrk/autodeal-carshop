@@ -152,12 +152,8 @@ const ShopPage = () => {
                   className="text-[clamp(1.8rem,5.4vw,4.9rem)] font-black uppercase tracking-[0.04em] text-transparent select-none mt-2"
                   style={{
                     fontFamily: "Orbitron",
-                    background: "linear-gradient(90deg, #ff6ec7, #00ffb3)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    WebkitTextStroke: "1px rgba(255,255,255,0.3)",
-                    textShadow:
-                      "0 0 5px rgba(255,110,199,0.6), 0 0 10px rgba(0,255,179,0.4)",
+                    color: "#f4f5f2",
+                    textShadow: "0 2px 24px rgba(0,0,0,0.38)",
                   }}
                 >
                   Collection
@@ -454,10 +450,10 @@ const ShopPage = () => {
         <div className="lg:hidden mb-8">
           <button
             onClick={handleOpenMobileFilters}
-            className="flex items-center justify-between w-full p-4 rounded-2xl bg-[#091a11]/90 border border-[#00ff87]/30 text-[#dae6d8] hover:border-[#00ff87] transition-all shadow-[0_0_25px_rgba(0,255,135,0.1)] active:scale-[0.99] cursor-pointer"
+            className="flex items-center justify-between w-full p-4 rounded-2xl bg-[#111314]/90 border border-[#39ff14]/30 text-[#f4f5f2] hover:border-[#39ff14] transition-all shadow-[0_0_25px_rgba(57,255,20,0.1)] active:scale-[0.99] cursor-pointer"
           >
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-[#00ff87]/10 border border-[#00ff87]/30 flex items-center justify-center text-[#00ff87]">
+              <div className="w-10 h-10 rounded-xl bg-[#39ff14]/10 border border-[#39ff14]/30 flex items-center justify-center text-[#39ff14]">
                 <SlidersHorizontal size={20} />
               </div>
               <div className="text-left">
@@ -476,11 +472,11 @@ const ShopPage = () => {
             </div>
 
             {activeFiltersCount > 0 ? (
-              <span className="bg-[#00ff87] text-[#050e0a] text-xs font-extrabold px-3 py-1 rounded-full font-mono shadow-[0_0_10px_rgba(0,255,135,0.4)]">
+              <span className="bg-[#39ff14] text-[#050606] text-xs font-extrabold px-3 py-1 rounded-full font-mono shadow-[0_0_10px_rgba(57,255,20,0.4)]">
                 {activeFiltersCount} Active
               </span>
             ) : (
-              <span className="text-xs text-[#00ff87] font-semibold uppercase tracking-wider">
+              <span className="text-xs text-[#39ff14] font-semibold uppercase tracking-wider">
                 Open
               </span>
             )}
@@ -498,7 +494,7 @@ const ShopPage = () => {
               {activeFiltersCount > 0 && (
                 <button
                   onClick={handleResetFilters}
-                  className="flex items-center gap-1.5 text-[10px] uppercase font-bold tracking-wider text-[#00ff87]/80 hover:text-[#00ff87] hover:bg-[#00ff87]/10 px-2.5 py-1 rounded-lg border border-[#00ff87]/20 transition-all cursor-pointer"
+                  className="flex items-center gap-1.5 text-[10px] uppercase font-bold tracking-wider text-[#39ff14]/80 hover:text-[#39ff14] hover:bg-[#39ff14]/10 px-2.5 py-1 rounded-lg border border-[#39ff14]/20 transition-all cursor-pointer"
                   title="Reset all filters"
                 >
                   <RotateCcw size={12} />
@@ -538,8 +534,8 @@ const ShopPage = () => {
 
           {/* Cars Grid or No Vehicles Available State */}
           {filteredCars.length === 0 ? (
-            <div className="w-full py-16 px-6 text-center bg-[#07130c]/60 border border-[#00ff87]/20 rounded-3xl backdrop-blur-md flex flex-col items-center justify-center my-4 shadow-[0_0_40px_rgba(0,0,0,0.3)]">
-              <div className="w-16 h-16 rounded-full bg-[#00ff87]/10 border border-[#00ff87]/30 flex items-center justify-center text-[#00ff87] mb-5 shadow-[0_0_30px_rgba(0,255,135,0.15)] animate-pulse">
+            <div className="w-full py-16 px-6 text-center bg-[#07130c]/60 border border-[#39ff14]/20 rounded-3xl backdrop-blur-md flex flex-col items-center justify-center my-4 shadow-[0_0_40px_rgba(0,0,0,0.3)]">
+              <div className="w-16 h-16 rounded-full bg-[#39ff14]/10 border border-[#39ff14]/30 flex items-center justify-center text-[#39ff14] mb-5 shadow-[0_0_30px_rgba(57,255,20,0.15)] animate-pulse">
                 <Compass size={32} />
               </div>
               <h3
@@ -555,7 +551,7 @@ const ShopPage = () => {
               </p>
               <button
                 onClick={handleResetFilters}
-                className="inline-flex items-center gap-2 px-6 py-3 bg-[#00ff87] text-[#050e0a] hover:bg-emerald-300 rounded-xl text-xs font-bold uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(0,255,135,0.25)] active:scale-[0.98] cursor-pointer"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-[#39ff14] text-[#050606] hover:bg-emerald-300 rounded-xl text-xs font-bold uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(57,255,20,0.25)] active:scale-[0.98] cursor-pointer"
               >
                 <RotateCcw size={14} />
                 <span>Reset All Filters</span>
@@ -631,12 +627,12 @@ const ShopPage = () => {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ duration: 0.25, ease: [0.23, 1, 0.32, 1] }}
-              className="w-full max-w-lg bg-[#050e0a]/95 border border-[#00ff87]/30 rounded-3xl p-6 shadow-[0_0_60px_rgba(0,255,135,0.2)] flex flex-col gap-6 max-h-[88vh] overflow-y-auto my-auto"
+              className="w-full max-w-lg bg-[#050606]/95 border border-[#39ff14]/30 rounded-3xl p-6 shadow-[0_0_60px_rgba(57,255,20,0.2)] flex flex-col gap-6 max-h-[88vh] overflow-y-auto my-auto"
             >
               {/* Modal Header */}
-              <div className="flex items-center justify-between border-b border-[#00ff87]/15 pb-4">
+              <div className="flex items-center justify-between border-b border-[#39ff14]/15 pb-4">
                 <div className="flex items-center gap-2.5">
-                  <SlidersHorizontal className="text-[#00ff87]" size={20} />
+                  <SlidersHorizontal className="text-[#39ff14]" size={20} />
                   <h2
                     className="text-lg font-bold text-white tracking-widest uppercase"
                     style={{ fontFamily: "Orbitron, sans-serif" }}
@@ -652,7 +648,7 @@ const ShopPage = () => {
                     <button
                       type="button"
                       onClick={handleResetDraftFilters}
-                      className="flex items-center gap-1 text-[10px] uppercase font-bold tracking-wider text-[#00ff87] hover:bg-[#00ff87]/10 px-2.5 py-1 rounded-lg border border-[#00ff87]/20 transition-all cursor-pointer"
+                      className="flex items-center gap-1 text-[10px] uppercase font-bold tracking-wider text-[#39ff14] hover:bg-[#39ff14]/10 px-2.5 py-1 rounded-lg border border-[#39ff14]/20 transition-all cursor-pointer"
                     >
                       <RotateCcw size={12} />
                       <span>Reset</span>
@@ -660,7 +656,7 @@ const ShopPage = () => {
                   )}
                   <button
                     onClick={handleCancelMobileFilters}
-                    className="p-2 hover:text-[#00ff87] text-slate-400 transition-colors rounded-full hover:bg-white/5 active:scale-95 cursor-pointer"
+                    className="p-2 hover:text-[#39ff14] text-slate-400 transition-colors rounded-full hover:bg-white/5 active:scale-95 cursor-pointer"
                     aria-label="Close filter options"
                   >
                     <X size={20} />
@@ -700,7 +696,7 @@ const ShopPage = () => {
               </div>
 
               {/* Modal Actions: Cancel and Done */}
-              <div className="flex items-center gap-3 pt-4 border-t border-[#00ff87]/15 mt-2">
+              <div className="flex items-center gap-3 pt-4 border-t border-[#39ff14]/15 mt-2">
                 <button
                   type="button"
                   onClick={handleCancelMobileFilters}
@@ -713,7 +709,7 @@ const ShopPage = () => {
                 <button
                   type="button"
                   onClick={handleApplyMobileFilters}
-                  className="flex-1 py-3.5 px-4 rounded-xl bg-[#00ff87] text-[#050e0a] hover:bg-emerald-300 font-bold text-xs uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(0,255,135,0.3)] active:scale-[0.98] cursor-pointer flex items-center justify-center gap-2"
+                  className="flex-1 py-3.5 px-4 rounded-xl bg-[#39ff14] text-[#050606] hover:bg-emerald-300 font-bold text-xs uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(57,255,20,0.3)] active:scale-[0.98] cursor-pointer flex items-center justify-center gap-2"
                 >
                   <Check size={15} />
                   <span>Done</span>

@@ -81,34 +81,34 @@ const Lightbox = ({
 					animate={{ opacity: 1 }}
 					exit={{ opacity: 0 }}
 					transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
-					className="fixed inset-0 z-[100] flex items-center justify-center bg-[#050e0a]/95 backdrop-blur-xl">
+					className="fixed inset-0 z-[100] flex items-center justify-center bg-[#050606]/95 backdrop-blur-xl">
 					{/* Toolbar */}
-					<div className="absolute top-0 left-0 right-0 p-4 sm:p-6 flex justify-between items-center z-[110] bg-gradient-to-b from-[#050e0a]/80 to-transparent">
-						<div className="text-[#e5efe3]/70 font-mono text-sm tracking-[0.2em] uppercase bg-[#091a11]/80 px-4 py-2 rounded-full border border-[#e5efe3]/10">
+					<div className="absolute top-0 left-0 right-0 p-4 sm:p-6 flex justify-between items-center z-[110] bg-gradient-to-b from-[#050606]/80 to-transparent">
+						<div className="text-[#f4f5f2]/70 font-mono text-sm tracking-[0.2em] uppercase bg-[#111314]/80 px-4 py-2 rounded-full border border-[#f4f5f2]/10">
 							{currentIndex + 1} / {images.length}
 						</div>
-						<div className="flex items-center gap-2 sm:gap-4 bg-[#091a11]/80 px-4 py-2 rounded-full border border-[#e5efe3]/10 backdrop-blur-md">
+						<div className="flex items-center gap-2 sm:gap-4 bg-[#111314]/80 px-4 py-2 rounded-full border border-[#f4f5f2]/10 backdrop-blur-md">
 							<button
 								onClick={handleZoomOut}
-								className="text-[#e5efe3]/70 hover:text-[#00ff87] transition-colors cursor-pointer disabled:opacity-30 disabled:hover:text-[#e5efe3]/70 p-2"
+								className="text-[#f4f5f2]/70 hover:text-[#39ff14] transition-colors cursor-pointer disabled:opacity-30 disabled:hover:text-[#f4f5f2]/70 p-2"
 								disabled={scale <= 1}>
 								<ZoomOut size={20} />
 							</button>
 							<button
 								onClick={handleResetZoom}
-								className="text-[#e5efe3]/70 hover:text-[#00ff87] transition-colors cursor-pointer p-2">
+								className="text-[#f4f5f2]/70 hover:text-[#39ff14] transition-colors cursor-pointer p-2">
 								<Maximize size={18} />
 							</button>
 							<button
 								onClick={handleZoomIn}
-								className="text-[#e5efe3]/70 hover:text-[#00ff87] transition-colors cursor-pointer disabled:opacity-30 disabled:hover:text-[#e5efe3]/70 p-2"
+								className="text-[#f4f5f2]/70 hover:text-[#39ff14] transition-colors cursor-pointer disabled:opacity-30 disabled:hover:text-[#f4f5f2]/70 p-2"
 								disabled={scale >= 4}>
 								<ZoomIn size={20} />
 							</button>
-							<div className="w-px h-6 bg-[#e5efe3]/20 mx-1 sm:mx-2" />
+							<div className="w-px h-6 bg-[#f4f5f2]/20 mx-1 sm:mx-2" />
 							<button
 								onClick={onClose}
-								className="text-[#e5efe3] hover:text-[#00ff87] hover:scale-110 active:scale-95 transition-all cursor-pointer p-2 bg-white/5 rounded-full">
+								className="text-[#f4f5f2] hover:text-[#39ff14] hover:scale-110 active:scale-95 transition-all cursor-pointer p-2 bg-white/5 rounded-full">
 								<X size={24} />
 							</button>
 						</div>
@@ -122,7 +122,7 @@ const Lightbox = ({
 									e.stopPropagation();
 									prevImg();
 								}}
-								className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 p-4 text-[#e5efe3]/60 hover:text-[#00ff87] hover:bg-[#00ff87]/10 bg-[#091a11]/60 border border-[#e5efe3]/10 rounded-full backdrop-blur-md transition-all z-[110] cursor-pointer group active:scale-95">
+								className="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 p-4 text-[#f4f5f2]/60 hover:text-[#39ff14] hover:bg-[#39ff14]/10 bg-[#111314]/60 border border-[#f4f5f2]/10 rounded-full backdrop-blur-md transition-all z-[110] cursor-pointer group active:scale-95">
 								<ChevronLeft
 									size={32}
 									strokeWidth={1.5}
@@ -134,7 +134,7 @@ const Lightbox = ({
 									e.stopPropagation();
 									nextImg();
 								}}
-								className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 p-4 text-[#e5efe3]/60 hover:text-[#00ff87] hover:bg-[#00ff87]/10 bg-[#091a11]/60 border border-[#e5efe3]/10 rounded-full backdrop-blur-md transition-all z-[110] cursor-pointer group active:scale-95">
+								className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 p-4 text-[#f4f5f2]/60 hover:text-[#39ff14] hover:bg-[#39ff14]/10 bg-[#111314]/60 border border-[#f4f5f2]/10 rounded-full backdrop-blur-md transition-all z-[110] cursor-pointer group active:scale-95">
 								<ChevronRight
 									size={32}
 									strokeWidth={1.5}

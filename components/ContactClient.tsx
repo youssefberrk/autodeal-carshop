@@ -129,14 +129,14 @@ const ContactClient = () => {
   ];
 
   const inputBaseClass =
-    "w-full bg-transparent border border-[rgba(218,230,216,0.08)] rounded-lg px-5 py-4 text-sm text-[#dae6d8] placeholder-[#dae6d8]/30 font-sans focus:outline-none focus:border-[#00ff87]/40 focus:shadow-[0_0_20px_rgba(0,255,135,0.06)] transition-all duration-250";
+    "w-full bg-transparent border border-[rgba(218,230,216,0.08)] rounded-lg px-5 py-4 text-sm text-[#f4f5f2] placeholder-[#f4f5f2]/30 font-sans focus:outline-none focus:border-[#39ff14]/40 focus:shadow-[0_0_20px_rgba(57,255,20,0.06)] transition-all duration-250";
 
   return (
     <div className="w-full relative overflow-hidden bg-transparent">
       {/* Decorative Glow Elements */}
-      <div className="absolute top-[5%] left-1/2 -translate-x-1/2 w-[600px] md:w-[900px] h-[400px] bg-[#00ff87]/4 rounded-full blur-[120px] pointer-events-none z-0" />
-      <div className="absolute top-[50%] right-[-15%] w-[400px] h-[400px] bg-[#00ff87]/3 rounded-full blur-[100px] pointer-events-none z-0" />
-      <div className="absolute bottom-[15%] left-[-10%] w-[500px] h-[500px] bg-[#00ff87]/3 rounded-full blur-[100px] pointer-events-none z-0" />
+      <div className="absolute top-[5%] left-1/2 -translate-x-1/2 w-[600px] md:w-[900px] h-[400px] bg-[#39ff14]/4 rounded-full blur-[120px] pointer-events-none z-0" />
+      <div className="absolute top-[50%] right-[-15%] w-[400px] h-[400px] bg-[#39ff14]/3 rounded-full blur-[100px] pointer-events-none z-0" />
+      <div className="absolute bottom-[15%] left-[-10%] w-[500px] h-[500px] bg-[#39ff14]/3 rounded-full blur-[100px] pointer-events-none z-0" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12">
         {/* HERO */}
@@ -149,7 +149,7 @@ const ContactClient = () => {
           >
             <motion.span
               variants={heroItemVariants}
-              className="text-[#00ff87] text-xs font-mono uppercase tracking-[0.3em] mb-4 flex items-center gap-2 px-3 py-1 bg-[#00ff87]/10 rounded-full border border-[#00ff87]/20"
+              className="text-[#39ff14] text-xs font-mono uppercase tracking-[0.3em] mb-4 flex items-center gap-2 px-3 py-1 bg-[#39ff14]/10 rounded-full border border-[#39ff14]/20"
             >
               <Shield size={12} />
               Private & Confidential
@@ -161,16 +161,16 @@ const ContactClient = () => {
               style={{ fontFamily: "'Orbitron', sans-serif" }}
             >
               GET IN <br />
-              <span className="text-[#00ff87]">TOUCH</span>
+              <span className="text-[#39ff14]">TOUCH</span>
             </motion.h1>
 
             <motion.p
               variants={heroItemVariants}
-              className="text-sm md:text-base text-[#dae6d8]/90 max-w-3xl leading-relaxed font-light mb-6 font-mono uppercase tracking-wider"
+              className="text-sm md:text-base text-[#f4f5f2]/90 max-w-3xl leading-relaxed font-light mb-6 font-mono uppercase tracking-wider"
             >
               {displayedText}
               <span
-                className="inline-block w-[2px] h-[1em] bg-[#00ff87] ml-[2px] align-middle"
+                className="inline-block w-[2px] h-[1em] bg-[#39ff14] ml-[2px] align-middle"
                 style={{ opacity: cursorVisible ? 1 : 0 }}
               />
             </motion.p>
@@ -180,14 +180,14 @@ const ContactClient = () => {
         {/* CONTACT METHODS GRID */}
         <section className="pb-20 border-t border-[rgba(218,230,216,0.06)]">
           <div className="pt-16 mb-12">
-            <span className="text-[#00ff87] text-xs font-mono uppercase tracking-[0.2em] block mb-2">
+            <span className="text-[#39ff14] text-xs font-mono uppercase tracking-[0.2em] block mb-2">
               Direct Channels
             </span>
             <h2
               className="text-3xl md:text-4xl font-bold uppercase text-white"
               style={{ fontFamily: "'Orbitron', sans-serif" }}
             >
-              REACH THE <span className="text-[#00ff87]">CONCIERGE</span>
+              REACH THE <span className="text-[#39ff14]">CONCIERGE</span>
             </h2>
           </div>
 
@@ -197,24 +197,24 @@ const ContactClient = () => {
               return (
                 <motion.div
                   key={idx}
-                  className="group p-6 bg-[#050e0a]/50 backdrop-blur-md rounded-xl border border-[rgba(218,230,216,0.06)] flex flex-col gap-4 hover:border-[#00ff87]/25 transition-colors duration-300"
+                  className="group p-6 bg-[#050606]/50 backdrop-blur-md rounded-xl border border-[rgba(218,230,216,0.06)] flex flex-col gap-4 hover:border-[#39ff14]/25 transition-colors duration-300"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-80px" }}
                   transition={{ duration: 0.7, ease: easeOutExpo, delay: 0.1 + idx * 0.12 }}
                   whileTap={{ scale: 0.98, transition: { duration: 0.1 } }}
                 >
-                  <div className="w-11 h-11 rounded-lg bg-[#00ff87]/10 flex items-center justify-center text-[#00ff87] border border-[#00ff87]/25 group-hover:bg-[#00ff87]/15 transition-colors duration-300">
+                  <div className="w-11 h-11 rounded-lg bg-[#39ff14]/10 flex items-center justify-center text-[#39ff14] border border-[#39ff14]/25 group-hover:bg-[#39ff14]/15 transition-colors duration-300">
                     <Icon size={20} />
                   </div>
                   <div>
-                    <span className="text-[#00ff87] text-[10px] font-mono uppercase tracking-widest block mb-1">
+                    <span className="text-[#39ff14] text-[10px] font-mono uppercase tracking-widest block mb-1">
                       {method.label}
                     </span>
                     <p className="text-white text-sm font-medium leading-snug mb-1">
                       {method.value}
                     </p>
-                    <p className="text-[#dae6d8]/40 text-xs">{method.detail}</p>
+                    <p className="text-[#f4f5f2]/40 text-xs">{method.detail}</p>
                   </div>
                 </motion.div>
               );
@@ -228,20 +228,20 @@ const ContactClient = () => {
             {/* Form Column */}
             <div ref={formRef} className="lg:col-span-3">
               <div className="mb-10">
-                <span className="text-[#00ff87] text-xs font-mono uppercase tracking-[0.2em] block mb-2">
+                <span className="text-[#39ff14] text-xs font-mono uppercase tracking-[0.2em] block mb-2">
                   Private Inquiry
                 </span>
                 <h2
                   className="text-3xl md:text-4xl font-bold uppercase text-white"
                   style={{ fontFamily: "'Orbitron', sans-serif" }}
                 >
-                  COMPOSE YOUR <span className="text-[#00ff87]">MESSAGE</span>
+                  COMPOSE YOUR <span className="text-[#39ff14]">MESSAGE</span>
                 </h2>
               </div>
 
               {isSubmitted ? (
                 <motion.div
-                  className="flex flex-col items-center justify-center text-center p-16 bg-[#050e0a]/50 backdrop-blur-md rounded-2xl border border-[#00ff87]/20"
+                  className="flex flex-col items-center justify-center text-center p-16 bg-[#050606]/50 backdrop-blur-md rounded-2xl border border-[#39ff14]/20"
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{
@@ -249,7 +249,7 @@ const ContactClient = () => {
                     ease: easeOutExpo,
                   }}
                 >
-                  <div className="w-16 h-16 rounded-full bg-[#00ff87]/15 flex items-center justify-center text-[#00ff87] mb-6 border border-[#00ff87]/30">
+                  <div className="w-16 h-16 rounded-full bg-[#39ff14]/15 flex items-center justify-center text-[#39ff14] mb-6 border border-[#39ff14]/30">
                     <CheckCircle size={32} />
                   </div>
                   <h3
@@ -258,7 +258,7 @@ const ContactClient = () => {
                   >
                     Message Received
                   </h3>
-                  <p className="text-[#dae6d8]/70 text-sm max-w-md mb-8 font-sans">
+                  <p className="text-[#f4f5f2]/70 text-sm max-w-md mb-8 font-sans">
                     Thank you for reaching out. A member of our concierge team
                     will respond within 4 business hours. For urgent matters,
                     please use our priority phone line.
@@ -274,7 +274,7 @@ const ContactClient = () => {
                         message: "",
                       });
                     }}
-                    className="text-[#00ff87] text-xs font-mono uppercase tracking-widest hover:underline underline-offset-4 transition-all"
+                    className="text-[#39ff14] text-xs font-mono uppercase tracking-widest hover:underline underline-offset-4 transition-all"
                   >
                     Send Another Inquiry
                   </button>
@@ -292,7 +292,7 @@ const ContactClient = () => {
                   {/* Name + Email Row */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
-                      <label className="text-[#dae6d8]/50 text-[10px] font-mono uppercase tracking-widest block mb-2">
+                      <label className="text-[#f4f5f2]/50 text-[10px] font-mono uppercase tracking-widest block mb-2">
                         Full Name
                       </label>
                       <input
@@ -306,7 +306,7 @@ const ContactClient = () => {
                       />
                     </div>
                     <div>
-                      <label className="text-[#dae6d8]/50 text-[10px] font-mono uppercase tracking-widest block mb-2">
+                      <label className="text-[#f4f5f2]/50 text-[10px] font-mono uppercase tracking-widest block mb-2">
                         Email Address
                       </label>
                       <input
@@ -324,9 +324,9 @@ const ContactClient = () => {
                   {/* Phone + Subject Row */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
-                      <label className="text-[#dae6d8]/50 text-[10px] font-mono uppercase tracking-widest block mb-2">
+                      <label className="text-[#f4f5f2]/50 text-[10px] font-mono uppercase tracking-widest block mb-2">
                         Phone
-                        <span className="text-[#dae6d8]/25 ml-1">
+                        <span className="text-[#f4f5f2]/25 ml-1">
                           (optional)
                         </span>
                       </label>
@@ -340,7 +340,7 @@ const ContactClient = () => {
                       />
                     </div>
                     <div>
-                      <label className="text-[#dae6d8]/50 text-[10px] font-mono uppercase tracking-widest block mb-2">
+                      <label className="text-[#f4f5f2]/50 text-[10px] font-mono uppercase tracking-widest block mb-2">
                         Subject
                       </label>
                       <select
@@ -358,7 +358,7 @@ const ContactClient = () => {
                           <option
                             key={opt.value}
                             value={opt.value}
-                            className="bg-[#050e0a] text-[#dae6d8]"
+                            className="bg-[#050606] text-[#f4f5f2]"
                           >
                             {opt.label}
                           </option>
@@ -369,7 +369,7 @@ const ContactClient = () => {
 
                   {/* Message */}
                   <div>
-                    <label className="text-[#dae6d8]/50 text-[10px] font-mono uppercase tracking-widest block mb-2">
+                    <label className="text-[#f4f5f2]/50 text-[10px] font-mono uppercase tracking-widest block mb-2">
                       Your Message
                     </label>
                     <textarea
@@ -387,11 +387,11 @@ const ContactClient = () => {
                   <button
                     type="submit"
                     disabled={isSending}
-                    className="group relative flex items-center justify-center gap-3 w-full sm:w-auto px-10 py-4 bg-[#00ff87] text-[#050e0a] font-mono text-sm uppercase font-bold tracking-widest rounded-lg overflow-hidden transition-all duration-150 active:scale-97 hover:shadow-[0_0_30px_rgba(0,255,135,0.4)] disabled:opacity-70 disabled:cursor-not-allowed"
+                    className="group relative flex items-center justify-center gap-3 w-full sm:w-auto px-10 py-4 bg-[#39ff14] text-[#050606] font-mono text-sm uppercase font-bold tracking-widest rounded-lg overflow-hidden transition-all duration-150 active:scale-97 hover:shadow-[0_0_30px_rgba(57,255,20,0.4)] disabled:opacity-70 disabled:cursor-not-allowed"
                   >
                     {isSending ? (
                       <>
-                        <span className="inline-block w-4 h-4 border-2 border-[#050e0a]/30 border-t-[#050e0a] rounded-full animate-spin" />
+                        <span className="inline-block w-4 h-4 border-2 border-[#050606]/30 border-t-[#050606] rounded-full animate-spin" />
                         Transmitting...
                       </>
                     ) : (
@@ -405,7 +405,7 @@ const ContactClient = () => {
                     )}
                   </button>
 
-                  <p className="text-[#dae6d8]/25 text-[10px] font-mono uppercase tracking-wider flex items-center gap-1.5 pt-2">
+                  <p className="text-[#f4f5f2]/25 text-[10px] font-mono uppercase tracking-wider flex items-center gap-1.5 pt-2">
                     <Shield size={10} />
                     All communications are encrypted and strictly confidential.
                   </p>
@@ -417,14 +417,14 @@ const ContactClient = () => {
             <div className="lg:col-span-2 flex flex-col gap-8">
               {/* Showroom Location Card */}
               <motion.div
-                className="p-8 bg-[#050e0a]/50 backdrop-blur-md rounded-2xl border border-[rgba(218,230,216,0.06)] flex flex-col gap-6"
+                className="p-8 bg-[#050606]/50 backdrop-blur-md rounded-2xl border border-[rgba(218,230,216,0.06)] flex flex-col gap-6"
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.7, ease: easeOutExpo }}
               >
                 <div>
-                  <span className="text-[#00ff87] text-[10px] font-mono uppercase tracking-widest block mb-2">
+                  <span className="text-[#39ff14] text-[10px] font-mono uppercase tracking-widest block mb-2">
                     Flagship Showroom
                   </span>
                   <h3
@@ -436,7 +436,7 @@ const ContactClient = () => {
                 </div>
 
                 {/* Stylized Map Container */}
-                <div className="relative w-full aspect-[16/10] rounded-xl overflow-hidden border border-[#00ff87]/10 bg-[#050e0a]">
+                <div className="relative w-full aspect-[16/10] rounded-xl overflow-hidden border border-[#39ff14]/10 bg-[#050606]">
                   <iframe
                     className="w-full h-full grayscale-[0.8] opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-700"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5248.796658770807!2d2.3096559000000005!3d48.8696826!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66fc501e717f1%3A0x9ef912b439932bd6!2s12%20Av.%20des%20Champs-%C3%89lys%C3%A9es%2C%2075008%20Paris%2C%20France!5e0!3m2!1sen!2sma!4v1782737664208!5m2!1sen!2sma"
@@ -456,25 +456,25 @@ const ContactClient = () => {
                     animate={{ scale: 1 }}
                     transition={{ delay: 0.5, type: "spring" }}
                   >
-                    <div className="w-4 h-4 rounded-full bg-[#00ff87] shadow-[0_0_20px_rgba(0,255,135,0.6)] animate-pulse" />
-                    <span className="text-[#00ff87] text-[9px] font-mono uppercase tracking-wider mt-2 bg-[#050e0a]/80 px-2 py-0.5 rounded backdrop-blur-sm whitespace-nowrap">
+                    <div className="w-4 h-4 rounded-full bg-[#39ff14] shadow-[0_0_20px_rgba(57,255,20,0.6)] animate-pulse" />
+                    <span className="text-[#39ff14] text-[9px] font-mono uppercase tracking-wider mt-2 bg-[#050606]/80 px-2 py-0.5 rounded backdrop-blur-sm whitespace-nowrap">
                       AutoDeal HQ
                     </span>
                   </motion.div>
                 </div>
 
                 <div className="flex flex-col gap-2 text-sm">
-                  <p className="text-[#dae6d8]/80 flex items-start gap-2">
+                  <p className="text-[#f4f5f2]/80 flex items-start gap-2">
                     <MapPin
                       size={14}
-                      className="text-[#00ff87]/60 mt-0.5 flex-shrink-0"
+                      className="text-[#39ff14]/60 mt-0.5 flex-shrink-0"
                     />
                     12 Avenue des Champs-Élysées, 75008 Paris
                   </p>
-                  <p className="text-[#dae6d8]/50 flex items-start gap-2">
+                  <p className="text-[#f4f5f2]/50 flex items-start gap-2">
                     <Clock
                       size={14}
-                      className="text-[#00ff87]/40 mt-0.5 flex-shrink-0"
+                      className="text-[#39ff14]/40 mt-0.5 flex-shrink-0"
                     />
                     Mon – Sat: 09:00 – 19:00 CET
                   </p>
@@ -483,14 +483,14 @@ const ContactClient = () => {
 
               {/* FAQ Teaser */}
               <motion.div
-                className="p-8 bg-[#050e0a]/50 backdrop-blur-md rounded-2xl border border-[rgba(218,230,216,0.06)] flex flex-col gap-5"
+                className="p-8 bg-[#050606]/50 backdrop-blur-md rounded-2xl border border-[rgba(218,230,216,0.06)] flex flex-col gap-5"
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.7, delay: 0.15, ease: easeOutExpo }}
               >
                 <div>
-                  <span className="text-[#00ff87] text-[10px] font-mono uppercase tracking-widest block mb-2">
+                  <span className="text-[#39ff14] text-[10px] font-mono uppercase tracking-widest block mb-2">
                     Before You Write
                   </span>
                   <h3
@@ -522,11 +522,11 @@ const ContactClient = () => {
                       <p className="text-white text-sm font-medium mb-1 flex items-start gap-2">
                         <ArrowRight
                           size={12}
-                          className="text-[#00ff87] mt-1 flex-shrink-0"
+                          className="text-[#39ff14] mt-1 flex-shrink-0"
                         />
                         {faq.q}
                       </p>
-                      <p className="text-[#dae6d8]/50 text-xs leading-relaxed pl-5">
+                      <p className="text-[#f4f5f2]/50 text-xs leading-relaxed pl-5">
                         {faq.a}
                       </p>
                     </div>

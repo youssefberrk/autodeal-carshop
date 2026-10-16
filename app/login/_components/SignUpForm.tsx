@@ -28,9 +28,9 @@ export const SignUpForm = ({ onSuccess }: SignUpFormProps) => {
       {/* Full Name */}
       <div>
         <label
-          className="block text-[9px] uppercase tracking-[0.3em] text-[#dae6d8]/75 mb-0.5 font-bold"
+          className="block text-[9px] uppercase tracking-[0.3em] text-[#f4f5f2]/75 mb-0.5 font-bold"
           style={{
-            color: nameFocused ? "#00ff87" : undefined,
+            color: nameFocused ? "#39ff14" : undefined,
             transition: "color 0.2s",
           }}
         >
@@ -44,10 +44,10 @@ export const SignUpForm = ({ onSuccess }: SignUpFormProps) => {
             onFocus={() => setNameFocused(true)}
             onBlur={() => setNameFocused(false)}
             placeholder="Julian Rossi"
-            className="w-full bg-transparent border-0 border-b px-0 py-1.5 sm:py-2 pr-8 text-sm focus:outline-none placeholder:text-[#dae6d8]/20 text-[#dae6d8]"
+            className="w-full bg-transparent border-0 border-b px-0 py-1.5 sm:py-2 pr-8 text-sm focus:outline-none placeholder:text-[#f4f5f2]/20 text-[#f4f5f2]"
             style={{
               borderBottomColor: nameFocused
-                ? "rgba(0,255,135,0.8)"
+                ? "rgba(57,255,20,0.8)"
                 : "rgba(218,230,216,0.12)",
               borderBottomWidth: "1px",
               borderBottomStyle: "solid",
@@ -58,7 +58,7 @@ export const SignUpForm = ({ onSuccess }: SignUpFormProps) => {
             className="absolute right-0 top-1/2 -translate-y-1/2"
             size={15}
             style={{
-              color: nameFocused ? "#00ff87" : "rgba(218,230,216,0.25)",
+              color: nameFocused ? "#39ff14" : "rgba(218,230,216,0.25)",
               transition: "color 0.2s",
             }}
           />
@@ -68,9 +68,9 @@ export const SignUpForm = ({ onSuccess }: SignUpFormProps) => {
       {/* Email */}
       <div>
         <label
-          className="block text-[9px] uppercase tracking-[0.3em] text-[#dae6d8]/75 mb-0.5 font-bold"
+          className="block text-[9px] uppercase tracking-[0.3em] text-[#f4f5f2]/75 mb-0.5 font-bold"
           style={{
-            color: emailFocused ? "#00ff87" : undefined,
+            color: emailFocused ? "#39ff14" : undefined,
             transition: "color 0.2s",
           }}
         >
@@ -84,10 +84,10 @@ export const SignUpForm = ({ onSuccess }: SignUpFormProps) => {
             onFocus={() => setEmailFocused(true)}
             onBlur={() => setEmailFocused(false)}
             placeholder="concierge@autodeal.com"
-            className="w-full bg-transparent border-0 border-b px-0 py-1.5 sm:py-2 pr-8 text-sm focus:outline-none placeholder:text-[#dae6d8]/20 text-[#dae6d8]"
+            className="w-full bg-transparent border-0 border-b px-0 py-1.5 sm:py-2 pr-8 text-sm focus:outline-none placeholder:text-[#f4f5f2]/20 text-[#f4f5f2]"
             style={{
               borderBottomColor: emailFocused
-                ? "rgba(0,255,135,0.8)"
+                ? "rgba(57,255,20,0.8)"
                 : "rgba(218,230,216,0.12)",
               borderBottomWidth: "1px",
               borderBottomStyle: "solid",
@@ -98,7 +98,7 @@ export const SignUpForm = ({ onSuccess }: SignUpFormProps) => {
             className="absolute right-0 top-1/2 -translate-y-1/2"
             size={15}
             style={{
-              color: emailFocused ? "#00ff87" : "rgba(218,230,216,0.25)",
+              color: emailFocused ? "#39ff14" : "rgba(218,230,216,0.25)",
               transition: "color 0.2s",
             }}
           />
@@ -108,9 +108,9 @@ export const SignUpForm = ({ onSuccess }: SignUpFormProps) => {
       {/* Password */}
       <div>
         <label
-          className="block text-[9px] uppercase tracking-[0.3em] text-[#dae6d8]/75 mb-0.5 font-bold"
+          className="block text-[9px] uppercase tracking-[0.3em] text-[#f4f5f2]/75 mb-0.5 font-bold"
           style={{
-            color: passwordFocused ? "#00ff87" : undefined,
+            color: passwordFocused ? "#39ff14" : undefined,
             transition: "color 0.2s",
           }}
         >
@@ -124,10 +124,10 @@ export const SignUpForm = ({ onSuccess }: SignUpFormProps) => {
             onFocus={() => setPasswordFocused(true)}
             onBlur={() => setPasswordFocused(false)}
             placeholder="••••••••••••"
-            className="w-full bg-transparent border-0 border-b px-0 py-1.5 sm:py-2 pr-8 text-sm focus:outline-none placeholder:text-[#dae6d8]/20 text-[#dae6d8]"
+            className="w-full bg-transparent border-0 border-b px-0 py-1.5 sm:py-2 pr-8 text-sm focus:outline-none placeholder:text-[#f4f5f2]/20 text-[#f4f5f2]"
             style={{
               borderBottomColor: passwordFocused
-                ? "rgba(0,255,135,0.8)"
+                ? "rgba(57,255,20,0.8)"
                 : "rgba(218,230,216,0.12)",
               borderBottomWidth: "1px",
               borderBottomStyle: "solid",
@@ -138,7 +138,7 @@ export const SignUpForm = ({ onSuccess }: SignUpFormProps) => {
             className="absolute right-0 top-1/2 -translate-y-1/2"
             size={15}
             style={{
-              color: passwordFocused ? "#00ff87" : "rgba(218,230,216,0.25)",
+              color: passwordFocused ? "#39ff14" : "rgba(218,230,216,0.25)",
               transition: "color 0.2s",
             }}
           />
@@ -151,7 +151,7 @@ export const SignUpForm = ({ onSuccess }: SignUpFormProps) => {
           type="button"
           onClick={onSuccess}
           className="w-full relative overflow-hidden group py-2.5 text-[14px] uppercase tracking-[0.15em] font-bold transition-all active:scale-[0.98] duration-200 cursor-pointer"
-          style={{ background: "#00ff87", color: "#050e0a" }}
+          style={{ background: "#39ff14", color: "#050606" }}
         >
           <span className="relative z-10 flex items-center justify-center gap-3">
             Create Account
@@ -168,7 +168,7 @@ export const SignUpForm = ({ onSuccess }: SignUpFormProps) => {
           <span className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
         </button>
         <button
-          className="w-full flex items-center justify-center gap-3 py-2 text-[10px] uppercase tracking-[0.2em] font-bold transition-all hover:bg-[#dae6d8]/5 active:scale-[0.98] duration-200 cursor-pointer"
+          className="w-full flex items-center justify-center gap-3 py-2 text-[10px] uppercase tracking-[0.2em] font-bold transition-all hover:bg-[#f4f5f2]/5 active:scale-[0.98] duration-200 cursor-pointer"
           style={{
             border: "1px solid rgba(218,230,216,0.1)",
             color: "rgba(218,230,216,0.7)",

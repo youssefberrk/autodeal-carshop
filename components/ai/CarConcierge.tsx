@@ -313,7 +313,7 @@ const CarConcierge = ({ carId, initialPrompt, onClose }: CarConciergeProps) => {
 
 	return (
 		<div
-			className={`car-concierge-container border border-[#e5efe3]/22 bg-gradient-to-b from-[#16201a] via-[#171c18] to-[#090b09] flex flex-col h-full${isExpanded ? " is-expanded" : ""}`}
+			className={`car-concierge-container border border-[#f4f5f2]/22 bg-gradient-to-b from-[#16201a] via-[#171c18] to-[#090b09] flex flex-col h-full${isExpanded ? " is-expanded" : ""}`}
 			aria-labelledby="concierge-title">
 			<header className="concierge-header">
 				<div className="header-left">
@@ -371,7 +371,7 @@ const CarConcierge = ({ carId, initialPrompt, onClose }: CarConciergeProps) => {
 					</span>
 				</div>
 				<span className="context-status flex items-center gap-1">
-					<Globe size={11} className="text-[#00ff87]/80" />
+					<Globe size={11} className="text-[#39ff14]/80" />
 					Live Web Grounding
 				</span>
 			</div>
@@ -406,7 +406,7 @@ const CarConcierge = ({ carId, initialPrompt, onClose }: CarConciergeProps) => {
 									onClick={() => handlePromptClick(prompt.query)}
 									className="starter-prompt-btn flex items-center justify-between group">
 									<span>{prompt.label}</span>
-									<span className="text-[9px] uppercase tracking-wider text-[#00ff87]/70 font-mono">
+									<span className="text-[9px] uppercase tracking-wider text-[#39ff14]/70 font-mono">
 										{prompt.tag}
 									</span>
 								</button>
@@ -469,7 +469,7 @@ const CarConcierge = ({ carId, initialPrompt, onClose }: CarConciergeProps) => {
 						<div className="message-content">
 							<div className="message-meta flex items-center gap-2">
 								<span>AutoDeal Concierge</span>
-								<span className="text-[8px] font-mono text-[#00ff87]/60 flex items-center gap-1">
+								<span className="text-[8px] font-mono text-[#39ff14]/60 flex items-center gap-1">
 									<Globe size={9} /> Consulting Web & Catalog
 								</span>
 							</div>
@@ -488,8 +488,8 @@ const CarConcierge = ({ carId, initialPrompt, onClose }: CarConciergeProps) => {
 			{/* Suggested Inquiries Quick Bar */}
 			{suggestedPrompts.length > 0 && (
 				<div className="px-4 py-2 border-t border-[rgba(218,230,216,0.06)] bg-[rgba(21,23,22,0.65)] backdrop-blur-md">
-					<div className="flex items-center gap-1.5 mb-1.5 text-[9px] md:text-[11px] font-mono uppercase tracking-wider text-[#dae6d8]/45">
-						<Sparkles size={10} className="text-[#00ff87]" />
+					<div className="flex items-center gap-1.5 mb-1.5 text-[9px] md:text-[11px] font-mono uppercase tracking-wider text-[#f4f5f2]/45">
+						<Sparkles size={10} className="text-[#39ff14]" />
 						<span>Suggested Inquiries:</span>
 					</div>
 					<div className="flex gap-1 overflow-x-auto pb-2 luxury-scrollbar">
@@ -499,7 +499,7 @@ const CarConcierge = ({ carId, initialPrompt, onClose }: CarConciergeProps) => {
 								type="button"
 								disabled={isLoading}
 								onClick={() => handlePromptClick(item.query)}
-								className="shrink-0 text-[11px] md:text-[13px] px-2.5 py-1 rounded border border-[#e5efe3]/10 bg-[#091a11] text-[#e5efe3]/85 hover:border-[#00ff87]/50 hover:bg-[#29312d] hover:text-[#00ff87]/80 active:scale-95 transition-all duration-150 cursor-pointer disabled:opacity-40 disabled:pointer-events-none">
+								className="shrink-0 text-[11px] md:text-[13px] px-2.5 py-1 rounded border border-[#f4f5f2]/10 bg-[#111314] text-[#f4f5f2]/85 hover:border-[#39ff14]/50 hover:bg-[#29312d] hover:text-[#39ff14]/80 active:scale-95 transition-all duration-150 cursor-pointer disabled:opacity-40 disabled:pointer-events-none">
 								{item.label}
 							</button>
 						))}
@@ -515,7 +515,7 @@ const CarConcierge = ({ carId, initialPrompt, onClose }: CarConciergeProps) => {
 				/>
 				<p className="concierge-footnote flex items-center justify-between">
 					<span>Grounded in live showroom data &amp; web intelligence.</span>
-					<span className="text-[#00ff87]/60 font-mono">Gemini AI</span>
+					<span className="text-[#39ff14]/60 font-mono">Gemini AI</span>
 				</p>
 			</footer>
 		</div>

@@ -21,10 +21,10 @@ const WishlistCarsCard = ({
 
 	return (
 		<div
-			className={`bg-[#07130c]/50 rounded-xl border border-[#dae6d8]/5 flex flex-col sm:flex-row gap-4 relative group hover:border-[#00ff87]/20 hover:shadow-[0_0_20px_rgba(0,255,135,0.03)] transition-all duration-300 ${isDetailed ? "p-6 sm:p-7" : "p-5"}`}>
+			className={`bg-[#07130c]/50 rounded-xl border border-[#f4f5f2]/5 flex flex-col sm:flex-row gap-4 relative group hover:border-[#39ff14]/20 hover:shadow-[0_0_20px_rgba(57,255,20,0.03)] transition-all duration-300 ${isDetailed ? "p-6 sm:p-7" : "p-5"}`}>
 			<div className={`${isDetailed ? "w-full sm:w-2/5" : "w-full sm:w-1/3"}`}>
 				<div
-					className={`bg-[#020503] rounded-lg overflow-hidden border border-[#dae6d8]/5 relative ${isDetailed ? "aspect-video" : "aspect-[4/3]"}`}>
+					className={`bg-[#020503] rounded-lg overflow-hidden border border-[#f4f5f2]/5 relative ${isDetailed ? "aspect-video" : "aspect-[4/3]"}`}>
 					<Image
 						src={imageSrc}
 						alt={car?.model || "Car"}
@@ -43,17 +43,17 @@ const WishlistCarsCard = ({
 				<div className="flex justify-between items-start mb-1">
 					<div>
 						<h4
-							className={`font-['Newsreader'] italic font-bold text-[#e5efe3] leading-tight ${isDetailed ? "text-2xl mb-1" : "text-xl"}`}>
+							className={`font-['Newsreader'] italic font-bold text-[#f4f5f2] leading-tight ${isDetailed ? "text-2xl mb-1" : "text-xl"}`}>
 							{car.model}
 						</h4>
-						<p className="text-[#dae6d8]/50 text-xs uppercase tracking-wider mb-2">
+						<p className="text-[#f4f5f2]/50 text-xs uppercase tracking-wider mb-2">
 							{car.brand}
 						</p>
 					</div>
 
 					<div className="text-right">
 						<span
-							className={`text-[#00ff87] font-bold font-['Manrope'] block ${isDetailed ? "text-xl" : "text-sm"}`}>
+							className={`text-[#39ff14] font-bold font-['Manrope'] block ${isDetailed ? "text-xl" : "text-sm"}`}>
 							${car.price.toLocaleString()}
 						</span>
 					</div>
@@ -62,16 +62,16 @@ const WishlistCarsCard = ({
 				{isDetailed && (
 					<div className="space-y-3 mb-6 flex-1">
 						<div className="flex flex-wrap gap-4 mt-2">
-							<div className="flex items-center gap-2 bg-[#020503]/60 px-3 py-1.5 rounded-md border border-[#dae6d8]/5">
-								<Gauge size={14} className="text-[#00ff87]" />
-								<span className="text-[10px] uppercase tracking-widest text-[#dae6d8]/70 font-medium">
+							<div className="flex items-center gap-2 bg-[#020503]/60 px-3 py-1.5 rounded-md border border-[#f4f5f2]/5">
+								<Gauge size={14} className="text-[#39ff14]" />
+								<span className="text-[10px] uppercase tracking-widest text-[#f4f5f2]/70 font-medium">
 									{car.bodySilhouette || "Performance"}
 								</span>
 							</div>
 						</div>
 
 						{car.specs && (
-							<div className="flex items-start gap-2 text-[#dae6d8]/50">
+							<div className="flex items-start gap-2 text-[#f4f5f2]/50">
 								<Info size={14} className="mt-0.5 flex-shrink-0" />
 								<p className="text-xs leading-relaxed italic">{car.specs}</p>
 							</div>
@@ -83,7 +83,7 @@ const WishlistCarsCard = ({
 					{isDetailed && (
 						<Link
 							href={`/details/${car.id}`}
-							className="flex-1 bg-[#00ff87]/5 hover:bg-[#00ff87] text-[#00ff87] hover:text-[#020503] border border-[#00ff87]/20 hover:border-[#00ff87] py-2.5 rounded-lg text-[10px] font-bold uppercase tracking-widest transition-all duration-300 flex items-center justify-center gap-2 group/btn">
+							className="flex-1 bg-[#39ff14]/5 hover:bg-[#39ff14] text-[#39ff14] hover:text-[#020503] border border-[#39ff14]/20 hover:border-[#39ff14] py-2.5 rounded-lg text-[10px] font-bold uppercase tracking-widest transition-all duration-300 flex items-center justify-center gap-2 group/btn">
 							View Details
 							<ArrowUpRight
 								size={14}
@@ -93,7 +93,7 @@ const WishlistCarsCard = ({
 					)}
 
 					{!isDetailed && car.badge && (
-						<span className="bg-[#00ff87]/10 text-[#00ff87] border border-[#00ff87]/20 px-2.5 py-0.5 rounded-full text-[9px] uppercase tracking-wider font-bold">
+						<span className="bg-[#39ff14]/10 text-[#39ff14] border border-[#39ff14]/20 px-2.5 py-0.5 rounded-full text-[9px] uppercase tracking-wider font-bold">
 							{car.badge}
 						</span>
 					)}
@@ -108,7 +108,7 @@ const WishlistCarsCard = ({
 			</div>
 
 			{isDetailed && car.badge && (
-				<span className="absolute top-4 left-4 bg-[#00ff87] text-[#020503] px-3 py-1 rounded-md text-[10px] uppercase tracking-wider font-extrabold shadow-[0_0_20px_rgba(0,255,135,0.2)]">
+				<span className="absolute top-4 left-4 bg-[#39ff14] text-[#020503] px-3 py-1 rounded-md text-[10px] uppercase tracking-wider font-extrabold shadow-[0_0_20px_rgba(57,255,20,0.2)]">
 					{car.badge}
 				</span>
 			)}
