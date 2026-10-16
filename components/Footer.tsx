@@ -41,7 +41,7 @@ const Footer = () => {
 				isAuthPage ? "mt-0" : "mt-24 lg:mt-32"
 			}`}>
 			{/* Subtle top glow */}
-			<div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-px bg-gradient-to-r from-transparent via-[#00ff87]/30 to-transparent" />
+			<div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-px bg-gradient-to-r from-transparent via-[#39ff14]/30 to-transparent" />
 
 			<div className="max-w-7xl mx-auto px-6 lg:px-12">
 				{/* Main grid */}
@@ -53,7 +53,7 @@ const Footer = () => {
 								className="text-2xl font-black leading-tight tracking-tight"
 								style={{ fontFamily: "'Orbitron', sans-serif" }}>
 								<span className="text-white">AUTO</span>
-								<span className="text-[#00ff87]">DEAL</span>
+								<span className="text-[#39ff14]">DEAL</span>
 							</h1>
 						</Link>
 						<p className="text-gray-500 text-xs leading-relaxed max-w-[220px]">
@@ -61,15 +61,15 @@ const Footer = () => {
 							2026.
 						</p>
 						<div className="flex gap-3 pt-1">
-							<FaLinkedin className="text-gray-500 hover:text-[#00ff87] transition-colors duration-200 cursor-pointer text-sm" />
-							<FaGithub className="text-gray-500 hover:text-[#00ff87] transition-colors duration-200 cursor-pointer text-sm" />
-							<FaInstagram className="text-gray-500 hover:text-[#00ff87] transition-colors duration-200 cursor-pointer text-sm" />
+							<FaLinkedin className="text-gray-500 hover:text-[#39ff14] transition-colors duration-200 cursor-pointer text-sm" />
+							<FaGithub className="text-gray-500 hover:text-[#39ff14] transition-colors duration-200 cursor-pointer text-sm" />
+							<FaInstagram className="text-gray-500 hover:text-[#39ff14] transition-colors duration-200 cursor-pointer text-sm" />
 						</div>
 					</div>
 
 					{/* Explore */}
 					<div className="lg:col-span-2">
-						<h3 className="mb-5 text-[10px] font-[Orbitron] uppercase tracking-[0.25em] text-[#00ff87]/70">
+						<h3 className="mb-5 text-[10px] font-[Orbitron] uppercase tracking-[0.25em] text-[#39ff14]/70">
 							Explore
 						</h3>
 						<ul className="space-y-3">
@@ -84,7 +84,7 @@ const Footer = () => {
 									<Link
 										href={link.href}
 										className="group inline-flex items-center gap-1.5 text-gray-400 hover:text-white text-xs uppercase tracking-[0.12em] transition-colors duration-200">
-										<span className="w-0 group-hover:w-3 h-px bg-[#00ff87] transition-all duration-300" />
+										<span className="w-0 group-hover:w-3 h-px bg-[#39ff14] transition-all duration-300" />
 										{link.label}
 									</Link>
 								</li>
@@ -94,7 +94,7 @@ const Footer = () => {
 
 					{/* Quick Links */}
 					<div className="lg:col-span-2">
-						<h3 className="mb-5 text-[10px] font-[Orbitron] uppercase tracking-[0.25em] text-[#00ff87]/70">
+						<h3 className="mb-5 text-[10px] font-[Orbitron] uppercase tracking-[0.25em] text-[#39ff14]/70">
 							Quick Links
 						</h3>
 						<ul className="space-y-3">
@@ -109,7 +109,7 @@ const Footer = () => {
 									<Link
 										href={link.href}
 										className="group inline-flex items-center gap-1.5 text-gray-400 hover:text-white text-xs uppercase tracking-[0.12em] transition-colors duration-200">
-										<span className="w-0 group-hover:w-3 h-px bg-[#00ff87] transition-all duration-300" />
+										<span className="w-0 group-hover:w-3 h-px bg-[#39ff14] transition-all duration-300" />
 										{link.label}
 									</Link>
 								</li>
@@ -119,7 +119,7 @@ const Footer = () => {
 
 					{/* Legal */}
 					<div className="lg:col-span-2">
-						<h3 className="mb-5 text-[10px] font-[Orbitron] uppercase tracking-[0.25em] text-[#00ff87]/70">
+						<h3 className="mb-5 text-[10px] font-[Orbitron] uppercase tracking-[0.25em] text-[#39ff14]/70">
 							Legal
 						</h3>
 						<ul className="space-y-3">
@@ -132,7 +132,7 @@ const Footer = () => {
 									<Link
 										href={link.href}
 										className="group inline-flex items-center gap-1.5 text-gray-400 hover:text-white text-xs uppercase tracking-[0.12em] transition-colors duration-200">
-										<span className="w-0 group-hover:w-3 h-px bg-[#00ff87] transition-all duration-300" />
+										<span className="w-0 group-hover:w-3 h-px bg-[#39ff14] transition-all duration-300" />
 										{link.label}
 									</Link>
 								</li>
@@ -142,7 +142,7 @@ const Footer = () => {
 
 					{/* Newsletter */}
 					<div className="lg:col-span-3 flex flex-col gap-4">
-						<h3 className="text-[10px] font-[Orbitron] uppercase tracking-[0.25em] text-[#00ff87]/70">
+						<h3 className="text-[10px] font-[Orbitron] uppercase tracking-[0.25em] text-[#39ff14]/70">
 							Newsletter
 						</h3>
 						<p className="text-gray-500 text-xs leading-relaxed">
@@ -158,12 +158,12 @@ const Footer = () => {
 									placeholder="Enter your email"
 									required
 									disabled={status === "loading" || status === "success"}
-									className="w-full bg-white/[0.03] border border-white/[0.06] rounded-lg px-4 py-3 pr-14 text-sm text-white placeholder:text-gray-600 focus:outline-none focus:border-[#00ff87]/40 focus:bg-white/[0.06] transition-all duration-300 disabled:opacity-50"
+									className="w-full bg-white/[0.03] border border-white/[0.06] rounded-lg px-4 py-3 pr-14 text-sm text-white placeholder:text-gray-600 focus:outline-none focus:border-[#39ff14]/40 focus:bg-white/[0.06] transition-all duration-300 disabled:opacity-50"
 								/>
 								<button
 									type="submit"
 									disabled={status === "loading" || status === "success"}
-									className="absolute right-1.5 top-1/2 -translate-y-1/2 size-11 flex items-center justify-center rounded-md bg-[#00ff87]/10 text-[#00ff87] hover:bg-[#00ff87] hover:text-black transition-all duration-200 active:scale-90 disabled:hover:bg-[#00ff87]/10 disabled:hover:text-[#00ff87] disabled:active:scale-100">
+									className="absolute right-1.5 top-1/2 -translate-y-1/2 size-11 flex items-center justify-center rounded-md bg-[#39ff14]/10 text-[#39ff14] hover:bg-[#39ff14] hover:text-black transition-all duration-200 active:scale-90 disabled:hover:bg-[#39ff14]/10 disabled:hover:text-[#39ff14] disabled:active:scale-100">
 									{status === "loading" ? (
 										<Loader2 size={14} className="animate-spin" />
 									) : status === "success" ? (
@@ -176,7 +176,7 @@ const Footer = () => {
 							<p
 								className={`text-[10px] mt-2 tracking-wide transition-colors duration-300 ${
 									status === "success"
-										? "text-[#00ff87]"
+										? "text-[#39ff14]"
 										: status === "error"
 											? "text-red-400"
 											: "text-gray-600"
