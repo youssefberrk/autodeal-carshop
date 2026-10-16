@@ -272,7 +272,7 @@ const Testimonials = () => {
 
 							<div>
 								{/* Divider */}
-								<div className="my-6 h-px w-full bg-gradient-to-r from-emerald-500/20 via-emerald-500/10 to-transparent" />
+								<div className="my-6 h-px w-full bg-gradient-to-r from-white/10 via-white/5 to-transparent" />
 
 								{/* Author & Rating Section */}
 								<div className="flex items-center justify-between gap-4">
