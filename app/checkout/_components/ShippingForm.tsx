@@ -15,21 +15,21 @@ export default function ShippingForm({ form }: ShippingFormProps) {
   } = form;
 
   const inputBase =
-    'w-full bg-[#05140d]/90 border rounded-xl px-5 py-4 text-sm font-medium text-[#e5efe3] focus:border-[#00ff87] focus:bg-[#081e13] focus:shadow-[0_0_20px_rgba(0,255,135,0.15)] focus:outline-none transition-all duration-300 placeholder:text-[#dae6d8]/20 shadow-inner';
-  const borderOk = 'border-[#dae6d8]/15 hover:border-[#dae6d8]/30';
+    'w-full bg-[#05140d]/90 border rounded-xl px-5 py-4 text-sm font-medium text-[#f4f5f2] focus:border-[#39ff14] focus:bg-[#081e13] focus:shadow-[0_0_20px_rgba(57,255,20,0.15)] focus:outline-none transition-all duration-300 placeholder:text-[#f4f5f2]/20 shadow-inner';
+  const borderOk = 'border-[#f4f5f2]/15 hover:border-[#f4f5f2]/30';
   const borderErr = 'border-red-500/80 bg-red-500/5';
 
   return (
     <section>
       <div className="flex items-center gap-4 mb-8">
-        <div className="w-12 h-12 bg-[#00ff87]/10 flex items-center justify-center text-[#00ff87] border border-[#00ff87]/25 rounded-xl shadow-[0_0_15px_rgba(0,255,135,0.1)]">
+        <div className="w-12 h-12 bg-[#39ff14]/10 flex items-center justify-center text-[#39ff14] border border-[#39ff14]/25 rounded-xl shadow-[0_0_15px_rgba(57,255,20,0.1)]">
           <Truck size={22} />
         </div>
         <div>
-          <h3 className="text-2xl md:text-3xl font-['Newsreader'] italic font-bold text-[#e5efe3]">
+          <h3 className="text-2xl md:text-3xl font-['Newsreader'] italic font-bold text-[#f4f5f2]">
             Delivery Concierge
           </h3>
-          <p className="text-[10px] text-[#dae6d8]/50 uppercase tracking-[0.2em] mt-0.5 font-semibold">
+          <p className="text-[10px] text-[#f4f5f2]/50 uppercase tracking-[0.2em] mt-0.5 font-semibold">
             Where your build should be delivered
           </p>
         </div>
@@ -38,7 +38,7 @@ export default function ShippingForm({ form }: ShippingFormProps) {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Full Name */}
         <div>
-          <label className="block text-[9px] uppercase tracking-widest text-[#dae6d8]/40 mb-2 font-bold">
+          <label className="block text-[9px] uppercase tracking-widest text-[#f4f5f2]/40 mb-2 font-bold">
             Full Name
           </label>
           <input
@@ -54,7 +54,7 @@ export default function ShippingForm({ form }: ShippingFormProps) {
 
         {/* Email */}
         <div>
-          <label className="block text-[9px] uppercase tracking-widest text-[#dae6d8]/40 mb-2 font-bold">
+          <label className="block text-[9px] uppercase tracking-widest text-[#f4f5f2]/40 mb-2 font-bold">
             Email Address
           </label>
           <input
@@ -70,8 +70,8 @@ export default function ShippingForm({ form }: ShippingFormProps) {
 
         {/* Phone */}
         <div>
-          <label className="block text-[9px] uppercase tracking-widest text-[#dae6d8]/40 mb-2 font-bold">
-            Phone Number <span className="text-[#dae6d8]/20 font-normal lowercase">(optional)</span>
+          <label className="block text-[9px] uppercase tracking-widest text-[#f4f5f2]/40 mb-2 font-bold">
+            Phone Number <span className="text-[#f4f5f2]/20 font-normal lowercase">(optional)</span>
           </label>
           <input
             type="tel"
@@ -104,7 +104,7 @@ export default function ShippingForm({ form }: ShippingFormProps) {
 
         {/* Address — full width */}
         <div className="md:col-span-2">
-          <label className="block text-[9px] uppercase tracking-widest text-[#dae6d8]/40 mb-2 font-bold">
+          <label className="block text-[9px] uppercase tracking-widest text-[#f4f5f2]/40 mb-2 font-bold">
             Destination Address
           </label>
           <input
@@ -120,7 +120,7 @@ export default function ShippingForm({ form }: ShippingFormProps) {
 
         {/* City */}
         <div>
-          <label className="block text-[9px] uppercase tracking-widest text-[#dae6d8]/40 mb-2 font-bold">
+          <label className="block text-[9px] uppercase tracking-widest text-[#f4f5f2]/40 mb-2 font-bold">
             City
           </label>
           <input
@@ -137,8 +137,8 @@ export default function ShippingForm({ form }: ShippingFormProps) {
         {/* State + Postal side by side */}
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block text-[9px] uppercase tracking-widest text-[#dae6d8]/40 mb-2 font-bold">
-              State / Region <span className="text-[#dae6d8]/20 font-normal lowercase">(optional)</span>
+            <label className="block text-[9px] uppercase tracking-widest text-[#f4f5f2]/40 mb-2 font-bold">
+              State / Region <span className="text-[#f4f5f2]/20 font-normal lowercase">(optional)</span>
             </label>
             <input
               type="text"
@@ -151,7 +151,7 @@ export default function ShippingForm({ form }: ShippingFormProps) {
             )}
           </div>
           <div>
-            <label className="block text-[9px] uppercase tracking-widest text-[#dae6d8]/40 mb-2 font-bold">
+            <label className="block text-[9px] uppercase tracking-widest text-[#f4f5f2]/40 mb-2 font-bold">
               Postal Code
             </label>
             <input
