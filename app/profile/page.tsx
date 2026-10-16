@@ -33,27 +33,27 @@ const ProfilePage = () => {
 	// Show loading state while checking session
 	if (status === "loading") {
 		return (
-			<div className="min-h-screen bg-[#020503] text-[#dae6d8] flex items-center justify-center font-['Manrope']">
+			<div className="min-h-screen bg-[#020503] text-[#f4f5f2] flex items-center justify-center font-['Manrope']">
 				<CarWheelLoader text="Syncing collector profile..." size={72} />
 			</div>
 		);
 	}
 
 	return (
-		<div className="min-h-screen bg-gradient-to-l from-[#161616] via-[#000000] to-[#1f1e1e] text-[#dae6d8] font-['Manrope'] pb-24 pt-20 relative overflow-hidden">
+		<div className="min-h-screen bg-gradient-to-l from-[#161616] via-[#000000] to-[#1f1e1e] text-[#f4f5f2] font-['Manrope'] pb-24 pt-20 relative overflow-hidden">
 			<div className="max-w-[1400px] mx-auto px-6 md:px-12 relative z-10">
-				<div className="mb-16 border-b border-[#dae6d8]/10 pb-8 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+				<div className="mb-16 border-b border-[#f4f5f2]/10 pb-8 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
 					<div>
-						<p className="text-[10px] uppercase tracking-[0.3em] text-[#00ff87] font-bold mb-3 font-['Orbitron']">
+						<p className="text-[10px] uppercase tracking-[0.3em] text-[#39ff14] font-bold mb-3 font-['Orbitron']">
 							Collector Workspace
 						</p>
-						<h1 className="text-4xl md:text-5xl lg:text-6xl font-['Newsreader'] italic font-bold tracking-tight text-[#e5efe3] leading-none">
+						<h1 className="text-4xl md:text-5xl lg:text-6xl font-['Newsreader'] italic font-bold tracking-tight text-[#f4f5f2] leading-none">
 							Showcase Portfolio
 						</h1>
 					</div>
-					<div className="flex items-center gap-3 bg-[#07130c]/50 border border-[#dae6d8]/5 rounded-2xl px-5 py-3 text-xs text-[#dae6d8]/50 shadow-[0_4px_20px_rgba(0,0,0,0.2)]">
-						<div className="w-2 h-2 rounded-full bg-[#00ff87] relative">
-							<span className="absolute inset-0 rounded-full bg-[#00ff87] animate-ping opacity-75" />
+					<div className="flex items-center gap-3 bg-[#07130c]/50 border border-[#f4f5f2]/5 rounded-2xl px-5 py-3 text-xs text-[#f4f5f2]/50 shadow-[0_4px_20px_rgba(0,0,0,0.2)]">
+						<div className="w-2 h-2 rounded-full bg-[#39ff14] relative">
+							<span className="absolute inset-0 rounded-full bg-[#39ff14] animate-ping opacity-75" />
 						</div>
 						<span className="font-medium tracking-wide">
 							Authenticated Collector Account
@@ -63,10 +63,10 @@ const ProfilePage = () => {
 				<div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
 					{/* Left Column: User Info Card */}
 					<div className="lg:col-span-4">
-						<div className="bg-[#04050424] backdrop-blur-xl rounded-2xl p-8 border border-[#dae6d8]/10 shadow-[0_24px_48px_-12px_rgba(0,0,0,0.5)] relative overflow-hidden">
+						<div className="bg-[#04050424] backdrop-blur-xl rounded-2xl p-8 border border-[#f4f5f2]/10 shadow-[0_24px_48px_-12px_rgba(0,0,0,0.5)] relative overflow-hidden">
 							<div className="flex flex-col items-center">
 								{session?.user?.image ? (
-									<div className="w-24 h-24 rounded-full mb-6 overflow-hidden border border-[#00ff87]/20 shadow-[0_0_20px_rgba(0,255,135,0.1)]">
+									<div className="w-24 h-24 rounded-full mb-6 overflow-hidden border border-[#39ff14]/20 shadow-[0_0_20px_rgba(57,255,20,0.1)]">
 										<Image
 											src={session.user.image}
 											alt={session.user.name || "User"}
@@ -76,31 +76,31 @@ const ProfilePage = () => {
 										/>
 									</div>
 								) : (
-									<div className="w-24 h-24 rounded-full bg-gradient-to-br from-[#020503] to-[#07130c] mb-6 flex items-center justify-center border border-[#00ff87]/20 shadow-[0_0_20px_rgba(0,255,135,0.1)]">
-										<User size={36} className="text-[#00ff87]" />
+									<div className="w-24 h-24 rounded-full bg-gradient-to-br from-[#020503] to-[#07130c] mb-6 flex items-center justify-center border border-[#39ff14]/20 shadow-[0_0_20px_rgba(57,255,20,0.1)]">
+										<User size={36} className="text-[#39ff14]" />
 									</div>
 								)}
-								<h2 className="text-3xl font-['Newsreader'] italic font-bold text-[#e5efe3] mb-2">
+								<h2 className="text-3xl font-['Newsreader'] italic font-bold text-[#f4f5f2] mb-2">
 									{session?.user?.name || "User"}
 								</h2>
-								<p className="text-[#dae6d8]/50 text-sm mb-8">
+								<p className="text-[#f4f5f2]/50 text-sm mb-8">
 									{session?.user?.email}
 								</p>
 
 								<div className="w-full space-y-4">
-									<div className="flex items-center justify-between py-3 border-b border-[#dae6d8]/10">
-										<span className="text-[#dae6d8]/40 text-xs uppercase tracking-widest font-bold">
+									<div className="flex items-center justify-between py-3 border-b border-[#f4f5f2]/10">
+										<span className="text-[#f4f5f2]/40 text-xs uppercase tracking-widest font-bold">
 											Member since
 										</span>
-										<span className="font-bold text-[#e5efe3] text-sm">
+										<span className="font-bold text-[#f4f5f2] text-sm">
 											2024
 										</span>
 									</div>
-									<div className="flex items-center justify-between py-3 border-b border-[#dae6d8]/10">
-										<span className="text-[#dae6d8]/40 text-xs uppercase tracking-widest font-bold">
+									<div className="flex items-center justify-between py-3 border-b border-[#f4f5f2]/10">
+										<span className="text-[#f4f5f2]/40 text-xs uppercase tracking-widest font-bold">
 											Status
 										</span>
-										<span className="bg-[#00ff87]/10 text-[#00ff87] border border-[#00ff87]/20 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">
+										<span className="bg-[#39ff14]/10 text-[#39ff14] border border-[#39ff14]/20 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest">
 											Active
 										</span>
 									</div>
@@ -120,22 +120,22 @@ const ProfilePage = () => {
 					{/* Right Column: Details & Garage */}
 					<div className="lg:col-span-8 space-y-12">
 						{/* Profile Navigation */}
-						<div className="bg-[#04050424] backdrop-blur-xl rounded-2xl p-8 border border-[#dae6d8]/10 shadow-[0_24px_48px_-12px_rgba(0,0,0,0.5)]">
-							<div className="flex flex-wrap gap-3 border-b border-[#dae6d8]/10 pb-6 mb-8">
+						<div className="bg-[#04050424] backdrop-blur-xl rounded-2xl p-8 border border-[#f4f5f2]/10 shadow-[0_24px_48px_-12px_rgba(0,0,0,0.5)]">
+							<div className="flex flex-wrap gap-3 border-b border-[#f4f5f2]/10 pb-6 mb-8">
 								<Link
-									className="px-5 py-3 rounded-lg bg-[#00ff87] text-[#020503] font-bold flex items-center gap-2 text-xs uppercase tracking-[0.15em] transition-all active:scale-[0.98] shadow-[0_0_20px_rgba(0,255,135,0.15)]"
+									className="px-5 py-3 rounded-lg bg-[#39ff14] text-[#020503] font-bold flex items-center gap-2 text-xs uppercase tracking-[0.15em] transition-all active:scale-[0.98] shadow-[0_0_20px_rgba(57,255,20,0.15)]"
 									href="/">
 									<User size={14} />
 									Profile
 								</Link>
 								<Link
-									className="px-5 py-3 rounded-lg border border-[#dae6d8]/10 text-[#dae6d8]/60 hover:text-[#e5efe3] hover:bg-[#dae6d8]/5 flex items-center gap-2 text-xs uppercase tracking-[0.15em] transition-all"
+									className="px-5 py-3 rounded-lg border border-[#f4f5f2]/10 text-[#f4f5f2]/60 hover:text-[#f4f5f2] hover:bg-[#f4f5f2]/5 flex items-center gap-2 text-xs uppercase tracking-[0.15em] transition-all"
 									href="/settings">
 									<Settings size={14} />
 									Settings
 								</Link>
 								<Link
-									className="px-5 py-3 rounded-lg border border-[#dae6d8]/10 text-[#dae6d8]/60 hover:text-[#e5efe3] hover:bg-[#dae6d8]/5 flex items-center gap-2 text-xs uppercase tracking-[0.15em] transition-all"
+									className="px-5 py-3 rounded-lg border border-[#f4f5f2]/10 text-[#f4f5f2]/60 hover:text-[#f4f5f2] hover:bg-[#f4f5f2]/5 flex items-center gap-2 text-xs uppercase tracking-[0.15em] transition-all"
 									href="/orders">
 									<ShoppingBasket size={14} />
 									Orders
@@ -144,60 +144,60 @@ const ProfilePage = () => {
 
 							{/* Profile Content */}
 							<div>
-								<h3 className="text-2xl font-['Newsreader'] italic font-bold mb-6 flex items-center gap-2 text-[#e5efe3]">
-									<User className="text-[#00ff87]" size={20} />
+								<h3 className="text-2xl font-['Newsreader'] italic font-bold mb-6 flex items-center gap-2 text-[#f4f5f2]">
+									<User className="text-[#39ff14]" size={20} />
 									Personal Information
 								</h3>
 
 								<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-									<div className="bg-[#07130c]/50 p-6 rounded-xl border border-[#dae6d8]/5 hover:border-[#00ff87]/20 hover:shadow-[0_0_20px_rgba(0,255,135,0.03)] transition-all duration-300">
-										<h4 className="text-sm font-bold mb-3 flex items-center gap-2 text-[#e5efe3] uppercase tracking-wider">
-											<MapPin className="text-[#00ff87]" size={16} />
+									<div className="bg-[#07130c]/50 p-6 rounded-xl border border-[#f4f5f2]/5 hover:border-[#39ff14]/20 hover:shadow-[0_0_20px_rgba(57,255,20,0.03)] transition-all duration-300">
+										<h4 className="text-sm font-bold mb-3 flex items-center gap-2 text-[#f4f5f2] uppercase tracking-wider">
+											<MapPin className="text-[#39ff14]" size={16} />
 											Address
 										</h4>
-										<p className="text-[#dae6d8]/40 text-sm">
+										<p className="text-[#f4f5f2]/40 text-sm">
 											No address saved yet
 										</p>
-										<button className="mt-4 text-[#00ff87] hover:text-emerald-300 text-xs uppercase tracking-wider font-bold transition-colors active:scale-95 transition-transform duration-100">
+										<button className="mt-4 text-[#39ff14] hover:text-emerald-300 text-xs uppercase tracking-wider font-bold transition-colors active:scale-95 transition-transform duration-100">
 											Add Address
 										</button>
 									</div>
 
-									<div className="bg-[#07130c]/50 p-6 rounded-xl border border-[#dae6d8]/5 hover:border-[#00ff87]/20 hover:shadow-[0_0_20px_rgba(0,255,135,0.03)] transition-all duration-300">
-										<h4 className="text-sm font-bold mb-3 flex items-center gap-2 text-[#e5efe3] uppercase tracking-wider">
-											<CreditCard className="text-[#00ff87]" size={16} />
+									<div className="bg-[#07130c]/50 p-6 rounded-xl border border-[#f4f5f2]/5 hover:border-[#39ff14]/20 hover:shadow-[0_0_20px_rgba(57,255,20,0.03)] transition-all duration-300">
+										<h4 className="text-sm font-bold mb-3 flex items-center gap-2 text-[#f4f5f2] uppercase tracking-wider">
+											<CreditCard className="text-[#39ff14]" size={16} />
 											Payment Methods
 										</h4>
-										<p className="text-[#dae6d8]/40 text-sm">
+										<p className="text-[#f4f5f2]/40 text-sm">
 											No payment methods saved
 										</p>
-										<button className="mt-4 text-[#00ff87] hover:text-emerald-300 text-xs uppercase tracking-wider font-bold transition-colors active:scale-95 transition-transform duration-100">
+										<button className="mt-4 text-[#39ff14] hover:text-emerald-300 text-xs uppercase tracking-wider font-bold transition-colors active:scale-95 transition-transform duration-100">
 											Add Payment Method
 										</button>
 									</div>
 
-									<div className="bg-[#07130c]/50 p-6 rounded-xl border border-[#dae6d8]/5 hover:border-[#00ff87]/20 hover:shadow-[0_0_20px_rgba(0,255,135,0.03)] transition-all duration-300">
-										<h4 className="text-sm font-bold mb-3 flex items-center gap-2 text-[#e5efe3] uppercase tracking-wider">
-											<Bell className="text-[#00ff87]" size={16} />
+									<div className="bg-[#07130c]/50 p-6 rounded-xl border border-[#f4f5f2]/5 hover:border-[#39ff14]/20 hover:shadow-[0_0_20px_rgba(57,255,20,0.03)] transition-all duration-300">
+										<h4 className="text-sm font-bold mb-3 flex items-center gap-2 text-[#f4f5f2] uppercase tracking-wider">
+											<Bell className="text-[#39ff14]" size={16} />
 											Notifications
 										</h4>
-										<p className="text-[#dae6d8]/40 text-sm">
+										<p className="text-[#f4f5f2]/40 text-sm">
 											Email notifications enabled
 										</p>
-										<button className="mt-4 text-[#00ff87] hover:text-emerald-300 text-xs uppercase tracking-wider font-bold transition-colors active:scale-95 transition-transform duration-100">
+										<button className="mt-4 text-[#39ff14] hover:text-emerald-300 text-xs uppercase tracking-wider font-bold transition-colors active:scale-95 transition-transform duration-100">
 											Manage Settings
 										</button>
 									</div>
 									{/* virtual Garaage */}
-									<div className="bg-[#04050424] p-6 rounded-xl border border-[#dae6d8]/5 hover:border-[#00ff87]/20 hover:shadow-[0_0_20px_rgba(0,255,135,0.03)] transition-all duration-300">
-										<h4 className="text-sm font-bold mb-3 flex items-center gap-2 text-[#e5efe3] uppercase tracking-wider">
-											<Heart className="text-[#00ff87]" size={16} />
+									<div className="bg-[#04050424] p-6 rounded-xl border border-[#f4f5f2]/5 hover:border-[#39ff14]/20 hover:shadow-[0_0_20px_rgba(57,255,20,0.03)] transition-all duration-300">
+										<h4 className="text-sm font-bold mb-3 flex items-center gap-2 text-[#f4f5f2] uppercase tracking-wider">
+											<Heart className="text-[#39ff14]" size={16} />
 											Wishlist
 										</h4>
-										<p className="text-[#dae6d8]/40 text-sm">
+										<p className="text-[#f4f5f2]/40 text-sm">
 											No items in your wishlist yet
 										</p>
-										<button className="mt-4 text-[#00ff87] hover:text-emerald-300 text-xs uppercase tracking-wider font-bold transition-colors active:scale-95 transition-transform duration-100">
+										<button className="mt-4 text-[#39ff14] hover:text-emerald-300 text-xs uppercase tracking-wider font-bold transition-colors active:scale-95 transition-transform duration-100">
 											Browse Cars
 										</button>
 									</div>
@@ -206,9 +206,9 @@ const ProfilePage = () => {
 						</div>
 
 						{/* Virtual Garage */}
-						<div className="bg-[#04050424] backdrop-blur-xl rounded-2xl p-8 border border-[#dae6d8]/10 shadow-[0_24px_48px_-12px_rgba(0,0,0,0.5)]">
-							<h3 className="text-3xl font-['Newsreader'] italic font-bold mb-6 flex items-center gap-2 text-[#e5efe3]">
-								<Car className="text-[#00ff87]" size={24} />
+						<div className="bg-[#04050424] backdrop-blur-xl rounded-2xl p-8 border border-[#f4f5f2]/10 shadow-[0_24px_48px_-12px_rgba(0,0,0,0.5)]">
+							<h3 className="text-3xl font-['Newsreader'] italic font-bold mb-6 flex items-center gap-2 text-[#f4f5f2]">
+								<Car className="text-[#39ff14]" size={24} />
 								Virtual Garage
 							</h3>
 
@@ -216,8 +216,8 @@ const ProfilePage = () => {
 								<button
 									className={`px-5 py-2.5 rounded-lg flex items-center gap-2 text-xs uppercase tracking-wider font-bold transition-all active:scale-[0.98] ${
 										activeTab === "profile"
-											? "bg-[#00ff87] text-[#020503] shadow-[0_0_20px_rgba(0,255,135,0.15)]"
-											: "border border-[#dae6d8]/10 text-[#dae6d8]/60 hover:text-[#e5efe3] hover:bg-[#dae6d8]/5"
+											? "bg-[#39ff14] text-[#020503] shadow-[0_0_20px_rgba(57,255,20,0.15)]"
+											: "border border-[#f4f5f2]/10 text-[#f4f5f2]/60 hover:text-[#f4f5f2] hover:bg-[#f4f5f2]/5"
 									}`}
 									onClick={() => setActiveTab("profile")}>
 									<Heart size={14} />
@@ -227,8 +227,8 @@ const ProfilePage = () => {
 								<button
 									className={`px-5 py-2.5 rounded-lg flex items-center gap-2 text-xs uppercase tracking-wider font-bold transition-all active:scale-[0.98] ${
 										activeTab === "garage"
-											? "bg-[#00ff87] text-[#020503] shadow-[0_0_20px_rgba(0,255,135,0.15)]"
-											: "border border-[#dae6d8]/10 text-[#dae6d8]/60 hover:text-[#e5efe3] hover:bg-[#dae6d8]/5"
+											? "bg-[#39ff14] text-[#020503] shadow-[0_0_20px_rgba(57,255,20,0.15)]"
+											: "border border-[#f4f5f2]/10 text-[#f4f5f2]/60 hover:text-[#f4f5f2] hover:bg-[#f4f5f2]/5"
 									}`}
 									onClick={() => setActiveTab("garage")}>
 									Purchased ({purchasedCars.length})
@@ -247,7 +247,7 @@ const ProfilePage = () => {
 											/>
 										))
 									) : (
-										<div className="col-span-2 text-center py-12 text-[#dae6d8]/30">
+										<div className="col-span-2 text-center py-12 text-[#f4f5f2]/30">
 											<p className="text-sm uppercase tracking-wider">
 												No cars in your wishlist yet
 											</p>
@@ -260,9 +260,9 @@ const ProfilePage = () => {
 										purchasedCars.map((car) => (
 											<div
 												key={car.id}
-												className="bg-[#07130c]/50 p-5 rounded-xl border border-[#dae6d8]/5 flex flex-col sm:flex-row gap-4 relative hover:border-[#00ff87]/20 hover:shadow-[0_0_20px_rgba(0,255,135,0.03)] transition-all duration-300">
+												className="bg-[#07130c]/50 p-5 rounded-xl border border-[#f4f5f2]/5 flex flex-col sm:flex-row gap-4 relative hover:border-[#39ff14]/20 hover:shadow-[0_0_20px_rgba(57,255,20,0.03)] transition-all duration-300">
 												<div className="w-full sm:w-1/3">
-													<div className="bg-[#020503] rounded-lg overflow-hidden border border-[#dae6d8]/5 aspect-[4/3] relative">
+													<div className="bg-[#020503] rounded-lg overflow-hidden border border-[#f4f5f2]/5 aspect-[4/3] relative">
 														<Image
 															src={getValidImageSrc(car.image)}
 															alt={car.model || "Car"}
@@ -273,18 +273,18 @@ const ProfilePage = () => {
 													</div>
 												</div>
 												<div className="flex-1">
-													<h4 className="font-['Newsreader'] italic font-bold text-xl mb-1 text-[#e5efe3]">
+													<h4 className="font-['Newsreader'] italic font-bold text-xl mb-1 text-[#f4f5f2]">
 														{car.model}
 													</h4>
-													<p className="text-[#dae6d8]/50 text-xs mb-3 uppercase tracking-wider">
+													<p className="text-[#f4f5f2]/50 text-xs mb-3 uppercase tracking-wider">
 														{car.brand}
 													</p>
 													<div className="flex justify-between items-center">
-														<span className="text-[#00ff87] font-bold text-sm font-['Manrope']">
+														<span className="text-[#39ff14] font-bold text-sm font-['Manrope']">
 															${car.price.toLocaleString()}
 														</span>
 														{car.badge && (
-															<span className="bg-[#00ff87]/10 text-[#00ff87] border border-[#00ff87]/20 px-2.5 py-0.5 rounded-full text-[9px] uppercase tracking-wider font-bold">
+															<span className="bg-[#39ff14]/10 text-[#39ff14] border border-[#39ff14]/20 px-2.5 py-0.5 rounded-full text-[9px] uppercase tracking-wider font-bold">
 																{car.badge}
 															</span>
 														)}
@@ -293,7 +293,7 @@ const ProfilePage = () => {
 											</div>
 										))
 									) : (
-										<div className="col-span-2 text-center py-12 text-[#dae6d8]/30">
+										<div className="col-span-2 text-center py-12 text-[#f4f5f2]/30">
 											<p className="text-sm uppercase tracking-wider">
 												No cars purchased yet
 											</p>
